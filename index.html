@@ -49,7 +49,9 @@ body.mt .bo,body:not(.mt) .mo{display:none!important}
 #msg{padding:8px 12px;border-radius:10px;font-size:13px;font-weight:700;margin-bottom:8px;border:1px solid}
 .g{background:#16a34a22;border-color:#16a34a;color:#16a34a}.y{background:#eab30822;border-color:#eab308;color:#a16207}.r{background:#ef444422;border-color:#ef4444;color:#ef4444}
 #wrap{position:relative}
-#sc{overflow:auto;max-height:72vh;border-radius:14px;border:1px solid var(--bd)}
+#sc{overflow:auto;min-height:540px;max-height:72vh;border-radius:14px;border:1px solid var(--bd);background:#141b2e;display:block!important;visibility:visible!important}
+#board{min-width:320px;min-height:520px;display:block!important;visibility:visible!important}
+#boardEmpty{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;color:#94a3b8;font-size:14px;font-weight:700;pointer-events:none;padding:20px;z-index:0}
 #board{position:relative;background:var(--board);overflow:hidden;user-select:none;background-image:linear-gradient(#0001 1px,transparent 1px),linear-gradient(90deg,#0001 1px,transparent 1px);background-size:22px 22px}
 #wires{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2}
 #dr{position:absolute;top:0;bottom:0;width:236px;z-index:20;background:var(--card);border:1px solid var(--bd);border-radius:14px;overflow:auto;padding:8px;box-sizing:border-box;transition:transform .25s}
@@ -179,7 +181,7 @@ body.locked #lockHint{display:inline-block}
 <div id="iosHint" style="display:none;background:var(--card);border:1px solid var(--bd);padding:8px 12px;border-radius:10px;font-size:12px;margin-bottom:8px">على iPhone: اضغط زر <b>مشاركة ⬆️</b> في سفاري ثم <b>إضافة إلى الشاشة الرئيسية</b> ليشتغل بدون إنترنت.</div>
 <header id="topbar">
  <div class="bar"><button data-tab="b" id="tb">تصنيع حر</button><button data-tab="m" id="tm">صيانة وأعطال</button><button id="bw">🔌 وضع التوصيل</button><button id="br" class="go"></button><span id="lockHint">🔒 وضع التشغيل - التعديل مقفول - اضغط إيقاف للتعديل</span></div>
- <div class="bar"><span style="display:flex;gap:4px;align-items:center;background:var(--card);border:1px solid var(--bd);padding:3px 8px;border-radius:999px"><b style="font-size:11px">🔍 زوم</b><button id="zoomOut">−</button><input type="range" id="zoomRange" min="50" max="200" step="10" value="100" style="width:90px;padding:0"><button id="zoomIn">+</button><button id="zoomReset">100%</button><b id="zoomLabel" style="font-size:11px">100%</b></span><select id="sp" title="سرعة الزمن"><option value="1">زمن حقيقي ×1</option><option value="60">×60 (ث = دقيقة)</option><option value="3600">×3600 (ث = ساعة)</option></select><button id="bm">🔊</button><span id="kwh" style="font-size:12px"></span></div>
+ <div class="bar"><span style="display:flex;gap:4px;align-items:center;background:var(--card);border:1px solid var(--bd);padding:3px 8px;border-radius:999px"><b style="font-size:11px">🔍 زوم</b><button id="zoomOut">−</button><input type="range" id="zoomRange" min="50" max="200" step="10" value="100" style="width:90px;padding:0"><button id="zoomIn">+</button><button id="zoomReset" title="إعادة الزوم لـ 100%">↺</button><b id="zoomLabel" style="font-size:11px">100%</b></span><select id="sp" title="سرعة الزمن"><option value="1">زمن حقيقي ×1</option><option value="60">×60 (ث = دقيقة)</option><option value="3600">×3600 (ث = ساعة)</option></select><button id="bm">🔊</button><span id="kwh" style="font-size:12px"></span></div>
 </header>
 <div class="bar mo" id="pc"></div>
 <div class="bar mo" id="fl"></div>
@@ -187,12 +189,12 @@ body.locked #lockHint{display:inline-block}
 <div id="wrap" class="R cl">
  <div id="boardTopBar" class="bo">
   <button id="dh" title="القطع">☰</button>
-  <select id="bs"><option value="40x60">40×60 سم</option><option value="60x80">60×80 سم</option><option value="80x100" selected>80×100 سم</option><option value="100x120">100×120 سم</option></select>
-  <button id="bd">✕ حذف المحدد</button><button id="bx">مسح الكل</button>
+  <label style="color:#fff;font-size:12px;font-weight:700">مقاس اللوحة:</label><select id="bs"><option value="40x60">40×60 سم</option><option value="60x80">60×80 سم</option><option value="80x100" selected>80×100 سم</option><option value="100x80">100×80 سم</option><option value="100x120">100×120 سم</option></select>
+  <button id="bd">✕ حذف المحدد</button><button id="bx">مسح الكل</button><button id="breset" title="ارجع للدائرة الافتراضية: مصدر + قاطع + لمبة">↺ دائرة افتراضية</button>
   <div class="bar" id="sb"><span id="sbc" class="bar" style="margin:0"><label>تدوير <input type="range" id="rr" min="0" max="360" step="1"><b id="rv"></b></label><button id="r90">↻ 90°</button><label>الحجم <input type="range" id="sr" min="40" max="300" step="5"><b id="sv"></b></label><button id="sx">إعادة ضبط</button></span><span id="sw">القدرة <input id="wv" type="number" min="0" step="10" style="width:80px"> واط</span><button id="bd2" class="bad">✕ حذف المحدد</button></div>
  </div>
  <div id="dr" class="bo"></div>
- <div id="sc"><div id="board"><svg id="wires"></svg><div id="comps"></div></div></div>
+ <div id="sc"><div id="board"><div id="boardEmpty">اللوحة فاضية<br><span style="font-weight:400;font-size:12px">اضغط ☰ وأضف قطعة<br>أو اضغط ↺ دائرة افتراضية</span></div><svg id="wires"></svg><div id="comps"></div></div></div>
 </div>
 <div class="hint bo">وضع التوصيل: اضغط نقطتين نحاسيتين لرسم سلك. أحادي: L1+N • ثنائي: L1+L2 • ثلاثي: L1+L2+L3 • بارة N فيها 8 نقاط (N1..N8) - وصّل كل سلك على نقطة لوحده. النقطة اللي عليها أكتر من سلك بيظهر عليها رقم بعدد الأسلاك. اضغط القطعة لتبديل ON/OFF (والمولد START/STOP). حدّد قطعة لتدويرها 0–360° أو تكبيرها وتصغيرها من الدوائر الظاهرة على القطعة نفسها: ↻ فوقها للتدوير الحر، و⤡ في ركنها للحجم. اضغط أي سلك لتحديده ثم «حذف المحدد» (أو زر Delete).</div>
 <div id="dg"></div>
@@ -218,7 +220,7 @@ const T={},LIT={Lamp:'#facc15',LampR:'#ef4444',LampG:'#22c55e'};
 A.forEach(([k,n,c,kd,w,h,b,g])=>T[k]={n,c,k:kd,w,h,b,g});
 const WT={Lamp:60,LampR:3,LampG:3,Motor:750,Fan:75,Heater:2000,Socket:1000,Cooker:3000,Washer:500,Fridge:150,Motor3Ph:3000,Heater3Ph:6000,Socket3Ph:5000,Mains3Ph:0,Generator3Ph:0},PF={Motor:.8,Fan:.9,Washer:.75,Fridge:.7,Motor3Ph:.85,Heater3Ph:1,Socket3Ph:.9},amp=c=>c.w/(220*(PF[c.t]||1));
 const TL=h=>{const v=parseInt(h.slice(1),16);return((v>>16)*299+((v>>8)&255)*587+(v&255)*114)/1000>140?'#111':'#fff'};
-const TS={'40x60':[360,540],'60x80':[520,700],'80x100':[700,860],'100x120':[880,1020]};
+const TS={'40x60':[360,540],'60x80':[520,700],'80x100':[700,860],'100x80':[880,700],'100x120':[880,1020]};
 const COL={red:'#ef4444',blue:'#2563eb',yellow:'#eab308',black:'#111827',green:'#22c55e'};
 let zoom=1, boardW=700, boardH=860;
 function applyZoom(){ board.style.width=(boardW*zoom)+'px'; board.style.height=(boardH*zoom)+'px'; board.style.backgroundSize=(22*zoom)+'px '+(22*zoom)+'px'; const l=$('zoomLabel'), r=$('zoomRange'); if(l) l.textContent=Math.round(zoom*100)+'%'; if(r && document.activeElement!==r) r.value=Math.round(zoom*100); }
@@ -454,6 +456,7 @@ function denyEdit(){const m=$('msg');if(m){m.textContent='⏸ أوقف التش�
 function render(){
  res=sim();
  document.body.classList.toggle('locked', !!run);
+ const be=$('boardEmpty'); if(be) be.style.display=C.length?'none':'flex';
  comps.innerHTML=C.map(c=>{
   const d=T[c.t],e=res.E.has(c.id),lamp=c.t in LIT,fg=TL(d.b);
   const cls=['c',sel===c.id?'sel':'',e&&d.k!=='ld'?'live':'',e&&lamp?'glow':'',c.dead?'bd':'',e&&['Motor','Fan','Washer','Motor3Ph'].includes(c.t)?'spin':''].join(' ');
@@ -464,7 +467,7 @@ function render(){
    ${isReal?'':`<b>${c.l}</b>`}${gfx(c,e)||lv}${isReal?'':`<small>${st(c,e)}</small>`}
    ${terms(c.t).map(([n,p,l])=>`<i class="t ${p}${pend===c.id+':'+n?' p':''}" data-t="${c.id}:${n}" data-l="${l}"></i>`).join('')}<i class="qbtn" data-q="${c.t}" title="شرح القطعة">؟</i>${sel===c.id&&!run?'<i class="hd rot" data-h="rot">↻</i><i class="hd siz" data-h="siz">⤡</i>':''}</div>`;
  }).join('');
- const m=$('msg');m.textContent=res.msg;m.className=res.c;
+ const m=$('msg');m.textContent=res.msg;m.className=res.c;m.style.display=res.msg?'':'none';
  {const ls=C.filter(c=>T[c.t].k==='ld'&&res.E.has(c.id));$('kwh').textContent=`⚡ ${ls.reduce((s,c)=>s+c.w,0)} W • ${ls.reduce((s,c)=>s+amp(c),0).toFixed(2)} A • ${kwh.toFixed(3)} kWh`}
  $('bw').className=wire?'on':'';
  $('br').textContent=run?'⏸ إيقاف':'▶ تشغيل'; $('br').className='go runBtn'+(run?'':' stop');
@@ -702,6 +705,7 @@ document.addEventListener('click',e=>{const t=e.target;
 svg.addEventListener('click',e=>{const id=e.target.dataset&&e.target.dataset.w;if(id){selW=id;sel=null;render()}});
 addEventListener('keydown',e=>{if((e.key==='Delete'||e.key==='Backspace')&&!/INPUT|SELECT/.test(document.activeElement.tagName))del()});
 $('bx').onclick=()=>{if(run){denyEdit();return}C=[];W=[];sel=null;pend=null;render()};
+$('breset').onclick=()=>{if(run){denyEdit();return}const m=mk('Mains',40,20),b=mk('MCB',70,150),l=mk('Lamp',70,290),n=mk('NBar',250,400);C=[m,b,l,n];link(m.id+':L',b.id+':in','red');link(b.id+':out',l.id+':in','red');link(l.id+':out',n.id+':n','blue');link(n.id+':n',m.id+':N','blue');sel=null;pend=null;render()};
 addEventListener('resize',draw);
 setInterval(()=>{
  if(drag||!run)return;
@@ -727,7 +731,7 @@ function init(){
 </script>
 <script>
 // ===== PWA: تثبيت + أوفلاين + تحديث تلقائي =====
-const APP_VERSION = 'v2.9.2';
+const APP_VERSION = 'v2.9.4';
 let deferredPrompt = null, newWorker = null;
 const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
 const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
