@@ -52,6 +52,9 @@ body.mt .bo,body:not(.mt) .mo{display:none!important}
 #wrap:fullscreen #sc{max-height:calc(100dvh - 90px)!important;min-height:calc(100dvh - 90px)!important}
 #wrap:fullscreen #dr{height:100dvh!important}
 #wrap:fullscreen #boardTools{position:sticky!important;top:0!important;z-index:310!important;width:100%!important;max-width:100%!important}
+.c.sym{background:#f8fafc!important;color:#111!important;border:1px solid #64748b!important}
+.c.sym b{color:#111!important}.c.sym small{color:#334155!important}
+.c.sym .symsvg{display:block;margin:0 auto}.c.sym .spn{transform-box:fill-box;transform-origin:center;animation:sp .8s linear infinite}
 body.termMove .t{outline:3px solid #facc15!important;box-shadow:0 0 10px #facc15!important;touch-action:none!important;cursor:grab!important;width:22px!important;height:22px!important}body.termMove .t:active{cursor:grabbing!important}
 #boardTools{background:#0f172a!important;border:1px solid #334155!important;border-radius:12px!important;padding:6px!important;flex-wrap:nowrap!important;overflow-x:auto!important;overflow-y:hidden!important;gap:4px!important;touch-action:pan-x!important;cursor:grab!important;scroll-behavior:smooth!important;-webkit-overflow-scrolling:touch!important}
 #boardTools.dragging{cursor:grabbing!important;scroll-behavior:auto!important}
@@ -118,6 +121,7 @@ body.termMove .t{outline:3px solid #facc15!important;box-shadow:0 0 10px #facc15
  <select id="bs"><option value="40x60">40×60 سم</option><option value="60x80">60×80 سم</option><option value="80x100" selected>80×100 سم</option><option value="100x80">100×80 سم</option><option value="100x120">100×120 سم</option></select>
  <button id="bd">✕ حذف المحدد</button>
  <button id="dupBtn" title="نسخ القطعة المظللة بنفس بياناتها من غير أسلاك">⧉ تكرار القطعة</button>
+ <button id="symBtn" title="بدّل شكل القطع: رسم واقعي أو رمز هندسي زي المخططات - الدايرة والأسلاك ثابتة">〰️ رمز هندسي</button>
  <button id="termMoveBtn" title="شغّل الوضع، وبعدين اسحب أي نقطة نحاسية بصباعك لأي جنب من القطعة - حتى لو كل النقط على ضلع واحد">✋ تحريك النقاط</button>
  <button id="fsBoard" title="ملء الشاشة للوحة الرسم - القايمة دي هتبقى جوه اللوحة">⛶ تكبير الشاشة</button>
  <button id="saveFileBtn" title="حفظ الدايرة كملف وتفتحه تاني">💾 حفظ الدايرة</button>
@@ -332,9 +336,9 @@ function render(){
  comps.innerHTML=C.map(c=>{
   const d=T[c.t],e=res.E.has(c.id),lamp=c.t in LIT,fg=TL(d.b);
   const smoke=(c.t==='Heater'&&c.temp>=70)||(c.dead&&e)||(c.t==='Overload'&&c.stuck);
-  const cls=['c',sel===c.id?'sel':'',e&&d.k!=='ld'?'live':'',e&&lamp?'glow':'',c.dead?'bd':'',e&&['Motor','Fan','Motor3Ph'].includes(c.t)?'spin':'',e&&c.t==='Washer'?'tumble':'',e&&c.t==='BlinkLamp'?'blink':'',smoke?'smoke':''].join(' ');
+  const cls=['c',symMode?'sym':'',sel===c.id?'sel':'',e&&d.k!=='ld'?'live':'',e&&lamp?'glow':'',c.dead?'bd':'',e&&['Motor','Fan','Motor3Ph'].includes(c.t)?'spin':'',e&&c.t==='Washer'?'tumble':'',e&&c.t==='BlinkLamp'?'blink':'',smoke?'smoke':''].join(' ');
   const hot=c.t==='Heater'&&e?`background:hsl(${Math.max(0,210-(c.temp-20)*3)},80%,80%);`:'';
-  const lv=d.k==='sw'?`<div class="lv"><i class="${c.s==='ON'||c.stuck?'u':''}"></i></div>`:d.g?`<div class="gl">${d.g}</div>`:'';
+  const lv=symMode?'':d.k==='sw'?`<div class="lv"><i class="${c.s==='ON'||c.stuck?'u':''}"></i></div>`:d.g?`<div class="gl">${d.g}</div>`:'';
   return `<div class="${cls}" data-id="${c.id}" style="left:${c.x}px;top:${c.y}px;width:${d.w}px;height:${d.h}px;transform:rotate(${c.rot||0}deg) scale(${c.sc||1});background:${d.b};color:${fg};--lit:${LIT[c.t]||'#fff'};--inv:${1/(c.sc||1)};${hot}">
    <b>${c.l}</b>${gfx(c,e)||lv}<small>${st(c,e)}</small>
    ${terms(c.t,c).map(([n,p,l,st])=>`<i class="t ${p}${pend===c.id+':'+n?' p':''}" data-t="${c.id}:${n}" data-l="${l}"${st?` style="${st}"`:''}></i>`).join('')}${sel===c.id?'<i class="hd rot" data-h="rot">↻</i><i class="hd siz" data-h="siz">⤡</i>':''}</div>`;
@@ -460,9 +464,10 @@ function del(){
  C=C.filter(c=>c.id!==sel);W=W.filter(w=>!w.a.startsWith(sel+':')&&!w.b.startsWith(sel+':'));sel=null;render();
 }
 $('bd').onclick=del;$('bd2').onclick=del;
-let termMove=false;
+let termMove=false,symMode=false;
 function dupComp(){const src=C.find(x=>x.id===sel);if(!src){alert('حدّد قطعة الأول');return}const n=mk(src.t,Math.min(board.clientWidth-80,src.x+30),Math.min(board.clientHeight-80,src.y+30));n.s=src.s;n.rot=src.rot||0;n.sc=src.sc||1;n.w=src.w;n.temp=src.temp;n.fuel=src.fuel;n.termPos=JSON.parse(JSON.stringify(src.termPos||{}));C.push(n);sel=n.id;selW=null;render()}
 $('dupBtn').onclick=dupComp;
+$('symBtn').onclick=e=>{symMode=!symMode;e.target.classList.toggle('warn',symMode);e.target.textContent=symMode?'🖼️ رسم واقعي':'〰️ رمز هندسي';render()};
 $('termMoveBtn').onclick=e=>{termMove=!termMove;document.body.classList.toggle('termMove',termMove);e.target.classList.toggle('warn',termMove);e.target.textContent=termMove?'✋ تحريك النقاط (شغال - اسحب أي نقطة)':'✋ تحريك النقاط';if(termMove){wire=false;pend=null}render()};
 // ملء الشاشة: القايمة تدخل جوه اللوحة - ترجع مكانها لما تخرج
 const toolsBar=$('boardTools'), wrapEl=$('wrap'); let toolsHome=null;
@@ -515,7 +520,38 @@ function snd(){
 }
 const bulb=(on,col)=>`<svg width='42' height='54' viewBox='0 0 42 54'><defs><radialGradient id='bg' cx='50%' cy='40%'><stop offset='0' stop-color='#fff'/><stop offset='.5' stop-color='${col}'/><stop offset='1' stop-color='${col}' stop-opacity='.35'/></radialGradient></defs><path d='M21 3a15 15 0 0 0-8 27v6h16v-6A15 15 0 0 0 21 3z' fill='${on?'url(#bg)':'#dbe4ea'}' stroke='#64748b' stroke-width='1.5' ${on?`style='filter:drop-shadow(0 0 12px ${col})'`:''}/><path d='M16 30l3-9 3 6 3-6 3 9' fill='none' stroke='${on?'#fff':'#475569'}' stroke-width='1.5'/><rect x='13' y='36' width='16' height='12' rx='2' fill='#94a3b8'/><rect x='15' y='48' width='12' height='4' rx='2' fill='#475569'/></svg>`;
 const pilot=(on,col)=>`<svg width='40' height='40' viewBox='0 0 40 40'><circle cx='20' cy='20' r='17' fill='#222' stroke='#999' stroke-width='3'/><circle cx='20' cy='20' r='12' fill='${on?col:col+'55'}' ${on?`style='filter:drop-shadow(0 0 10px ${col})'`:''}/><ellipse cx='16' cy='15' rx='5' ry='3' fill='#fff' opacity='${on?.8:.35}'/></svg>`;
+function symSVG(c,e){
+ const t=c.t,k=T[t].k,on=c.s==='ON'||c.stuck,stroke=e?'#dc2626':'#334155',fill=e?'#fef3c7':'#fff';
+ const S=(inner)=>`<svg class="symsvg" width="58" height="40" viewBox="0 0 60 44">${inner}</svg>`;
+ const brk=(poles)=>{let lines='';for(let i=0;i<poles;i++){const y=10+i*12;lines+=`<line x1="4" y1="${y}" x2="22" y2="${y}" stroke="${stroke}" stroke-width="2"/><line x1="38" y1="${y}" x2="56" y2="${y}" stroke="${stroke}" stroke-width="2"/>`+(on?`<line x1="22" y1="${y}" x2="38" y2="${y}" stroke="${stroke}" stroke-width="2"/>`:`<line x1="22" y1="${y}" x2="34" y2="${y-7}" stroke="${stroke}" stroke-width="2"/><path d="M38 ${y} A9 9 0 0 0 33 ${y-8}" fill="none" stroke="${stroke}" stroke-width="1"/>`)}return S(lines+`<text x="30" y="42" text-anchor="middle" font-size="7" fill="#334155">${on?'مقفول':'مفتوح'}</text>`)};
+ if(t==='Lamp'||t==='LampR'||t==='LampG'||t==='PilotR'||t==='PilotG'||t==='PilotY'||t==='BlinkLamp')return S(`<circle cx="30" cy="20" r="13" fill="${e?(LIT[t]||'#facc15'):'#e2e8f0'}" stroke="${stroke}" stroke-width="2" ${e?`style="filter:drop-shadow(0 0 6px ${LIT[t]||'#facc15'})"`:''}/><path d="M22 12 L38 28 M38 12 L22 28" stroke="${stroke}" stroke-width="2"/>`);
+ if(t==='Motor'||t==='Motor3Ph')return S(`<circle cx="30" cy="20" r="14" fill="${fill}" stroke="${stroke}" stroke-width="2"/><g class="${e?'spn':''}"><text x="30" y="25" text-anchor="middle" font-size="13" font-weight="900" fill="${stroke}">M</text></g>${t==='Motor3Ph'?'<text x="30" y="42" text-anchor="middle" font-size="7" fill="#334155">3~</text>':''}`);
+ if(t==='Fan')return S(`<circle cx="30" cy="20" r="14" fill="${fill}" stroke="${stroke}" stroke-width="2"/><g class="${e?'spn':''}"><path d="M30 20 L30 9 M30 20 L39 25 M30 20 L21 25" stroke="${stroke}" stroke-width="2"/></g>`);
+ if(t==='Heater'||t==='Heater3Ph')return S(`<polyline points="4,20 12,10 20,30 28,10 36,30 44,10 52,20" fill="none" stroke="${stroke}" stroke-width="2"/>${t==='Heater3Ph'?'<text x="30" y="42" text-anchor="middle" font-size="7" fill="#334155">3~</text>':''}`);
+ if(t==='Socket'||t==='Socket3Ph')return S(`<line x1="8" y1="8" x2="8" y2="32" stroke="${stroke}" stroke-width="2"/><line x1="52" y1="8" x2="52" y2="32" stroke="${stroke}" stroke-width="2"/><circle cx="30" cy="20" r="4" fill="none" stroke="${stroke}" stroke-width="2"/>${t==='Socket3Ph'?'<text x="30" y="42" text-anchor="middle" font-size="7" fill="#334155">3~</text>':''}`);
+ if(t==='Cooker')return S(`<rect x="10" y="10" width="40" height="20" rx="2" fill="${fill}" stroke="${stroke}" stroke-width="2"/><polyline points="16,20 22,14 28,26 34,14 40,26 44,20" fill="none" stroke="${stroke}" stroke-width="1.5"/>`);
+ if(t==='Washer')return S(`<rect x="12" y="8" width="36" height="26" rx="3" fill="${fill}" stroke="${stroke}" stroke-width="2"/><circle cx="30" cy="22" r="8" fill="none" stroke="${stroke}" stroke-width="2"/><circle cx="30" cy="22" r="2" fill="${stroke}"/>`);
+ if(t==='Fridge')return S(`<rect x="14" y="6" width="32" height="32" rx="2" fill="${fill}" stroke="${stroke}" stroke-width="2"/><line x1="14" y1="16" x2="46" y2="16" stroke="${stroke}" stroke-width="1.5"/><text x="30" y="31" text-anchor="middle" font-size="9" fill="${stroke}">❄</text>`);
+ if(k==='src'||k==='src3')return S(`<circle cx="30" cy="20" r="14" fill="${fill}" stroke="${stroke}" stroke-width="2"/><text x="30" y="25" text-anchor="middle" font-size="13" fill="${stroke}">~</text>${k==='src3'?'<text x="30" y="42" text-anchor="middle" font-size="7" fill="#334155">3~ 380V</text>':''}`);
+ if(t==='Contactor'||t==='Contactor3P')return S(`<rect x="8" y="6" width="44" height="10" rx="2" fill="${fill}" stroke="${stroke}" stroke-width="2"/><line x1="30" y1="16" x2="30" y2="22" stroke="${stroke}" stroke-width="2"/><line x1="8" y1="28" x2="22" y2="28" stroke="${stroke}" stroke-width="2"/><line x1="38" y1="28" x2="52" y2="28" stroke="${stroke}" stroke-width="2"/>`+(on?`<line x1="22" y1="28" x2="38" y2="28" stroke="${stroke}" stroke-width="2"/>`:`<line x1="22" y1="28" x2="34" y2="21" stroke="${stroke}" stroke-width="2"/>`));
+ if(t==='Overload'||t==='Overload3P')return S(`<rect x="8" y="8" width="44" height="16" rx="2" fill="${c.stuck?'#fecaca':fill}" stroke="${stroke}" stroke-width="2"/><text x="30" y="20" text-anchor="middle" font-size="9" font-weight="800" fill="${stroke}">${c.stuck?'TRIP':'OL'}</text><line x1="8" y1="32" x2="52" y2="32" stroke="${stroke}" stroke-width="2"/>`);
+ if(t==='TimerOnDelay'||t==='Timer24H'||t==='TimerAlt')return S(`<rect x="8" y="6" width="44" height="30" rx="3" fill="${fill}" stroke="${stroke}" stroke-width="2"/><circle cx="30" cy="21" r="8" fill="none" stroke="${stroke}" stroke-width="1.5"/><line x1="30" y1="21" x2="30" y2="15" stroke="${stroke}" stroke-width="1.5"/><line x1="30" y1="21" x2="35" y2="21" stroke="${stroke}" stroke-width="1.5"/><text x="30" y="42" text-anchor="middle" font-size="7" fill="#334155">${closed(c)?'مقفول ✓':'مفتوح'}</text>`);
+ if(t==='Selector')return S(`<circle cx="30" cy="20" r="13" fill="${fill}" stroke="${stroke}" stroke-width="2"/><line x1="30" y1="20" x2="${on?38:22}" y2="10" stroke="${stroke}" stroke-width="2"/>`);
+ if(/^PB/.test(t))return S(`<circle cx="30" cy="20" r="13" fill="none" stroke="${stroke}" stroke-width="2"/><circle cx="30" cy="20" r="6" fill="${t==='PBG'?'#16a34a':'#dc2626'}" opacity="${on?1:.6}"/>`);
+ if(t==='Photocell')return S(`<circle cx="30" cy="20" r="13" fill="${fill}" stroke="${stroke}" stroke-width="2"/><circle cx="30" cy="20" r="4" fill="${stroke}"/><path d="M30 2 L30 6 M18 6 L21 9 M42 6 L39 9" stroke="${stroke}" stroke-width="1.5"/>`);
+ if(t==='Ammeter')return S(`<circle cx="30" cy="20" r="14" fill="${fill}" stroke="${stroke}" stroke-width="2"/><text x="30" y="25" text-anchor="middle" font-size="14" font-weight="900" fill="${stroke}">A</text>`);
+ if(t==='Voltmeter')return S(`<circle cx="30" cy="20" r="14" fill="${fill}" stroke="${stroke}" stroke-width="2"/><text x="30" y="25" text-anchor="middle" font-size="14" font-weight="900" fill="${stroke}">V</text>`);
+ if(t==='Meter'||t==='HMeter')return S(`<rect x="8" y="8" width="44" height="26" rx="3" fill="${fill}" stroke="${stroke}" stroke-width="2"/><text x="30" y="25" text-anchor="middle" font-size="10" font-weight="800" fill="${stroke}">kWh</text>`);
+ if(t==='SPD')return S(`<rect x="14" y="6" width="32" height="30" rx="2" fill="${fill}" stroke="${stroke}" stroke-width="2"/><path d="M32 10 L24 22 L31 22 L27 32" fill="none" stroke="${stroke}" stroke-width="2"/>`);
+ if(k==='bus')return S(`<rect x="4" y="16" width="52" height="8" rx="2" fill="${t==='EBar'?'#16a34a':'#2563eb'}" stroke="${stroke}" stroke-width="1"/><text x="30" y="42" text-anchor="middle" font-size="8" fill="#334155">${t==='EBar'?'PE':'N'}</text>`);
+ if(k==='jbox')return S(`<rect x="8" y="6" width="44" height="30" rx="3" fill="${fill}" stroke="${stroke}" stroke-width="2"/><circle cx="20" cy="14" r="2" fill="${stroke}"/><circle cx="30" cy="14" r="2" fill="${stroke}"/><circle cx="40" cy="14" r="2" fill="${stroke}"/><circle cx="25" cy="26" r="2" fill="${stroke}"/><circle cx="35" cy="26" r="2" fill="${stroke}"/>`);
+ if(k==='sw')return brk(1);
+ if(k==='sw2')return brk(2);
+ if(k==='sw3')return brk(3);
+ return S(`<rect x="8" y="8" width="44" height="26" rx="3" fill="${fill}" stroke="${stroke}" stroke-width="2"/><text x="30" y="25" text-anchor="middle" font-size="10" fill="${stroke}">${T[t]?T[t].n.slice(0,4):''}</text>`);
+}
 function gfx(c,e){
+ if(symMode)return symSVG(c,e);
  if(c.t==='Lamp')return bulb(e,LIT.Lamp);
  if(c.t==='LampR'||c.t==='LampG'||c.t==='PilotR'||c.t==='PilotG'||c.t==='PilotY')return pilot(e,LIT[c.t]);
  if(c.t==='BlinkLamp')return `<div style='font-size:34px;animation:blnk 1s steps(2) infinite;opacity:${e?1:.3}'>💡</div>`;
@@ -593,7 +629,7 @@ setInterval(()=>{
 </script>
 <script>
 // ===== PWA: تثبيت + أوفلاين + تحديث تلقائي =====
-const APP_VERSION = 'v3.0.7';
+const APP_VERSION = 'v3.0.8';
 let deferredPrompt = null, newWorker = null;
 const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
 const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
@@ -617,7 +653,7 @@ window.addEventListener('appinstalled', ()=>{ document.getElementById('installBt
 // تسجيل Service Worker - يعمل فقط على https أو localhost (GitHub Pages ✓)
 if('serviceWorker' in navigator && (location.protocol==='https:' || location.hostname==='localhost' || location.hostname==='127.0.0.1')){
   window.addEventListener('load', ()=>{
-    navigator.serviceWorker.register('./sw.js?v=3.0.7').then(reg=>{
+    navigator.serviceWorker.register('./sw.js?v=3.0.8').then(reg=>{
       // فحص تحديث كل مرة يفتح فيها التطبيق بالإنترنت
       reg.update();
       setInterval(()=>{ if(navigator.onLine) reg.update(); }, 60*1000);
@@ -638,7 +674,7 @@ if('serviceWorker' in navigator && (location.protocol==='https:' || location.hos
 }
 document.getElementById('forceUpdateBtn').onclick = async ()=>{
   try{ if('serviceWorker' in navigator){ const regs = await navigator.serviceWorker.getRegistrations(); for(const r of regs){ await r.update(); } await caches.keys().then(ks=>Promise.all(ks.map(k=>caches.delete(k)))); } }catch(e){}
-  window.location.href = window.location.pathname + '?v=307&ts=' + Date.now();
+  window.location.href = window.location.pathname + '?v=308&ts=' + Date.now();
 };
 document.getElementById('updateBtn').onclick = ()=>{
   if(newWorker){ newWorker.postMessage({type:'SKIP_WAITING'}); }
