@@ -48,6 +48,25 @@ body.mt .bo,body:not(.mt) .mo{display:none!important}
 #msg{padding:8px 12px;border-radius:10px;font-size:13px;font-weight:700;margin-bottom:8px;border:1px solid}
 .g{background:#16a34a22;border-color:#16a34a;color:#16a34a}.y{background:#eab30822;border-color:#eab308;color:#a16207}.r{background:#ef444422;border-color:#ef4444;color:#ef4444}
 #wrap{position:relative}
+#wrap:fullscreen{position:fixed!important;inset:0!important;width:100vw!important;height:100dvh!important;background:#0b1220!important;z-index:300!important;overflow:auto!important;padding:8px!important;box-sizing:border-box!important}
+#wrap:fullscreen #sc{max-height:calc(100dvh - 20px)!important;min-height:calc(100dvh - 20px)!important}
+#wrap:fullscreen #dr{height:100dvh!important}
+body.termMove .t{outline:3px solid #facc15!important;box-shadow:0 0 10px #facc15!important}
+#boardTools{background:#0f172a!important;border:1px solid #334155!important;border-radius:12px!important;padding:6px 8px!important}
+#boardTools button,#boardTools select{background:#1e293b!important;color:#fff!important;border-color:#334155!important}
+#boardTools button.warn{background:#facc15!important;color:#000!important;border-color:#eab308!important}
+#boardTools{position:fixed!important;top:200px!important;right:8px!important;left:auto!important;width:min(94vw,640px)!important;max-width:94vw!important;z-index:400!important;box-shadow:0 10px 30px #000a!important;flex-wrap:nowrap!important;overflow-x:auto!important;overflow-y:hidden!important;scrollbar-width:thin;gap:4px!important;padding:8px 6px 6px 4px!important;touch-action:auto!important;overflow:visible!important}
+#toolsDragStrip{position:absolute!important;top:-26px!important;left:0!important;right:0!important;height:26px!important;background:#22d3ee!important;color:#000!important;border-radius:12px 12px 0 0!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:6px!important;font-size:11px!important;font-weight:900!important;cursor:grab!important;touch-action:none!important;user-select:none!important;white-space:nowrap!important;z-index:401!important}
+#toolsDragStrip:active{cursor:grabbing!important;background:#67e8f9!important}
+#boardTools .dragHandle{touch-action:none!important}
+#boardTools button,#boardTools select{white-space:nowrap!important;flex:0 0 auto!important;padding:6px 8px!important;font-size:11px!important}
+#boardTools select{max-width:120px!important}
+#boardTools .dragHandle{flex:0 0 auto!important;display:flex!important;align-items:center!important;gap:4px!important;background:#22d3ee!important;color:#000!important;border-radius:999px!important;padding:6px 10px!important;font-weight:800!important;font-size:12px!important;cursor:grab!important;user-select:none!important;touch-action:none!important;white-space:nowrap!important}
+#boardTools .dragHandle:active{cursor:grabbing!important}
+#boardTools.mini{width:auto!important;max-width:94vw!important}
+#boardTools.mini .toolBtn,#boardTools.mini select{display:none!important}
+#boardTools .toolBtn{display:inline-block}
+#boardTools::-webkit-scrollbar{height:5px}#boardTools::-webkit-scrollbar-thumb{background:#334155;border-radius:99px}
 #sc{overflow:auto;max-height:72vh;border-radius:14px;border:1px solid var(--bd)}
 #board{position:relative;background:var(--board);overflow:hidden;user-select:none;background-image:linear-gradient(#0001 1px,transparent 1px),linear-gradient(90deg,#0001 1px,transparent 1px);background-size:22px 22px}
 #wires{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2}
@@ -78,7 +97,12 @@ body.mt .bo,body:not(.mt) .mo{display:none!important}
 .card{margin-top:8px;font-size:12px;line-height:1.7}.card h3{margin:0 0 4px;font-size:14px}
 .hint{font-size:11px;color:var(--mut);margin:6px 0}
 </style></head><body>
-<h1><span style="font-size:11px;background:#16a34a;color:#fff;padding:2px 8px;border-radius:999px"></span></h1>
+<header id="logoBar" style="display:flex;align-items:center;gap:10px;margin:0 0 8px">
+  <img src="./logo.png" alt="DEC ElectroPanel" style="width:52px;height:52px;object-fit:contain;border-radius:12px;background:#0f172a;border:1px solid #334155" onerror="this.style.display='none'">
+  <div style="line-height:1.2"><div style="font-size:18px;font-weight:900;letter-spacing:.3px">ElectroPanel</div><div style="font-size:11px;color:#94a3b8">DEC • PWA • أوفلاين • v2.9.9</div></div>
+  <button id="logoHide" title="إخفاء اللوجو" style="margin-inline-start:auto;font-size:11px;padding:4px 10px">إخفاء</button>
+</header>
+<button id="logoShow" style="display:none;margin:0 0 8px;font-size:11px;padding:4px 10px">🔰 إظهار اللوجو</button>
 <div id="pwaBar" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;align-items:center">
  <button id="installBtn" style="display:none;background:#111827;color:#fff">📲 تثبيت التطبيق على جهازك</button>
  <button id="iosBtn" style="display:none">🍎 تثبيت على iPhone: مشاركة ← إضافة للشاشة الرئيسية</button>
@@ -92,11 +116,25 @@ body.mt .bo,body:not(.mt) .mo{display:none!important}
 <div class="bar">
  <button data-tab="b" id="tb">تصنيع حر</button><button data-tab="m" id="tm">صيانة وأعطال</button>
 </div>
-<div class="bar bo">
- <button id="bw">🔌 وضع التوصيل</button>
- <select id="bc"><option value="red">أحمر L1</option><option value="yellow">أصفر L2</option><option value="black">أسود L3</option><option value="blue">أزرق N</option><option value="green">أخضر Earth</option></select>
- <select id="bs"><option value="40x60">40×60 سم</option><option value="60x80">60×80 سم</option><option value="80x100" selected>80×100 سم</option><option value="100x120">100×120 سم</option></select>
- <button id="bd">✕ حذف المحدد</button><button id="bx">مسح الكل</button>
+<div class="bar bo" id="boardTools">
+ <div id="toolsDragStrip">⠿ اسحب البار من هنا — يمين / شمال / فوق / تحت</div>
+ <span class="dragHandle" id="toolsHandle" title="اسحب من هنا عشان تحرك البار في أي حتة">⠿ اسحبني</span><button id="toolsCollapse" title="صغّر / كبّر البار">—</button>
+ <button id="bw" class="toolBtn" class="toolBtn">🔌 وضع التوصيل</button>
+ <select id="bc" class="toolBtn"><option value="red">أحمر L1</option><option value="yellow">أصفر L2</option><option value="black">أسود L3</option><option value="blue">أزرق N</option><option value="green">أخضر Earth</option></select>
+ <select id="bs" class="toolBtn"><option value="40x60">40×60 سم</option><option value="60x80">60×80 سم</option><option value="80x100" selected>80×100 سم</option><option value="100x80">100×80 سم</option><option value="100x120">100×120 سم</option></select>
+ <button id="bd" class="toolBtn">✕ حذف المحدد</button>
+ <button id="bdComp" class="toolBtn" title="حذف القطعة المحددة فقط - الأسلاك بتاعتها بتتمسح معاها">🗑️ حذف قطعة</button>
+ <button id="bdWire" class="toolBtn" title="حذف السلك المحدد فقط - اضغط على السلك الأول عشان يتظلل">〰️ حذف سلك</button>
+ <button id="dupBtn" class="toolBtn" title="نسخ القطعة المظللة بنفس بياناتها (قدرة / دوران / حجم / وضع النقاط) من غير أسلاك">⧉ تكرار القطعة</button>
+ <button id="flipVBtn" class="toolBtn" title="قلب نقاط التوصيل فوق ↔ تحت - الأسماء والأسلاك ثابتة">↕ قلب نقاط ↑↓</button>
+ <button id="flipHBtn" class="toolBtn" title="قلب نقاط التوصيل يمين ↔ شمال - الأسماء والأسلاك ثابتة">↔ قلب نقاط ←→</button>
+ <button id="termMoveBtn" class="toolBtn" title="شغّل وضع تحريك النقاط، وبعدين اضغط على أي نقطة نحاسية عشان تنقلها للمكان اللي بعده. اضغط تاني عشان تقفل الوضع.">✋ تحريك النقاط</button>
+ <button id="fsBoard" class="toolBtn" title="ملء الشاشة للوحة الرسم فقط - بالبار والقايمة بتاعتها">⛶ ملء الشاشة</button>
+ <button id="saveFileBtn" class="toolBtn" title="حفظ الدايرة كملف .electropanel.json وتفتحه تاني في أي وقت">💾 حفظ الدايرة</button>
+ <button id="loadFileBtn" class="toolBtn" title="فتح ملف دايرة محفوظ قبل كده">📂 فتح دايرة</button>
+ <input type="file" id="loadFileInput" accept=".json,.electropanel.json,application/json" style="display:none">
+ <button id="saveImgBtn" class="toolBtn" title="حفظ صورة PNG للوحة كلها بالقطع والأسلاك">🖼️ حفظ صورة</button>
+ <button id="bx" class="toolBtn">مسح الكل</button>
 </div>
 <div class="bar mo" id="pc"></div>
 <div class="bar mo" id="fl"></div>
@@ -131,16 +169,20 @@ const T={},LIT={Lamp:'#facc15',LampR:'#ef4444',LampG:'#22c55e'};
 A.forEach(([k,n,c,kd,w,h,b,g])=>T[k]={n,c,k:kd,w,h,b,g});
 const WT={Lamp:60,LampR:3,LampG:3,Motor:750,Fan:75,Heater:2000,Socket:1000,Cooker:3000,Washer:500,Fridge:150,Motor3Ph:3000,Heater3Ph:6000,Socket3Ph:5000,Mains3Ph:0,Generator3Ph:0},PF={Motor:.8,Fan:.9,Washer:.75,Fridge:.7,Motor3Ph:.85,Heater3Ph:1,Socket3Ph:.9},amp=c=>c.w/(220*(PF[c.t]||1));
 const TL=h=>{const v=parseInt(h.slice(1),16);return((v>>16)*299+((v>>8)&255)*587+(v&255)*114)/1000>140?'#111':'#fff'};
-const TS={'40x60':[360,540],'60x80':[520,700],'80x100':[700,860],'100x120':[880,1020]};
+const TS={'40x60':[360,540],'60x80':[520,700],'80x100':[700,860],'100x80':[880,700],'100x120':[880,1020]};
 const COL={red:'#ef4444',yellow:'#eab308',black:'#111827',blue:'#3b82f6',green:'#22c55e'};
-const terms=t=>{const k=T[t].k;
-if(k==='meter')return[['Li','topl','L'],['Ni','topr','N'],['Lo','botl','L'],['No','botr','N']];
-if(k==='src3')return[['L1','topl','L1'],['L2','top','L2'],['L3','topr','L3'],['N','bot','N']];
-if(k==='sw2')return[['in1','topl','L1'],['in2','topr','L2'],['out1','botl','L1'],['out2','botr','L2']];
-if(k==='sw3')return[['in1','topl','L1'],['in2','top','L2'],['in3','topr','L3'],['out1','botl','L1'],['out2','bot','L2'],['out3','botr','L3']];
-if(k==='ld3')return[['in1','topl','L1'],['in2','top','L2'],['in3','topr','L3'],['out','bot','N']];
-if(k==='ld2')return[['in1','topl','L1'],['in2','topr','L2'],['out','bot','N']];
-return k==='src'?[['L','botl','L'],['N','botr','N']]:k==='bus'?[['n','mid',t==='EBar'?'PE':'N']]:k==='ld'?[['in','top','L'],['out','bot','N']]:[['in','top','1'],['out','bot','2']]};
+const TERMPOS=['topl','top','topr','botr','bot','botl'];
+const flipPos=(pos,flipV,flipH)=>{let p=pos;if(flipV){p={topl:'botl',top:'bot',topr:'botr',botl:'topl',bot:'top',botr:'topr',mid:'mid'}[p]||p}if(flipH){p={topl:'topr',topr:'topl',botl:'botr',botr:'botl',top:'top',bot:'bot',mid:'mid'}[p]||p}return p};
+const terms=(t,c)=>{const k=T[t].k;let r;
+if(k==='meter')r=[['Li','topl','L'],['Ni','topr','N'],['Lo','botl','L'],['No','botr','N']];
+else if(k==='src3')r=[['L1','topl','L1'],['L2','top','L2'],['L3','topr','L3'],['N','bot','N']];
+else if(k==='sw2')r=[['in1','topl','L1'],['in2','topr','L2'],['out1','botl','L1'],['out2','botr','L2']];
+else if(k==='sw3')r=[['in1','topl','L1'],['in2','top','L2'],['in3','topr','L3'],['out1','botl','L1'],['out2','bot','L2'],['out3','botr','L3']];
+else if(k==='ld3')r=[['in1','topl','L1'],['in2','top','L2'],['in3','topr','L3'],['out','bot','N']];
+else if(k==='ld2')r=[['in1','topl','L1'],['in2','topr','L2'],['out','bot','N']];
+else r=k==='src'?[['L','botl','L'],['N','botr','N']]:k==='bus'?[['n','mid',t==='EBar'?'PE':'N']]:k==='ld'?[['in','top','L'],['out','bot','N']]:[['in','top','1'],['out','bot','2']];
+if(!c)return r;
+return r.map(([n,p,l])=>{let pp=p;if(c.termPos&&c.termPos[n])pp=c.termPos[n];else pp=flipPos(p,!!c.termFlipV,!!c.termFlipH);return [n,pp,l]});};
 const P={
 DB:{n:'لوحة DB',c:[['m','Mains',30,20],['iso','Isolator',30,140],['rc','RCCB',30,260],['q1','MCB',150,380],['q2','MCB25',290,380],['l1','Lamp',150,520],['h','Heater',290,510],['nb','NBar',150,640]],
 w:['m.L>iso.in:r','iso.out>rc.in:r','rc.out>q1.in:r','rc.out>q2.in:r','q1.out>l1.in:r','q2.out>h.in:r','l1.out>nb.n:b','h.out>nb.n:b','nb.n>m.N:b'],
@@ -187,7 +229,7 @@ f:[{t:'الأوفرلود فاصل',l:'تحت الكونتاكتور',y:'سحب 
 let C=[],W=[],K={},sel=null,wire=false,run=true,pend=null,uid=1,kwh=0,drag=null,raf=0,tab='b',saved=null,cur='DB',diag=null,open=true,side='R',res=null,size='80x100';
 let selW=null,hd=null;
 const $=id=>document.getElementById(id),board=$('board'),comps=$('comps'),svg=$('wires');
-const mk=(t,x,y)=>({id:'c'+uid++,t,l:T[t].n,x,y,s:({Generator:1,Generator3Ph:1,PBG:1})[t]?'OFF':'ON',temp:22,fuel:80,rot:0,sc:1,w:WT[t]||0});
+const mk=(t,x,y)=>({id:'c'+uid++,t,l:T[t].n,x,y,s:({Generator:1,Generator3Ph:1,PBG:1})[t]?'OFF':'ON',temp:22,fuel:80,rot:0,sc:1,w:WT[t]||0,termFlipV:false,termFlipH:false,termPos:{}});
 const link=(a,b,c)=>W.push({id:'w'+uid++,a,b,col:c});
 function load(p){
  C=[];W=[];K={};
@@ -290,7 +332,7 @@ function render(){
   const lv=d.k==='sw'?`<div class="lv"><i class="${c.s==='ON'||c.stuck?'u':''}"></i></div>`:d.g?`<div class="gl">${d.g}</div>`:'';
   return `<div class="${cls}" data-id="${c.id}" style="left:${c.x}px;top:${c.y}px;width:${d.w}px;height:${d.h}px;transform:rotate(${c.rot||0}deg) scale(${c.sc||1});background:${d.b};color:${fg};--lit:${LIT[c.t]||'#fff'};--inv:${1/(c.sc||1)};${hot}">
    <b>${c.l}</b>${gfx(c,e)||lv}<small>${st(c,e)}</small>
-   ${terms(c.t).map(([n,p,l])=>`<i class="t ${p}${pend===c.id+':'+n?' p':''}" data-t="${c.id}:${n}" data-l="${l}"></i>`).join('')}${sel===c.id?'<i class="hd rot" data-h="rot">↻</i><i class="hd siz" data-h="siz">⤡</i>':''}</div>`;
+   ${terms(c.t,c).map(([n,p,l])=>`<i class="t ${p}${pend===c.id+':'+n?' p':''}" data-t="${c.id}:${n}" data-l="${l}"></i>`).join('')}${sel===c.id?'<i class="hd rot" data-h="rot">↻</i><i class="hd siz" data-h="siz">⤡</i>':''}</div>`;
  }).join('');
  const m=$('msg');m.textContent=res.msg;m.className=res.c;
  {const ls=C.filter(c=>T[c.t].k==='ld'&&res.E.has(c.id));$('kwh').textContent=`⚡ ${ls.reduce((s,c)=>s+c.w,0)} W • ${ls.reduce((s,c)=>s+amp(c),0).toFixed(2)} A • ${kwh.toFixed(3)} kWh`}
@@ -360,6 +402,14 @@ addEventListener('pointerup',()=>{
  render();
 });
 board.addEventListener('click',e=>{
+ const t0=e.target.closest('.t');
+ if(termMove&&t0&&tab==='b'){
+   const [cid,tn]=t0.dataset.t.split(':');
+   const c=C.find(x=>x.id===cid);if(!c)return;
+   const cur=c.termPos&&c.termPos[tn] ? c.termPos[tn] : (terms(c.t,c).find(x=>x[0]===tn)||[])[1] || 'top';
+   const idx=TERMPOS.indexOf(cur);const nxt=TERMPOS[(idx+1)%TERMPOS.length];
+   if(!c.termPos)c.termPos={};c.termPos[tn]=nxt;sel=c.id;render();return;
+ }
  const t=e.target.closest('.t');if(!t||!wire||tab!=='b')return;
  const id=t.dataset.t;
  if(!pend)pend=id;
@@ -407,6 +457,55 @@ function del(){
  C=C.filter(c=>c.id!==sel);W=W.filter(w=>!w.a.startsWith(sel+':')&&!w.b.startsWith(sel+':'));sel=null;render();
 }
 $('bd').onclick=del;$('bd2').onclick=del;
+let termMove=false;
+function delComp(){if(!sel){alert('حدّد قطعة الأول بالضغط عليها');return}const id=sel;C=C.filter(c=>c.id!==id);W=W.filter(w=>!w.a.startsWith(id+':')&&!w.b.startsWith(id+':'));sel=null;render()}
+function delWire(){if(!selW){alert('حدّد سلك الأول بالضغط عليه');return}W=W.filter(w=>w.id!==selW);selW=null;render()}
+function dupComp(){const src=C.find(x=>x.id===sel);if(!src){alert('حدّد قطعة الأول بالضغط عليها');return}const n=mk(src.t,Math.min(board.clientWidth-80,src.x+30),Math.min(board.clientHeight-80,src.y+30));n.s=src.s;n.rot=src.rot||0;n.sc=src.sc||1;n.w=src.w;n.temp=src.temp;n.fuel=src.fuel;n.termFlipV=!!src.termFlipV;n.termFlipH=!!src.termFlipH;n.termPos=JSON.parse(JSON.stringify(src.termPos||{}));C.push(n);sel=n.id;selW=null;render()}
+$('bdComp').onclick=delComp;
+$('bdWire').onclick=delWire;
+$('dupBtn').onclick=dupComp;
+$('flipVBtn').onclick=()=>{const c=cur1();if(!c){alert('حدّد قطعة الأول');return}c.termFlipV=!c.termFlipV;render()};
+$('flipHBtn').onclick=()=>{const c=cur1();if(!c){alert('حدّد قطعة الأول');return}c.termFlipH=!c.termFlipH;render()};
+$('termMoveBtn').onclick=e=>{termMove=!termMove;document.body.classList.toggle('termMove',termMove);e.target.classList.toggle('warn',termMove);e.target.textContent=termMove?'✋ تحريك النقاط (شغال - اضغط على أي نقطة)':'✋ تحريك النقاط';if(termMove){wire=false;pend=null;render()}};
+let toolsDragging=false,toolsSX=0,toolsSY=0,toolsOX=0,toolsOY=0;
+const toolsBar=$('boardTools'),toolsHandle=$('toolsHandle'),toolsStrip=$('toolsDragStrip');
+function toolsStartDrag(e){
+  if(!toolsBar)return;
+  toolsDragging=true;toolsSX=e.clientX;toolsSY=e.clientY;
+  const r=toolsBar.getBoundingClientRect();toolsOX=r.left;toolsOY=r.top;
+  e.preventDefault();
+}
+function toolsOnMove(e){
+  if(!toolsDragging)return;
+  let nx=toolsOX+(e.clientX-toolsSX), ny=toolsOY+(e.clientY-toolsSY);
+  const maxX=Math.max(4,window.innerWidth-toolsBar.offsetWidth-4), maxY=Math.max(4,window.innerHeight-50);
+  nx=Math.max(4,Math.min(maxX,nx)); ny=Math.max(30,Math.min(maxY,ny));
+  toolsBar.style.left=nx+'px'; toolsBar.style.right='auto'; toolsBar.style.top=ny+'px';
+}
+function toolsEndDrag(){toolsDragging=false}
+if(toolsStrip){toolsStrip.addEventListener('pointerdown',toolsStartDrag)}
+if(toolsHandle){toolsHandle.addEventListener('pointerdown',toolsStartDrag)}
+window.addEventListener('pointermove',toolsOnMove);
+window.addEventListener('pointerup',toolsEndDrag);
+window.addEventListener('pointercancel',toolsEndDrag);
+// إخفاء / إظهار اللوجو
+const lh=$('logoHide'), ls=$('logoShow'), lb=$('logoBar');
+if(lh&&lb&&ls){lh.onclick=()=>{lb.style.display='none';ls.style.display='inline-block'};ls.onclick=()=>{lb.style.display='flex';ls.style.display='none'}}
+$('toolsCollapse').onclick=()=>{
+  const mini=toolsBar.classList.toggle('mini');
+  $('toolsCollapse').textContent=mini?'+':'—';
+  $('toolsCollapse').title=mini?'كبّر البار':'صغّر البار';
+};
+$('fsBoard').onclick=()=>{const w=$('wrap');if(document.fullscreenElement){document.exitFullscreen().catch(()=>{})}else if(w.requestFullscreen){w.requestFullscreen().catch(()=>{alert('المتصفح منع ملء الشاشة - جرب من كروم')})}};
+document.addEventListener('fullscreenchange',()=>{const b=$('fsBoard');if(b)b.textContent=document.fullscreenElement?'⤢ خروج من ملء الشاشة':'⛶ ملء الشاشة'});
+function downloadFile(name,blob){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),2000)}
+function saveCircuitFile(){const data={app:'ElectroPanel',version:'v2.9.7',savedAt:new Date().toISOString(),size,C:C.map(c=>({id:c.id,t:c.t,x:c.x,y:c.y,s:c.s,rot:c.rot,sc:c.sc,w:c.w,temp:c.temp,fuel:c.fuel,dead:!!c.dead,stuck:!!c.stuck,termFlipV:!!c.termFlipV,termFlipH:!!c.termFlipH,termPos:c.termPos||{},l:c.l})),W:W.map(w=>({a:w.a,b:w.b,col:w.col}))};downloadFile('electropanel-'+Date.now()+'.electropanel.json',new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));const m=$('msg');if(m){m.textContent='تم حفظ الدايرة كملف ✓';m.className='g'}}
+function loadCircuitFile(file){const rd=new FileReader();rd.onload=()=>{try{const d=JSON.parse(rd.result);if(!d||!Array.isArray(d.C)||!Array.isArray(d.W))throw new Error('ملف غير صالح');C=[];W=[];uid=1;sel=null;selW=null;pend=null;d.C.forEach(rc=>{const c=mk(rc.t,rc.x||30,rc.y||30);c.s=rc.s||'ON';c.rot=rc.rot||0;c.sc=rc.sc||1;c.w=rc.w!=null?rc.w:(WT[rc.t]||0);c.temp=rc.temp!=null?rc.temp:22;c.fuel=rc.fuel!=null?rc.fuel:80;c.dead=!!rc.dead;c.stuck=!!rc.stuck;c.termFlipV=!!rc.termFlipV;c.termFlipH=!!rc.termFlipH;c.termPos=rc.termPos||{};if(rc.l)c.l=rc.l;C.push(c)});const idMap={};C.forEach((c,i)=>{idMap[i]=c.id});const oldToNew={};d.C.forEach((rc,i)=>{if(rc.id&&C[i])oldToNew[rc.id]=C[i].id});d.W.forEach(rw=>{const conv=id=>{const parts=id.split(':');if(parts.length<2)return id;const nid=oldToNew[parts[0]];return nid?nid+':'+parts.slice(1).join(':'):id};const a=conv(rw.a),b=conv(rw.b);if(a&&b)link(a,b,rw.col||'red')});setSize(d.size||size);render();const m=$('msg');if(m){m.textContent='تم فتح الدايرة المحفوظة ✓';m.className='g'}}catch(err){alert('الملف ده مش دايرة ElectroPanel صالحة')}};rd.readAsText(file)}
+$('saveFileBtn').onclick=saveCircuitFile;
+$('loadFileBtn').onclick=()=>$('loadFileInput').click();
+$('loadFileInput').onchange=e=>{const f=e.target.files&&e.target.files[0];if(f)loadCircuitFile(f);e.target.value=''};
+function saveCircuitImage(){const bw=board.clientWidth||700,bh=board.clientHeight||860;const cv=document.createElement('canvas');cv.width=Math.max(200,bw);cv.height=Math.max(200,bh);const ctx=cv.getContext('2d');ctx.fillStyle='#141b2e';ctx.fillRect(0,0,cv.width,cv.height);ctx.strokeStyle='rgba(255,255,255,.07)';ctx.lineWidth=1;for(let x=0;x<cv.width;x+=22){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,cv.height);ctx.stroke()}for(let y=0;y<cv.height;y+=22){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(cv.width,y);ctx.stroke()}const br=board.getBoundingClientRect();const pt=id=>{const el=board.querySelector(`[data-t="${id}"]`);if(!el)return null;const r=el.getBoundingClientRect();return[r.left-br.left+r.width/2,r.top-br.top+r.height/2]};W.forEach(w=>{const a=pt(w.a),b=pt(w.b);if(!a||!b)return;ctx.strokeStyle=COL[w.col]||'#ef4444';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.bezierCurveTo(a[0],a[1]+50,b[0],b[1]-50,b[0],b[1]);ctx.stroke()});C.forEach(c=>{const d=T[c.t];ctx.save();ctx.translate(c.x+d.w/2,c.y+d.h/2);ctx.rotate((c.rot||0)*Math.PI/180);ctx.scale(c.sc||1,c.sc||1);ctx.fillStyle=d.b;ctx.fillRect(-d.w/2,-d.h/2,d.w,d.h);ctx.strokeStyle='#0006';ctx.lineWidth=2;ctx.strokeRect(-d.w/2,-d.h/2,d.w,d.h);ctx.fillStyle='#fff';ctx.font='700 11px system-ui';ctx.textAlign='center';ctx.fillText(d.g||'',0,-d.h/2+18);ctx.fillStyle='#fff';ctx.font='700 10px system-ui';ctx.fillText(c.l,0,d.h/2-6);ctx.restore()});ctx.fillStyle='#fff';ctx.font='700 14px system-ui';ctx.textAlign='right';ctx.fillText('ElectroPanel • DEC • '+size, cv.width-10, 22);const a=document.createElement('a');a.href=cv.toDataURL('image/png');a.download='electropanel-'+Date.now()+'.png';a.click()}
+$('saveImgBtn').onclick=saveCircuitImage;
 addEventListener('pointermove',e=>{
  if(!hd)return;
  const c=hd.c,dx=e.clientX-hd.cx,dy=e.clientY-hd.cy;
@@ -513,7 +612,7 @@ setInterval(()=>{
 </script>
 <script>
 // ===== PWA: تثبيت + أوفلاين + تحديث تلقائي =====
-const APP_VERSION = 'v2.1.0';
+const APP_VERSION = 'v2.9.9';
 let deferredPrompt = null, newWorker = null;
 const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
 const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
