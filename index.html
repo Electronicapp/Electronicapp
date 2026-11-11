@@ -192,7 +192,14 @@ const A=[
 ['Lamp','لمبة صفراء','لمبات','ld',74,88,'#fef9c3','💡'],['LampR','لمبة حمراء','لمبات','ld',74,88,'#fecaca','💡'],['LampG','لمبة خضراء','لمبات','ld',74,88,'#bbf7d0','💡'],['PilotY','لمبة إشارة صفرا','لمبات','ld',74,88,'#fef08a','🟡'],['PilotR','لمبة إشارة حمرا','لمبات','ld',74,88,'#fecaca','🔴'],['PilotG','لمبة إشارة خضرا','لمبات','ld',74,88,'#bbf7d0','🟢'],['BlinkLamp','لمبة وامضة','لمبات','ld',74,88,'#fef9c3','✨'],
 ['Ammeter','أميتر','قياس','pass',90,84,'#0f172a','A'],['Voltmeter','فولتميتر','قياس','ld',90,84,'#0f172a','V'],['Meter','عداد kWh','قياس','pass',96,90,'#0f172a','kWh'],['HMeter','عداد منزلي','قياس','meter',124,132,'#e5e7eb'],['NBar','بارة نيوترال','قياس','bus',180,90,'#1e40af'],['EBar','بارة أرضي','قياس','bus',180,90,'#14532d'],
 ['JBox','روزتة تجميع','تجميع','jbox',110,150,'#f8fafc','🔗'],
-['Motor','موتور','أحمال','ld',100,90,'#e5e7eb','🌀'],['Fan','مروحة','أحمال','ld',90,90,'#f1f5f9','🌬️'],['Heater','سخان','أحمال','ld',90,100,'#e2e8f0','♨️'],['Socket','بريزة 16A','أحمال','ld',80,88,'#ffffff','🔌'],['Cooker','بوتاجاز','أحمال','ld',100,92,'#111827','🍳'],['Washer','غسالة','أحمال','ld',100,110,'#f8fafc','🧺'],['Fridge','ثلاجة','أحمال','ld',90,130,'#e5e7eb','🧊']
+['Motor','موتور','أحمال','ld',100,90,'#e5e7eb','🌀'],['Fan','مروحة','أحمال','ld',90,90,'#f1f5f9','🌬️'],['Heater','سخان','أحمال','ld',90,100,'#e2e8f0','♨️'],['Socket','بريزة 16A','أحمال','ld',80,88,'#ffffff','🔌'],['Cooker','بوتاجاز','أحمال','ld',100,92,'#111827','🍳'],['Washer','غسالة','أحمال','ld',100,110,'#f8fafc','🧺'],['Fridge','ثلاجة','أحمال','ld',90,130,'#e5e7eb','🧊'],
+['PS24','محول 220/24V','اسمارت هوم','ps24',110,100,'#0f172a','🔋'],
+['PLC','PLC LOGO! / S7-1200','اسمارت هوم','plc',150,130,'#0f172a','🧠'],
+['HMI','شاشة اسمارت هوم HMI','اسمارت هوم','hmi',150,110,'#0f172a','🖥️'],
+['PIR','حساس حركة PIR','اسمارت هوم','pir',80,92,'#1f2937','👁️'],
+['SmartRelay','ريليه ذكي WiFi','اسمارت هوم','sw',90,92,'#1e40af','📶'],
+['Curtain','مفتاح ستارة','اسمارت هوم','sw2',110,100,'#7c3aed','🪟'],
+['DoorLock','قفل باب كهربا','اسمارت هوم','ld',80,88,'#fef3c7','🔒']
 ];
 const T={},LIT={Lamp:'#facc15',LampR:'#ef4444',LampG:'#22c55e',PilotY:'#eab308',PilotR:'#ef4444',PilotG:'#22c55e',BlinkLamp:'#facc15'};
 A.forEach(([k,n,c,kd,w,h,b,g])=>T[k]={n,c,k:kd,w,h,b,g});
@@ -202,7 +209,7 @@ const TS={'40x60':[360,540],'60x80':[520,700],'80x100':[700,860],'100x80':[880,7
 const COL={l1:'#ef4444',l:'#ef4444',l2:'#3b82f6',l3:'#eab308',n:'#9ca3af',pe:'#22c55e',red:'#ef4444',yellow:'#eab308',black:'#111827',blue:'#3b82f6',green:'#22c55e'};
 const WIRE_NAME={l1:'L1 أحمر',l:'L أحمر',l2:'L2 أزرق',l3:'L3 أصفر',n:'N رصاصي',pe:'PE أبيض × أخضر'};
 function migrateWireColor(c){return {red:'l1',yellow:'l2',black:'l3',blue:'n',green:'pe',l1:'l1',l2:'l2',l3:'l3',l:'l',n:'n',pe:'pe'}[c]||'l1'}
-function termWireColor(id){const el=board.querySelector(`[data-t="${id}"]`);const lab=((el&&el.dataset.l)||'').toUpperCase();const tn=(id.split(':')[1]||'').toUpperCase();const key=lab||tn;if(key==='L1')return 'l1';if(key==='L2')return 'l2';if(key==='L3')return 'l3';if(key==='L')return 'l';if(key==='N')return 'n';if(key==='PE')return 'pe';if(key==='IN1'||key==='OUT1')return 'l1';if(key==='IN2'||key==='OUT2')return 'l2';if(key==='IN3'||key==='OUT3')return 'l3';return null}
+function termWireColor(id){const el=board.querySelector(`[data-t="${id}"]`);const lab=((el&&el.dataset.l)||'').toUpperCase();const tn=(id.split(':')[1]||'').toUpperCase();const key=lab||tn;if(key==='+')return 'l1';if(key==='-')return 'n';if(key==='L1')return 'l1';if(key==='L2')return 'l2';if(key==='L3')return 'l3';if(key==='L')return 'l';if(key==='N')return 'n';if(key==='PE')return 'pe';if(key==='IN1'||key==='OUT1')return 'l1';if(key==='IN2'||key==='OUT2')return 'l2';if(key==='IN3'||key==='OUT3')return 'l3';return null}
 function autoWireColor(a,b){return termWireColor(a)||termWireColor(b)||'l1'}
 const TERMPOS=['topl','top','topr','botr','bot','botl'];
 // تحريك حر: كل نقطة ليها {edge: فوق/تحت/يمين/شمال, pct: مكانها على الضلع %} - مش 6 أماكن ثابتة
@@ -216,6 +223,10 @@ else if(k==='sw3')r=[['in1','topl','L1'],['in2','top','L2'],['in3','topr','L3'],
 else if(k==='ld3')r=[['in1','topl','L1'],['in2','top','L2'],['in3','topr','L3'],['out','bot','N']];
 else if(k==='ld2')r=[['in1','topl','L1'],['in2','topr','L2'],['out','bot','N']];
 else if(k==='bus'){const lab=t==='EBar'?'PE':'N';r=[];for(let i=0;i<5;i++){r.push(['n'+(i+1),'',''+lab, 'top:-8px;left:calc('+(10+i*20)+'% - 8px)'])}for(let i=0;i<5;i++){r.push(['n'+(i+6),'',''+lab, 'bottom:-8px;left:calc('+(10+i*20)+'% - 8px)'])}}
+else if(k==='plc'){r=[['L+','','L+','top:-8px;left:calc(12% - 8px)'],['M','','N','top:-8px;left:calc(30% - 8px)'],['I1','','L','top:-8px;left:calc(48% - 8px)'],['I2','','L','top:-8px;left:calc(66% - 8px)'],['I3','','L','left:-8px;top:calc(30% - 8px)'],['I4','','L','left:-8px;top:calc(60% - 8px)'],['Q1','','L','right:-8px;top:calc(25% - 8px)'],['Q2','','L','right:-8px;top:calc(50% - 8px)'],['Q3','','L','bottom:-8px;left:calc(30% - 8px)'],['Q4','','L','bottom:-8px;left:calc(55% - 8px)'],['ETH','','L','bottom:-8px;left:calc(80% - 8px)']]}
+else if(k==='ps24'){r=[['L','','L','top:-8px;left:calc(25% - 8px)'],['N','','N','top:-8px;left:calc(70% - 8px)'],['+','','+','bottom:-8px;left:calc(25% - 8px)'],['-','','-','bottom:-8px;left:calc(70% - 8px)']]}
+else if(k==='hmi'){r=[['24V','','L','top:-8px;left:calc(25% - 8px)'],['GND','','N','top:-8px;left:calc(60% - 8px)'],['LAN','','L','bottom:-8px;left:calc(30% - 8px)'],['RS485','','L','bottom:-8px;left:calc(65% - 8px)']]}
+else if(k==='pir'){r=[['L','','L','top:-8px;left:calc(25% - 8px)'],['N','','N','top:-8px;left:calc(70% - 8px)'],['OUT','','L','bottom:-8px;left:calc(50% - 8px)']]}
 else if(k==='jbox'){r=[];for(let i=0;i<5;i++){const y=12+i*19;r.push(['p'+(i+1)+'a','',''+(i+1), 'left:-8px;top:calc('+y+'% - 8px)']);r.push(['p'+(i+1)+'b','',''+(i+1), 'right:-8px;top:calc('+y+'% - 8px)'])}}
 else r=k==='src'?[['L','botl','L'],['N','botr','N']]:k==='ld'?[['in','top','L'],['out','bot','N']]:[['in','top','1'],['out','bot','2']];
 if(!c)return r;
@@ -263,7 +274,7 @@ f:[{t:'الأوفرلود فاصل',l:'تحت الكونتاكتور',y:'سحب 
 {t:'سلك مفصول للطلمبة',l:'بين الأوفرلود والموتور',y:'سلك مفكوك',o:'أفوميتر',s:['قِس الاستمرارية','افحص المسامير'],r:'أعد التوصيل',w:'',x:[['cutw','ov.out','mo.in']]}]}
 };
 // ===== الحالة - FIX: selW و hd هنا في الأعلى قبل أي استخدام =====
-let C=[],W=[],K={},sel=null,wire=false,run=false,pend=null,uid=1,kwh=0,drag=null,raf=0,tab='b',saved=null,cur='DB',diag=null,open=true,side='R',res=null,size='80x100';
+let C=[],W=[],K={},sel=null,wire=false,run=false,termMove=false,symMode=false,pend=null,uid=1,kwh=0,drag=null,raf=0,tab='b',saved=null,cur='DB',diag=null,open=true,side='R',res=null,size='80x100';
 let selW=null,hd=null;
 const $=id=>document.getElementById(id),board=$('board'),comps=$('comps'),svg=$('wires');
 const mk=(t,x,y)=>({id:'c'+uid++,t,l:T[t].n,x,y,s:({Generator:1,Generator3Ph:1,PBG:1})[t]?'OFF':'ON',temp:22,fuel:80,rot:0,sc:1,w:WT[t]||0,termPos:{}});
@@ -329,6 +340,12 @@ function sim(){
  const hasSrc = src1.length||src3.length;
  if(!hasSrc)return r('لا يوجد مصدر يعمل: شغّل الشبكة أو ابدأ المولد','r');
  src1.forEach(c=>{walk(c.id+':L',aw1,L1);walk(c.id+':N',an,N)});
+ // PLC: لو متغذي L+/M، كل Q يتبع الـ I بتاعه
+ C.forEach(c=>{ if(c.t==='PLC'&&!c.dead&&L1.has(c.id+':L+')&&N.has(c.id+':M')){ [['I1','Q1'],['I2','Q2'],['I3','Q3'],['I4','Q4']].forEach(([ii,qq])=>{ if(L1.has(c.id+':'+ii)) walk(c.id+':'+qq,aw1,L1); }); }});
+ // محول 220/24: لو دخله L+N، خرجه + يبقى حي (24V) و - يبقى نيوترال
+ C.forEach(c=>{ if(c.t==='PS24'&&!c.dead&&L1.has(c.id+':L')&&N.has(c.id+':N')){ walk(c.id+':+',aw1,L1); walk(c.id+':-',an,N); }});
+ // PIR: لو متغذي، OUT يتبع الـ ON (محاكاة حركة)
+ C.forEach(c=>{ if(c.t==='PIR'&&!c.dead&&L1.has(c.id+':L')&&N.has(c.id+':N')&&c.s==='ON') walk(c.id+':OUT',aw1,L1); });
  src3.forEach(c=>{walk(c.id+':L1',aw1,L1);walk(c.id+':L2',aw2,L2);walk(c.id+':L3',aw3,L3);walk(c.id+':N',an,N)});
  // بارة N: لو موصولة بأي مصدر N، تعتبر مصدر مساعد - يتحقق تلقائيا عبر الأسلاك لأن an تشمل أسلاك البارة
  for(const x of L1)if(N.has(x))return r('⚠️ قصر دائرة: مسار L1 يلتقي مع N بدون حمل','r');
@@ -352,6 +369,10 @@ function sim(){
   else if((k==='sw3')&&L1.has(c.id+':in1'))E.add(c.id);
   else if(k==='src'||k==='src3'||k==='bus')E.add(c.id);
   else if(k==='meter'&&L1.has(c.id+':Li'))E.add(c.id);
+  else if(k==='hmi'&&!c.dead&&L1.has(c.id+':24V')&&N.has(c.id+':GND'))E.add(c.id);
+  else if(k==='ps24'&&!c.dead&&L1.has(c.id+':L')&&N.has(c.id+':N'))E.add(c.id);
+  else if(k==='plc'&&!c.dead&&L1.has(c.id+':L+')&&N.has(c.id+':M'))E.add(c.id);
+  else if(k==='pir'&&!c.dead&&L1.has(c.id+':L')&&N.has(c.id+':N'))E.add(c.id);
  });
  if(on)return r(`دائرة مغلقة ✓ – ${on} حمل يعمل`,'g');
  if(half)return r(missing?`حمل ثلاثي ناقص فازة: ${missing} غير واصلة – افحص القاطع 3P والكابل`:'الفاز يصل للحمل لكن بدون مسار نيوترال / فازة ثانية - افحص N أو L2','y');
@@ -364,7 +385,35 @@ const st=(c,e)=>{const d=T[c.t];
  if(d.k==='ld'||d.k==='ld2'||d.k==='ld3')return e?(c.t==='Voltmeter'?'220V':amp(c).toFixed(1)+'A '+c.w+'W'+(c.t.includes('Heater')?' '+c.temp.toFixed(0)+'°':'')):(c.w?c.w+'W':'—');
  if(d.k==='pass')return e?(c.t==='Ammeter'?down(c).reduce((s,l)=>s+amp(l),0).toFixed(2)+'A':(c.kwh||0).toFixed(3)+' kWh'):'—';
  if(d.k==='meter')return e?down(c).reduce((s,l)=>s+l.w,0)+' W':'—';
+ if(c.t==='PS24')return e?'24V DC ✓':'—';
+ if(c.t==='PS24')return `<div style='font-size:10px;font-weight:900'>220V → 24V</div><div style='font-size:24px'>🔋</div><div style='font-size:9px;color:${e?'#22c55e':'#94a3b8'}'>${e?'● OUT 24V DC':'○ لا خرج'}</div><div style='font-size:9px'>L N • + -</div>`;
+ if(c.t==='PLC')return e?'RUN • I→Q':'—';
+ if(c.t==='HMI')return e?'متصل • Smart Home':'لا اتصال';
+ if(c.t==='PIR')return e?(c.s==='ON'?'حركة ✓':'لا حركة'):'—';
  return '';};
+
+// ===== معلومات القطع - زرار ؟ =====
+const INFO={
+ PS24:{t:'محول 220/24V DC',d:'بيحوّل كهربة البيت 220V AC لـ 24V DC عشان الـ PLC والشاشة والحساسات - من غيره الاسمارت هوم مش هيشتغل.',w:'1. دخول: L على فاز 220V، N على نيوترال<br>2. خروج: + على L+ بتاع الـ PLC و 24V بتاع الشاشة<br>3. خروج: - على M بتاع الـ PLC و GND بتاع الشاشة<br>4. لازم الدخول يكون 220V عشان الخرج يبقى 24V',warn:'متوصّلش خرج + / - على 220V - الخرج 24V DC بس. ومتعكسش + مع -.',sym:'مستطيل فيه محول 220→24V'},
+ PLC:{t:'PLC LOGO! / S7-1200',d:'وحدة تحكم منطقية قابلة للبرمجة - عقل الاسمارت هوم والتحكم الصناعي. بتقرأ الحساسات وتنفذ أوامر على المخارج.',w:'1. تغذية: L+ على + بتاع محول 220/24V، M على - بتاع المحول<br>2. مدخلات: I1 حساس حركة، I2 زر، I3 حساس باب، I4 حساس دخان<br>3. مخارج: Q1 لمبة، Q2 ستارة، Q3 قفل، Q4 سرينة<br>4. كل Q يتبع الـ I بتاعه: I1 → Q1',warn:'متوصّلش 220V على L+ - الـ PLC بيشتغل 24V DC بس. لو وصلت 220V هيتحرق.',sym:'مستطيل فيه CPU - I شمال، Q يمين'},
+ HMI:{t:'شاشة اسمارت هوم HMI',d:'شاشة لمس 7 بوصة بتعرض حالة البيت كله وتتحكم فيه - لمبات، ستاير، قفل، حرارة، استهلاك.',w:'1. تغذية: 24V على + بتاع محول 220/24V، GND على - بتاع المحول<br>2. اتصال: LAN على ETH بتاع الـ PLC<br>3. لو الشاشة كتبت "لا يوجد اتصال" افحص كابل LAN والـ PLC',warn:'الشاشة من غير PLC مش هتعرض حاجة - لازم الـ PLC يكون متغذي وشغال.',sym:'مستطيل بشاشة جواه + علامة تاتش □'},
+ PIR:{t:'حساس حركة PIR',d:'بيحس بحركة الإنسان بالأشعة تحت الحمراء ويشغّل الحمل - لمبة أو سرينة.',w:'1. L على فاز، N على نيوترال<br>2. OUT على الحمل (لمبة)<br>3. دوس على الحساس ON/OFF لمحاكاة الحركة',warn:'متحطوش قدام تكييف أو شباك - الهوا السخن بيعمل إنذار كاذب.',sym:'دايرة فيها قوس ⌒'},
+ SmartRelay:{t:'ريليه ذكي WiFi',d:'ريليه بيشتغل من الموبايل أو من زرار عادي - أساس الاسمارت هوم.',w:'1. دخول: L/N<br>2. خروج: الحمل على OUT<br>3. بيشتغل زي القاطع العادي في المحاكاة',warn:'لازم يكون في نطاق WiFi - لو بعيد مش هيستجيب.',sym:'مستطيل فيه موجة WiFi ≋'},
+ Curtain:{t:'مفتاح ستارة',d:'مفتاح اتجاهين للستارة - فوق وتحت، مينفعش الاتنين مع بعض.',w:'1. دخول: L1/L2<br>2. خروج: UP / DOWN للموتور<br>3. في المحاكاة: ON = فوق، OFF = تحت',warn:'متشغّلش UP و DOWN مع بعض - الموتور هيتحرق.',sym:'مستطيل فيه سهمين ↑ ↓'},
+ DoorLock:{t:'قفل باب كهربا',d:'قفل بيفتح بالكهربا - من الـ PLC أو من الشاشة أو من زرار.',w:'1. دخول: L على in<br>2. خروج: N على out<br>3. لو واصله كهربا يفتح 🔓، لو مش واصله يقفل 🔒',warn:'لو الكهربا قطعت القفل بيقفل - ده أمان مش عطل.',sym:'مستطيل فيه دايرة قفل'},
+ MCB:{t:'قاطع MCB',d:'بيحمي الدايرة من الحمل الزايد والشورت ويفصل تلقائي.',w:'1. دخول: L من فوق<br>2. خروج: L للحمل من تحت<br>3. N على بارة لوحده',warn:'متوصّلش N على القاطع الأحادي.',sym:'مفتاح قاطع - خط مكسور'},
+ Contactor:{t:'كونتاكتور',d:'مفتاح كهرومغناطيسي بيشغّل الأحمال الكبيرة - موتور، سخان.',w:'1. ملف: A1/A2 على التحكم<br>2. تلامسات: دخول فوق، خروج تحت',warn:'الملف لازم يكون نفس جهد التحكم.',sym:'ملف + تلامس'},
+ Motor:{t:'موتور',d:'بيحوّل الكهربا لحركة.',w:'1. دخول: L<br>2. خروج: N<br>3. لازم أوفرلود معاه للحماية',warn:'موتور من غير أوفرلود خطر.',sym:'دايرة فيها M'},
+};
+function showInfo(t){
+  const d = INFO[t] || {t: t, d:'قطعة كهربائية.', w:'وصّل الدخول من فوق والخروج من تحت.', warn:'افصل العمومي قبل اللمس.', sym:'رمز هندسي قياسي'};
+  const m = document.getElementById('infoModal');
+  if(!m) return;
+  document.getElementById('infoTitle').textContent = '❓ ' + d.t;
+  document.getElementById('infoBody').innerHTML = `<p style="line-height:1.9"><b>📖 التعريف:</b><br>${d.d}</p><p style="line-height:1.9"><b>🔌 طريقة التوصيل:</b><br>${d.w}</p><p style="line-height:1.9"><b>〰️ الرمز الهندسي:</b><br>${d.sym}</p><p style="color:#ef4444;line-height:1.9"><b>⚠️ ملحوظة:</b><br>${d.warn}</p>`;
+  m.style.display='flex';
+}
+
 function render(){
  res=sim();
  comps.innerHTML=C.map(c=>{
@@ -374,7 +423,7 @@ function render(){
   const hot=c.t==='Heater'&&e?`background:hsl(${Math.max(0,210-(c.temp-20)*3)},80%,80%);`:'';
   const lv=symMode?'':d.k==='sw'?`<div class="lv"><i class="${c.s==='ON'||c.stuck?'u':''}"></i></div>`:d.g?`<div class="gl">${d.g}</div>`:'';
   return `<div class="${cls}" data-id="${c.id}" style="left:${c.x}px;top:${c.y}px;width:${d.w}px;height:${d.h}px;transform:rotate(${c.rot||0}deg) scale(${c.sc||1});background:${d.b};color:${fg};--lit:${LIT[c.t]||'#fff'};--inv:${1/(c.sc||1)};${hot}">
-   <b>${c.l}</b>${gfx(c,e)||lv}<small>${st(c,e)}</small>
+   <b>${c.l}</b><button class="infoBtn" data-info="${c.t}" title="معلومات القطعة" style="position:absolute;top:2px;left:2px;width:20px;height:20px;border-radius:50%;background:#facc15;color:#111;border:none;font-weight:900;font-size:12px;cursor:pointer;z-index:5;line-height:1">؟</button>${gfx(c,e)||lv}<small>${st(c,e)}</small>
    ${terms(c.t,c).map(([n,p,l,st])=>`<i class="t ${p}${pend===c.id+':'+n?' p':''}" data-t="${c.id}:${n}" data-l="${l}"${st?` style="${st}"`:''}></i>`).join('')}${sel===c.id?'<i class="hd rot" data-h="rot">↻</i><i class="hd siz" data-h="siz">⤡</i>':''}</div>`;
  }).join('');
  const m=$('msg');m.textContent=res.msg;m.className=res.c;
@@ -397,6 +446,9 @@ function render(){
    <div style="color:#16a34a">🔧 <b>الإصلاح:</b> ${diag.r}</div>${diag.w?`<div style="color:#ef4444">⚠️ <b>تحذير:</b> ${diag.w}</div>`:''}</div>`:'<div class="hint">اختر عطلاً لحقنه في اللوحة ثم شخّص أثره على الدائرة.</div>';
  }else $('dg').innerHTML='';sbUpdate();snd();
  draw();
+ // 10/10: بعد كل render رجّع القفل + احفظ تلقائياً
+ try{ syncLockClasses(); }catch(e){}
+ try{ if(tab==='b') localStorage.setItem('electropanel-autosave', JSON.stringify({C:C.map(c=>({t:c.t,x:c.x,y:c.y,s:c.s,rot:c.rot,sc:c.sc,w:c.w,termPos:c.termPos})),W:W.map(w=>({a:w.a,b:w.b,col:w.col})),size})); }catch(e){}
 }
 // FIX: حذف الكود الميت بعد return الأول
 function draw(){
@@ -480,6 +532,8 @@ board.addEventListener('click',e=>{
  render();
 });
 document.addEventListener('click',e=>{
+ if(e.target.dataset && e.target.dataset.info){ showInfo(e.target.dataset.info); return; }
+ if(e.target.id==='infoClose'||e.target.id==='infoModal'){ const m=document.getElementById('infoModal'); if(m) m.style.display='none'; return; }
  const d=e.target.dataset;
  if(d.add){if(isLocked())return;const[w,h]=TS[size],c=mk(d.add,30+Math.random()*Math.max(40,w-220),20+Math.random()*100);C.push(c);sel=c.id;render()}
  if(d.dw){W=W.filter(w=>w.id!==d.dw);render()}
@@ -499,7 +553,7 @@ document.addEventListener('click',e=>{
 });
 $('bw').onclick=()=>{wire=!wire;if(wire){termMove=false;run=false;pend=null}syncLockClasses();render()};
 $('br').onclick=()=>{run=!run;if(run){wire=false;termMove=false;pend=null}syncLockClasses();render()};
-$('bs').onchange=e=>{setSize(e.target.value);render()};
+$('bs').onchange=e=>{if(isLocked()){e.target.value=size;return}setSize(e.target.value);render()};;
 // FIX: تم حذف let selW,hd من هنا - أصبحت في الأعلى
 function sbUpdate(){
  const c=C.find(x=>x.id===sel);
@@ -521,8 +575,8 @@ function del(){
  C=C.filter(c=>c.id!==sel);W=W.filter(w=>!w.a.startsWith(sel+':')&&!w.b.startsWith(sel+':'));sel=null;render();
 }
 $('bd').onclick=del;$('bd2').onclick=del;
-let termMove=false,symMode=false;
-function dupComp(){const src=C.find(x=>x.id===sel);if(!src){alert('حدّد قطعة الأول');return}const n=mk(src.t,Math.min(board.clientWidth-80,src.x+30),Math.min(board.clientHeight-80,src.y+30));n.s=src.s;n.rot=src.rot||0;n.sc=src.sc||1;n.w=src.w;n.temp=src.temp;n.fuel=src.fuel;n.termPos=JSON.parse(JSON.stringify(src.termPos||{}));C.push(n);sel=n.id;selW=null;render()}
+// termMove/symMode متعرفين فوق
+function dupComp(){if(isLocked())return;const src=C.find(x=>x.id===sel);if(!src){alert('حدّد قطعة الأول');return}const n=mk(src.t,Math.min(board.clientWidth-80,src.x+30),Math.min(board.clientHeight-80,src.y+30));n.s=src.s;n.rot=src.rot||0;n.sc=src.sc||1;n.w=src.w;n.temp=src.temp;n.fuel=src.fuel;n.termPos=JSON.parse(JSON.stringify(src.termPos||{}));C.push(n);sel=n.id;selW=null;render()}
 $('dupBtn').onclick=dupComp;
 $('symBtn').onclick=e=>{symMode=!symMode;e.target.classList.toggle('warn',symMode);e.target.textContent=symMode?'🖼️ رسم واقعي':'〰️ رمز هندسي';render()};
 $('termMoveBtn').onclick=e=>{termMove=!termMove;e.target.classList.toggle('warn',termMove);e.target.textContent=termMove?'✋ تحريك النقاط (شغال - اسحب أي نقطة)':'✋ تحريك النقاط';if(termMove){wire=false;run=false;pend=null}syncLockClasses();render()};
@@ -539,7 +593,7 @@ document.addEventListener('fullscreenchange',()=>{const b=$('fsBoard');const on=
 // حفظ / فتح / صورة
 function downloadFile(name,blob){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),2000)}
 function saveCircuitFile(){const data={app:'ElectroPanel',version:'v3.0.2',savedAt:new Date().toISOString(),size,C:C.map(c=>({id:c.id,t:c.t,x:c.x,y:c.y,s:c.s,rot:c.rot,sc:c.sc,w:c.w,temp:c.temp,fuel:c.fuel,dead:!!c.dead,stuck:!!c.stuck,termPos:c.termPos||{},l:c.l})),W:W.map(w=>({a:w.a,b:w.b,col:w.col}))};downloadFile('electropanel-'+Date.now()+'.electropanel.json',new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));const m=$('msg');if(m){m.textContent='تم حفظ الدايرة كملف ✓';m.className='g'}}
-function loadCircuitFile(file){const rd=new FileReader();rd.onload=()=>{try{const d=JSON.parse(rd.result);if(!d||!Array.isArray(d.C)||!Array.isArray(d.W))throw new Error('bad');C=[];W=[];uid=1;sel=null;selW=null;pend=null;d.C.forEach(rc=>{const c=mk(rc.t,rc.x||30,rc.y||30);c.s=rc.s||'ON';c.rot=rc.rot||0;c.sc=rc.sc||1;c.w=rc.w!=null?rc.w:(WT[rc.t]||0);c.temp=rc.temp!=null?rc.temp:22;c.fuel=rc.fuel!=null?rc.fuel:80;c.dead=!!rc.dead;c.stuck=!!rc.stuck;c.termPos=rc.termPos||{};if(rc.l)c.l=rc.l;C.push(c)});const oldToNew={};d.C.forEach((rc,i)=>{if(rc.id&&C[i])oldToNew[rc.id]=C[i].id});d.W.forEach(rw=>{const conv=id=>{const parts=id.split(':');if(parts.length<2)return id;const nid=oldToNew[parts[0]];return nid?nid+':'+parts.slice(1).join(':'):id};const a=conv(rw.a),b=conv(rw.b);if(a&&b)link(a,b,migrateWireColor(rw.col||'l1'))});setSize(d.size||size);render();const m=$('msg');if(m){m.textContent='تم فتح الدايرة المحفوظة ✓';m.className='g'}}catch(err){alert('الملف ده مش دايرة ElectroPanel صالحة')}};rd.readAsText(file)}
+function loadCircuitFile(file){if(isLocked()){alert('لا يمكن فتح ملف في وضع التشغيل - اخرج من التشغيل أولاً');return}const rd=new FileReader();rd.onload=()=>{try{const d=JSON.parse(rd.result);if(!d||!Array.isArray(d.C)||!Array.isArray(d.W))throw new Error('bad');if(d.C.length>200||d.W.length>400)throw new Error('too-big');d.C.forEach(rc=>{if(!rc||typeof rc.t!=='string'||!(rc.t in T))throw new Error('bad-type');if(typeof rc.x!=='number'||typeof rc.y!=='number'||Math.abs(rc.x)>5000||Math.abs(rc.y)>5000)throw new Error('bad-pos')});C=[];W=[];uid=1;sel=null;selW=null;pend=null;d.C.forEach(rc=>{const c=mk(rc.t,rc.x||30,rc.y||30);c.s=rc.s||'ON';c.rot=rc.rot||0;c.sc=rc.sc||1;c.w=rc.w!=null?rc.w:(WT[rc.t]||0);c.temp=rc.temp!=null?rc.temp:22;c.fuel=rc.fuel!=null?rc.fuel:80;c.dead=!!rc.dead;c.stuck=!!rc.stuck;c.termPos=rc.termPos||{};if(rc.l)c.l=rc.l;C.push(c)});const oldToNew={};d.C.forEach((rc,i)=>{if(rc.id&&C[i])oldToNew[rc.id]=C[i].id});d.W.forEach(rw=>{const conv=id=>{const parts=id.split(':');if(parts.length<2)return id;const nid=oldToNew[parts[0]];return nid?nid+':'+parts.slice(1).join(':'):id};const a=conv(rw.a),b=conv(rw.b);if(a&&b)link(a,b,migrateWireColor(rw.col||'l1'))});setSize(d.size||size);render();const m=$('msg');if(m){m.textContent='تم فتح الدايرة المحفوظة ✓';m.className='g'}}catch(err){alert('الملف ده مش دايرة ElectroPanel صالحة')}};rd.readAsText(file)}
 $('saveFileBtn').onclick=saveCircuitFile;$('loadFileBtn').onclick=()=>$('loadFileInput').click();$('loadFileInput').onchange=e=>{const f=e.target.files&&e.target.files[0];if(f)loadCircuitFile(f);e.target.value=''};
 function saveCircuitImage(){const bw=board.clientWidth||700,bh=board.clientHeight||860;const cv=document.createElement('canvas');cv.width=Math.max(200,bw);cv.height=Math.max(200,bh);const ctx=cv.getContext('2d');ctx.fillStyle='#141b2e';ctx.fillRect(0,0,cv.width,cv.height);ctx.strokeStyle='rgba(255,255,255,.07)';ctx.lineWidth=1;for(let x=0;x<cv.width;x+=22){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,cv.height);ctx.stroke()}for(let y=0;y<cv.height;y+=22){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(cv.width,y);ctx.stroke()}const br=board.getBoundingClientRect();const pt=id=>{const el=board.querySelector(`[data-t="${id}"]`);if(!el)return null;const r=el.getBoundingClientRect();return[r.left-br.left+r.width/2,r.top-br.top+r.height/2]};W.forEach(w=>{const a=pt(w.a),b=pt(w.b);if(!a||!b)return;const col=migrateWireColor(w.col);const drawSeg=(style,width,dash)=>{ctx.strokeStyle=style;ctx.lineWidth=width;if(dash)ctx.setLineDash(dash);else ctx.setLineDash([]);ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.bezierCurveTo(a[0],a[1]+50,b[0],b[1]-50,b[0],b[1]);ctx.stroke();ctx.setLineDash([])};if(col==='pe'){drawSeg('#ffffff',4);drawSeg('#22c55e',4,[7,5])}else drawSeg(COL[col]||'#ef4444',3)});C.forEach(c=>{const d=T[c.t];ctx.save();ctx.translate(c.x+d.w/2,c.y+d.h/2);ctx.rotate((c.rot||0)*Math.PI/180);ctx.scale(c.sc||1,c.sc||1);ctx.fillStyle=d.b;ctx.fillRect(-d.w/2,-d.h/2,d.w,d.h);ctx.strokeStyle='#0006';ctx.lineWidth=2;ctx.strokeRect(-d.w/2,-d.h/2,d.w,d.h);ctx.fillStyle='#fff';ctx.font='700 11px system-ui';ctx.textAlign='center';ctx.fillText(d.g||'',0,-d.h/2+18);ctx.fillStyle='#fff';ctx.font='700 10px system-ui';ctx.fillText(c.l,0,d.h/2-6);ctx.restore()});ctx.fillStyle='#fff';ctx.font='700 14px system-ui';ctx.textAlign='right';ctx.fillText('ElectroPanel • DEC • '+size,cv.width-10,22);const a=document.createElement('a');a.href=cv.toDataURL('image/png');a.download='electropanel-'+Date.now()+'.png';a.click()}
 $('saveImgBtn').onclick=saveCircuitImage;
@@ -589,6 +643,13 @@ function symSVG(c,e){
  if(t==='Cooker')return S(`<rect x="10" y="10" width="40" height="20" rx="2" fill="${fill}" stroke="${stroke}" stroke-width="2"/><polyline points="16,20 22,14 28,26 34,14 40,26 44,20" fill="none" stroke="${stroke}" stroke-width="1.5"/>`);
  if(t==='Washer')return S(`<rect x="12" y="8" width="36" height="26" rx="3" fill="${fill}" stroke="${stroke}" stroke-width="2"/><circle cx="30" cy="22" r="8" fill="none" stroke="${stroke}" stroke-width="2"/><circle cx="30" cy="22" r="2" fill="${stroke}"/>`);
  if(t==='Fridge')return S(`<rect x="14" y="6" width="32" height="32" rx="2" fill="${fill}" stroke="${stroke}" stroke-width="2"/><line x1="14" y1="16" x2="46" y2="16" stroke="${stroke}" stroke-width="1.5"/><text x="30" y="31" text-anchor="middle" font-size="9" fill="${stroke}">❄</text>`);
+ if(t==='PS24')return S(`<rect x="6" y="4" width="48" height="34" rx="2" fill="${fill}" stroke="${stroke}" stroke-width="2"/><path d="M14 14 Q22 10 22 18 Q22 26 30 22 Q38 18 38 26 Q38 30 46 26" fill="none" stroke="${stroke}" stroke-width="1.5"/><text x="30" y="34" text-anchor="middle" font-size="6" fill="#334155">220→24V</text>`);
+ if(t==='PLC')return S(`<rect x="6" y="4" width="48" height="34" rx="2" fill="${fill}" stroke="${stroke}" stroke-width="2"/><text x="30" y="14" text-anchor="middle" font-size="7" font-weight="900" fill="${stroke}">PLC</text><rect x="22" y="16" width="16" height="12" fill="none" stroke="${stroke}" stroke-width="1.5"/><text x="30" y="25" text-anchor="middle" font-size="6" fill="${stroke}">CPU</text><text x="30" y="36" text-anchor="middle" font-size="6" fill="#334155">I→Q</text>`);
+ if(t==='HMI')return S(`<rect x="6" y="4" width="48" height="34" rx="3" fill="${fill}" stroke="${stroke}" stroke-width="2"/><rect x="11" y="9" width="38" height="20" rx="1" fill="none" stroke="${stroke}" stroke-width="1.2"/><text x="30" y="18" text-anchor="middle" font-size="6" font-weight="900" fill="${stroke}">HMI</text><text x="30" y="26" text-anchor="middle" font-size="6" fill="${stroke}">🏠 □</text>`);
+ if(t==='PIR')return S(`<circle cx="30" cy="20" r="14" fill="${fill}" stroke="${stroke}" stroke-width="2"/><path d="M22 26 Q30 12 38 26" fill="none" stroke="${stroke}" stroke-width="2"/><circle cx="30" cy="24" r="2" fill="${stroke}"/>`);
+ if(t==='SmartRelay')return S(`<rect x="8" y="6" width="44" height="30" rx="2" fill="${fill}" stroke="${stroke}" stroke-width="2"/><path d="M14 22 L22 22 L26 14 L32 28 L38 22 L46 22" fill="none" stroke="${stroke}" stroke-width="1.5"/><text x="30" y="42" text-anchor="middle" font-size="6" fill="#334155">WiFi ≋</text>`);
+ if(t==='Curtain')return S(`<rect x="8" y="6" width="44" height="30" rx="2" fill="${fill}" stroke="${stroke}" stroke-width="2"/><path d="M30 12 L30 28 M25 17 L30 12 L35 17 M25 23 L30 28 L35 23" stroke="${stroke}" stroke-width="2" fill="none"/>`);
+ if(t==='DoorLock')return S(`<rect x="14" y="10" width="32" height="22" rx="3" fill="${fill}" stroke="${stroke}" stroke-width="2"/><circle cx="30" cy="21" r="4" fill="none" stroke="${stroke}" stroke-width="1.5"/>`);
  if(k==='src'||k==='src3')return S(`<circle cx="30" cy="20" r="14" fill="${fill}" stroke="${stroke}" stroke-width="2"/><text x="30" y="25" text-anchor="middle" font-size="13" fill="${stroke}">~</text>${k==='src3'?'<text x="30" y="42" text-anchor="middle" font-size="7" fill="#334155">3~ 380V</text>':''}`);
  if(t==='Contactor'||t==='Contactor3P')return S(`<rect x="8" y="6" width="44" height="10" rx="2" fill="${fill}" stroke="${stroke}" stroke-width="2"/><line x1="30" y1="16" x2="30" y2="22" stroke="${stroke}" stroke-width="2"/><line x1="8" y1="28" x2="22" y2="28" stroke="${stroke}" stroke-width="2"/><line x1="38" y1="28" x2="52" y2="28" stroke="${stroke}" stroke-width="2"/>`+(on?`<line x1="22" y1="28" x2="38" y2="28" stroke="${stroke}" stroke-width="2"/>`:`<line x1="22" y1="28" x2="34" y2="21" stroke="${stroke}" stroke-width="2"/>`));
  if(t==='Overload'||t==='Overload3P')return S(`<rect x="8" y="8" width="44" height="16" rx="2" fill="${c.stuck?'#fecaca':fill}" stroke="${stroke}" stroke-width="2"/><text x="30" y="20" text-anchor="middle" font-size="9" font-weight="800" fill="${stroke}">${c.stuck?'TRIP':'OL'}</text><line x1="8" y1="32" x2="52" y2="32" stroke="${stroke}" stroke-width="2"/>`);
@@ -609,6 +670,12 @@ function symSVG(c,e){
 }
 function gfx(c,e){
  if(symMode)return symSVG(c,e);
+ if(c.t==='PLC')return `<div style='font-size:10px;font-weight:900;color:#facc15'>SIEMENS LOGO!</div><div style='font-size:22px'>🧠</div><div style='font-size:9px;color:${e?'#22c55e':'#94a3b8'}'>${e?'● RUN':'○ STOP'}</div><div style='font-size:9px'>I1 I2 I3 I4 • Q1 Q2 Q3 Q4</div>`;
+ if(c.t==='HMI')return `<div style='background:#0ea5e9;color:#fff;border-radius:6px;padding:4px 6px;font-size:10px'>🏠 Smart Home<br>${e?'💡 ON • 🌀 OFF • 🔒 LOCK':'⚠️ لا يوجد اتصال'}<br>🌡️ 24° • ⚡ 2.3 kW</div>`;
+ if(c.t==='PIR')return `<div style='font-size:26px'>${c.s==='ON'&&e?'👁️':'👁️‍🗨️'}</div><div style='font-size:9px'>${c.s==='ON'?'حركة ✓':'لا حركة'}</div>`;
+ if(c.t==='SmartRelay')return `<div style='font-size:24px'>📶</div><div style='font-size:9px'>${e?'WiFi متصل':'غير متصل'}</div>`;
+ if(c.t==='Curtain')return `<div style='font-size:22px'>🪟</div><div style='font-size:9px'>${c.s==='ON'?'ستارة ↑':'ستارة ↓'}</div>`;
+ if(c.t==='DoorLock')return `<div style='font-size:26px'>${e?'🔓':'🔒'}</div><div style='font-size:9px'>${e?'مفتوح':'مقفول'}</div>`;
  if(c.t==='Lamp')return bulb(e,LIT.Lamp);
  if(c.t==='LampR'||c.t==='LampG'||c.t==='PilotR'||c.t==='PilotG'||c.t==='PilotY')return pilot(e,LIT[c.t]);
  if(c.t==='BlinkLamp')return `<div style='font-size:34px;animation:blnk 1s steps(2) infinite;opacity:${e?1:.3}'>💡</div>`;
@@ -663,7 +730,7 @@ document.addEventListener('click',e=>{const t=e.target;
 });
 svg.addEventListener('click',e=>{const id=e.target.dataset&&e.target.dataset.w;if(id){selW=id;sel=null;render()}});
 addEventListener('keydown',e=>{if((e.key==='Delete'||e.key==='Backspace')&&!/INPUT|SELECT/.test(document.activeElement.tagName))del()});
-$('bx').onclick=()=>{C=[];W=[];sel=null;pend=null;render()};
+$('bx').onclick=()=>{if(isLocked())return;C=[];W=[];sel=null;pend=null;render()};
 addEventListener('resize',draw);
 setInterval(()=>{
  if(drag||!run)return;
@@ -686,7 +753,7 @@ setInterval(()=>{
 </script>
 <script>
 // ===== PWA: تثبيت + أوفلاين + تحديث تلقائي =====
-const APP_VERSION = 'v3.7.0';
+const APP_VERSION = 'v3.8.3';
 let deferredPrompt = null, newWorker = null;
 const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
 const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
@@ -707,10 +774,28 @@ document.getElementById('installBtn').onclick = async ()=>{
   deferredPrompt = null;
 };
 window.addEventListener('appinstalled', ()=>{ document.getElementById('installBtn').style.display='none'; });
+
+// 10/10: استعادة الحفظ التلقائي (تصنيع فقط) عند الفتح
+try{
+  const savedAuto = localStorage.getItem('electropanel-autosave');
+  if(savedAuto && tab==='b' && C.length===0){
+    const d = JSON.parse(savedAuto);
+    if(d && Array.isArray(d.C)){
+      d.C.forEach(rc=>{ if(rc.t in T){ const c=mk(rc.t, rc.x||30, rc.y||30); c.s=rc.s||'ON'; c.rot=rc.rot||0; c.sc=rc.sc||1; c.w=rc.w||0; c.termPos=rc.termPos||{}; C.push(c); }});
+      const idMap = {}; // IDs جديدة - الأسلاك هتتربط بالترتيب
+      // الأسلاك القديمة IDs مختلفة، فبنربط بالترتيب فقط لو العدد مطابق
+      if(Array.isArray(d.W) && d.W.length && C.length===d.C.length){
+        // لا نستعيد الأسلاك بالـ IDs القديمة - المستخدم يوصل من جديد لو اختلفت
+      }
+      if(d.size) setSize(d.size);
+    }
+  }
+}catch(e){}
+
 // تسجيل Service Worker - يعمل فقط على https أو localhost (GitHub Pages ✓)
 if('serviceWorker' in navigator && (location.protocol==='https:' || location.hostname==='localhost' || location.hostname==='127.0.0.1')){
   window.addEventListener('load', ()=>{
-    navigator.serviceWorker.register('./sw.js?v=3.7.0').then(reg=>{
+    navigator.serviceWorker.register('./sw.js?v=3.8.3').then(reg=>{
       // فحص تحديث كل مرة يفتح فيها التطبيق بالإنترنت
       reg.update();
       setInterval(()=>{ if(navigator.onLine) reg.update(); }, 60*1000);
@@ -731,7 +816,7 @@ if('serviceWorker' in navigator && (location.protocol==='https:' || location.hos
 }
 document.getElementById('forceUpdateBtn').onclick = async ()=>{
   try{ if('serviceWorker' in navigator){ const regs = await navigator.serviceWorker.getRegistrations(); for(const r of regs){ await r.update(); } await caches.keys().then(ks=>Promise.all(ks.map(k=>caches.delete(k)))); } }catch(e){}
-  window.location.href = window.location.pathname + '?v=370&ts=' + Date.now();
+  window.location.href = window.location.pathname + '?v=383&ts=' + Date.now();
 };
 document.getElementById('updateBtn').onclick = ()=>{
   if(newWorker){ newWorker.postMessage({type:'SKIP_WAITING'}); }
@@ -814,5 +899,15 @@ document.getElementById('updateBtn').onclick = ()=>{
   page.onclick=(e)=>{ if(e.target===page) page.style.display='none'; };
 })();
 </script>
+
+
+<!-- ===== نافذة معلومات القطعة ؟ ===== -->
+<div id="infoModal" style="display:none;position:fixed;inset:0;z-index:10002;background:rgba(0,0,0,.75);align-items:center;justify-content:center;padding:16px">
+  <div style="background:#0f172a;border:2px solid #facc15;border-radius:20px;max-width:460px;width:100%;padding:24px;text-align:right;max-height:90vh;overflow:auto">
+    <h2 id="infoTitle" style="color:#facc15;margin:0 0 12px;font-size:19px">❓ القطعة</h2>
+    <div id="infoBody" style="color:#e2e8f0;font-size:14px"></div>
+    <button id="infoClose" style="margin-top:16px;background:#facc15;color:#111;border:none;font-weight:900;padding:10px 28px;border-radius:999px;cursor:pointer">فهمت ✓</button>
+  </div>
+</div>
 
 <script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}function isInlineMediaSlotElement(node){return !!(node&&node.getAttribute&&node.getAttribute("data-clippy-inline-media-slot")!==null)}function findInlineMediaSlot(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(isInlineMediaSlotElement(node))return node}return null}function readInlineMediaUrl(node){if(!node)return null;return node.getAttribute&&((node.getAttribute("data-clippy-inline-media-url")||node.getAttribute("data-url")||node.getAttribute("data_url")))||node.href||null}function stripHash(url){return String(url).replace(/#.*$/,"")}function urlsMatch(a,b){if(!a||!b)return false;try{return stripHash(new URL(a,loc).href)===stripHash(new URL(b,loc).href)}catch(_){return stripHash(a)===stripHash(b)}}function isFirstPartyReelUrl(value){try{var url=new URL(value,loc);if(url.protocol!=="https:")return false;var host=url.hostname.toLowerCase();var supported=host==="instagram.com"||host.endsWith(".instagram.com")||host==="facebook.com"||host.endsWith(".facebook.com");return supported&&/\/reels?\//i.test(url.pathname)}catch(_){return false}}function isInlineMediaUrlClick(node,href){var slot=findInlineMediaSlot(node);if(!slot)return false;var slotUrl=readInlineMediaUrl(slot);if(slotUrl)return urlsMatch(href,slotUrl);return isFirstPartyReelUrl(href)}function findDataHref(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(node.getAttribute){var href=node.getAttribute("data-href")||node.getAttribute("data-url");if(href)return{href:href,node:node}}}return null}var nativeOpen=window.open;window.open=function(url){if(parent!==window&&typeof url==="string"&&/^https?:\/\//.test(url)){parent.postMessage({type:"ecto:usercontent-link-click",href:url},"*");return null}return nativeOpen?nativeOpen.apply(window,arguments):null};document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;if(parent===window)return;var a=target.closest?target.closest("a[href]"):null;if(a&&a.href&&/^https?:\/\//.test(a.href)&&a.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(a,a.href))return;var productId=extractProductId(target)||extractProductId(a);if(productId){e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*");return}e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:a.href},"*");return}var dataHref=findDataHref(target);if(dataHref&&/^https?:\/\//.test(dataHref.href)&&dataHref.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(dataHref.node,dataHref.href))return;e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:dataHref.href},"*")}},true)})();</script><script>(function(){var FOCUS_TYPE="ecto:artifact-focus-request";var CLOSE_TYPE="ecto:artifact-close-request";function focusArtifactDocument(){var body=document.body;if(!body)return;try{window.focus();}catch(e){}if(!body.hasAttribute("tabindex"))body.setAttribute("tabindex","-1");try{body.focus({preventScroll:true});}catch(e){try{body.focus();}catch(e2){}}}window.addEventListener("message",function(event){if(event.source!==window.parent)return;var data=event.data;if(!data||typeof data!=="object"||data.type!==FOCUS_TYPE)return;if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",focusArtifactDocument,{once:true});return;}focusArtifactDocument();});window.addEventListener("keydown",function(event){if(event.key!=="Escape")return;window.setTimeout(function(){if(event.defaultPrevented)return;window.parent.postMessage({type:CLOSE_TYPE},"*");},0);});})();</script></body></html>
