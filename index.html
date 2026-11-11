@@ -152,7 +152,8 @@ body.locked #bs{opacity:.35!important;pointer-events:none!important}
 body.locked #lockHint{display:inline-block}
 
 /* ===== Splash بصورة النسر + لوجو DEC في الهيدر ===== */
-#splash{position:fixed;inset:0;background:#000;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;transition:opacity .6s}
+#splash{position:fixed;inset:0;background:#000;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;transition:opacity .6s;animation:splashAutoHide .6s ease 2.5s forwards}
+@keyframes splashAutoHide{to{opacity:0;visibility:hidden;pointer-events:none}}
 #splash.hide{opacity:0;pointer-events:none}
 #splash img{width:min(88vw,420px);height:auto;border-radius:50%;box-shadow:0 0 60px #facc1544}
 #splash .sp-t{color:#fff;font-weight:800;font-size:18px;letter-spacing:1px}
@@ -163,7 +164,7 @@ body.locked #lockHint{display:inline-block}
 #brand .bt b{font-size:17px}
 #brand .bt span{font-size:11px;color:var(--mut)}
 </style></head><body>
-<div id="splash"><img src="./splash.jpg" alt="DEC - Dean of Electrical Circuits"><div class="sp-t">DEC • Dean of Electrical Circuits</div><div class="sp-s">ElectroPanel • لوحات كهرباء • أوفلاين</div></div>
+<div id="splash"><img src="./splash.jpg" alt="DEC - Dean of Electrical Circuits"><div class="sp-t">DEC • Dean of Electrical Circuits</div><div class="sp-s">ElectroPanel • لوحات كهرباء • أوفلاين</div></div><script>setTimeout(function(){var el=document.getElementById('splash');if(el){el.classList.add('hide');setTimeout(function(){if(el)el.remove()},700)}},2000);</script>
 <div id="brand"><img src="./logo.png" alt="DEC - Dean of Electrical Circuits"><div class="bt"><b>ElectroPanel</b> <span style="font-size:11px;background:#16a34a;color:#fff;padding:2px 8px;border-radius:999px">PWA • أوفلاين</span><br><span>DEC • Dean of Electrical Circuits • <b id="verLabel"></b></span></div></div>
 <div id="pwaBar" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;align-items:center">
  <button id="installBtn" style="display:none;background:#111827;color:#fff">📲 تثبيت التطبيق على جهازك</button>
@@ -713,10 +714,10 @@ setInterval(()=>{
  C.forEach(c=>{if(T[c.t].k==='ld'&&res.E.has(c.id)){kwh+=c.w/1000*dh;ch=true}if((c.t==='Meter'||T[c.t].k==='meter')&&res.E.has(c.id)){c.kwh=(c.kwh||0)+down(c).reduce((s,l)=>s+l.w,0)/1000*dh;ch=true}});
  if(ch)render();
 },700);
-(function hideSplash(){const el=document.getElementById('splash');if(el)el.classList.add('hide');setTimeout(()=>{if(el)el.remove()},700)}
+function hideSplash(){const el=document.getElementById('splash');if(!el)return;el.classList.add('hide');setTimeout(()=>{if(el)el.remove()},700)}
 window.addEventListener('load',()=>setTimeout(hideSplash,1600));
 document.addEventListener('click',e=>{if(e.target.closest('#splash'))hideSplash()});
-setTimeout(hideSplash,4000);
+setTimeout(hideSplash,2500);
 function init(){
  const m=mk('Mains',40,20),b=mk('MCB',70,150),l=mk('Lamp',70,290),n=mk('NBar',250,400);
  C=[m,b,l,n];
@@ -726,7 +727,7 @@ function init(){
 </script>
 <script>
 // ===== PWA: تثبيت + أوفلاين + تحديث تلقائي =====
-const APP_VERSION = 'v2.9.1';
+const APP_VERSION = 'v2.9.2';
 let deferredPrompt = null, newWorker = null;
 const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
 const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
