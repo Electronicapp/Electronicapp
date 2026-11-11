@@ -109,6 +109,13 @@ body.termMove .t{outline:3px solid #facc15!important;box-shadow:0 0 10px #facc15
 #introBar{position:absolute;bottom:0;inset-inline-start:0;height:6px;background:linear-gradient(90deg,#ef4444,#facc15,#22c55e);width:0%;z-index:10;transition:width .3s linear}
 #introFlash{position:fixed;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:10000;transition:opacity 1s}
 #introFlash.on{opacity:1}
+
+/* ===== قفل التحريك: في التوصيل والتشغيل النقطة ثابتة ومكان لمسها أكبر ===== */
+body.wiring .t, body.running .t{cursor:pointer!important;touch-action:manipulation!important}
+body.wiring .t{width:30px!important;height:30px!important;outline:3px solid #22c55e!important;box-shadow:0 0 0 6px rgba(34,197,94,.25),0 0 12px #22c55e88!important}
+body.wiring .c, body.running .c{cursor:default!important}
+body.wiring #bw, body.running #br{outline:3px solid #facc15}
+
 </style></head><body>
 <div id="intro" style="display:none">
   <canvas id="introStars"></canvas>
@@ -415,11 +422,24 @@ function lib(){
 }
 function panel(){$('wrap').className=side+(open?'':' cl')}
 let termDrag=null;
+
+// ===== قاعدة القفل: التوصيل / التشغيل / تحريك النقاط - واحد بس اللي شغال =====
+function syncLockClasses(){
+  document.body.classList.toggle('wiring', !!wire);
+  document.body.classList.toggle('running', !!run);
+  document.body.classList.toggle('termMove', !!termMove);
+}
+
 board.addEventListener('pointerdown',e=>{
  if(e.target.dataset.h){const c=cur1(),el=e.target.closest('.c');if(c&&el){const r=el.getBoundingClientRect();hd={m:e.target.dataset.h,c,el,cx:r.left+r.width/2,cy:r.top+r.height/2};e.preventDefault()}return}
- if(e.target.closest('.t')){if(termMove&&tab==='b'){const [cid,tn]=e.target.closest('.t').dataset.t.split(':');const c=C.find(x=>x.id===cid);if(c){termDrag={c,tn,moved:false};try{e.target.setPointerCapture(e.pointerId)}catch(err){}e.preventDefault();e.stopPropagation()}}return}
+ // النقاط: في التوصيل والتشغيل ثابتة تماماً - مفيش سحب، الضغطة بس للتوصيل (board click)
+ if(e.target.closest('.t')){
+   if(wire||run){return}
+   if(termMove&&tab==='b'){const [cid,tn]=e.target.closest('.t').dataset.t.split(':');const c=C.find(x=>x.id===cid);if(c){termDrag={c,tn,moved:false};try{e.target.setPointerCapture(e.pointerId)}catch(err){}e.preventDefault();e.stopPropagation()}}return}
  const el=e.target.closest('.c');if(!el){if(!e.target.dataset.w&&(sel||selW)){sel=null;selW=null;render()}return}
  const c=C.find(x=>x.id===el.dataset.id);sel=c.id;selW=null;
+ // القطع: في التوصيل والتشغيل وتحريك النقاط - الاختيار بس، مفيش سحب
+ if(wire||run||termMove){return}
  drag={c,el,sx:e.clientX,sy:e.clientY,ox:c.x,oy:c.y,moved:false};
  el.classList.add('sel');
 });
@@ -440,7 +460,7 @@ addEventListener('pointerup',()=>{
  if(!drag)return;
  const d=drag;drag=null;
  const k=T[d.c.t].k;
- if(!d.moved&&(['sw','sw2','sw3','src','src3'].includes(k))){d.c.s=d.c.s==='ON'?'OFF':'ON';swSnd(d.c)}
+ if(!d.moved&&!wire&&!termMove&&(['sw','sw2','sw3','src','src3'].includes(k))){d.c.s=d.c.s==='ON'?'OFF':'ON';swSnd(d.c)}
  render();
 });
 board.addEventListener('click',e=>{
@@ -468,8 +488,8 @@ document.addEventListener('click',e=>{
  if(e.target.id==='dh'){open=true;panel()}
  if(e.target.id==='ds'){side=side==='R'?'L':'R';panel()}
 });
-$('bw').onclick=()=>{wire=!wire;pend=null;render()};
-$('br').onclick=()=>{run=!run;render()};
+$('bw').onclick=()=>{wire=!wire;if(wire){termMove=false;run=false;pend=null}syncLockClasses();render()};
+$('br').onclick=()=>{run=!run;if(run){wire=false;termMove=false;pend=null}syncLockClasses();render()};
 $('bs').onchange=e=>{setSize(e.target.value);render()};
 // FIX: تم حذف let selW,hd من هنا - أصبحت في الأعلى
 function sbUpdate(){
@@ -495,7 +515,7 @@ let termMove=false,symMode=false;
 function dupComp(){const src=C.find(x=>x.id===sel);if(!src){alert('حدّد قطعة الأول');return}const n=mk(src.t,Math.min(board.clientWidth-80,src.x+30),Math.min(board.clientHeight-80,src.y+30));n.s=src.s;n.rot=src.rot||0;n.sc=src.sc||1;n.w=src.w;n.temp=src.temp;n.fuel=src.fuel;n.termPos=JSON.parse(JSON.stringify(src.termPos||{}));C.push(n);sel=n.id;selW=null;render()}
 $('dupBtn').onclick=dupComp;
 $('symBtn').onclick=e=>{symMode=!symMode;e.target.classList.toggle('warn',symMode);e.target.textContent=symMode?'🖼️ رسم واقعي':'〰️ رمز هندسي';render()};
-$('termMoveBtn').onclick=e=>{termMove=!termMove;document.body.classList.toggle('termMove',termMove);e.target.classList.toggle('warn',termMove);e.target.textContent=termMove?'✋ تحريك النقاط (شغال - اسحب أي نقطة)':'✋ تحريك النقاط';if(termMove){wire=false;pend=null}render()};
+$('termMoveBtn').onclick=e=>{termMove=!termMove;e.target.classList.toggle('warn',termMove);e.target.textContent=termMove?'✋ تحريك النقاط (شغال - اسحب أي نقطة)':'✋ تحريك النقاط';if(termMove){wire=false;run=false;pend=null}syncLockClasses();render()};
 // ملء الشاشة: القايمة تدخل جوه اللوحة - ترجع مكانها لما تخرج
 const toolsBar=$('boardTools'), wrapEl=$('wrap'); let toolsHome=null;
 function toolsMoveIn(){if(!toolsBar||!wrapEl)return;if(toolsBar.parentElement!==wrapEl){toolsHome={parent:toolsBar.parentElement,next:toolsBar.nextSibling};wrapEl.insertBefore(toolsBar,wrapEl.firstChild)}}
@@ -656,7 +676,7 @@ setInterval(()=>{
 </script>
 <script>
 // ===== PWA: تثبيت + أوفلاين + تحديث تلقائي =====
-const APP_VERSION = 'v3.5.0';
+const APP_VERSION = 'v3.6.0';
 let deferredPrompt = null, newWorker = null;
 const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
 const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
@@ -680,7 +700,7 @@ window.addEventListener('appinstalled', ()=>{ document.getElementById('installBt
 // تسجيل Service Worker - يعمل فقط على https أو localhost (GitHub Pages ✓)
 if('serviceWorker' in navigator && (location.protocol==='https:' || location.hostname==='localhost' || location.hostname==='127.0.0.1')){
   window.addEventListener('load', ()=>{
-    navigator.serviceWorker.register('./sw.js?v=3.5.0').then(reg=>{
+    navigator.serviceWorker.register('./sw.js?v=3.6.0').then(reg=>{
       // فحص تحديث كل مرة يفتح فيها التطبيق بالإنترنت
       reg.update();
       setInterval(()=>{ if(navigator.onLine) reg.update(); }, 60*1000);
@@ -701,7 +721,7 @@ if('serviceWorker' in navigator && (location.protocol==='https:' || location.hos
 }
 document.getElementById('forceUpdateBtn').onclick = async ()=>{
   try{ if('serviceWorker' in navigator){ const regs = await navigator.serviceWorker.getRegistrations(); for(const r of regs){ await r.update(); } await caches.keys().then(ks=>Promise.all(ks.map(k=>caches.delete(k)))); } }catch(e){}
-  window.location.href = window.location.pathname + '?v=350&ts=' + Date.now();
+  window.location.href = window.location.pathname + '?v=360&ts=' + Date.now();
 };
 document.getElementById('updateBtn').onclick = ()=>{
   if(newWorker){ newWorker.postMessage({type:'SKIP_WAITING'}); }
