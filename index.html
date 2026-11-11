@@ -48,22 +48,6 @@ body.mt .bo,body:not(.mt) .mo{display:none!important}
 #msg{padding:8px 12px;border-radius:10px;font-size:13px;font-weight:700;margin-bottom:8px;border:1px solid}
 .g{background:#16a34a22;border-color:#16a34a;color:#16a34a}.y{background:#eab30822;border-color:#eab308;color:#a16207}.r{background:#ef444422;border-color:#ef4444;color:#ef4444}
 #wrap{position:relative}
-#wrap:fullscreen{position:fixed!important;inset:0!important;width:100vw!important;height:100dvh!important;background:#0b1220!important;z-index:300!important;overflow:auto!important;padding:8px!important;box-sizing:border-box!important}
-#wrap:fullscreen #sc{max-height:calc(100dvh - 90px)!important;min-height:calc(100dvh - 90px)!important}
-#wrap:fullscreen #dr{height:100dvh!important}
-#wrap:fullscreen #boardTools{position:sticky!important;top:0!important;z-index:310!important;width:100%!important;max-width:100%!important}
-.c.sym{background:#f8fafc!important;color:#111!important;border:1px solid #64748b!important}
-.c.sym b{color:#111!important}.c.sym small{color:#334155!important}
-.c.sym .symsvg{display:block;margin:0 auto}.c.sym .spn{transform-box:fill-box;transform-origin:center;animation:sp .8s linear infinite}
-body.termMove .t{outline:3px solid #facc15!important;box-shadow:0 0 10px #facc15!important;touch-action:none!important;cursor:grab!important;width:22px!important;height:22px!important}body.termMove .t:active{cursor:grabbing!important}
-#boardTools{background:#0f172a!important;border:1px solid #334155!important;border-radius:12px!important;padding:6px!important;flex-wrap:nowrap!important;overflow-x:auto!important;overflow-y:hidden!important;gap:4px!important;touch-action:pan-x!important;cursor:grab!important;scroll-behavior:smooth!important;-webkit-overflow-scrolling:touch!important}
-#boardTools.dragging{cursor:grabbing!important;scroll-behavior:auto!important}
-#boardTools.dragging button,#boardTools.dragging select{pointer-events:none!important}
-#boardTools button,#boardTools select{white-space:nowrap!important;flex:0 0 auto!important;font-size:11px!important}
-#bd.armed{background:#ef4444!important;color:#fff!important;border-color:#b91c1c!important;font-weight:900!important;box-shadow:0 0 10px #ef444488!important}
-#boardTools select{max-width:120px!important}
-#fsBoard{background:#ef4444!important;color:#fff!important;border-color:#b91c1c!important;font-weight:900!important;box-shadow:0 0 12px #ef444488!important}
-#fsBoard.on{background:#16a34a!important;border-color:#14532d!important;box-shadow:0 0 12px #16a34a88!important}
 #sc{overflow:auto;max-height:72vh;border-radius:14px;border:1px solid var(--bd)}
 #board{position:relative;background:var(--board);overflow:hidden;user-select:none;background-image:linear-gradient(#0001 1px,transparent 1px),linear-gradient(90deg,#0001 1px,transparent 1px);background-size:22px 22px}
 #wires{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2}
@@ -81,9 +65,6 @@ body.termMove .t{outline:3px solid #facc15!important;box-shadow:0 0 10px #facc15
 .c b{font-size:10px}.c small{font-size:10px;opacity:.85}.c .gl{font-size:20px;line-height:1}
 .c.glow{box-shadow:0 0 30px 6px var(--lit)}.c.glow::after{content:'';position:absolute;inset:-70px;border-radius:50%;background:radial-gradient(circle,var(--lit) 0,transparent 65%);opacity:.5;z-index:-1;pointer-events:none}.ks{width:46px;height:46px;border-radius:50%;background:radial-gradient(#555,#111);border:3px solid #aaa;position:relative}.key{position:absolute;left:50%;top:50%;width:7px;height:28px;margin:-14px 0 0 -3px;background:linear-gradient(90deg,#fde68a,#a16207);border-radius:3px;transform:rotate(-40deg);transition:transform .25s}.key.k1{transform:rotate(50deg)}.key.ka{animation:kin .4s ease-out}@keyframes kin{from{translate:0 -22px;opacity:.1}to{translate:0 0;opacity:1}}#calc table{width:100%;border-collapse:collapse}#calc td,#calc th{padding:2px;font-size:11px}#calc input{padding:3px 6px;border-radius:8px;width:100%}#calc label{font-size:11px}
 .c.spin .gl{animation:sp .6s linear infinite}@keyframes sp{to{transform:rotate(360deg)}}
-.c.tumble{animation:tb 1s ease-in-out infinite}@keyframes tb{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
-.c.smoke::before{content:'💨';position:absolute;top:-22px;left:50%;margin-left:-14px;font-size:26px;z-index:5;animation:smk 1.1s ease-out infinite;pointer-events:none}@keyframes smk{0%{transform:translateY(8px) scale(.7);opacity:0}25%{opacity:1}100%{transform:translateY(-26px) scale(1.5);opacity:0}}
-.c.blink .gl{animation:blnk 1s steps(2) infinite}@keyframes blnk{50%{opacity:.15}}
 .lv{width:24px;height:40px;background:#181818;border-radius:5px;position:relative;border:1px solid #000}
 .lv i{position:absolute;left:3px;right:3px;top:20px;height:16px;border-radius:3px;background:#ef4444}.lv i.u{top:3px;background:#22c55e}
 .t{position:absolute;width:15px;height:15px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fde68a,#b45309);border:2px solid #fff;z-index:3;cursor:crosshair;box-shadow:0 1px 3px #0008}
@@ -96,51 +77,12 @@ body.termMove .t{outline:3px solid #facc15!important;box-shadow:0 0 10px #facc15
 #wl div{display:flex;justify-content:space-between;align-items:center}
 .card{margin-top:8px;font-size:12px;line-height:1.7}.card h3{margin:0 0 4px;font-size:14px}
 .hint{font-size:11px;color:var(--mut);margin:6px 0}
-/* ===== افتتاحية DEC - 16 ثانية - ختم + قصاصات ناعمة + نجوم ===== */
-#intro{position:fixed;inset:0;z-index:9999;background:radial-gradient(ellipse at 50% 40%,#0a1028 0%,#050814 45%,#010208 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;transition:opacity 1.2s}
-#intro.done{opacity:0;pointer-events:none}
-#introStars{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
-#introLogoWrap{position:relative;width:280px;height:280px;z-index:5;transition:opacity 2s,transform 2s;filter:drop-shadow(0 0 28px rgba(250,204,21,.45)) drop-shadow(0 0 60px rgba(239,68,68,.25))}
-#introLogo{width:280px;height:280px;object-fit:contain;background:transparent}
-#introTiles{position:absolute;inset:0;display:none}
-#introTiles .tile{position:absolute;background-size:280px 280px;border-radius:50%;will-change:transform,opacity;transition:transform 2.6s cubic-bezier(.22,1,.36,1),opacity 1.8s ease}
-#introCount{position:absolute;top:16px;inset-inline-end:16px;z-index:10;background:#0008;color:#fff;padding:6px 14px;border-radius:999px;font-size:14px;font-weight:800;border:1px solid #ffffff33}
-#introSkip{position:absolute;bottom:26px;inset-inline-start:50%;transform:translateX(-50%);z-index:10;background:#ef4444;color:#fff;border:2px solid #fff;font-size:15px;font-weight:900;padding:10px 26px;border-radius:999px;box-shadow:0 0 20px #ef444488;cursor:pointer}
-#introBar{position:absolute;bottom:0;inset-inline-start:0;height:6px;background:linear-gradient(90deg,#ef4444,#facc15,#22c55e);width:0%;z-index:10;transition:width .3s linear}
-#introFlash{position:fixed;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:10000;transition:opacity 1s}
-#introFlash.on{opacity:1}
-
-/* ===== قفل التحريك: في التوصيل والتشغيل النقطة ثابتة ومكان لمسها أكبر ===== */
-body.wiring .t, body.running .t{cursor:pointer!important;touch-action:manipulation!important}
-body.wiring .t{width:30px!important;height:30px!important;outline:3px solid #22c55e!important;box-shadow:0 0 0 6px rgba(34,197,94,.25),0 0 12px #22c55e88!important}
-body.wiring .c, body.running .c{cursor:default!important}
-body.wiring #bw, body.running #br{outline:3px solid #facc15}
-
 </style></head><body>
-<div id="intro" style="display:none">
-  <canvas id="introStars"></canvas>
-  <div id="introCount">16</div>
-  <div id="introLogoWrap">
-    <img id="introLogo" src="./opping.png" alt="DEC">
-    <div id="introTiles"></div>
-  </div>
-  <button id="introSkip">تخطي ⏭️</button>
-  <div id="introBar"></div>
-</div>
-<div id="introFlash"></div>
-
-<header id="logoBar" style="display:flex;align-items:center;gap:10px;margin:0 0 8px">
-  <img src="./logo.png" alt="DEC" style="width:52px;height:52px;object-fit:contain;border-radius:12px;background:#0f172a;border:1px solid #334155" onerror="this.style.display='none'">
-  
-  <button id="proBtn" title="نسخة PRO" style="background:linear-gradient(135deg,#facc15,#f97316);color:#111;border:none;font-weight:900;padding:6px 16px;border-radius:999px;box-shadow:0 0 12px #facc1566;cursor:pointer">⭐ PRO</button>
-  <button id="logoHide" style="margin-inline-start:auto;font-size:11px;padding:4px 10px">إخفاء</button>
-</header>
-<button id="logoShow" style="display:none;margin:0 0 8px;font-size:11px;padding:4px 10px">🔰 إظهار اللوجو</button>
+<h1>ElectroPanel <span style="font-size:11px;background:#16a34a;color:#fff;padding:2px 8px;border-radius:999px">PWA • أوفلاين</span></h1>
 <div id="pwaBar" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;align-items:center">
  <button id="installBtn" style="display:none;background:#111827;color:#fff">📲 تثبيت التطبيق على جهازك</button>
  <button id="iosBtn" style="display:none">🍎 تثبيت على iPhone: مشاركة ← إضافة للشاشة الرئيسية</button>
  <span id="offlineBadge" style="font-size:11px;color:var(--mut)"></span>
- <button id="forceUpdateBtn" style="background:#facc15;color:#000;border-color:#eab308;font-weight:800">🔄 تحديث النسخة</button>
 </div>
 <div id="updateBar" style="display:none;background:#facc15;color:#000;padding:8px 12px;border-radius:10px;font-size:13px;font-weight:700;margin-bottom:8px;justify-content:space-between;align-items:center">
  <span>🆕 تحديث جديد متوفر من المطور</span>
@@ -150,19 +92,11 @@ body.wiring #bw, body.running #br{outline:3px solid #facc15}
 <div class="bar">
  <button data-tab="b" id="tb">تصنيع حر</button><button data-tab="m" id="tm">صيانة وأعطال</button>
 </div>
-<div class="bar bo" id="boardTools">
+<div class="bar bo">
  <button id="bw">🔌 وضع التوصيل</button>
- <select id="bs"><option value="40x60">40×60 سم</option><option value="60x80">60×80 سم</option><option value="80x100" selected>80×100 سم</option><option value="100x80">100×80 سم</option><option value="100x120">100×120 سم</option></select>
- <button id="bd">✕ حذف المحدد</button>
- <button id="dupBtn" title="نسخ القطعة المظللة بنفس بياناتها من غير أسلاك">⧉ تكرار القطعة</button>
- <button id="symBtn" title="بدّل شكل القطع: رسم واقعي أو رمز هندسي زي المخططات - الدايرة والأسلاك ثابتة">〰️ رمز هندسي</button>
- <button id="termMoveBtn" title="شغّل الوضع، وبعدين اسحب أي نقطة نحاسية بصباعك لأي جنب من القطعة - حتى لو كل النقط على ضلع واحد">✋ تحريك النقاط</button>
- <button id="fsBoard" title="ملء الشاشة للوحة الرسم - القايمة دي هتبقى جوه اللوحة">⛶ تكبير الشاشة</button>
- <button id="saveFileBtn" title="حفظ الدايرة كملف وتفتحه تاني">💾 حفظ الدايرة</button>
- <button id="loadFileBtn" title="فتح ملف دايرة محفوظ">📂 فتح دايرة</button>
- <input type="file" id="loadFileInput" accept=".json,.electropanel.json,application/json" style="display:none">
- <button id="saveImgBtn" title="حفظ صورة PNG للوحة كلها">🖼️ حفظ صورة</button>
- <button id="bx">مسح الكل</button>
+ <select id="bc"><option value="red">أحمر L1</option><option value="yellow">أصفر L2</option><option value="black">أسود L3</option><option value="blue">أزرق N</option><option value="green">أخضر Earth</option></select>
+ <select id="bs"><option value="40x60">40×60 سم</option><option value="60x80">60×80 سم</option><option value="80x100" selected>80×100 سم</option><option value="100x120">100×120 سم</option></select>
+ <button id="bd">✕ حذف المحدد</button><button id="bx">مسح الكل</button>
 </div>
 <div class="bar mo" id="pc"></div>
 <div class="bar mo" id="fl"></div>
@@ -188,102 +122,78 @@ const A=[
 ['Isolator','سكينة 63A','قواطع','sw',84,92,'#e5e7eb'],['MCB','MCB C16','قواطع','sw',66,92,'#ffffff'],['MCB25','MCB C25','قواطع','sw',66,92,'#ffffff'],['MCB2P','MCB 2P','قواطع','sw',100,92,'#ffffff'],['MCCB','MCCB 100A','قواطع','sw',104,96,'#2b2b2b'],
 ['RCCB','RCCB 30mA','حماية','sw',84,92,'#1e3a8a'],['SPD','SPD','حماية','ld',66,84,'#eab308','⚡'],
 ['Contactor','كونتاكتور','كونتاكتورات','sw',90,92,'#c2c6cc','🧲'],['Overload','أوفرلود','كونتاكتورات','sw',84,92,'#f3f4f6','🔥'],
-['TimerOnDelay','تايمر تأخير 3ث','تحكم','sw',88,92,'#0b1220','⏱️'],['Timer24H','تايمر 24س','تحكم','sw',88,92,'#111827','🕐'],['TimerAlt','تايمر تناوب لمبتين','تحكم','sw2',110,100,'#7c3aed','🔀'],['Photocell','خلية ضوئية','تحكم','sw',80,92,'#1f2937','🌗'],['Selector','مفتاح اختيار','تحكم','sw',80,92,'#222','🎛️'],['PBG','زر أخضر','تحكم','sw',72,92,'#16a34a','🟢'],['PBR','زر أحمر','تحكم','sw',72,92,'#dc2626','🔴'],
-['Lamp','لمبة صفراء','لمبات','ld',74,88,'#fef9c3','💡'],['LampR','لمبة حمراء','لمبات','ld',74,88,'#fecaca','💡'],['LampG','لمبة خضراء','لمبات','ld',74,88,'#bbf7d0','💡'],['PilotY','لمبة إشارة صفرا','لمبات','ld',74,88,'#fef08a','🟡'],['PilotR','لمبة إشارة حمرا','لمبات','ld',74,88,'#fecaca','🔴'],['PilotG','لمبة إشارة خضرا','لمبات','ld',74,88,'#bbf7d0','🟢'],['BlinkLamp','لمبة وامضة','لمبات','ld',74,88,'#fef9c3','✨'],
-['Ammeter','أميتر','قياس','pass',90,84,'#0f172a','A'],['Voltmeter','فولتميتر','قياس','ld',90,84,'#0f172a','V'],['Meter','عداد kWh','قياس','pass',96,90,'#0f172a','kWh'],['HMeter','عداد منزلي','قياس','meter',124,132,'#e5e7eb'],['NBar','بارة نيوترال','قياس','bus',180,90,'#1e40af'],['EBar','بارة أرضي','قياس','bus',180,90,'#14532d'],
-['JBox','روزتة تجميع','تجميع','jbox',110,150,'#f8fafc','🔗'],
-['Motor','موتور','أحمال','ld',100,90,'#e5e7eb','🌀'],['Fan','مروحة','أحمال','ld',90,90,'#f1f5f9','🌬️'],['Heater','سخان','أحمال','ld',90,100,'#e2e8f0','♨️'],['Socket','بريزة 16A','أحمال','ld',80,88,'#ffffff','🔌'],['Cooker','بوتاجاز','أحمال','ld',100,92,'#111827','🍳'],['Washer','غسالة','أحمال','ld',100,110,'#f8fafc','🧺'],['Fridge','ثلاجة','أحمال','ld',90,130,'#e5e7eb','🧊'],
-['PS24','محول 220/24V','اسمارت هوم','ps24',110,100,'#0f172a','🔋'],
-['PLC','PLC LOGO! / S7-1200','اسمارت هوم','plc',150,130,'#0f172a','🧠'],
-['HMI','شاشة اسمارت هوم HMI','اسمارت هوم','hmi',150,110,'#0f172a','🖥️'],
-['PIR','حساس حركة PIR','اسمارت هوم','pir',80,92,'#1f2937','👁️'],
-['SmartRelay','ريليه ذكي WiFi','اسمارت هوم','sw',90,92,'#1e40af','📶'],
-['Curtain','مفتاح ستارة','اسمارت هوم','sw2',110,100,'#7c3aed','🪟'],
-['DoorLock','قفل باب كهربا','اسمارت هوم','ld',80,88,'#fef3c7','🔒']
+['TimerOnDelay','تايمر تأخير','تحكم','sw',88,92,'#0b1220','⏱️'],['Timer24H','تايمر 24س','تحكم','sw',88,92,'#111827','🕐'],['Photocell','خلية ضوئية','تحكم','sw',80,92,'#1f2937','🌗'],['Selector','مفتاح اختيار','تحكم','sw',80,92,'#222','🎛️'],['PBG','زر أخضر','تحكم','sw',72,92,'#16a34a','🟢'],['PBR','زر أحمر','تحكم','sw',72,92,'#dc2626','🔴'],
+['Lamp','لمبة صفراء','لمبات','ld',74,88,'#fef9c3','💡'],['LampR','لمبة حمراء','لمبات','ld',74,88,'#fecaca','💡'],['LampG','لمبة خضراء','لمبات','ld',74,88,'#bbf7d0','💡'],
+['Ammeter','أميتر','قياس','pass',90,84,'#0f172a','A'],['Voltmeter','فولتميتر','قياس','ld',90,84,'#0f172a','V'],['Meter','عداد kWh','قياس','pass',96,90,'#0f172a','kWh'],['HMeter','عداد منزلي','قياس','meter',124,132,'#e5e7eb'],['NBar','بارة نيوترال','قياس','bus',150,44,'#1e40af'],['EBar','بارة أرضي','قياس','bus',150,44,'#14532d'],
+['Motor','موتور','أحمال','ld',100,90,'#e5e7eb','🌀'],['Fan','مروحة','أحمال','ld',90,90,'#f1f5f9','🌬️'],['Heater','سخان','أحمال','ld',90,100,'#e2e8f0','♨️'],['Socket','بريزة 16A','أحمال','ld',80,88,'#ffffff','🔌'],['Cooker','بوتاجاز','أحمال','ld',100,92,'#111827','🍳'],['Washer','غسالة','أحمال','ld',100,110,'#f8fafc','🧺'],['Fridge','ثلاجة','أحمال','ld',90,130,'#e5e7eb','🧊']
 ];
-const T={},LIT={Lamp:'#facc15',LampR:'#ef4444',LampG:'#22c55e',PilotY:'#eab308',PilotR:'#ef4444',PilotG:'#22c55e',BlinkLamp:'#facc15'};
+const T={},LIT={Lamp:'#facc15',LampR:'#ef4444',LampG:'#22c55e'};
 A.forEach(([k,n,c,kd,w,h,b,g])=>T[k]={n,c,k:kd,w,h,b,g});
-const WT={Lamp:60,LampR:3,LampG:3,PilotY:3,PilotR:3,PilotG:3,BlinkLamp:5,Motor:750,Fan:75,Heater:2000,Socket:1000,Cooker:3000,Washer:500,Fridge:150,Motor3Ph:3000,Heater3Ph:6000,Socket3Ph:5000,Mains3Ph:0,Generator3Ph:0},PF={Motor:.8,Fan:.9,Washer:.75,Fridge:.7,Motor3Ph:.85,Heater3Ph:1,Socket3Ph:.9},amp=c=>c.w/(220*(PF[c.t]||1));
+const WT={Lamp:60,LampR:3,LampG:3,Motor:750,Fan:75,Heater:2000,Socket:1000,Cooker:3000,Washer:500,Fridge:150,Motor3Ph:3000,Heater3Ph:6000,Socket3Ph:5000,Mains3Ph:0,Generator3Ph:0},PF={Motor:.8,Fan:.9,Washer:.75,Fridge:.7,Motor3Ph:.85,Heater3Ph:1,Socket3Ph:.9},amp=c=>c.w/(220*(PF[c.t]||1));
 const TL=h=>{const v=parseInt(h.slice(1),16);return((v>>16)*299+((v>>8)&255)*587+(v&255)*114)/1000>140?'#111':'#fff'};
-const TS={'40x60':[360,540],'60x80':[520,700],'80x100':[700,860],'100x80':[880,700],'100x120':[880,1020]};
-const COL={l1:'#ef4444',l:'#ef4444',l2:'#3b82f6',l3:'#eab308',n:'#9ca3af',pe:'#22c55e',red:'#ef4444',yellow:'#eab308',black:'#111827',blue:'#3b82f6',green:'#22c55e'};
-const WIRE_NAME={l1:'L1 أحمر',l:'L أحمر',l2:'L2 أزرق',l3:'L3 أصفر',n:'N رصاصي',pe:'PE أبيض × أخضر'};
-function migrateWireColor(c){return {red:'l1',yellow:'l2',black:'l3',blue:'n',green:'pe',l1:'l1',l2:'l2',l3:'l3',l:'l',n:'n',pe:'pe'}[c]||'l1'}
-function termWireColor(id){const el=board.querySelector(`[data-t="${id}"]`);const lab=((el&&el.dataset.l)||'').toUpperCase();const tn=(id.split(':')[1]||'').toUpperCase();const key=lab||tn;if(key==='+')return 'l1';if(key==='-')return 'n';if(key==='L1')return 'l1';if(key==='L2')return 'l2';if(key==='L3')return 'l3';if(key==='L')return 'l';if(key==='N')return 'n';if(key==='PE')return 'pe';if(key==='IN1'||key==='OUT1')return 'l1';if(key==='IN2'||key==='OUT2')return 'l2';if(key==='IN3'||key==='OUT3')return 'l3';return null}
-function autoWireColor(a,b){return termWireColor(a)||termWireColor(b)||'l1'}
-const TERMPOS=['topl','top','topr','botr','bot','botl'];
-// تحريك حر: كل نقطة ليها {edge: فوق/تحت/يمين/شمال, pct: مكانها على الضلع %} - مش 6 أماكن ثابتة
-function termPosStyle(tp){const pct=Math.max(4,Math.min(96,+tp.pct||50));if(tp.edge==='top')return `top:-8px;left:calc(${pct}% - 8px)`;if(tp.edge==='bottom')return `bottom:-8px;left:calc(${pct}% - 8px)`;if(tp.edge==='left')return `left:-8px;top:calc(${pct}% - 8px)`;return `right:-8px;top:calc(${pct}% - 8px)`}
-function termFreePos(c,clientX,clientY){const el=board.querySelector(`[data-id="${c.id}"]`);if(!el)return {edge:'top',pct:50};const r=el.getBoundingClientRect();const fx=(clientX-r.left)/Math.max(1,r.width),fy=(clientY-r.top)/Math.max(1,r.height);const d={top:fy,bottom:1-fy,left:fx,right:1-fx};let edge='top',best=1e9;for(const k in d){if(d[k]<best){best=d[k];edge=k}}const pct=Math.round(Math.max(6,Math.min(94,(edge==='top'||edge==='bottom')?fx*100:fy*100)));return {edge,pct}}
-const terms=(t,c)=>{const k=T[t].k;let r;
-if(k==='meter')r=[['Li','topl','L'],['Ni','topr','N'],['Lo','botl','L'],['No','botr','N']];
-else if(k==='src3')r=[['L1','topl','L1'],['L2','top','L2'],['L3','topr','L3'],['N','bot','N']];
-else if(k==='sw2')r=[['in1','topl','L1'],['in2','topr','L2'],['out1','botl','L1'],['out2','botr','L2']];
-else if(k==='sw3')r=[['in1','topl','L1'],['in2','top','L2'],['in3','topr','L3'],['out1','botl','L1'],['out2','bot','L2'],['out3','botr','L3']];
-else if(k==='ld3')r=[['in1','topl','L1'],['in2','top','L2'],['in3','topr','L3'],['out','bot','N']];
-else if(k==='ld2')r=[['in1','topl','L1'],['in2','topr','L2'],['out','bot','N']];
-else if(k==='bus'){const lab=t==='EBar'?'PE':'N';r=[];for(let i=0;i<5;i++){r.push(['n'+(i+1),'',''+lab, 'top:-8px;left:calc('+(10+i*20)+'% - 8px)'])}for(let i=0;i<5;i++){r.push(['n'+(i+6),'',''+lab, 'bottom:-8px;left:calc('+(10+i*20)+'% - 8px)'])}}
-else if(k==='plc'){r=[['L+','','L+','top:-8px;left:calc(12% - 8px)'],['M','','N','top:-8px;left:calc(30% - 8px)'],['I1','','L','top:-8px;left:calc(48% - 8px)'],['I2','','L','top:-8px;left:calc(66% - 8px)'],['I3','','L','left:-8px;top:calc(30% - 8px)'],['I4','','L','left:-8px;top:calc(60% - 8px)'],['Q1','','L','right:-8px;top:calc(25% - 8px)'],['Q2','','L','right:-8px;top:calc(50% - 8px)'],['Q3','','L','bottom:-8px;left:calc(30% - 8px)'],['Q4','','L','bottom:-8px;left:calc(55% - 8px)'],['ETH','','L','bottom:-8px;left:calc(80% - 8px)']]}
-else if(k==='ps24'){r=[['L','','L','top:-8px;left:calc(25% - 8px)'],['N','','N','top:-8px;left:calc(70% - 8px)'],['+','','+','bottom:-8px;left:calc(25% - 8px)'],['-','','-','bottom:-8px;left:calc(70% - 8px)']]}
-else if(k==='hmi'){r=[['24V','','L','top:-8px;left:calc(25% - 8px)'],['GND','','N','top:-8px;left:calc(60% - 8px)'],['LAN','','L','bottom:-8px;left:calc(30% - 8px)'],['RS485','','L','bottom:-8px;left:calc(65% - 8px)']]}
-else if(k==='pir'){r=[['L','','L','top:-8px;left:calc(25% - 8px)'],['N','','N','top:-8px;left:calc(70% - 8px)'],['OUT','','L','bottom:-8px;left:calc(50% - 8px)']]}
-else if(k==='jbox'){r=[];for(let i=0;i<5;i++){const y=12+i*19;r.push(['p'+(i+1)+'a','',''+(i+1), 'left:-8px;top:calc('+y+'% - 8px)']);r.push(['p'+(i+1)+'b','',''+(i+1), 'right:-8px;top:calc('+y+'% - 8px)'])}}
-else r=k==='src'?[['L','botl','L'],['N','botr','N']]:k==='ld'?[['in','top','L'],['out','bot','N']]:[['in','top','1'],['out','bot','2']];
-if(!c)return r;
-return r.map(([n,q,l,st])=>{let pp=q,sty=st||'';if(c.termPos&&c.termPos[n]!==undefined){const tp=c.termPos[n];if(tp&&typeof tp==='object'&&tp.edge){sty=termPosStyle(tp);pp=''}else if(typeof tp==='string'&&tp.startsWith('style:')){sty=tp.slice(6);pp=''}else if(typeof tp==='string'&&tp){const m={topl:'top:-8px;left:20%',top:'top:-8px;left:calc(50% - 8px)',topr:'top:-8px;right:20%',botl:'bottom:-8px;left:20%',bot:'bottom:-8px;left:calc(50% - 8px)',botr:'bottom:-8px;right:20%',mid:'top:calc(50% - 8px);left:calc(50% - 8px)'};sty=m[tp]||sty;pp=''}}return [n,pp,l,sty]});};
+const TS={'40x60':[360,540],'60x80':[520,700],'80x100':[700,860],'100x120':[880,1020]};
+const COL={red:'#ef4444',yellow:'#eab308',black:'#111827',blue:'#3b82f6',green:'#22c55e'};
+const terms=t=>{const k=T[t].k;
+if(k==='meter')return[['Li','topl','L'],['Ni','topr','N'],['Lo','botl','L'],['No','botr','N']];
+if(k==='src3')return[['L1','topl','L1'],['L2','top','L2'],['L3','topr','L3'],['N','bot','N']];
+if(k==='sw2')return[['in1','topl','L1'],['in2','topr','L2'],['out1','botl','L1'],['out2','botr','L2']];
+if(k==='sw3')return[['in1','topl','L1'],['in2','top','L2'],['in3','topr','L3'],['out1','botl','L1'],['out2','bot','L2'],['out3','botr','L3']];
+if(k==='ld3')return[['in1','topl','L1'],['in2','top','L2'],['in3','topr','L3'],['out','bot','N']];
+if(k==='ld2')return[['in1','topl','L1'],['in2','topr','L2'],['out','bot','N']];
+return k==='src'?[['L','botl','L'],['N','botr','N']]:k==='bus'?[['n','mid',t==='EBar'?'PE':'N']]:k==='ld'?[['in','top','L'],['out','bot','N']]:[['in','top','1'],['out','bot','2']]};
 const P={
 DB:{n:'لوحة DB',c:[['m','Mains',30,20],['iso','Isolator',30,140],['rc','RCCB',30,260],['q1','MCB',150,380],['q2','MCB25',290,380],['l1','Lamp',150,520],['h','Heater',290,510],['nb','NBar',150,640]],
-w:['m.L>iso.in:r','iso.out>rc.in:r','rc.out>q1.in:r','rc.out>q2.in:r','q1.out>l1.in:r','q2.out>h.in:r','l1.out>nb.n1:b','h.out>nb.n1:b','nb.n1>m.N:b'],
-f:[{t:'نيوترال فاصل – خطر!',l:'بارة N الزرقاء',y:'مسمار غير مربوط',o:'مفك + أفوميتر',s:['لمبات ترعش أو تنطفئ','قِس L-N في كل دائرة','افحص مسامير بارة N'],r:'اربط المسامير بالعزم المناسب',w:'افصل العمومي قبل اللمس',x:[['cutw','nb.n1','m.N']]},
+w:['m.L>iso.in:r','iso.out>rc.in:r','rc.out>q1.in:r','rc.out>q2.in:r','q1.out>l1.in:r','q2.out>h.in:r','l1.out>nb.n:b','h.out>nb.n:b','nb.n>m.N:b'],
+f:[{t:'نيوترال فاصل – خطر!',l:'بارة N الزرقاء',y:'مسمار غير مربوط',o:'مفك + أفوميتر',s:['لمبات ترعش أو تنطفئ','قِس L-N في كل دائرة','افحص مسامير بارة N'],r:'اربط المسامير بالعزم المناسب',w:'افصل العمومي قبل اللمس',x:[['cutw','nb.n','m.N']]},
 {t:'MCB السخان تالف',l:'Q2',y:'رطوبة وتلامسات محروقة',o:'كلامب',s:['افصل القاطع يدوياً','قِس الجهد قبل القاطع وبعده','افحص السخونة'],r:'استبدل بقاطع C25',w:'قاطع لا يفصل = خطر حريق',x:[['dead','q2']]},
 {t:'RCCB يفصل',l:'RCCB 30mA',y:'تسريب من السخان',o:'كلامب تسريب + ميجر',s:['افصل الدوائر','أعد الرفع دائرة دائرة','قِس العزل'],r:'غيّر السخان المعيب',w:'لا تلغِ الـ RCCB أبداً',x:[['off','rc']]}]},
 LIGHT:{n:'إضاءة بتايمر',c:[['m','Mains',30,20],['iso','Isolator',30,140],['q1','MCB',30,260],['tm','Timer24H',30,380],['k1','Contactor',180,380],['l1','Lamp',150,530],['l2','Lamp',270,530],['nb','NBar',150,650]],
-w:['m.L>iso.in:r','iso.out>q1.in:r','q1.out>tm.in:r','tm.out>k1.in:r','k1.out>l1.in:r','k1.out>l2.in:r','l1.out>nb.n1:b','l2.out>nb.n1:b','nb.n1>m.N:b'],
+w:['m.L>iso.in:r','iso.out>q1.in:r','q1.out>tm.in:r','tm.out>k1.in:r','k1.out>l1.in:r','k1.out>l2.in:r','l1.out>nb.n:b','l2.out>nb.n:b','nb.n>m.N:b'],
 f:[{t:'التايمر لا يعمل',l:'تايمر 24H',y:'بطارية داخلية فارغة',o:'أفوميتر',s:['تأكد من L-N 220V','قِس الخرج','جرّب Manual ON'],r:'استبدل التايمر',w:'افصل الكهرباء قبل الفك',x:[['dead','tm']]},
 {t:'ملف الكونتاكتور مفتوح',l:'K1 A1-A2',y:'سخونة زائدة',o:'أفوميتر',s:['قِس المقاومة بين A1-A2','∞ يعني ملف مفتوح'],r:'استبدل الكونتاكتور',w:'',x:[['dead','k1']]},
 {t:'لمبة محروقة',l:'كشاف 1',y:'انتهاء العمر',o:'لمبة جديدة',s:['فحص بصري','قِس الفتيلة','جرّب لمبة جديدة'],r:'استبدل اللمبة',w:'',x:[['dead','l1']]}]},
 ATS2:{n:'ATS خطين',c:[['m','Mains',30,20],['g','Generator',300,20,'OFF'],['k1','Contactor',30,160],['k2','Contactor',300,160,'OFF'],['mc','MCCB',170,290],['l1','Lamp',100,430],['h','Heater',260,430],['nb','NBar',170,590]],
-w:['m.L>k1.in:r','g.L>k2.in:r','k1.out>mc.in:r','k2.out>mc.in:r','mc.out>l1.in:r','mc.out>h.in:r','l1.out>nb.n1:b','h.out>nb.n1:b','nb.n1>m.N:b','nb.n1>g.N:b'],
+w:['m.L>k1.in:r','g.L>k2.in:r','k1.out>mc.in:r','k2.out>mc.in:r','mc.out>l1.in:r','mc.out>h.in:r','l1.out>nb.n:b','h.out>nb.n:b','nb.n>m.N:b','nb.n>g.N:b'],
 f:[{t:'سقوط الشبكة',l:'دخل الشبكة – K1',y:'انقطاع من الشركة أو فيوز الشبكة',o:'أفوميتر',s:['قِس جهد الشبكة','شغّل المولد (اضغطه)','افصل K1 وأغلق K2'],r:'انتظر الشبكة أو شغّل المولد',w:'لا تلمس البارات وهي حية',x:[['off','m']]},
 {t:'فشل تشغيل المولد',l:'المولد وكونتاكتور K2',y:'بطارية ضعيفة',o:'أفوميتر',s:['قِس بطارية 12V','افحص ريلاي Start','جرّب تشغيلاً يدوياً'],r:'اشحن أو غيّر البطارية',w:'احذر عادم المولد',x:[['off','m'],['dead','g']]},
 {t:'تلامس K1 ملحوم',l:'كونتاكتور الشبكة K1',y:'تيار قصر لحم التلامس',o:'أفوميتر',s:['افصل التغذيتين','قِس 1-2 على K1','صفر مع OFF = ملحوم'],r:'استبدل الكونتاكتور',w:'خطر رجوع تيار للشبكة',x:[['off','k1'],['stuck','k1']]}]},
 ATS3:{n:'ATS 3 مصادر',c:[['m','Mains',20,20],['g','Generator',170,20,'OFF'],['g2','Generator',330,20,'OFF'],['k1','Contactor',20,160],['k2','Contactor',190,160,'OFF'],['k3','Contactor',350,160,'OFF'],['mc','MCCB',190,290],['l1','Lamp',110,430],['h','Heater',270,430],['nb','NBar',190,590]],
-w:['m.L>k1.in:r','g.L>k2.in:r','g2.L>k3.in:r','k1.out>mc.in:r','k2.out>mc.in:r','k3.out>mc.in:r','mc.out>l1.in:r','mc.out>h.in:r','l1.out>nb.n1:b','h.out>nb.n1:b','nb.n1>m.N:b','nb.n1>g.N:b','nb.n1>g2.N:b'],
+w:['m.L>k1.in:r','g.L>k2.in:r','g2.L>k3.in:r','k1.out>mc.in:r','k2.out>mc.in:r','k3.out>mc.in:r','mc.out>l1.in:r','mc.out>h.in:r','l1.out>nb.n:b','h.out>nb.n:b','nb.n>m.N:b','nb.n>g.N:b','nb.n>g2.N:b'],
 f:[{t:'مولد 1 لا يستجيب',l:'ريلاي G1',y:'بطارية أو ريلاي',o:'أفوميتر',s:['بطارية G1','إشارة Start','تشغيل يدوي'],r:'اشحن/استبدل',w:'',x:[['off','m'],['dead','g']]},
 {t:'مولد 2 حمل زائد',l:'MCCB المخرج',y:'الحمل أكبر من القدرة',o:'كلامب',s:['قِس الحمل','قلل الأحمال'],r:'إعادة توزيع الأحمال',w:'',x:[['off','mc']]},
 {t:'انترلوك قافش',l:'بين الكونتاكتورات',y:'أتربة',o:'مزيل أتربة',s:['فحص يدوي','نظّف','افحص المسامير'],r:'تشحيم وتنظيف',w:'خطر دمج مصدرين!',x:[['off','k1'],['stuck','k1']]}]},
 MDB:{n:'لوحة MDB',c:[['m','Mains',30,20],['iso','Isolator',30,140],['mc','MCCB',30,270],['q1','MCB25',170,390],['q2','MCB',320,390],['h','Heater',170,520],['mo','Motor',320,520],['nb','NBar',170,650]],
-w:['m.L>iso.in:r','iso.out>mc.in:r','mc.out>q1.in:r','mc.out>q2.in:r','q1.out>h.in:r','q2.out>mo.in:r','h.out>nb.n1:b','mo.out>nb.n1:b','nb.n1>m.N:b'],
+w:['m.L>iso.in:r','iso.out>mc.in:r','mc.out>q1.in:r','mc.out>q2.in:r','q1.out>h.in:r','q2.out>mo.in:r','h.out>nb.n:b','mo.out>nb.n:b','nb.n>m.N:b'],
 f:[{t:'بارة مهوية وسخونة',l:'خلف MCCB',y:'عزم ربط قليل',o:'مفتاح عزم + كاميرا حرارية',s:['حراري >80°C','افصل وأعد الربط','ميكرو أوم'],r:'نظّف وأعد الربط',w:'افصل تماماً',x:[['cutw','iso.out','mc.in']]},
 {t:'MCCB لا يرفع',l:'MCCB 100A',y:'قصر في كابل',o:'ميجر',s:['افصل الفرعيات','جرّب الرفع','قِس العزل'],r:'أصلح الكابل',w:'لا تُجبر الرفع مع قصر',x:[['off','mc']]},
 {t:'فصل حماية الموتور',l:'Q2',y:'حمل زائد',o:'كلامب',s:['قِس التيار','قارنه بالقاطع'],r:'إعادة توزيع الأحمال',w:'',x:[['off','q2']]}]},
 ENERGY:{n:'عداد طاقة',c:[['m','Mains',30,20],['iso','Isolator',30,130],['kw','Meter',30,240],['am','Ammeter',30,360],['q1','MCB',30,480],['l1','Lamp',30,610],['nb','NBar',200,620]],
-w:['m.L>iso.in:r','iso.out>kw.in:r','kw.out>am.in:r','am.out>q1.in:r','q1.out>l1.in:r','l1.out>nb.n1:b','nb.n1>m.N:b'],
+w:['m.L>iso.in:r','iso.out>kw.in:r','kw.out>am.in:r','am.out>q1.in:r','q1.out>l1.in:r','l1.out>nb.n:b','nb.n>m.N:b'],
 f:[{t:'العداد لا يعد',l:'عداد kWh',y:'فيوز الجهد 6A',o:'أفوميتر',s:['قِس L-N على العداد','افحص الفيوز'],r:'غيّر الفيوز',w:'',x:[['dead','kw']]},
 {t:'CT مفتوح – خطر!',l:'روزتة CT',y:'سلك فاصل',o:'شورت بار',s:['لا تلمس!','اقفل الثانوي بشورت','قِس الاستمرارية'],r:'أعد التوصيل',w:'جهد عالٍ قاتل على CT المفتوح',x:[['cutw','kw.out','am.in']]},
 {t:'فقد فازة',l:'دخل L1',y:'فيوز ضارب',o:'أفوميتر',s:['0V على L','افحص الفيوز'],r:'غيّر الفيوز',w:'',x:[['cutw','m.L','iso.in']]}]},
 PH3:{n:'لوحة 3 فاز',c:[['m','Mains3Ph',20,20],['iso','Isolator3P',20,140],['q1','MCB3P',20,270],['mo','Motor3Ph',20,400],['h','Heater3Ph',190,400],['nb','NBar',190,550]],
-w:['m.L1>iso.in1:r','m.L2>iso.in2:y','m.L3>iso.in3:k','iso.out1>q1.in1:r','iso.out2>q1.in2:y','iso.out3>q1.in3:k','q1.out1>mo.in1:r','q1.out2>mo.in2:y','q1.out3>mo.in3:k','q1.out1>h.in1:r','q1.out2>h.in2:y','q1.out3>h.in3:k','mo.out>nb.n1:b','h.out>nb.n1:b','nb.n1>m.N:b'],
+w:['m.L1>iso.in1:r','m.L2>iso.in2:y','m.L3>iso.in3:k','iso.out1>q1.in1:r','iso.out2>q1.in2:y','iso.out3>q1.in3:k','q1.out1>mo.in1:r','q1.out2>mo.in2:y','q1.out3>mo.in3:k','q1.out1>h.in1:r','q1.out2>h.in2:y','q1.out3>h.in3:k','mo.out>nb.n:b','h.out>nb.n:b','nb.n>m.N:b'],
 f:[{t:'فازة ساقطة - موتور يزن',l:'دخل L2',y:'فيوز أو سلك فاصل',o:'أفوميتر',s:['قِس L1-L2-L3','افحص القاطع 3P','افحص الكابل'],r:'أعد توصيل الفازة الساقطة',w:'لا تشغل الموتور على فازتين',x:[['cutw','q1.out2','mo.in2']]},
 {t:'قاطع 3P تالف',l:'MCB 3P',y:'تلامس محروق',o:'أفوميتر',s:['قِس الدخل والخرج لكل فازة','افحص السخونة'],r:'استبدل بقاطع 3P',w:'',x:[['dead','q1']]},
-{t:'نيوترال مساعد فاصل',l:'بارة N',y:'مسمار غير مربوط',o:'مفك + أفوميتر',s:['قِس N','افحص مسامير البارة'],r:'اربط مسامير البارة',w:'افصل العمومي قبل اللمس',x:[['cutw','nb.n1','m.N']]}]},
+{t:'نيوترال مساعد فاصل',l:'بارة N',y:'مسمار غير مربوط',o:'مفك + أفوميتر',s:['قِس N','افحص مسامير البارة'],r:'اربط مسامير البارة',w:'افصل العمومي قبل اللمس',x:[['cutw','nb.n','m.N']]}]},
 PUMP:{n:'طلمبة مياه',c:[['m','Mains',30,20],['iso','Isolator',30,130],['q1','MCB25',30,240],['k1','Contactor',30,350],['ov','Overload',30,470],['mo','Motor',30,590],['nb','NBar',200,600]],
-w:['m.L>iso.in:r','iso.out>q1.in:r','q1.out>k1.in:r','k1.out>ov.in:r','ov.out>mo.in:r','mo.out>nb.n1:b','nb.n1>m.N:b'],
+w:['m.L>iso.in:r','iso.out>q1.in:r','q1.out>k1.in:r','k1.out>ov.in:r','ov.out>mo.in:r','mo.out>nb.n:b','nb.n>m.N:b'],
 f:[{t:'الأوفرلود فاصل',l:'تحت الكونتاكتور',y:'سحب تيار عالٍ',o:'كلامب',s:['قِس التيار','اضبط الأوفرلود +20%','Reset يدوي'],r:'نظّف الطلمبة وأعد Reset',w:'',x:[['off','ov']]},
 {t:'الكونتاكتور لا يلقط',l:'K1',y:'ملف 380V بدل 220V',o:'أفوميتر',s:['قِس A1-A2','مقاومة ∞ = محروق'],r:'غيّر الكونتاكتور',w:'',x:[['dead','k1']]},
 {t:'سلك مفصول للطلمبة',l:'بين الأوفرلود والموتور',y:'سلك مفكوك',o:'أفوميتر',s:['قِس الاستمرارية','افحص المسامير'],r:'أعد التوصيل',w:'',x:[['cutw','ov.out','mo.in']]}]}
 };
 // ===== الحالة - FIX: selW و hd هنا في الأعلى قبل أي استخدام =====
-let C=[],W=[],K={},sel=null,wire=false,run=false,termMove=false,symMode=false,pend=null,uid=1,kwh=0,drag=null,raf=0,tab='b',saved=null,cur='DB',diag=null,open=true,side='R',res=null,size='80x100';
+let C=[],W=[],K={},sel=null,wire=false,run=true,pend=null,uid=1,kwh=0,drag=null,raf=0,tab='b',saved=null,cur='DB',diag=null,open=true,side='R',res=null,size='80x100';
 let selW=null,hd=null;
 const $=id=>document.getElementById(id),board=$('board'),comps=$('comps'),svg=$('wires');
-const mk=(t,x,y)=>({id:'c'+uid++,t,l:T[t].n,x,y,s:({Generator:1,Generator3Ph:1,PBG:1})[t]?'OFF':'ON',temp:22,fuel:80,rot:0,sc:1,w:WT[t]||0,termPos:{}});
+const mk=(t,x,y)=>({id:'c'+uid++,t,l:T[t].n,x,y,s:({Generator:1,Generator3Ph:1,PBG:1})[t]?'OFF':'ON',temp:22,fuel:80,rot:0,sc:1,w:WT[t]||0});
 const link=(a,b,c)=>W.push({id:'w'+uid++,a,b,col:c});
 function load(p){
  C=[];W=[];K={};
  p.c.forEach(([k,t,x,y,s])=>{const c=mk(t,x,y);if(s)c.s=s;K[k]=c;C.push(c)});
  const tid=a=>{const[k,t]=a.split('.');if(!K[k])return null;return K[k].id+':'+t};
- p.w.forEach(s=>{const[a,r]=s.split(':'),[x,y]=a.split('>');const ta=tid(x),tb=tid(y);if(ta&&tb)link(ta,tb,r==='b'?'n':r==='y'?'l2':r==='k'?'l3':r==='g'?'pe':'l1')});
+ p.w.forEach(s=>{const[a,r]=s.split(':'),[x,y]=a.split('>');const ta=tid(x),tb=tid(y);if(ta&&tb)link(ta,tb,r==='b'?'blue':r==='y'?'yellow':r==='k'?'black':r==='g'?'green':'red')});
  return tid;
 }
 // FIX: حماية fx من مفاتيح غير موجودة
@@ -307,32 +217,27 @@ function inject(i){
  sel=null;selW=null;run=true;render();
 }
 // ===== المحاكاة: FIX - كل لون سلك له شبكة مستقلة =====
-const closed=c=>{if(c.dead)return false;if(c.t==='TimerOnDelay')return c.s==='ON'&&!!c.at&&(Date.now()-c.at)>3000/Math.max(0.2,SP);if(c.t==='Timer24H'){if(c.s!=='ON'||!c.at)return false;const ph=((Date.now()-c.at)/1000*Math.max(0.2,SP))%8;return ph<4}if(c.t==='TimerAlt')return c.s==='ON';return (c.s==='ON'||c.stuck)};
+const closed=c=>(c.s==='ON'||c.stuck)&&!c.dead;
 function sim(){
  const E=new Set(),L1=new Set(),L2=new Set(),L3=new Set(),N=new Set(),L=L1,r=(msg,c)=>({E,L,L1,L2,L3,N,msg,c});
  if(!run)return r('المحاكاة متوقفة – اضغط تشغيل','y');
  const aw1=new Map(),aw2=new Map(),aw3=new Map(),an=new Map();
  const add=(m,a,b)=>{(m.get(a)||m.set(a,[]).get(a)).push(b);(m.get(b)||m.set(b,[]).get(b)).push(a)};
- // ألوان الأسلاك تلقائي: L1/L=أحمر • L2=أزرق • L3=أصفر • N=رصاصي • PE=أبيض×أخضر (لا يدخل L/N)
- W.forEach(w=>{const col=migrateWireColor(w.col);
-   if(col==='l1'||col==='l')add(aw1,w.a,w.b);
-   else if(col==='l2')add(aw2,w.a,w.b);
-   else if(col==='l3')add(aw3,w.a,w.b);
-   else if(col==='n')add(an,w.a,w.b);
+ // ألوان الأسلاك: أحمر=L1 أصفر=L2 أسود=L3 أزرق=N أخضر=Earth (لا يدخل L/N)
+ W.forEach(w=>{
+   if(w.col==='red')add(aw1,w.a,w.b);
+   else if(w.col==='yellow')add(aw2,w.a,w.b);
+   else if(w.col==='black')add(aw3,w.a,w.b);
+   else if(w.col==='blue')add(an,w.a,w.b);
  });
  // التوصيل الداخلي للقطع حسب عدد الأقطاب
  C.forEach(c=>{const k=T[c.t].k;
    if(k==='sw'&&closed(c))add(aw1,c.id+':in',c.id+':out');
-   else if(c.t==='TimerAlt'&&c.s==='ON'&&!c.dead){const alt=c.at?Math.floor(((Date.now()-c.at)/1000*Math.max(0.2,SP))/2)%2:0;c._alt=alt;if(alt===0)add(aw1,c.id+':in1',c.id+':out1');else add(aw1,c.id+':in1',c.id+':out2');}
    else if(k==='sw2'&&closed(c)){add(aw1,c.id+':in1',c.id+':out1');add(aw2,c.id+':in2',c.id+':out2');}
    else if(k==='sw3'&&closed(c)){add(aw1,c.id+':in1',c.id+':out1');add(aw2,c.id+':in2',c.id+':out2');add(aw3,c.id+':in3',c.id+':out3');}
    else if(k==='pass'&&!c.dead)add(aw1,c.id+':in',c.id+':out');
  });
  C.forEach(c=>{if(T[c.t].k==='meter'&&!c.dead){add(aw1,c.id+':Li',c.id+':Lo');add(an,c.id+':Ni',c.id+':No')}});
- // بارة N / PE: كل الـ 10 نقاط موصلة ببعض من جوه البارة (مسار أزرق)
- C.forEach(c=>{if(T[c.t].k==='bus'&&!c.dead){for(let i=1;i<=10;i++)for(let j=i+1;j<=10;j++)add(an,c.id+':n'+i,c.id+':n'+j)}});
- // روزتة تجميع: كل نقطتين متقابلين متصلين ببعض من جوه (أي لون سلك)
- C.forEach(c=>{if(T[c.t].k==='jbox'&&!c.dead){for(let i=1;i<=5;i++){add(aw1,c.id+':p'+i+'a',c.id+':p'+i+'b');add(aw2,c.id+':p'+i+'a',c.id+':p'+i+'b');add(aw3,c.id+':p'+i+'a',c.id+':p'+i+'b');add(an,c.id+':p'+i+'a',c.id+':p'+i+'b')}}});
  const walk=(s,adj,set)=>{const q=[s];set.add(s);while(q.length){const x=q.pop();(adj.get(x)||[]).forEach(y=>{if(!set.has(y)){set.add(y);q.push(y)}})}};
  // مصادر أحادية + ثلاثية + بارة N كمصدر مساعد للنيوترال
  const src1=C.filter(c=>T[c.t].k==='src'&&c.s==='ON'&&!c.dead);
@@ -340,12 +245,6 @@ function sim(){
  const hasSrc = src1.length||src3.length;
  if(!hasSrc)return r('لا يوجد مصدر يعمل: شغّل الشبكة أو ابدأ المولد','r');
  src1.forEach(c=>{walk(c.id+':L',aw1,L1);walk(c.id+':N',an,N)});
- // PLC: لو متغذي L+/M، كل Q يتبع الـ I بتاعه
- C.forEach(c=>{ if(c.t==='PLC'&&!c.dead&&L1.has(c.id+':L+')&&N.has(c.id+':M')){ [['I1','Q1'],['I2','Q2'],['I3','Q3'],['I4','Q4']].forEach(([ii,qq])=>{ if(L1.has(c.id+':'+ii)) walk(c.id+':'+qq,aw1,L1); }); }});
- // محول 220/24: لو دخله L+N، خرجه + يبقى حي (24V) و - يبقى نيوترال
- C.forEach(c=>{ if(c.t==='PS24'&&!c.dead&&L1.has(c.id+':L')&&N.has(c.id+':N')){ walk(c.id+':+',aw1,L1); walk(c.id+':-',an,N); }});
- // PIR: لو متغذي، OUT يتبع الـ ON (محاكاة حركة)
- C.forEach(c=>{ if(c.t==='PIR'&&!c.dead&&L1.has(c.id+':L')&&N.has(c.id+':N')&&c.s==='ON') walk(c.id+':OUT',aw1,L1); });
  src3.forEach(c=>{walk(c.id+':L1',aw1,L1);walk(c.id+':L2',aw2,L2);walk(c.id+':L3',aw3,L3);walk(c.id+':N',an,N)});
  // بارة N: لو موصولة بأي مصدر N، تعتبر مصدر مساعد - يتحقق تلقائيا عبر الأسلاك لأن an تشمل أسلاك البارة
  for(const x of L1)if(N.has(x))return r('⚠️ قصر دائرة: مسار L1 يلتقي مع N بدون حمل','r');
@@ -369,10 +268,6 @@ function sim(){
   else if((k==='sw3')&&L1.has(c.id+':in1'))E.add(c.id);
   else if(k==='src'||k==='src3'||k==='bus')E.add(c.id);
   else if(k==='meter'&&L1.has(c.id+':Li'))E.add(c.id);
-  else if(k==='hmi'&&!c.dead&&L1.has(c.id+':24V')&&N.has(c.id+':GND'))E.add(c.id);
-  else if(k==='ps24'&&!c.dead&&L1.has(c.id+':L')&&N.has(c.id+':N'))E.add(c.id);
-  else if(k==='plc'&&!c.dead&&L1.has(c.id+':L+')&&N.has(c.id+':M'))E.add(c.id);
-  else if(k==='pir'&&!c.dead&&L1.has(c.id+':L')&&N.has(c.id+':N'))E.add(c.id);
  });
  if(on)return r(`دائرة مغلقة ✓ – ${on} حمل يعمل`,'g');
  if(half)return r(missing?`حمل ثلاثي ناقص فازة: ${missing} غير واصلة – افحص القاطع 3P والكابل`:'الفاز يصل للحمل لكن بدون مسار نيوترال / فازة ثانية - افحص N أو L2','y');
@@ -385,51 +280,21 @@ const st=(c,e)=>{const d=T[c.t];
  if(d.k==='ld'||d.k==='ld2'||d.k==='ld3')return e?(c.t==='Voltmeter'?'220V':amp(c).toFixed(1)+'A '+c.w+'W'+(c.t.includes('Heater')?' '+c.temp.toFixed(0)+'°':'')):(c.w?c.w+'W':'—');
  if(d.k==='pass')return e?(c.t==='Ammeter'?down(c).reduce((s,l)=>s+amp(l),0).toFixed(2)+'A':(c.kwh||0).toFixed(3)+' kWh'):'—';
  if(d.k==='meter')return e?down(c).reduce((s,l)=>s+l.w,0)+' W':'—';
- if(c.t==='PS24')return e?'24V DC ✓':'—';
- if(c.t==='PS24')return `<div style='font-size:10px;font-weight:900'>220V → 24V</div><div style='font-size:24px'>🔋</div><div style='font-size:9px;color:${e?'#22c55e':'#94a3b8'}'>${e?'● OUT 24V DC':'○ لا خرج'}</div><div style='font-size:9px'>L N • + -</div>`;
- if(c.t==='PLC')return e?'RUN • I→Q':'—';
- if(c.t==='HMI')return e?'متصل • Smart Home':'لا اتصال';
- if(c.t==='PIR')return e?(c.s==='ON'?'حركة ✓':'لا حركة'):'—';
  return '';};
-
-// ===== معلومات القطع - زرار ؟ =====
-const INFO={
- PS24:{t:'محول 220/24V DC',d:'بيحوّل كهربة البيت 220V AC لـ 24V DC عشان الـ PLC والشاشة والحساسات - من غيره الاسمارت هوم مش هيشتغل.',w:'1. دخول: L على فاز 220V، N على نيوترال<br>2. خروج: + على L+ بتاع الـ PLC و 24V بتاع الشاشة<br>3. خروج: - على M بتاع الـ PLC و GND بتاع الشاشة<br>4. لازم الدخول يكون 220V عشان الخرج يبقى 24V',warn:'متوصّلش خرج + / - على 220V - الخرج 24V DC بس. ومتعكسش + مع -.',sym:'مستطيل فيه محول 220→24V'},
- PLC:{t:'PLC LOGO! / S7-1200',d:'وحدة تحكم منطقية قابلة للبرمجة - عقل الاسمارت هوم والتحكم الصناعي. بتقرأ الحساسات وتنفذ أوامر على المخارج.',w:'1. تغذية: L+ على + بتاع محول 220/24V، M على - بتاع المحول<br>2. مدخلات: I1 حساس حركة، I2 زر، I3 حساس باب، I4 حساس دخان<br>3. مخارج: Q1 لمبة، Q2 ستارة، Q3 قفل، Q4 سرينة<br>4. كل Q يتبع الـ I بتاعه: I1 → Q1',warn:'متوصّلش 220V على L+ - الـ PLC بيشتغل 24V DC بس. لو وصلت 220V هيتحرق.',sym:'مستطيل فيه CPU - I شمال، Q يمين'},
- HMI:{t:'شاشة اسمارت هوم HMI',d:'شاشة لمس 7 بوصة بتعرض حالة البيت كله وتتحكم فيه - لمبات، ستاير، قفل، حرارة، استهلاك.',w:'1. تغذية: 24V على + بتاع محول 220/24V، GND على - بتاع المحول<br>2. اتصال: LAN على ETH بتاع الـ PLC<br>3. لو الشاشة كتبت "لا يوجد اتصال" افحص كابل LAN والـ PLC',warn:'الشاشة من غير PLC مش هتعرض حاجة - لازم الـ PLC يكون متغذي وشغال.',sym:'مستطيل بشاشة جواه + علامة تاتش □'},
- PIR:{t:'حساس حركة PIR',d:'بيحس بحركة الإنسان بالأشعة تحت الحمراء ويشغّل الحمل - لمبة أو سرينة.',w:'1. L على فاز، N على نيوترال<br>2. OUT على الحمل (لمبة)<br>3. دوس على الحساس ON/OFF لمحاكاة الحركة',warn:'متحطوش قدام تكييف أو شباك - الهوا السخن بيعمل إنذار كاذب.',sym:'دايرة فيها قوس ⌒'},
- SmartRelay:{t:'ريليه ذكي WiFi',d:'ريليه بيشتغل من الموبايل أو من زرار عادي - أساس الاسمارت هوم.',w:'1. دخول: L/N<br>2. خروج: الحمل على OUT<br>3. بيشتغل زي القاطع العادي في المحاكاة',warn:'لازم يكون في نطاق WiFi - لو بعيد مش هيستجيب.',sym:'مستطيل فيه موجة WiFi ≋'},
- Curtain:{t:'مفتاح ستارة',d:'مفتاح اتجاهين للستارة - فوق وتحت، مينفعش الاتنين مع بعض.',w:'1. دخول: L1/L2<br>2. خروج: UP / DOWN للموتور<br>3. في المحاكاة: ON = فوق، OFF = تحت',warn:'متشغّلش UP و DOWN مع بعض - الموتور هيتحرق.',sym:'مستطيل فيه سهمين ↑ ↓'},
- DoorLock:{t:'قفل باب كهربا',d:'قفل بيفتح بالكهربا - من الـ PLC أو من الشاشة أو من زرار.',w:'1. دخول: L على in<br>2. خروج: N على out<br>3. لو واصله كهربا يفتح 🔓، لو مش واصله يقفل 🔒',warn:'لو الكهربا قطعت القفل بيقفل - ده أمان مش عطل.',sym:'مستطيل فيه دايرة قفل'},
- MCB:{t:'قاطع MCB',d:'بيحمي الدايرة من الحمل الزايد والشورت ويفصل تلقائي.',w:'1. دخول: L من فوق<br>2. خروج: L للحمل من تحت<br>3. N على بارة لوحده',warn:'متوصّلش N على القاطع الأحادي.',sym:'مفتاح قاطع - خط مكسور'},
- Contactor:{t:'كونتاكتور',d:'مفتاح كهرومغناطيسي بيشغّل الأحمال الكبيرة - موتور، سخان.',w:'1. ملف: A1/A2 على التحكم<br>2. تلامسات: دخول فوق، خروج تحت',warn:'الملف لازم يكون نفس جهد التحكم.',sym:'ملف + تلامس'},
- Motor:{t:'موتور',d:'بيحوّل الكهربا لحركة.',w:'1. دخول: L<br>2. خروج: N<br>3. لازم أوفرلود معاه للحماية',warn:'موتور من غير أوفرلود خطر.',sym:'دايرة فيها M'},
-};
-function showInfo(t){
-  const d = INFO[t] || {t: t, d:'قطعة كهربائية.', w:'وصّل الدخول من فوق والخروج من تحت.', warn:'افصل العمومي قبل اللمس.', sym:'رمز هندسي قياسي'};
-  const m = document.getElementById('infoModal');
-  if(!m) return;
-  document.getElementById('infoTitle').textContent = '❓ ' + d.t;
-  document.getElementById('infoBody').innerHTML = `<p style="line-height:1.9"><b>📖 التعريف:</b><br>${d.d}</p><p style="line-height:1.9"><b>🔌 طريقة التوصيل:</b><br>${d.w}</p><p style="line-height:1.9"><b>〰️ الرمز الهندسي:</b><br>${d.sym}</p><p style="color:#ef4444;line-height:1.9"><b>⚠️ ملحوظة:</b><br>${d.warn}</p>`;
-  m.style.display='flex';
-}
-
 function render(){
  res=sim();
  comps.innerHTML=C.map(c=>{
   const d=T[c.t],e=res.E.has(c.id),lamp=c.t in LIT,fg=TL(d.b);
-  const smoke=(c.t==='Heater'&&c.temp>=70)||(c.dead&&e)||(c.t==='Overload'&&c.stuck);
-  const cls=['c',symMode?'sym':'',sel===c.id?'sel':'',e&&d.k!=='ld'?'live':'',e&&lamp?'glow':'',c.dead?'bd':'',e&&['Motor','Fan','Motor3Ph'].includes(c.t)?'spin':'',e&&c.t==='Washer'?'tumble':'',e&&c.t==='BlinkLamp'?'blink':'',smoke?'smoke':''].join(' ');
+  const cls=['c',sel===c.id?'sel':'',e&&d.k!=='ld'?'live':'',e&&lamp?'glow':'',c.dead?'bd':'',e&&['Motor','Fan','Washer','Motor3Ph'].includes(c.t)?'spin':''].join(' ');
   const hot=c.t==='Heater'&&e?`background:hsl(${Math.max(0,210-(c.temp-20)*3)},80%,80%);`:'';
-  const lv=symMode?'':d.k==='sw'?`<div class="lv"><i class="${c.s==='ON'||c.stuck?'u':''}"></i></div>`:d.g?`<div class="gl">${d.g}</div>`:'';
+  const lv=d.k==='sw'?`<div class="lv"><i class="${c.s==='ON'||c.stuck?'u':''}"></i></div>`:d.g?`<div class="gl">${d.g}</div>`:'';
   return `<div class="${cls}" data-id="${c.id}" style="left:${c.x}px;top:${c.y}px;width:${d.w}px;height:${d.h}px;transform:rotate(${c.rot||0}deg) scale(${c.sc||1});background:${d.b};color:${fg};--lit:${LIT[c.t]||'#fff'};--inv:${1/(c.sc||1)};${hot}">
-   <b>${c.l}</b><button class="infoBtn" data-info="${c.t}" title="معلومات القطعة" style="position:absolute;top:2px;left:2px;width:20px;height:20px;border-radius:50%;background:#facc15;color:#111;border:none;font-weight:900;font-size:12px;cursor:pointer;z-index:5;line-height:1">؟</button>${gfx(c,e)||lv}<small>${st(c,e)}</small>
-   ${terms(c.t,c).map(([n,p,l,st])=>`<i class="t ${p}${pend===c.id+':'+n?' p':''}" data-t="${c.id}:${n}" data-l="${l}"${st?` style="${st}"`:''}></i>`).join('')}${sel===c.id?'<i class="hd rot" data-h="rot">↻</i><i class="hd siz" data-h="siz">⤡</i>':''}</div>`;
+   <b>${c.l}</b>${gfx(c,e)||lv}<small>${st(c,e)}</small>
+   ${terms(c.t).map(([n,p,l])=>`<i class="t ${p}${pend===c.id+':'+n?' p':''}" data-t="${c.id}:${n}" data-l="${l}"></i>`).join('')}${sel===c.id?'<i class="hd rot" data-h="rot">↻</i><i class="hd siz" data-h="siz">⤡</i>':''}</div>`;
  }).join('');
  const m=$('msg');m.textContent=res.msg;m.className=res.c;
  {const ls=C.filter(c=>T[c.t].k==='ld'&&res.E.has(c.id));$('kwh').textContent=`⚡ ${ls.reduce((s,c)=>s+c.w,0)} W • ${ls.reduce((s,c)=>s+amp(c),0).toFixed(2)} A • ${kwh.toFixed(3)} kWh`}
  $('bw').className=wire?'on':'';
- const bdBtn=$('bd');if(bdBtn){bdBtn.className=(sel||selW)?'armed':'';bdBtn.textContent=(sel||selW)?'✕ حذف المحدد (أحمر)':'✕ حذف المحدد'};
  $('br').textContent=run?'⏸ إيقاف المحاكاة':'▶ تشغيل المحاكاة';
  $('tb').className=tab==='b'?'on':'';$('tm').className=tab==='m'?'on':'';
  document.body.className=tab==='m'?'mt':'';
@@ -446,9 +311,6 @@ function render(){
    <div style="color:#16a34a">🔧 <b>الإصلاح:</b> ${diag.r}</div>${diag.w?`<div style="color:#ef4444">⚠️ <b>تحذير:</b> ${diag.w}</div>`:''}</div>`:'<div class="hint">اختر عطلاً لحقنه في اللوحة ثم شخّص أثره على الدائرة.</div>';
  }else $('dg').innerHTML='';sbUpdate();snd();
  draw();
- // 10/10: بعد كل render رجّع القفل + احفظ تلقائياً
- try{ syncLockClasses(); }catch(e){}
- try{ if(tab==='b') localStorage.setItem('electropanel-autosave', JSON.stringify({C:C.map(c=>({t:c.t,x:c.x,y:c.y,s:c.s,rot:c.rot,sc:c.sc,w:c.w,termPos:c.termPos})),W:W.map(w=>({a:w.a,b:w.b,col:w.col})),size})); }catch(e){}
 }
 // FIX: حذف الكود الميت بعد return الأول
 function draw(){
@@ -457,9 +319,7 @@ function draw(){
  svg.innerHTML=W.map(w=>{
   const a=pt(w.a),b=pt(w.b);if(!a||!b)return '';
   const dd=`M${a[0]} ${a[1]} C${a[0]} ${a[1]+50},${b[0]} ${b[1]-50},${b[0]} ${b[1]}`,sw=selW===w.id,lv=res&&((res.L.has(w.a)&&res.L.has(w.b))||(res.N.has(w.a)&&res.N.has(w.b)));
-  const col=migrateWireColor(w.col);
-  if(col==='pe')return `<path data-w="${w.id}" d="${dd}" fill="none" stroke="transparent" stroke-width="18" style="pointer-events:stroke;cursor:pointer"/><path d="${dd}" fill="none" stroke="#ffffff" stroke-width="${sw?6:lv?4:3}" stroke-linecap="round"/><path d="${dd}" fill="none" stroke="#22c55e" stroke-width="${sw?6:lv?4:3}" stroke-linecap="round" stroke-dasharray="7 5" ${lv?`style="filter:drop-shadow(0 0 4px #22c55e)"`:''}/>`;
-  return `<path data-w="${w.id}" d="${dd}" fill="none" stroke="transparent" stroke-width="18" style="pointer-events:stroke;cursor:pointer"/><path d="${dd}" fill="none" stroke="${COL[col]||'#ef4444'}" stroke-width="${sw?6:lv?4:3}" stroke-linecap="round" ${sw?'stroke-dasharray="8 5"':''} ${lv?`style="filter:drop-shadow(0 0 4px ${COL[col]||'#ef4444'})"`:''}/>`;
+  return `<path data-w="${w.id}" d="${dd}" fill="none" stroke="transparent" stroke-width="18" style="pointer-events:stroke;cursor:pointer"/><path d="${dd}" fill="none" stroke="${COL[w.col]}" stroke-width="${sw?6:lv?4:3}" stroke-linecap="round" ${sw?'stroke-dasharray="8 5"':''} ${lv?`style="filter:drop-shadow(0 0 4px ${COL[w.col]})"`:''}/>`;
  }).join('');
 }
 function lib(){
@@ -473,38 +333,15 @@ function lib(){
  i.oninput=lib;
 }
 function panel(){$('wrap').className=side+(open?'':' cl')}
-let termDrag=null;
-
-
-// ===== القاعدة: مقفول = تصنيع + تشغيل فقط | صيانة دايماً مفتوحة للتعديل =====
-function isLocked(){ return run && tab==='b'; }
-
-// ===== قاعدة القفل: التوصيل / التشغيل / تحريك النقاط - واحد بس اللي شغال =====
-function syncLockClasses(){
-  document.body.classList.toggle('wiring', !!wire);
-  document.body.classList.toggle('running', !!isLocked());
-  document.body.classList.toggle('termMove', !!termMove);
-  // في التشغيل المقفول: اقفل سلايدرات التدوير والحجم وزرار الحذف والتكرار
-  const lock = isLocked();
-  ['rr','sr','r90','sx','bd','bd2','dupBtn'].forEach(id=>{ const el=document.getElementById(id); if(el) el.disabled=lock; });
-  document.querySelectorAll('[data-add]').forEach(el=>{ el.disabled=lock; });
-}
-
 board.addEventListener('pointerdown',e=>{
  if(e.target.dataset.h){const c=cur1(),el=e.target.closest('.c');if(c&&el){const r=el.getBoundingClientRect();hd={m:e.target.dataset.h,c,el,cx:r.left+r.width/2,cy:r.top+r.height/2};e.preventDefault()}return}
- // النقاط: في التوصيل والتشغيل المقفول ثابتة تماماً - مفيش سحب، الضغطة بس للتوصيل (board click)
- if(e.target.closest('.t')){
-   if(wire||isLocked()){return}
-   if(termMove&&tab==='b'){const [cid,tn]=e.target.closest('.t').dataset.t.split(':');const c=C.find(x=>x.id===cid);if(c){termDrag={c,tn,moved:false};try{e.target.setPointerCapture(e.pointerId)}catch(err){}e.preventDefault();e.stopPropagation()}}return}
+ if(e.target.closest('.t'))return;
  const el=e.target.closest('.c');if(!el){if(!e.target.dataset.w&&(sel||selW)){sel=null;selW=null;render()}return}
  const c=C.find(x=>x.id===el.dataset.id);sel=c.id;selW=null;
- // القطع: في التوصيل والتشغيل المقفول وتحريك النقاط - الاختيار بس، مفيش سحب
- if(wire||isLocked()||termMove){return}
  drag={c,el,sx:e.clientX,sy:e.clientY,ox:c.x,oy:c.y,moved:false};
  el.classList.add('sel');
 });
 addEventListener('pointermove',e=>{
- if(termDrag){const {c,tn}=termDrag;termDrag.moved=true;const pos=termFreePos(c,e.clientX,e.clientY);if(!c.termPos)c.termPos={};if(JSON.stringify(c.termPos[tn])!==JSON.stringify(pos)){c.termPos[tn]=pos;sel=c.id;const tel=board.querySelector(`[data-t="${c.id}:${tn}"]`);if(tel){tel.style.cssText=termPosStyle(pos)}if(!raf)raf=requestAnimationFrame(()=>{raf=0;draw()})}return}
  if(!drag)return;
  const dx=e.clientX-drag.sx,dy=e.clientY-drag.sy;
  if(!drag.moved&&Math.hypot(dx,dy)<4)return;
@@ -516,31 +353,27 @@ addEventListener('pointermove',e=>{
  if(!raf)raf=requestAnimationFrame(()=>{raf=0;draw()});
 });
 addEventListener('pointerup',()=>{
- if(termDrag){const td=termDrag;termDrag=null;if(td.moved)render();return}
  if(!drag)return;
  const d=drag;drag=null;
  const k=T[d.c.t].k;
- if(!d.moved&&!wire&&!termMove&&(['sw','sw2','sw3','src','src3'].includes(k))){d.c.s=d.c.s==='ON'?'OFF':'ON';swSnd(d.c)}
+ if(!d.moved&&(['sw','sw2','sw3','src','src3'].includes(k))){d.c.s=d.c.s==='ON'?'OFF':'ON';swSnd(d.c)}
  render();
 });
 board.addEventListener('click',e=>{
  const t=e.target.closest('.t');if(!t||!wire||tab!=='b')return;
  const id=t.dataset.t;
  if(!pend)pend=id;
- else if(pend!==id&&!W.some(w=>(w.a===pend&&w.b===id)||(w.a===id&&w.b===pend))){link(pend,id,autoWireColor(pend,id));pend=null}
+ else if(pend!==id&&!W.some(w=>(w.a===pend&&w.b===id)||(w.a===id&&w.b===pend))){link(pend,id,$('bc').value);pend=null}
  else pend=null;
  render();
 });
 document.addEventListener('click',e=>{
- if(e.target.dataset && e.target.dataset.info){ showInfo(e.target.dataset.info); return; }
- if(e.target.id==='infoClose'||e.target.id==='infoModal'){ const m=document.getElementById('infoModal'); if(m) m.style.display='none'; return; }
  const d=e.target.dataset;
- if(d.add){if(isLocked())return;const[w,h]=TS[size],c=mk(d.add,30+Math.random()*Math.max(40,w-220),20+Math.random()*100);C.push(c);sel=c.id;render()}
+ if(d.add){const[w,h]=TS[size],c=mk(d.add,30+Math.random()*Math.max(40,w-220),20+Math.random()*100);C.push(c);sel=c.id;render()}
  if(d.dw){W=W.filter(w=>w.id!==d.dw);render()}
  if(d.tab&&d.tab!==tab){
   if(tab==='b')saved={C,W,K,size};
   tab=d.tab;
-  if(tab==='b'){run=false;wire=false;termMove=false;pend=null;syncLockClasses();}
   if(tab==='m'){wire=false;setSize('60x80');inject(-1)}
   else if(saved){C=saved.C;W=saved.W;K=saved.K;diag=null;setSize(saved.size);render()}
   else render();
@@ -551,9 +384,9 @@ document.addEventListener('click',e=>{
  if(e.target.id==='dh'){open=true;panel()}
  if(e.target.id==='ds'){side=side==='R'?'L':'R';panel()}
 });
-$('bw').onclick=()=>{wire=!wire;if(wire){termMove=false;run=false;pend=null}syncLockClasses();render()};
-$('br').onclick=()=>{run=!run;if(run){wire=false;termMove=false;pend=null}syncLockClasses();render()};
-$('bs').onchange=e=>{if(isLocked()){e.target.value=size;return}setSize(e.target.value);render()};;
+$('bw').onclick=()=>{wire=!wire;pend=null;render()};
+$('br').onclick=()=>{run=!run;render()};
+$('bs').onchange=e=>{setSize(e.target.value);render()};
 // FIX: تم حذف let selW,hd من هنا - أصبحت في الأعلى
 function sbUpdate(){
  const c=C.find(x=>x.id===sel);
@@ -564,39 +397,16 @@ function sbUpdate(){
 }
 const cur1=()=>C.find(x=>x.id===sel);
 function applyT(c){const el=comps.querySelector(`[data-id="${c.id}"]`);if(el){el.style.transform=`rotate(${c.rot}deg) scale(${c.sc})`;el.style.setProperty('--inv',1/c.sc)}draw()}
-$('rr').oninput=e=>{if(isLocked())return;const c=cur1();if(!c)return;c.rot=+e.target.value;$('rv').textContent=c.rot+'°';applyT(c)};
-$('sr').oninput=e=>{if(isLocked())return;const c=cur1();if(!c)return;c.sc=e.target.value/100;$('sv').textContent=e.target.value+'%';applyT(c)};
-$('r90').onclick=()=>{if(isLocked())return;const c=cur1();if(!c)return;c.rot=((c.rot||0)+90)%360;render()};
-$('sx').onclick=()=>{if(isLocked())return;const c=cur1();if(!c)return;c.rot=0;c.sc=1;render()};
+$('rr').oninput=e=>{const c=cur1();if(!c)return;c.rot=+e.target.value;$('rv').textContent=c.rot+'°';applyT(c)};
+$('sr').oninput=e=>{const c=cur1();if(!c)return;c.sc=e.target.value/100;$('sv').textContent=e.target.value+'%';applyT(c)};
+$('r90').onclick=()=>{const c=cur1();if(!c)return;c.rot=((c.rot||0)+90)%360;render()};
+$('sx').onclick=()=>{const c=cur1();if(!c)return;c.rot=0;c.sc=1;render()};
 function del(){
- if(isLocked())return;
  if(selW){W=W.filter(w=>w.id!==selW);selW=null;render();return}
  if(!sel)return;
  C=C.filter(c=>c.id!==sel);W=W.filter(w=>!w.a.startsWith(sel+':')&&!w.b.startsWith(sel+':'));sel=null;render();
 }
 $('bd').onclick=del;$('bd2').onclick=del;
-// termMove/symMode متعرفين فوق
-function dupComp(){if(isLocked())return;const src=C.find(x=>x.id===sel);if(!src){alert('حدّد قطعة الأول');return}const n=mk(src.t,Math.min(board.clientWidth-80,src.x+30),Math.min(board.clientHeight-80,src.y+30));n.s=src.s;n.rot=src.rot||0;n.sc=src.sc||1;n.w=src.w;n.temp=src.temp;n.fuel=src.fuel;n.termPos=JSON.parse(JSON.stringify(src.termPos||{}));C.push(n);sel=n.id;selW=null;render()}
-$('dupBtn').onclick=dupComp;
-$('symBtn').onclick=e=>{symMode=!symMode;e.target.classList.toggle('warn',symMode);e.target.textContent=symMode?'🖼️ رسم واقعي':'〰️ رمز هندسي';render()};
-$('termMoveBtn').onclick=e=>{termMove=!termMove;e.target.classList.toggle('warn',termMove);e.target.textContent=termMove?'✋ تحريك النقاط (شغال - اسحب أي نقطة)':'✋ تحريك النقاط';if(termMove){wire=false;run=false;pend=null}syncLockClasses();render()};
-// ملء الشاشة: القايمة تدخل جوه اللوحة - ترجع مكانها لما تخرج
-const toolsBar=$('boardTools'), wrapEl=$('wrap'); let toolsHome=null;
-function toolsMoveIn(){if(!toolsBar||!wrapEl)return;if(toolsBar.parentElement!==wrapEl){toolsHome={parent:toolsBar.parentElement,next:toolsBar.nextSibling};wrapEl.insertBefore(toolsBar,wrapEl.firstChild)}}
-function toolsMoveOut(){if(!toolsBar||!toolsHome)return;const {parent,next}=toolsHome;if(next&&next.parentElement===parent)parent.insertBefore(toolsBar,next);else parent.appendChild(toolsBar);toolsHome=null}
-$('fsBoard').onclick=()=>{if(document.fullscreenElement){document.exitFullscreen().catch(()=>{})}else if(wrapEl.requestFullscreen){wrapEl.requestFullscreen().catch(()=>{alert('المتصفح منع ملء الشاشة - جرب من كروم')})}};
-document.addEventListener('fullscreenchange',()=>{const b=$('fsBoard');const on=!!document.fullscreenElement;if(on){toolsMoveIn()}else{toolsMoveOut()}if(b){b.textContent=on?'⤢ خروج من تكبير الشاشة':'⛶ تكبير الشاشة';b.classList.toggle('on',on)}});
-// سحب البار نفسه يمين/شمال عشان توصل لباقي الأزرار
-(function(){const bar=$('boardTools');if(!bar)return;let down=false,startX=0,startScroll=0,moved=0;bar.addEventListener('pointerdown',e=>{moved=0;if(e.target.closest('button,select,input,a'))return;down=true;startX=e.clientX;startScroll=bar.scrollLeft;bar.classList.add('dragging')});bar.addEventListener('pointermove',e=>{if(!down)return;const dx=e.clientX-startX;moved=Math.max(moved,Math.abs(dx));if(Math.abs(dx)>3)bar.scrollLeft=startScroll-dx});const up=()=>{down=false;bar.classList.remove('dragging')};window.addEventListener('pointerup',up);window.addEventListener('pointercancel',up);bar.addEventListener('click',e=>{if(moved>6){e.preventDefault();e.stopPropagation()}},true)})();
-// إخفاء / إظهار اللوجو
-(function(){const lh=$('logoHide'),ls=$('logoShow'),lb=$('logoBar');if(lh&&lb&&ls){lh.onclick=()=>{lb.style.display='none';ls.style.display='inline-block'};ls.onclick=()=>{lb.style.display='flex';ls.style.display='none'}}})();
-// حفظ / فتح / صورة
-function downloadFile(name,blob){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),2000)}
-function saveCircuitFile(){const data={app:'ElectroPanel',version:'v3.0.2',savedAt:new Date().toISOString(),size,C:C.map(c=>({id:c.id,t:c.t,x:c.x,y:c.y,s:c.s,rot:c.rot,sc:c.sc,w:c.w,temp:c.temp,fuel:c.fuel,dead:!!c.dead,stuck:!!c.stuck,termPos:c.termPos||{},l:c.l})),W:W.map(w=>({a:w.a,b:w.b,col:w.col}))};downloadFile('electropanel-'+Date.now()+'.electropanel.json',new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));const m=$('msg');if(m){m.textContent='تم حفظ الدايرة كملف ✓';m.className='g'}}
-function loadCircuitFile(file){if(isLocked()){alert('لا يمكن فتح ملف في وضع التشغيل - اخرج من التشغيل أولاً');return}const rd=new FileReader();rd.onload=()=>{try{const d=JSON.parse(rd.result);if(!d||!Array.isArray(d.C)||!Array.isArray(d.W))throw new Error('bad');if(d.C.length>200||d.W.length>400)throw new Error('too-big');d.C.forEach(rc=>{if(!rc||typeof rc.t!=='string'||!(rc.t in T))throw new Error('bad-type');if(typeof rc.x!=='number'||typeof rc.y!=='number'||Math.abs(rc.x)>5000||Math.abs(rc.y)>5000)throw new Error('bad-pos')});C=[];W=[];uid=1;sel=null;selW=null;pend=null;d.C.forEach(rc=>{const c=mk(rc.t,rc.x||30,rc.y||30);c.s=rc.s||'ON';c.rot=rc.rot||0;c.sc=rc.sc||1;c.w=rc.w!=null?rc.w:(WT[rc.t]||0);c.temp=rc.temp!=null?rc.temp:22;c.fuel=rc.fuel!=null?rc.fuel:80;c.dead=!!rc.dead;c.stuck=!!rc.stuck;c.termPos=rc.termPos||{};if(rc.l)c.l=rc.l;C.push(c)});const oldToNew={};d.C.forEach((rc,i)=>{if(rc.id&&C[i])oldToNew[rc.id]=C[i].id});d.W.forEach(rw=>{const conv=id=>{const parts=id.split(':');if(parts.length<2)return id;const nid=oldToNew[parts[0]];return nid?nid+':'+parts.slice(1).join(':'):id};const a=conv(rw.a),b=conv(rw.b);if(a&&b)link(a,b,migrateWireColor(rw.col||'l1'))});setSize(d.size||size);render();const m=$('msg');if(m){m.textContent='تم فتح الدايرة المحفوظة ✓';m.className='g'}}catch(err){alert('الملف ده مش دايرة ElectroPanel صالحة')}};rd.readAsText(file)}
-$('saveFileBtn').onclick=saveCircuitFile;$('loadFileBtn').onclick=()=>$('loadFileInput').click();$('loadFileInput').onchange=e=>{const f=e.target.files&&e.target.files[0];if(f)loadCircuitFile(f);e.target.value=''};
-function saveCircuitImage(){const bw=board.clientWidth||700,bh=board.clientHeight||860;const cv=document.createElement('canvas');cv.width=Math.max(200,bw);cv.height=Math.max(200,bh);const ctx=cv.getContext('2d');ctx.fillStyle='#141b2e';ctx.fillRect(0,0,cv.width,cv.height);ctx.strokeStyle='rgba(255,255,255,.07)';ctx.lineWidth=1;for(let x=0;x<cv.width;x+=22){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,cv.height);ctx.stroke()}for(let y=0;y<cv.height;y+=22){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(cv.width,y);ctx.stroke()}const br=board.getBoundingClientRect();const pt=id=>{const el=board.querySelector(`[data-t="${id}"]`);if(!el)return null;const r=el.getBoundingClientRect();return[r.left-br.left+r.width/2,r.top-br.top+r.height/2]};W.forEach(w=>{const a=pt(w.a),b=pt(w.b);if(!a||!b)return;const col=migrateWireColor(w.col);const drawSeg=(style,width,dash)=>{ctx.strokeStyle=style;ctx.lineWidth=width;if(dash)ctx.setLineDash(dash);else ctx.setLineDash([]);ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.bezierCurveTo(a[0],a[1]+50,b[0],b[1]-50,b[0],b[1]);ctx.stroke();ctx.setLineDash([])};if(col==='pe'){drawSeg('#ffffff',4);drawSeg('#22c55e',4,[7,5])}else drawSeg(COL[col]||'#ef4444',3)});C.forEach(c=>{const d=T[c.t];ctx.save();ctx.translate(c.x+d.w/2,c.y+d.h/2);ctx.rotate((c.rot||0)*Math.PI/180);ctx.scale(c.sc||1,c.sc||1);ctx.fillStyle=d.b;ctx.fillRect(-d.w/2,-d.h/2,d.w,d.h);ctx.strokeStyle='#0006';ctx.lineWidth=2;ctx.strokeRect(-d.w/2,-d.h/2,d.w,d.h);ctx.fillStyle='#fff';ctx.font='700 11px system-ui';ctx.textAlign='center';ctx.fillText(d.g||'',0,-d.h/2+18);ctx.fillStyle='#fff';ctx.font='700 10px system-ui';ctx.fillText(c.l,0,d.h/2-6);ctx.restore()});ctx.fillStyle='#fff';ctx.font='700 14px system-ui';ctx.textAlign='right';ctx.fillText('ElectroPanel • DEC • '+size,cv.width-10,22);const a=document.createElement('a');a.href=cv.toDataURL('image/png');a.download='electropanel-'+Date.now()+'.png';a.click()}
-$('saveImgBtn').onclick=saveCircuitImage;
 addEventListener('pointermove',e=>{
  if(!hd)return;
  const c=hd.c,dx=e.clientX-hd.cx,dy=e.clientY-hd.cy;
@@ -617,7 +427,6 @@ function loop(t){
  const nz=(f,g)=>{const n=noise(a),fl=a.createBiquadFilter(),gg=a.createGain();fl.type='bandpass';fl.frequency.value=f;gg.gain.value=g;n.connect(fl);fl.connect(gg);gg.connect(out);n.start();ns.push(n);return gg};
  if(t==='Motor'||t==='Motor3Ph'){osc('sawtooth',50,.5,300);osc('sawtooth',100,.25,600);nz(900,.12)}
  else if(t==='Fan'){nz(700,.6);osc('sine',40,.2,200)}
- else if(t==='Washer'){osc('sawtooth',55,.35,300);osc('sine',35,.5,120);const g=nz(350,.9),l=a.createOscillator(),lg=a.createGain();l.frequency.value=.8;lg.gain.value=.7;l.connect(lg);lg.connect(g.gain);l.start();ns.push(l);const th=a.createOscillator(),tg=a.createGain(),tl=a.createOscillator(),tlg=a.createGain();th.type='sine';th.frequency.value=70;tg.gain.value=0;tl.frequency.value=1.1;tlg.gain.value=.6;tl.connect(tlg);tlg.connect(tg.gain);th.connect(tg);tg.connect(out);th.start();tl.start();ns.push(th,tl)}
  else if(t==='Fridge'){osc('square',100,.25,250);osc('sine',50,.4,200)}
  else{osc('sawtooth',55,.3,300);const g=nz(500,.8),l=a.createOscillator(),lg=a.createGain();l.frequency.value=.45;lg.gain.value=.5;l.connect(lg);lg.connect(g.gain);l.start();ns.push(l)}
  out.gain.linearRampToValueAtTime(.12,a.currentTime+.4);
@@ -631,57 +440,9 @@ function snd(){
 }
 const bulb=(on,col)=>`<svg width='42' height='54' viewBox='0 0 42 54'><defs><radialGradient id='bg' cx='50%' cy='40%'><stop offset='0' stop-color='#fff'/><stop offset='.5' stop-color='${col}'/><stop offset='1' stop-color='${col}' stop-opacity='.35'/></radialGradient></defs><path d='M21 3a15 15 0 0 0-8 27v6h16v-6A15 15 0 0 0 21 3z' fill='${on?'url(#bg)':'#dbe4ea'}' stroke='#64748b' stroke-width='1.5' ${on?`style='filter:drop-shadow(0 0 12px ${col})'`:''}/><path d='M16 30l3-9 3 6 3-6 3 9' fill='none' stroke='${on?'#fff':'#475569'}' stroke-width='1.5'/><rect x='13' y='36' width='16' height='12' rx='2' fill='#94a3b8'/><rect x='15' y='48' width='12' height='4' rx='2' fill='#475569'/></svg>`;
 const pilot=(on,col)=>`<svg width='40' height='40' viewBox='0 0 40 40'><circle cx='20' cy='20' r='17' fill='#222' stroke='#999' stroke-width='3'/><circle cx='20' cy='20' r='12' fill='${on?col:col+'55'}' ${on?`style='filter:drop-shadow(0 0 10px ${col})'`:''}/><ellipse cx='16' cy='15' rx='5' ry='3' fill='#fff' opacity='${on?.8:.35}'/></svg>`;
-function symSVG(c,e){
- const t=c.t,k=T[t].k,on=c.s==='ON'||c.stuck,stroke=e?'#dc2626':'#334155',fill=e?'#fef3c7':'#fff';
- const S=(inner)=>`<svg class="symsvg" width="58" height="40" viewBox="0 0 60 44">${inner}</svg>`;
- const brk=(poles)=>{let lines='';for(let i=0;i<poles;i++){const y=10+i*12;lines+=`<line x1="4" y1="${y}" x2="22" y2="${y}" stroke="${stroke}" stroke-width="2"/><line x1="38" y1="${y}" x2="56" y2="${y}" stroke="${stroke}" stroke-width="2"/>`+(on?`<line x1="22" y1="${y}" x2="38" y2="${y}" stroke="${stroke}" stroke-width="2"/>`:`<line x1="22" y1="${y}" x2="34" y2="${y-7}" stroke="${stroke}" stroke-width="2"/><path d="M38 ${y} A9 9 0 0 0 33 ${y-8}" fill="none" stroke="${stroke}" stroke-width="1"/>`)}return S(lines+`<text x="30" y="42" text-anchor="middle" font-size="7" fill="#334155">${on?'مقفول':'مفتوح'}</text>`)};
- if(t==='Lamp'||t==='LampR'||t==='LampG'||t==='PilotR'||t==='PilotG'||t==='PilotY'||t==='BlinkLamp')return S(`<circle cx="30" cy="20" r="13" fill="${e?(LIT[t]||'#facc15'):'#e2e8f0'}" stroke="${stroke}" stroke-width="2" ${e?`style="filter:drop-shadow(0 0 6px ${LIT[t]||'#facc15'})"`:''}/><path d="M22 12 L38 28 M38 12 L22 28" stroke="${stroke}" stroke-width="2"/>`);
- if(t==='Motor'||t==='Motor3Ph')return S(`<circle cx="30" cy="20" r="14" fill="${fill}" stroke="${stroke}" stroke-width="2"/><g class="${e?'spn':''}"><text x="30" y="25" text-anchor="middle" font-size="13" font-weight="900" fill="${stroke}">M</text></g>${t==='Motor3Ph'?'<text x="30" y="42" text-anchor="middle" font-size="7" fill="#334155">3~</text>':''}`);
- if(t==='Fan')return S(`<circle cx="30" cy="20" r="14" fill="${fill}" stroke="${stroke}" stroke-width="2"/><g class="${e?'spn':''}"><path d="M30 20 L30 9 M30 20 L39 25 M30 20 L21 25" stroke="${stroke}" stroke-width="2"/></g>`);
- if(t==='Heater'||t==='Heater3Ph')return S(`<polyline points="4,20 12,10 20,30 28,10 36,30 44,10 52,20" fill="none" stroke="${stroke}" stroke-width="2"/>${t==='Heater3Ph'?'<text x="30" y="42" text-anchor="middle" font-size="7" fill="#334155">3~</text>':''}`);
- if(t==='Socket'||t==='Socket3Ph')return S(`<line x1="8" y1="8" x2="8" y2="32" stroke="${stroke}" stroke-width="2"/><line x1="52" y1="8" x2="52" y2="32" stroke="${stroke}" stroke-width="2"/><circle cx="30" cy="20" r="4" fill="none" stroke="${stroke}" stroke-width="2"/>${t==='Socket3Ph'?'<text x="30" y="42" text-anchor="middle" font-size="7" fill="#334155">3~</text>':''}`);
- if(t==='Cooker')return S(`<rect x="10" y="10" width="40" height="20" rx="2" fill="${fill}" stroke="${stroke}" stroke-width="2"/><polyline points="16,20 22,14 28,26 34,14 40,26 44,20" fill="none" stroke="${stroke}" stroke-width="1.5"/>`);
- if(t==='Washer')return S(`<rect x="12" y="8" width="36" height="26" rx="3" fill="${fill}" stroke="${stroke}" stroke-width="2"/><circle cx="30" cy="22" r="8" fill="none" stroke="${stroke}" stroke-width="2"/><circle cx="30" cy="22" r="2" fill="${stroke}"/>`);
- if(t==='Fridge')return S(`<rect x="14" y="6" width="32" height="32" rx="2" fill="${fill}" stroke="${stroke}" stroke-width="2"/><line x1="14" y1="16" x2="46" y2="16" stroke="${stroke}" stroke-width="1.5"/><text x="30" y="31" text-anchor="middle" font-size="9" fill="${stroke}">❄</text>`);
- if(t==='PS24')return S(`<rect x="6" y="4" width="48" height="34" rx="2" fill="${fill}" stroke="${stroke}" stroke-width="2"/><path d="M14 14 Q22 10 22 18 Q22 26 30 22 Q38 18 38 26 Q38 30 46 26" fill="none" stroke="${stroke}" stroke-width="1.5"/><text x="30" y="34" text-anchor="middle" font-size="6" fill="#334155">220→24V</text>`);
- if(t==='PLC')return S(`<rect x="6" y="4" width="48" height="34" rx="2" fill="${fill}" stroke="${stroke}" stroke-width="2"/><text x="30" y="14" text-anchor="middle" font-size="7" font-weight="900" fill="${stroke}">PLC</text><rect x="22" y="16" width="16" height="12" fill="none" stroke="${stroke}" stroke-width="1.5"/><text x="30" y="25" text-anchor="middle" font-size="6" fill="${stroke}">CPU</text><text x="30" y="36" text-anchor="middle" font-size="6" fill="#334155">I→Q</text>`);
- if(t==='HMI')return S(`<rect x="6" y="4" width="48" height="34" rx="3" fill="${fill}" stroke="${stroke}" stroke-width="2"/><rect x="11" y="9" width="38" height="20" rx="1" fill="none" stroke="${stroke}" stroke-width="1.2"/><text x="30" y="18" text-anchor="middle" font-size="6" font-weight="900" fill="${stroke}">HMI</text><text x="30" y="26" text-anchor="middle" font-size="6" fill="${stroke}">🏠 □</text>`);
- if(t==='PIR')return S(`<circle cx="30" cy="20" r="14" fill="${fill}" stroke="${stroke}" stroke-width="2"/><path d="M22 26 Q30 12 38 26" fill="none" stroke="${stroke}" stroke-width="2"/><circle cx="30" cy="24" r="2" fill="${stroke}"/>`);
- if(t==='SmartRelay')return S(`<rect x="8" y="6" width="44" height="30" rx="2" fill="${fill}" stroke="${stroke}" stroke-width="2"/><path d="M14 22 L22 22 L26 14 L32 28 L38 22 L46 22" fill="none" stroke="${stroke}" stroke-width="1.5"/><text x="30" y="42" text-anchor="middle" font-size="6" fill="#334155">WiFi ≋</text>`);
- if(t==='Curtain')return S(`<rect x="8" y="6" width="44" height="30" rx="2" fill="${fill}" stroke="${stroke}" stroke-width="2"/><path d="M30 12 L30 28 M25 17 L30 12 L35 17 M25 23 L30 28 L35 23" stroke="${stroke}" stroke-width="2" fill="none"/>`);
- if(t==='DoorLock')return S(`<rect x="14" y="10" width="32" height="22" rx="3" fill="${fill}" stroke="${stroke}" stroke-width="2"/><circle cx="30" cy="21" r="4" fill="none" stroke="${stroke}" stroke-width="1.5"/>`);
- if(k==='src'||k==='src3')return S(`<circle cx="30" cy="20" r="14" fill="${fill}" stroke="${stroke}" stroke-width="2"/><text x="30" y="25" text-anchor="middle" font-size="13" fill="${stroke}">~</text>${k==='src3'?'<text x="30" y="42" text-anchor="middle" font-size="7" fill="#334155">3~ 380V</text>':''}`);
- if(t==='Contactor'||t==='Contactor3P')return S(`<rect x="8" y="6" width="44" height="10" rx="2" fill="${fill}" stroke="${stroke}" stroke-width="2"/><line x1="30" y1="16" x2="30" y2="22" stroke="${stroke}" stroke-width="2"/><line x1="8" y1="28" x2="22" y2="28" stroke="${stroke}" stroke-width="2"/><line x1="38" y1="28" x2="52" y2="28" stroke="${stroke}" stroke-width="2"/>`+(on?`<line x1="22" y1="28" x2="38" y2="28" stroke="${stroke}" stroke-width="2"/>`:`<line x1="22" y1="28" x2="34" y2="21" stroke="${stroke}" stroke-width="2"/>`));
- if(t==='Overload'||t==='Overload3P')return S(`<rect x="8" y="8" width="44" height="16" rx="2" fill="${c.stuck?'#fecaca':fill}" stroke="${stroke}" stroke-width="2"/><text x="30" y="20" text-anchor="middle" font-size="9" font-weight="800" fill="${stroke}">${c.stuck?'TRIP':'OL'}</text><line x1="8" y1="32" x2="52" y2="32" stroke="${stroke}" stroke-width="2"/>`);
- if(t==='TimerOnDelay'||t==='Timer24H'||t==='TimerAlt')return S(`<rect x="8" y="6" width="44" height="30" rx="3" fill="${fill}" stroke="${stroke}" stroke-width="2"/><circle cx="30" cy="21" r="8" fill="none" stroke="${stroke}" stroke-width="1.5"/><line x1="30" y1="21" x2="30" y2="15" stroke="${stroke}" stroke-width="1.5"/><line x1="30" y1="21" x2="35" y2="21" stroke="${stroke}" stroke-width="1.5"/><text x="30" y="42" text-anchor="middle" font-size="7" fill="#334155">${closed(c)?'مقفول ✓':'مفتوح'}</text>`);
- if(t==='Selector')return S(`<circle cx="30" cy="20" r="13" fill="${fill}" stroke="${stroke}" stroke-width="2"/><line x1="30" y1="20" x2="${on?38:22}" y2="10" stroke="${stroke}" stroke-width="2"/>`);
- if(/^PB/.test(t))return S(`<circle cx="30" cy="20" r="13" fill="none" stroke="${stroke}" stroke-width="2"/><circle cx="30" cy="20" r="6" fill="${t==='PBG'?'#16a34a':'#dc2626'}" opacity="${on?1:.6}"/>`);
- if(t==='Photocell')return S(`<circle cx="30" cy="20" r="13" fill="${fill}" stroke="${stroke}" stroke-width="2"/><circle cx="30" cy="20" r="4" fill="${stroke}"/><path d="M30 2 L30 6 M18 6 L21 9 M42 6 L39 9" stroke="${stroke}" stroke-width="1.5"/>`);
- if(t==='Ammeter')return S(`<circle cx="30" cy="20" r="14" fill="${fill}" stroke="${stroke}" stroke-width="2"/><text x="30" y="25" text-anchor="middle" font-size="14" font-weight="900" fill="${stroke}">A</text>`);
- if(t==='Voltmeter')return S(`<circle cx="30" cy="20" r="14" fill="${fill}" stroke="${stroke}" stroke-width="2"/><text x="30" y="25" text-anchor="middle" font-size="14" font-weight="900" fill="${stroke}">V</text>`);
- if(t==='Meter'||t==='HMeter')return S(`<rect x="8" y="8" width="44" height="26" rx="3" fill="${fill}" stroke="${stroke}" stroke-width="2"/><text x="30" y="25" text-anchor="middle" font-size="10" font-weight="800" fill="${stroke}">kWh</text>`);
- if(t==='SPD')return S(`<rect x="14" y="6" width="32" height="30" rx="2" fill="${fill}" stroke="${stroke}" stroke-width="2"/><path d="M32 10 L24 22 L31 22 L27 32" fill="none" stroke="${stroke}" stroke-width="2"/>`);
- if(k==='bus')return S(`<rect x="4" y="16" width="52" height="8" rx="2" fill="${t==='EBar'?'#16a34a':'#2563eb'}" stroke="${stroke}" stroke-width="1"/><text x="30" y="42" text-anchor="middle" font-size="8" fill="#334155">${t==='EBar'?'PE':'N'}</text>`);
- if(k==='jbox')return S(`<rect x="8" y="6" width="44" height="30" rx="3" fill="${fill}" stroke="${stroke}" stroke-width="2"/><circle cx="20" cy="14" r="2" fill="${stroke}"/><circle cx="30" cy="14" r="2" fill="${stroke}"/><circle cx="40" cy="14" r="2" fill="${stroke}"/><circle cx="25" cy="26" r="2" fill="${stroke}"/><circle cx="35" cy="26" r="2" fill="${stroke}"/>`);
- if(k==='sw')return brk(1);
- if(k==='sw2')return brk(2);
- if(k==='sw3')return brk(3);
- return S(`<rect x="8" y="8" width="44" height="26" rx="3" fill="${fill}" stroke="${stroke}" stroke-width="2"/><text x="30" y="25" text-anchor="middle" font-size="10" fill="${stroke}">${T[t]?T[t].n.slice(0,4):''}</text>`);
-}
 function gfx(c,e){
- if(symMode)return symSVG(c,e);
- if(c.t==='PLC')return `<div style='font-size:10px;font-weight:900;color:#facc15'>SIEMENS LOGO!</div><div style='font-size:22px'>🧠</div><div style='font-size:9px;color:${e?'#22c55e':'#94a3b8'}'>${e?'● RUN':'○ STOP'}</div><div style='font-size:9px'>I1 I2 I3 I4 • Q1 Q2 Q3 Q4</div>`;
- if(c.t==='HMI')return `<div style='background:#0ea5e9;color:#fff;border-radius:6px;padding:4px 6px;font-size:10px'>🏠 Smart Home<br>${e?'💡 ON • 🌀 OFF • 🔒 LOCK':'⚠️ لا يوجد اتصال'}<br>🌡️ 24° • ⚡ 2.3 kW</div>`;
- if(c.t==='PIR')return `<div style='font-size:26px'>${c.s==='ON'&&e?'👁️':'👁️‍🗨️'}</div><div style='font-size:9px'>${c.s==='ON'?'حركة ✓':'لا حركة'}</div>`;
- if(c.t==='SmartRelay')return `<div style='font-size:24px'>📶</div><div style='font-size:9px'>${e?'WiFi متصل':'غير متصل'}</div>`;
- if(c.t==='Curtain')return `<div style='font-size:22px'>🪟</div><div style='font-size:9px'>${c.s==='ON'?'ستارة ↑':'ستارة ↓'}</div>`;
- if(c.t==='DoorLock')return `<div style='font-size:26px'>${e?'🔓':'🔒'}</div><div style='font-size:9px'>${e?'مفتوح':'مقفول'}</div>`;
  if(c.t==='Lamp')return bulb(e,LIT.Lamp);
- if(c.t==='LampR'||c.t==='LampG'||c.t==='PilotR'||c.t==='PilotG'||c.t==='PilotY')return pilot(e,LIT[c.t]);
- if(c.t==='BlinkLamp')return `<div style='font-size:34px;animation:blnk 1s steps(2) infinite;opacity:${e?1:.3}'>💡</div>`;
- if(c.t==='TimerOnDelay'){const left=c.s==='ON'?Math.max(0,3-((Date.now()-(c.at||0))/1000*Math.max(0.2,SP))):3;return `<div style='font-size:26px'>⏱️</div><div style='font-size:10px'>${closed(c)?'مقفول ✓':c.s==='ON'?'بعد '+left.toFixed(0)+' ث':'متوقف'}</div>`}
- if(c.t==='Timer24H'){const ph=c.s==='ON'?((Date.now()-(c.at||0))/1000*Math.max(0.2,SP))%8:0;return `<div style='font-size:26px'>🕐</div><div style='font-size:10px'>${c.s==='ON'?(ph<4?'تشغيل 4ث':'إيقاف 4ث'):'متوقف'}</div>`}
- if(c.t==='TimerAlt'){const alt=c._alt||0;return `<div style='font-size:24px'>🔀</div><div style='font-size:10px'>${c.s==='ON'?(alt===0?'مخرج 1 شغال':'مخرج 2 شغال'):'متوقف'}</div>`}
+ if(c.t==='LampR'||c.t==='LampG')return pilot(e,LIT[c.t]);
  if(c.t==='HMeter'){const run1=e&&down(c).length>0;return `<div style='background:#9db78a;color:#1b2b1a;font:700 14px monospace;padding:2px 6px;border:2px solid #555;border-radius:3px;letter-spacing:1px'>${(c.kwh||0).toFixed(2).padStart(8,'0')}</div><div style='position:relative;overflow:hidden;width:72px;height:10px;border-radius:5px;background:#cbd5e1;margin:5px 0'><i class='${run1?'dsc':''}' style='position:absolute;top:0;bottom:0;left:0;width:14px;background:#ef4444'></i></div><div style='font-size:9px'>kWh • 220V 50Hz</div>`}
  if(c.t==='Selector')return `<div class='ks'><i class='key ${c.s==='ON'?'k1':''} ${Date.now()-(c.at||0)<600?'ka':''}'></i></div>`;
  if(/^PB/.test(c.t)){const on=c.s==='ON';return `<div style='width:44px;height:44px;border-radius:50%;background:${c.t==='PBG'?'#16a34a':'#dc2626'};border:4px solid #ddd;box-shadow:${on?'inset 0 3px 8px #0009':'0 5px 0 #0006'};transform:translateY(${on?4:0}px)'></div>`}
@@ -690,7 +451,7 @@ function gfx(c,e){
 function down(c){
  const adj=new Map(),add=(a,b)=>{(adj.get(a)||adj.set(a,[]).get(a)).push(b);(adj.get(b)||adj.set(b,[]).get(b)).push(a)};
  // FIX: down() يمشي في أسلاك L فقط (أحمر) حتى لا يحسب أحمال من مسار N
- W.forEach(w=>{if(['l1','l','l2','l3','red','yellow','black'].includes(w.col))add(w.a,w.b)});
+ W.forEach(w=>{if(w.col==='red')add(w.a,w.b)});
  C.forEach(x=>{const k=T[x.t].k;if(x!==c&&((k==='sw'&&closed(x))||(k==='pass'&&!x.dead)))add(x.id+':in',x.id+':out')});
  const o=c.id+(T[c.t].k==='meter'?':Lo':':out'),s=new Set([o]),q=[o];
  while(q.length){const v=q.pop();(adj.get(v)||[]).forEach(y=>{if(!s.has(y)){s.add(y);q.push(y)}})}
@@ -730,30 +491,29 @@ document.addEventListener('click',e=>{const t=e.target;
 });
 svg.addEventListener('click',e=>{const id=e.target.dataset&&e.target.dataset.w;if(id){selW=id;sel=null;render()}});
 addEventListener('keydown',e=>{if((e.key==='Delete'||e.key==='Backspace')&&!/INPUT|SELECT/.test(document.activeElement.tagName))del()});
-$('bx').onclick=()=>{if(isLocked())return;C=[];W=[];sel=null;pend=null;render()};
+$('bx').onclick=()=>{C=[];W=[];sel=null;pend=null;render()};
 addEventListener('resize',draw);
 setInterval(()=>{
  if(drag||!run)return;
  let ch=false;
- const hasTimer=C.some(c=>['TimerOnDelay','Timer24H','TimerAlt','BlinkLamp'].includes(c.t));
  C.forEach(c=>{
   if(c.t==='Heater'||c.t==='Heater3Ph'){const t=res.E.has(c.id)?Math.min(85,c.temp+1.2):Math.max(22,c.temp-0.8);if(t!==c.temp){c.temp=t;ch=true}}
   if((c.t==='Generator'||c.t==='Generator3Ph')&&c.s==='ON'&&!c.dead){c.fuel=Math.max(0,c.fuel-0.15);if(c.fuel<=0)c.s='OFF';ch=true}
  });
  const dh=.7*SP/3600;
  C.forEach(c=>{if(T[c.t].k==='ld'&&res.E.has(c.id)){kwh+=c.w/1000*dh;ch=true}if((c.t==='Meter'||T[c.t].k==='meter')&&res.E.has(c.id)){c.kwh=(c.kwh||0)+down(c).reduce((s,l)=>s+l.w,0)/1000*dh;ch=true}});
- if(ch||(hasTimer&&run))render();
+ if(ch)render();
 },700);
 (function init(){
  const m=mk('Mains',40,20),b=mk('MCB',70,150),l=mk('Lamp',70,290),n=mk('NBar',250,400);
  C=[m,b,l,n];
- link(m.id+':L',b.id+':in','l1');link(b.id+':out',l.id+':in','l1');link(l.id+':out',n.id+':n1','n');link(n.id+':n1',m.id+':N','n');
+ link(m.id+':L',b.id+':in','red');link(b.id+':out',l.id+':in','red');link(l.id+':out',n.id+':n','blue');link(n.id+':n',m.id+':N','blue');
  lib();panel();setSize('80x100');render();
 })();
 </script>
 <script>
 // ===== PWA: تثبيت + أوفلاين + تحديث تلقائي =====
-const APP_VERSION = 'v3.8.3';
+const APP_VERSION = 'v2.1.0';
 let deferredPrompt = null, newWorker = null;
 const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
 const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
@@ -774,28 +534,10 @@ document.getElementById('installBtn').onclick = async ()=>{
   deferredPrompt = null;
 };
 window.addEventListener('appinstalled', ()=>{ document.getElementById('installBtn').style.display='none'; });
-
-// 10/10: استعادة الحفظ التلقائي (تصنيع فقط) عند الفتح
-try{
-  const savedAuto = localStorage.getItem('electropanel-autosave');
-  if(savedAuto && tab==='b' && C.length===0){
-    const d = JSON.parse(savedAuto);
-    if(d && Array.isArray(d.C)){
-      d.C.forEach(rc=>{ if(rc.t in T){ const c=mk(rc.t, rc.x||30, rc.y||30); c.s=rc.s||'ON'; c.rot=rc.rot||0; c.sc=rc.sc||1; c.w=rc.w||0; c.termPos=rc.termPos||{}; C.push(c); }});
-      const idMap = {}; // IDs جديدة - الأسلاك هتتربط بالترتيب
-      // الأسلاك القديمة IDs مختلفة، فبنربط بالترتيب فقط لو العدد مطابق
-      if(Array.isArray(d.W) && d.W.length && C.length===d.C.length){
-        // لا نستعيد الأسلاك بالـ IDs القديمة - المستخدم يوصل من جديد لو اختلفت
-      }
-      if(d.size) setSize(d.size);
-    }
-  }
-}catch(e){}
-
 // تسجيل Service Worker - يعمل فقط على https أو localhost (GitHub Pages ✓)
 if('serviceWorker' in navigator && (location.protocol==='https:' || location.hostname==='localhost' || location.hostname==='127.0.0.1')){
   window.addEventListener('load', ()=>{
-    navigator.serviceWorker.register('./sw.js?v=3.8.3').then(reg=>{
+    navigator.serviceWorker.register('./sw.js').then(reg=>{
       // فحص تحديث كل مرة يفتح فيها التطبيق بالإنترنت
       reg.update();
       setInterval(()=>{ if(navigator.onLine) reg.update(); }, 60*1000);
@@ -814,100 +556,9 @@ if('serviceWorker' in navigator && (location.protocol==='https:' || location.hos
   let refreshing=false;
   navigator.serviceWorker.addEventListener('controllerchange', ()=>{ if(!refreshing){ refreshing=true; window.location.reload(); } });
 }
-document.getElementById('forceUpdateBtn').onclick = async ()=>{
-  try{ if('serviceWorker' in navigator){ const regs = await navigator.serviceWorker.getRegistrations(); for(const r of regs){ await r.update(); } await caches.keys().then(ks=>Promise.all(ks.map(k=>caches.delete(k)))); } }catch(e){}
-  window.location.href = window.location.pathname + '?v=383&ts=' + Date.now();
-};
 document.getElementById('updateBtn').onclick = ()=>{
   if(newWorker){ newWorker.postMessage({type:'SKIP_WAITING'}); }
   else window.location.reload(true);
 };
 </script>
-
-
-
-<script>
-// ===== افتتاحية DEC - 16 ثانية - بتشتغل مع فتح الرابط دايماً ======
-// 0-2: الشعار يظهر | 2-9: الشعار يتحول لقصاصات صغيرة جداً وتتجمع (تنتهي في 9)
-// 9-11: شاشة بيضاء | 11-12: تلاشي البيضاء | 12-14: الشعار يظهر تاني | 14-16: الشعار يتلاشى
-(function(){
-  const intro=document.getElementById('intro'),starsCv=document.getElementById('introStars'),flash=document.getElementById('introFlash'),
-  tilesEl=document.getElementById('introTiles'),logo=document.getElementById('introLogo'),logoWrap=document.getElementById('introLogoWrap'),
-  countEl=document.getElementById('introCount'),bar=document.getElementById('introBar'),skipBtn=document.getElementById('introSkip');
-  if(!intro)return;
-  const isInstalled = true; // تشتغل مع فتح الرابط دايماً
-  let timers=[],rafId=null,done=false,started=false,stars=[],floatRaf=null,floatStart=0;
-  const sctx=starsCv.getContext('2d');
-  function resize(){starsCv.width=starsCv.clientWidth*devicePixelRatio;starsCv.height=starsCv.clientHeight*devicePixelRatio;stars=[];for(let i=0;i<200;i++){stars.push({x:Math.random()*starsCv.width,y:Math.random()*starsCv.height,r:(Math.random()*.9+.2)*(devicePixelRatio||1),tw:Math.random()*Math.PI*2,sp:.01+Math.random()*.03,alpha:.25+Math.random()*.6})}}
-  function drawStars(t){sctx.clearRect(0,0,starsCv.width,starsCv.height);stars.forEach(s=>{const a=s.alpha*(.55+.45*Math.sin(t*s.sp*60+s.tw));sctx.globalAlpha=a;sctx.fillStyle='#fff';sctx.beginPath();sctx.arc(s.x,s.y,s.r,0,7);sctx.fill()});sctx.globalAlpha=1;if(!done)rafId=requestAnimationFrame(drawStars)}
-  function buildTiles(){tilesEl.innerHTML='';const N=22,S=280/N;const img=logo.src;for(let r=0;r<N;r++)for(let c=0;c<N;c++){const d=document.createElement('div');d.className='tile';d.style.cssText=`left:${c*S}px;top:${r*S}px;width:${S}px;height:${S}px;background-image:url('${img}');background-position:${-c*S}px ${-r*S}px`;tilesEl.appendChild(d)}}
-  function scatter(){buildTiles();logo.style.display='none';tilesEl.style.display='block';[...tilesEl.children].forEach((t,i)=>{const r=Math.floor(i/22),c=i%22;const dx=(c-11)/11,dy=(r-11)/11;const distFromCenter=Math.sqrt(dx*dx+dy*dy);const a=Math.atan2(dy,dx)+(Math.random()-.5)*.6;const dist=130+distFromCenter*220+Math.random()*80;const delay=distFromCenter*0.55+Math.random()*0.15;t.style.transitionDuration=(2.4+Math.random()*0.6)+'s';t.style.transitionTimingFunction='cubic-bezier(.22,1,.36,1)';t.style.transitionDelay=delay+'s';t.style.transform=`translate(${Math.cos(a)*dist}px,${Math.sin(a)*dist}px) rotate(${(Math.random()*360-180).toFixed(0)}deg) scale(${(.7+Math.random()*.4).toFixed(2)})`;t.style.opacity='1';t.dataset.fx=Math.cos(a)*dist;t.dataset.fy=Math.sin(a)*dist});startFloat()}
-  function startFloat(){if(floatRaf)cancelAnimationFrame(floatRaf);floatStart=performance.now();const loop=(now)=>{const t=(now-floatStart)/1000;[...tilesEl.children].forEach((el,i)=>{if(el.dataset.gathering)return;const fx=parseFloat(el.dataset.fx||0),fy=parseFloat(el.dataset.fy||0);const ox=Math.sin(t*.7+i*1.7)*7;const oy=Math.cos(t*.55+i*2.3)*7;el.style.translate=`${ox}px ${oy}px`});if(!done)floatRaf=requestAnimationFrame(loop)};floatRaf=requestAnimationFrame(loop)}
-  function gather(){if(floatRaf)cancelAnimationFrame(floatRaf);[...tilesEl.children].forEach((t,i)=>{t.dataset.gathering='1';t.style.translate='0px 0px';const r=Math.floor(i/22),c=i%22;const dx=(c-11)/11,dy=(r-11)/11;const distFromCenter=Math.sqrt(dx*dx+dy*dy);const delay=(1.4-distFromCenter)*0.45+Math.random()*0.2;t.style.transitionDuration='1.9s';t.style.transitionTimingFunction='cubic-bezier(.22,1,.36,1)';t.style.transitionDelay=delay+'s';t.style.transform='translate(0,0) rotate(0deg) scale(1)';t.style.opacity='1'});setTimeout(()=>{tilesEl.style.display='none';logo.style.display='';},2400)}
-  function endIntro(){if(done)return;done=true;timers.forEach(clearTimeout);timers=[];if(rafId)cancelAnimationFrame(rafId);if(floatRaf)cancelAnimationFrame(floatRaf);intro.classList.add('done');setTimeout(()=>{intro.style.display='none';flash.classList.remove('on')},1300)}
-  function startIntro(){if(started)return;started=true;done=false;intro.classList.remove('done');intro.style.display='flex';logo.style.display='';tilesEl.style.display='none';logoWrap.style.opacity='0';logoWrap.style.transform='scale(.85)';resize();drawStars(0);
-    const start=Date.now(),TOTAL=16000;const tick=setInterval(()=>{const left=Math.max(0,TOTAL-(Date.now()-start));countEl.textContent=Math.ceil(left/1000);bar.style.width=((1-left/TOTAL)*100)+'%';if(left<=0)clearInterval(tick)},200);timers.push(tick);
-    requestAnimationFrame(()=>{logoWrap.style.opacity='1';logoWrap.style.transform='scale(1)'});
-    timers.push(setTimeout(scatter,2000));
-    timers.push(setTimeout(gather,6500));
-    timers.push(setTimeout(()=>{flash.classList.add('on')},9000));
-    timers.push(setTimeout(()=>{flash.classList.remove('on')},11000));
-    timers.push(setTimeout(()=>{logoWrap.style.opacity='1';logoWrap.style.transform='scale(1)';logo.style.display='';tilesEl.style.display='none'},12000));
-    timers.push(setTimeout(()=>{logoWrap.style.opacity='0';logoWrap.style.transform='scale(1.15)'},14000));
-    timers.push(setTimeout(endIntro,16000));}
-  skipBtn.onclick=endIntro;
-  window.__startIntro=startIntro;
-  if(isInstalled){ window.addEventListener('load',()=>setTimeout(startIntro,350)) }
-})();
-</script>
-
-<!-- ===== صفحة PRO ===== -->
-<div id="proPage" style="display:none;position:fixed;inset:0;z-index:10001;background:rgba(0,0,0,.75);align-items:center;justify-content:center;padding:16px">
-  <div style="background:#0f172a;border:2px solid #facc15;border-radius:20px;max-width:460px;width:100%;padding:28px 24px;text-align:center;box-shadow:0 0 40px #facc1544;max-height:90vh;overflow:auto">
-    <div style="font-size:48px">⭐</div>
-    <h2 style="color:#facc15;font-size:24px;margin:10px 0 6px">نسخة PRO</h2>
-    <p style="color:#e2e8f0;line-height:2;font-size:15px">
-      تواصل معنا إن أردت الدعم.<br>
-      ومنّا جميل الشكر والتقدير لك.<br><br>
-      وإن كان هناك دعم متواصل بيننا،<br>
-      سوف ندلي باقتراحات تُنفَّذ في النسخة الخاصة بك.<br><br>
-      <span style="color:#facc15;font-weight:800">شكراً لثقتك في DEC ⚡</span>
-    </p>
-    <div style="margin:18px 0 6px;color:#94a3b8;font-size:13px;font-weight:700">تواصل معنا واتساب بيزنس</div>
-    <div style="display:flex;flex-direction:column;gap:10px">
-      <a href="https://wa.me/201287837118" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:10px;background:#25D366;color:#fff;text-decoration:none;font-weight:900;padding:13px;border-radius:12px;font-size:16px">
-        <span style="display:inline-flex;width:26px;height:26px;background:#fff;border-radius:50%;align-items:center;justify-content:center;font-size:15px">💬</span>
-        واتساب بيزنس • 01287837118
-      </a>
-      <a href="https://wa.me/201558837118" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:10px;background:#25D366;color:#fff;text-decoration:none;font-weight:900;padding:13px;border-radius:12px;font-size:16px">
-        <span style="display:inline-flex;width:26px;height:26px;background:#fff;border-radius:50%;align-items:center;justify-content:center;font-size:15px">💬</span>
-        واتساب بيزنس • 01558837118
-      </a>
-    </div>
-    <button id="proClose" style="margin-top:18px;background:#facc15;color:#111;border:none;font-size:15px;font-weight:900;padding:12px 30px;border-radius:999px;cursor:pointer">إغلاق</button>
-  </div>
-</div>
-
-
-<script>
-// ===== تبويبة PRO =====
-(function(){
-  const btn=document.getElementById('proBtn'), page=document.getElementById('proPage'), close=document.getElementById('proClose');
-  if(!btn||!page) return;
-  btn.onclick=()=>{ page.style.display='flex'; };
-  if(close) close.onclick=()=>{ page.style.display='none'; };
-  page.onclick=(e)=>{ if(e.target===page) page.style.display='none'; };
-})();
-</script>
-
-
-<!-- ===== نافذة معلومات القطعة ؟ ===== -->
-<div id="infoModal" style="display:none;position:fixed;inset:0;z-index:10002;background:rgba(0,0,0,.75);align-items:center;justify-content:center;padding:16px">
-  <div style="background:#0f172a;border:2px solid #facc15;border-radius:20px;max-width:460px;width:100%;padding:24px;text-align:right;max-height:90vh;overflow:auto">
-    <h2 id="infoTitle" style="color:#facc15;margin:0 0 12px;font-size:19px">❓ القطعة</h2>
-    <div id="infoBody" style="color:#e2e8f0;font-size:14px"></div>
-    <button id="infoClose" style="margin-top:16px;background:#facc15;color:#111;border:none;font-weight:900;padding:10px 28px;border-radius:999px;cursor:pointer">فهمت ✓</button>
-  </div>
-</div>
-
 <script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}function isInlineMediaSlotElement(node){return !!(node&&node.getAttribute&&node.getAttribute("data-clippy-inline-media-slot")!==null)}function findInlineMediaSlot(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(isInlineMediaSlotElement(node))return node}return null}function readInlineMediaUrl(node){if(!node)return null;return node.getAttribute&&((node.getAttribute("data-clippy-inline-media-url")||node.getAttribute("data-url")||node.getAttribute("data_url")))||node.href||null}function stripHash(url){return String(url).replace(/#.*$/,"")}function urlsMatch(a,b){if(!a||!b)return false;try{return stripHash(new URL(a,loc).href)===stripHash(new URL(b,loc).href)}catch(_){return stripHash(a)===stripHash(b)}}function isFirstPartyReelUrl(value){try{var url=new URL(value,loc);if(url.protocol!=="https:")return false;var host=url.hostname.toLowerCase();var supported=host==="instagram.com"||host.endsWith(".instagram.com")||host==="facebook.com"||host.endsWith(".facebook.com");return supported&&/\/reels?\//i.test(url.pathname)}catch(_){return false}}function isInlineMediaUrlClick(node,href){var slot=findInlineMediaSlot(node);if(!slot)return false;var slotUrl=readInlineMediaUrl(slot);if(slotUrl)return urlsMatch(href,slotUrl);return isFirstPartyReelUrl(href)}function findDataHref(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(node.getAttribute){var href=node.getAttribute("data-href")||node.getAttribute("data-url");if(href)return{href:href,node:node}}}return null}var nativeOpen=window.open;window.open=function(url){if(parent!==window&&typeof url==="string"&&/^https?:\/\//.test(url)){parent.postMessage({type:"ecto:usercontent-link-click",href:url},"*");return null}return nativeOpen?nativeOpen.apply(window,arguments):null};document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;if(parent===window)return;var a=target.closest?target.closest("a[href]"):null;if(a&&a.href&&/^https?:\/\//.test(a.href)&&a.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(a,a.href))return;var productId=extractProductId(target)||extractProductId(a);if(productId){e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*");return}e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:a.href},"*");return}var dataHref=findDataHref(target);if(dataHref&&/^https?:\/\//.test(dataHref.href)&&dataHref.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(dataHref.node,dataHref.href))return;e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:dataHref.href},"*")}},true)})();</script><script>(function(){var FOCUS_TYPE="ecto:artifact-focus-request";var CLOSE_TYPE="ecto:artifact-close-request";function focusArtifactDocument(){var body=document.body;if(!body)return;try{window.focus();}catch(e){}if(!body.hasAttribute("tabindex"))body.setAttribute("tabindex","-1");try{body.focus({preventScroll:true});}catch(e){try{body.focus();}catch(e2){}}}window.addEventListener("message",function(event){if(event.source!==window.parent)return;var data=event.data;if(!data||typeof data!=="object"||data.type!==FOCUS_TYPE)return;if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",focusArtifactDocument,{once:true});return;}focusArtifactDocument();});window.addEventListener("keydown",function(event){if(event.key!=="Escape")return;window.setTimeout(function(){if(event.defaultPrevented)return;window.parent.postMessage({type:CLOSE_TYPE},"*");},0);});})();</script></body></html>
