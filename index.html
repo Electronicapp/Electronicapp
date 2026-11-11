@@ -29,8 +29,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="ElectroPanel">
-<link rel="apple-touch-icon" href="./apple-touch-icon.png">
-<link rel="apple-touch-startup-image" href="./splash.jpg">
+<link rel="apple-touch-icon" href="./icon-192.png">
 <link rel="icon" type="image/png" href="./icon-192.png">
 <style>
 :root{--bg:#f4f5f7;--fg:#111827;--card:#fff;--bd:#d1d5db;--mut:#6b7280;--board:#d4d7dc;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -49,9 +48,7 @@ body.mt .bo,body:not(.mt) .mo{display:none!important}
 #msg{padding:8px 12px;border-radius:10px;font-size:13px;font-weight:700;margin-bottom:8px;border:1px solid}
 .g{background:#16a34a22;border-color:#16a34a;color:#16a34a}.y{background:#eab30822;border-color:#eab308;color:#a16207}.r{background:#ef444422;border-color:#ef4444;color:#ef4444}
 #wrap{position:relative}
-#sc{overflow:auto;min-height:540px;max-height:72vh;border-radius:14px;border:1px solid var(--bd);background:#141b2e;display:block!important;visibility:visible!important}
-#board{min-width:320px;min-height:520px;display:block!important;visibility:visible!important}
-#boardEmpty{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;color:#94a3b8;font-size:14px;font-weight:700;pointer-events:none;padding:20px;z-index:0}
+#sc{overflow:auto;max-height:72vh;border-radius:14px;border:1px solid var(--bd)}
 #board{position:relative;background:var(--board);overflow:hidden;user-select:none;background-image:linear-gradient(#0001 1px,transparent 1px),linear-gradient(90deg,#0001 1px,transparent 1px);background-size:22px 22px}
 #wires{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2}
 #dr{position:absolute;top:0;bottom:0;width:236px;z-index:20;background:var(--card);border:1px solid var(--bd);border-radius:14px;overflow:auto;padding:8px;box-sizing:border-box;transition:transform .25s}
@@ -70,16 +67,9 @@ body.mt .bo,body:not(.mt) .mo{display:none!important}
 .c.spin .gl{animation:sp .6s linear infinite}@keyframes sp{to{transform:rotate(360deg)}}
 .lv{width:24px;height:40px;background:#181818;border-radius:5px;position:relative;border:1px solid #000}
 .lv i{position:absolute;left:3px;right:3px;top:20px;height:16px;border-radius:3px;background:#ef4444}.lv i.u{top:3px;background:#22c55e}
-.t{position:absolute;width:20px;height:20px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fde68a,#b45309);border:2px solid #fff;z-index:3;cursor:crosshair;box-shadow:0 1px 3px #0008}
+.t{position:absolute;width:15px;height:15px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fde68a,#b45309);border:2px solid #fff;z-index:3;cursor:crosshair;box-shadow:0 1px 3px #0008}
 .t::after{content:attr(data-l);position:absolute;font-size:8px;font-weight:800;color:#fff;text-shadow:0 0 2px #000,0 0 2px #000;left:19px;top:1px}
 .t.p{background:#22d3ee;box-shadow:0 0 10px #22d3ee}
-.t[data-l="N"],.t[data-l="n"]{background:radial-gradient(circle at 35% 30%,#e5e7eb,#111827)!important}
-.t[data-l="L"],.t[data-l="L1"],.t[data-l="U"]{background:radial-gradient(circle at 35% 30%,#fca5a5,#b91c1c)!important}
-.t[data-l="L2"],.t[data-l="V"]{background:radial-gradient(circle at 35% 30%,#93c5fd,#1d4ed8)!important}
-.t[data-l="L3"],.t[data-l="W"]{background:radial-gradient(circle at 35% 30%,#fde68a,#a16207)!important}
-.c.real{padding:0!important;overflow:visible}
-.c.real b,.c.real small{display:none!important}
-
 .c{transform-origin:center}#sb{display:none;position:sticky;top:0;z-index:30;background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:6px 10px}#sb.on{display:flex}#sb label{display:none}.hd{position:absolute;width:22px;height:22px;border-radius:50%;background:#22d3ee;border:2px solid #fff;z-index:5;transform:scale(var(--inv,1));box-shadow:0 1px 4px #0007;touch-action:none;display:flex;align-items:center;justify-content:center;font-size:13px;font-style:normal;font-weight:800;color:#000;user-select:none}.hd.rot{top:-42px;left:calc(50% - 11px);cursor:grab}.hd.rot::before{content:"";position:absolute;left:8px;top:20px;width:2px;height:18px;background:#22d3ee}.hd.siz{right:-14px;bottom:-14px;cursor:nwse-resize}#sb input[type=range]{width:110px;padding:0}
 .top{top:-8px;left:calc(50% - 8px)}.bot{bottom:-8px;left:calc(50% - 8px)}.botl{bottom:-8px;left:20%}.botr{bottom:-8px;right:20%}.mid{top:calc(50% - 8px);left:calc(50% - 8px)}.topl{top:-8px;left:20%}.topr{top:-8px;right:20%}@keyframes dm{to{left:100%}}.dsc{animation:dm 1.2s linear infinite}
 #wl{font-size:12px;margin-top:8px;display:flex;flex-direction:column;gap:4px}
@@ -87,128 +77,49 @@ body.mt .bo,body:not(.mt) .mo{display:none!important}
 #wl div{display:flex;justify-content:space-between;align-items:center}
 .card{margin-top:8px;font-size:12px;line-height:1.7}.card h3{margin:0 0 4px;font-size:14px}
 .hint{font-size:11px;color:var(--mut);margin:6px 0}
-
-/* ===== شكل واقعي زي الصورة المرجعية ===== */
-#board{background:#141b2e!important;background-image:linear-gradient(rgba(255,255,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.07) 1px,transparent 1px)!important;background-size:22px 22px}
-.c{border-radius:4px!important;box-shadow:0 6px 14px #0008,inset 0 1px 0 #fff8!important}
-.c .gl{font-size:22px}
-/* قاطع واقعي C16 */
-.mcb{width:100%;height:100%;background:linear-gradient(180deg,#fff,#e5e7eb);border-radius:3px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:3px 0;box-sizing:border-box;color:#111}
-.mcb .mt{width:70%;height:14px;background:#d1d5db;border-radius:2px;position:relative}
-.mcb .mt::after{content:'';position:absolute;left:50%;top:50%;width:8px;height:8px;margin:-4px 0 0 -4px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fca5a5,#b91c1c);border:1px solid #7f1d1d}
-.mcb .lb{font:800 12px/1 Arial;text-align:center}
-.mcb .lb small{display:block;font:600 6px/1.4 Arial;color:#6b7280}
-.mcb .lv2{width:34%;height:18px;background:#111827;border-radius:2px;position:relative}
-.mcb .lv2::after{content:'';position:absolute;left:50%;top:-3px;width:12px;height:12px;margin-left:-6px;background:#f8fafc;border:1px solid #000;border-radius:1px}
-.mcb.on .lv2::after{background:#facc15}
-.mcb .amp{font:700 7px Arial;color:#374151}
-/* لمبة واقعية متوهجة */
-.lampReal{width:44px;height:44px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fde68a,#f97316 55%,#c2410c);border:4px solid #d6d3d1;box-shadow:0 0 0 3px #a8a29e,0 0 24px 8px rgba(249,115,22,.55);position:relative}
-.lampReal::after{content:'';position:absolute;inset:10px;border-radius:50%;border:2px solid rgba(255,255,255,.35)}
-.lampReal.off{background:radial-gradient(circle at 35% 30%,#e7e5e4,#a8a29e);box-shadow:0 0 0 3px #a8a29e,none}
-.lampReal.off::after{border-color:rgba(0,0,0,.15)}
-/* موتور واقعي */
-.motorReal{width:52px;height:52px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#e2e8f0,#94a3b8);border:4px solid #64748b;position:relative;display:flex;align-items:center;justify-content:center}
-.motorReal::before{content:'';position:absolute;inset:12px;border-radius:50%;background:#334155}
-.motorReal::after{content:'';position:absolute;width:6px;height:6px;border-radius:50%;background:#facc15}
-/* زر التشغيل زي الصورة: أخضر فاتح */
-#br.runBtn{background:#10b981!important;color:#fff!important;border-color:#059669!important;font-weight:800;padding:8px 18px!important;font-size:14px!important;box-shadow:0 4px 14px #10b98166}
-#br.runBtn.stop{background:#374151!important;border-color:#4b5563!important;box-shadow:none}
-#statusBar{display:flex;gap:14px;flex-wrap:wrap;align-items:center;background:#0f172a;color:#e5e7eb;border-radius:10px;padding:8px 12px;font-size:12px;margin-top:8px;direction:ltr}
-#statusBar b.run{color:#22c55e}
-#statusBar b.stp{color:#9ca3af}
-
-.qbtn{position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#facc15;color:#000;border:1px solid #a16207;font:800 11px/14px Arial;text-align:center;z-index:10;cursor:pointer;box-shadow:0 1px 4px #0008;display:flex;align-items:center;justify-content:center}
-.qbtn:active{transform:scale(.9)}
-#infoModal{display:none;position:fixed;inset:0;background:#0008;z-index:999;align-items:center;justify-content:center;padding:16px;box-sizing:border-box}
-#infoModal.on{display:flex}
-#infoCard{background:var(--card);color:var(--fg);border-radius:16px;max-width:420px;width:100%;max-height:85vh;overflow:auto;padding:16px;box-sizing:border-box;line-height:1.8;font-size:13px}
-#infoCard h3{margin:0 0 6px;font-size:17px}
-#infoCard .tag{display:inline-block;background:#facc15;color:#000;font-size:11px;font-weight:800;padding:2px 10px;border-radius:999px;margin-bottom:8px}
-#infoCard ol{margin:4px 0;padding-inline-start:20px}
-#infoCard .warn{background:#fef3c7;border:1px solid #eab308;border-radius:10px;padding:8px 10px;font-size:12px;margin-top:8px}
-.b1{top:-10px;left:4%}.b2{top:-10px;left:18%}.b3{top:-10px;left:32%}.b4{top:-10px;left:46%}.b5{top:-10px;left:60%}.b6{top:-10px;left:74%}.b7{bottom:-10px;left:25%}.b8{bottom:-10px;left:60%}
-.t{width:20px!important;height:20px!important}
-
-/* ===== بار علوي ثابت + بار جوه اللوحة + درج القطع من اليمين ===== */
-#topbar{position:sticky;top:0;z-index:100;background:var(--bg);padding:6px 0 8px;display:flex;flex-direction:column;gap:6px}
-#topbar .bar{margin:0}
-#boardTopBar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;background:#0f172a;color:#fff;padding:6px 8px;border-radius:12px 12px 0 0;border:1px solid #334155;border-bottom:none}
-#boardTopBar button,#boardTopBar select{background:#1e293b!important;color:#fff!important;border-color:#334155!important}
-#boardTopBar #sb{position:static;background:transparent;border:none;padding:0;margin:0;flex-wrap:wrap}
-#boardTopBar #sb.on{display:flex}
-#dh{position:static!important;display:flex!important;align-items:center;justify-content:center;font-size:20px!important;line-height:1!important;padding:6px 12px!important;background:#1e293b!important;color:#fff!important;border-color:#334155!important}
-#dr{position:fixed!important;top:0!important;bottom:auto!important;right:0!important;left:auto!important;height:100dvh!important;width:280px!important;max-width:85vw!important;z-index:200!important;border-radius:0!important;box-shadow:-8px 0 24px #0008!important;transform:translateX(110%)!important}
-#wrap:not(.cl) #dr{transform:none!important}
-#wrap.cl #dr{transform:translateX(110%)!important}
-#sc{margin:0!important;max-height:72vh}
-body.mt #bw{display:none!important}
-#boardTopBar + #sc{border-top:none;border-radius:0 0 14px 14px}
-@media(min-width:760px){.R:not(.cl) #sc,.L:not(.cl) #sc{margin:0!important}}
-
-/* ===== قفل التعديل أثناء التشغيل ===== */
-body.locked .c{cursor:pointer}
-body.locked #dh,body.locked #bd,body.locked #bx,body.locked #bw{opacity:.35!important;pointer-events:none!important}
-body.locked #bs{opacity:.35!important;pointer-events:none!important}
-#lockHint{display:none;font-size:11px;background:#ef4444;color:#fff;padding:4px 10px;border-radius:999px;font-weight:800}
-body.locked #lockHint{display:inline-block}
-
-/* ===== Splash بصورة النسر + لوجو DEC في الهيدر ===== */
-#splash{position:fixed;inset:0;background:#000;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;transition:opacity .6s;animation:splashAutoHide .6s ease 2.5s forwards}
-@keyframes splashAutoHide{to{opacity:0;visibility:hidden;pointer-events:none}}
-#splash.hide{opacity:0;pointer-events:none}
-#splash img{width:min(88vw,420px);height:auto;border-radius:50%;box-shadow:0 0 60px #facc1544}
-#splash .sp-t{color:#fff;font-weight:800;font-size:18px;letter-spacing:1px}
-#splash .sp-s{color:#94a3b8;font-size:12px}
-#brand{display:flex;align-items:center;gap:10px;margin:0 0 8px}
-#brand img{width:64px;height:64px;border-radius:50%;border:2px solid #eab308;box-shadow:0 2px 10px #0005;flex:none}
-#brand .bt{line-height:1.2}
-#brand .bt b{font-size:17px}
-#brand .bt span{font-size:11px;color:var(--mut)}
 </style></head><body>
-<div id="splash"><img src="./splash.jpg" alt="DEC - Dean of Electrical Circuits"><div class="sp-t">DEC • Dean of Electrical Circuits</div><div class="sp-s">ElectroPanel • لوحات كهرباء • أوفلاين</div></div><script>setTimeout(function(){var el=document.getElementById('splash');if(el){el.classList.add('hide');setTimeout(function(){if(el)el.remove()},700)}},2000);</script>
-<div id="brand"><img src="./logo.png" alt="DEC - Dean of Electrical Circuits"><div class="bt"><b>ElectroPanel</b> <span style="font-size:11px;background:#16a34a;color:#fff;padding:2px 8px;border-radius:999px">PWA • أوفلاين</span><br><span>DEC • Dean of Electrical Circuits • <b id="verLabel"></b></span></div></div>
+<h1><span style="font-size:11px;background:#16a34a;color:#fff;padding:2px 8px;border-radius:999px"></span></h1>
 <div id="pwaBar" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;align-items:center">
  <button id="installBtn" style="display:none;background:#111827;color:#fff">📲 تثبيت التطبيق على جهازك</button>
  <button id="iosBtn" style="display:none">🍎 تثبيت على iPhone: مشاركة ← إضافة للشاشة الرئيسية</button>
  <span id="offlineBadge" style="font-size:11px;color:var(--mut)"></span>
 </div>
-<div id="updateBar" style="display:none;background:#facc15;color:#000;padding:8px 12px;border-radius:10px;font-size:13px;font-weight:700;margin-bottom:8px;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap">
- <span>🆕 تحديث جديد متوفر من المطور <span id="updateVer" style="font-weight:400;font-size:11px"></span></span>
- <span style="display:flex;gap:6px"><button id="updateBtn" style="background:#000;color:#fff;border-color:#000">حدّث الآن</button><button id="updateLater" style="background:#fff;color:#000;border-color:#000">لاحقاً</button></span>
+<div id="updateBar" style="display:none;background:#facc15;color:#000;padding:8px 12px;border-radius:10px;font-size:13px;font-weight:700;margin-bottom:8px;justify-content:space-between;align-items:center">
+ <span>🆕 تحديث جديد متوفر من المطور</span>
+ <button id="updateBtn" style="background:#000;color:#fff;border-color:#000">حدّث الآن</button>
 </div>
-<div id="checkBar" style="display:none;background:var(--card);border:1px solid var(--bd);padding:6px 10px;border-radius:10px;font-size:12px;margin-bottom:8px;align-items:center;gap:8px"><span id="checkMsg"></span><button id="checkUpdateBtn" style="padding:4px 10px">🔄 تحقق من التحديث</button></div>
 <div id="iosHint" style="display:none;background:var(--card);border:1px solid var(--bd);padding:8px 12px;border-radius:10px;font-size:12px;margin-bottom:8px">على iPhone: اضغط زر <b>مشاركة ⬆️</b> في سفاري ثم <b>إضافة إلى الشاشة الرئيسية</b> ليشتغل بدون إنترنت.</div>
-<header id="topbar">
- <div class="bar"><button data-tab="b" id="tb">تصنيع حر</button><button data-tab="m" id="tm">صيانة وأعطال</button><button id="bw">🔌 وضع التوصيل</button><button id="br" class="go"></button><span id="lockHint">🔒 وضع التشغيل - التعديل مقفول - اضغط إيقاف للتعديل</span></div>
- <div class="bar"><span style="display:flex;gap:4px;align-items:center;background:var(--card);border:1px solid var(--bd);padding:3px 8px;border-radius:999px"><b style="font-size:11px">🔍 زوم</b><button id="zoomOut">−</button><input type="range" id="zoomRange" min="50" max="200" step="10" value="100" style="width:90px;padding:0"><button id="zoomIn">+</button><button id="zoomReset" title="إعادة الزوم لـ 100%">↺</button><b id="zoomLabel" style="font-size:11px">100%</b></span><select id="sp" title="سرعة الزمن"><option value="1">زمن حقيقي ×1</option><option value="60">×60 (ث = دقيقة)</option><option value="3600">×3600 (ث = ساعة)</option></select><button id="bm">🔊</button><span id="kwh" style="font-size:12px"></span></div>
-</header>
+<div class="bar">
+ <button data-tab="b" id="tb">تصنيع حر</button><button data-tab="m" id="tm">صيانة وأعطال</button>
+</div>
+<div class="bar bo">
+ <button id="bw">🔌 وضع التوصيل</button>
+ <select id="bc"><option value="red">أحمر L1</option><option value="yellow">أصفر L2</option><option value="black">أسود L3</option><option value="blue">أزرق N</option><option value="green">أخضر Earth</option></select>
+ <select id="bs"><option value="40x60">40×60 سم</option><option value="60x80">60×80 سم</option><option value="80x100" selected>80×100 سم</option><option value="100x120">100×120 سم</option></select>
+ <button id="bd">✕ حذف المحدد</button><button id="bx">مسح الكل</button>
+</div>
 <div class="bar mo" id="pc"></div>
 <div class="bar mo" id="fl"></div>
+<div class="bar"><button id="br" class="go"></button><select id="sp" title="سرعة الزمن"><option value="1">زمن حقيقي ×1</option><option value="60">×60 (ث = دقيقة)</option><option value="3600">×3600 (ث = ساعة)</option></select><button id="bm">🔊</button><span id="kwh" style="font-size:12px"></span></div>
+<div class="bar" id="sb"><span id="sbc" class="bar" style="margin:0"><label>تدوير <input type="range" id="rr" min="0" max="360" step="1"><b id="rv"></b></label><button id="r90">↻ 90°</button><label>الحجم <input type="range" id="sr" min="40" max="300" step="5"><b id="sv"></b></label><button id="sx">إعادة ضبط</button></span><span id="sw">القدرة <input id="wv" type="number" min="0" step="10" style="width:80px"> واط</span><button id="bd2" class="bad">✕ حذف المحدد</button></div>
 <div id="msg" class="y"></div>
-<div id="wrap" class="R cl">
- <div id="boardTopBar" class="bo">
-  <button id="dh" title="القطع">☰</button>
-  <label style="color:#fff;font-size:12px;font-weight:700">مقاس اللوحة:</label><select id="bs"><option value="40x60">40×60 سم</option><option value="60x80">60×80 سم</option><option value="80x100" selected>80×100 سم</option><option value="100x80">100×80 سم</option><option value="100x120">100×120 سم</option></select>
-  <button id="bd">✕ حذف المحدد</button><button id="bx">مسح الكل</button><button id="breset" title="ارجع للدائرة الافتراضية: مصدر + قاطع + لمبة">↺ دائرة افتراضية</button>
-  <div class="bar" id="sb"><span id="sbc" class="bar" style="margin:0"><label>تدوير <input type="range" id="rr" min="0" max="360" step="1"><b id="rv"></b></label><button id="r90">↻ 90°</button><label>الحجم <input type="range" id="sr" min="40" max="300" step="5"><b id="sv"></b></label><button id="sx">إعادة ضبط</button></span><span id="sw">القدرة <input id="wv" type="number" min="0" step="10" style="width:80px"> واط</span><button id="bd2" class="bad">✕ حذف المحدد</button></div>
- </div>
+<div id="wrap" class="R">
+ <button id="dh" class="bo">☰ القطع</button>
  <div id="dr" class="bo"></div>
- <div id="sc"><div id="board"><div id="boardEmpty">اللوحة فاضية<br><span style="font-weight:400;font-size:12px">اضغط ☰ وأضف قطعة<br>أو اضغط ↺ دائرة افتراضية</span></div><svg id="wires"></svg><div id="comps"></div></div></div>
+ <div id="sc"><div id="board"><svg id="wires"></svg><div id="comps"></div></div></div>
 </div>
-<div class="hint bo">وضع التوصيل: اضغط نقطتين نحاسيتين لرسم سلك. أحادي: L1+N • ثنائي: L1+L2 • ثلاثي: L1+L2+L3 • بارة N فيها 8 نقاط (N1..N8) - وصّل كل سلك على نقطة لوحده. النقطة اللي عليها أكتر من سلك بيظهر عليها رقم بعدد الأسلاك. اضغط القطعة لتبديل ON/OFF (والمولد START/STOP). حدّد قطعة لتدويرها 0–360° أو تكبيرها وتصغيرها من الدوائر الظاهرة على القطعة نفسها: ↻ فوقها للتدوير الحر، و⤡ في ركنها للحجم. اضغط أي سلك لتحديده ثم «حذف المحدد» (أو زر Delete).</div>
+<div class="hint bo">وضع التوصيل: اضغط نقطتين نحاسيتين لرسم سلك. أحادي: L1+N • ثنائي: L1+L2 • ثلاثي: L1+L2+L3 • بارة N مصدر مساعد للنيوترال في أي دائرة. اضغط القطعة لتبديل ON/OFF (والمولد START/STOP). حدّد قطعة لتدويرها 0–360° أو تكبيرها وتصغيرها من الدوائر الظاهرة على القطعة نفسها: ↻ فوقها للتدوير الحر، و⤡ في ركنها للحجم. اضغط أي سلك لتحديده ثم «حذف المحدد» (أو زر Delete).</div>
 <div id="dg"></div>
 <button id="bk">🧮 حاسبة الأحمال والفاتورة</button><div id="calc" class="card" style="display:none"></div>
 <div id="wl" class="bo"></div>
-<div id="infoModal"><div id="infoCard"><div style="display:flex;justify-content:space-between;align-items:center"><h3 id="infoTitle">؟</h3><button id="infoClose" style="font-size:16px">✕</button></div><div id="infoBody"></div></div></div><div id="statusBar"><span>📋 <b id="stComp">0 comp</b></span><span>🔌 <b id="stWire">0 wire</b></span><span>🔍 <b id="stZoom">100%</b></span><span>⚡ <b id="stState" class="run">● RUNNING</b></span></div>
 <script>
 const A=[
 ['Mains','شبكة 220V','مصادر','src',120,70,'#1f2937','🔌'],['Generator','مولد ديزل','مصادر','src',130,80,'#1c2538','🚜'],
 ['Mains3Ph','شبكة 3 فاز 380V','مصادر 3 فاز','src3',150,90,'#0f172a','⚡3'],['Generator3Ph','مولد 3 فاز','مصادر 3 فاز','src3',150,90,'#1c2538','🚜3'],
-['Isolator3P','سكينة 3P 63A','قواطع ثنائية / ثلاثية','sw3',110,100,'#e5e7eb','🔌3'],['MCB2P','MCB 2P C25','قواطع ثنائية / ثلاثية','sw2',76,118,'#ffffff','2P'],['MCB3P','MCB 3P C32','قواطع ثنائية / ثلاثية','sw3',110,100,'#ffffff','3P'],['MCCB3P','MCCB 3P 100A','قواطع ثنائية / ثلاثية','sw3',120,104,'#2b2b2b','3P'],['RCCB3P','RCCB 3P 30mA','قواطع ثنائية / ثلاثية','sw3',110,100,'#1e3a8a','3P'],
+['Isolator3P','سكينة 3P 63A','قواطع ثنائية / ثلاثية','sw3',110,100,'#e5e7eb','🔌3'],['MCB2P','MCB 2P C25','قواطع ثنائية / ثلاثية','sw2',100,100,'#ffffff','2P'],['MCB3P','MCB 3P C32','قواطع ثنائية / ثلاثية','sw3',110,100,'#ffffff','3P'],['MCCB3P','MCCB 3P 100A','قواطع ثنائية / ثلاثية','sw3',120,104,'#2b2b2b','3P'],['RCCB3P','RCCB 3P 30mA','قواطع ثنائية / ثلاثية','sw3',110,100,'#1e3a8a','3P'],
 ['Contactor3P','كونتاكتور 3P','كونتاكتورات 3P','sw3',110,100,'#c2c6cc','🧲3'],['Overload3P','أوفرلود 3P','كونتاكتورات 3P','sw3',110,100,'#f3f4f6','🔥3'],
 ['Motor3Ph','موتور 3 فاز','أحمال ثلاثية','ld3',120,110,'#e5e7eb','🌀3'],['Heater3Ph','سخان 3 فاز','أحمال ثلاثية','ld3',110,110,'#e2e8f0','♨️3'],['Socket3Ph','بريزة 3 فاز','أحمال ثلاثية','ld3',100,100,'#ffffff','🔌3'],
-['Isolator','سكينة 63A','قواطع','sw',84,92,'#e5e7eb'],['MCB','MCB C16','قواطع','sw',38,118,'#ffffff'],['MCB25','MCB C25','قواطع','sw',38,118,'#ffffff'],['MCCB','MCCB 100A','قواطع','sw',104,96,'#2b2b2b'],
+['Isolator','سكينة 63A','قواطع','sw',84,92,'#e5e7eb'],['MCB','MCB C16','قواطع','sw',66,92,'#ffffff'],['MCB25','MCB C25','قواطع','sw',66,92,'#ffffff'],['MCB2P','MCB 2P','قواطع','sw',100,92,'#ffffff'],['MCCB','MCCB 100A','قواطع','sw',104,96,'#2b2b2b'],
 ['RCCB','RCCB 30mA','حماية','sw',84,92,'#1e3a8a'],['SPD','SPD','حماية','ld',66,84,'#eab308','⚡'],
 ['Contactor','كونتاكتور','كونتاكتورات','sw',90,92,'#c2c6cc','🧲'],['Overload','أوفرلود','كونتاكتورات','sw',84,92,'#f3f4f6','🔥'],
 ['TimerOnDelay','تايمر تأخير','تحكم','sw',88,92,'#0b1220','⏱️'],['Timer24H','تايمر 24س','تحكم','sw',88,92,'#111827','🕐'],['Photocell','خلية ضوئية','تحكم','sw',80,92,'#1f2937','🌗'],['Selector','مفتاح اختيار','تحكم','sw',80,92,'#222','🎛️'],['PBG','زر أخضر','تحكم','sw',72,92,'#16a34a','🟢'],['PBR','زر أحمر','تحكم','sw',72,92,'#dc2626','🔴'],
@@ -220,23 +131,8 @@ const T={},LIT={Lamp:'#facc15',LampR:'#ef4444',LampG:'#22c55e'};
 A.forEach(([k,n,c,kd,w,h,b,g])=>T[k]={n,c,k:kd,w,h,b,g});
 const WT={Lamp:60,LampR:3,LampG:3,Motor:750,Fan:75,Heater:2000,Socket:1000,Cooker:3000,Washer:500,Fridge:150,Motor3Ph:3000,Heater3Ph:6000,Socket3Ph:5000,Mains3Ph:0,Generator3Ph:0},PF={Motor:.8,Fan:.9,Washer:.75,Fridge:.7,Motor3Ph:.85,Heater3Ph:1,Socket3Ph:.9},amp=c=>c.w/(220*(PF[c.t]||1));
 const TL=h=>{const v=parseInt(h.slice(1),16);return((v>>16)*299+((v>>8)&255)*587+(v&255)*114)/1000>140?'#111':'#fff'};
-const TS={'40x60':[360,540],'60x80':[520,700],'80x100':[700,860],'100x80':[880,700],'100x120':[880,1020]};
-const COL={red:'#ef4444',blue:'#2563eb',yellow:'#eab308',black:'#111827',green:'#22c55e'};
-let zoom=1, boardW=700, boardH=860;
-function applyZoom(){ board.style.width=(boardW*zoom)+'px'; board.style.height=(boardH*zoom)+'px'; board.style.backgroundSize=(22*zoom)+'px '+(22*zoom)+'px'; const l=$('zoomLabel'), r=$('zoomRange'); if(l) l.textContent=Math.round(zoom*100)+'%'; if(r && document.activeElement!==r) r.value=Math.round(zoom*100); }
-function wireColorFor(termId){
-  const [cid, tn] = termId.split(':'); const c = C.find(x=>x.id===cid); if(!c) return 'red';
-  if(c.t==='EBar') return 'green';
-  if(/^pe\d+$/.test(tn)) return 'green';
-  if(/^n\d+$/.test(tn)) return 'black';
-  if(tn==='N'||tn==='n'||tn==='No'||tn==='Ni'||tn==='inN') return 'black';
-  if(tn==='L1'||tn==='in1'||tn==='out1'||tn==='Li'||tn==='Lo'||tn==='U'||tn==='L') return 'red';
-  if(tn==='L2'||tn==='in2'||tn==='out2'||tn==='V') return 'blue';
-  if(tn==='L3'||tn==='in3'||tn==='out3'||tn==='W') return 'yellow';
-  if(tn==='out') return 'black';
-  return 'red';
-}
-function wireColorForPair(a,b){ const ca=wireColorFor(a), cb=wireColorFor(b); if(ca==='green'||cb==='green') return 'green'; if(ca==='black'||cb==='black') return 'black'; return ca; }
+const TS={'40x60':[360,540],'60x80':[520,700],'80x100':[700,860],'100x120':[880,1020]};
+const COL={red:'#ef4444',yellow:'#eab308',black:'#111827',blue:'#3b82f6',green:'#22c55e'};
 const terms=t=>{const k=T[t].k;
 if(k==='meter')return[['Li','topl','L'],['Ni','topr','N'],['Lo','botl','L'],['No','botr','N']];
 if(k==='src3')return[['L1','topl','L1'],['L2','top','L2'],['L3','topr','L3'],['N','bot','N']];
@@ -244,9 +140,7 @@ if(k==='sw2')return[['in1','topl','L1'],['in2','topr','L2'],['out1','botl','L1']
 if(k==='sw3')return[['in1','topl','L1'],['in2','top','L2'],['in3','topr','L3'],['out1','botl','L1'],['out2','bot','L2'],['out3','botr','L3']];
 if(k==='ld3')return[['in1','topl','L1'],['in2','top','L2'],['in3','topr','L3'],['out','bot','N']];
 if(k==='ld2')return[['in1','topl','L1'],['in2','topr','L2'],['out','bot','N']];
-if(k==='bus'&&t==='NBar')return [['n1','b1','N1'],['n2','b2','N2'],['n3','b3','N3'],['n4','b4','N4'],['n5','b5','N5'],['n6','b6','N6'],['n7','b7','N7'],['n8','b8','N8']];
- if(k==='bus'&&t==='EBar')return [['pe1','b1','PE1'],['pe2','b2','PE2'],['pe3','b3','PE3'],['pe4','b4','PE4'],['pe5','b5','PE5'],['pe6','b6','PE6'],['pe7','b7','PE7'],['pe8','b8','PE8']];
- return k==='src'?[['L','botl','L'],['N','botr','N']]:k==='bus'?[['n','mid',t==='EBar'?'PE':'N']]: k==='ld'?[['in','top','L'],['out','bot','N']]:[['in','top','1'],['out','bot','2']]};
+return k==='src'?[['L','botl','L'],['N','botr','N']]:k==='bus'?[['n','mid',t==='EBar'?'PE':'N']]:k==='ld'?[['in','top','L'],['out','bot','N']]:[['in','top','1'],['out','bot','2']]};
 const P={
 DB:{n:'لوحة DB',c:[['m','Mains',30,20],['iso','Isolator',30,140],['rc','RCCB',30,260],['q1','MCB',150,380],['q2','MCB25',290,380],['l1','Lamp',150,520],['h','Heater',290,510],['nb','NBar',150,640]],
 w:['m.L>iso.in:r','iso.out>rc.in:r','rc.out>q1.in:r','rc.out>q2.in:r','q1.out>l1.in:r','q2.out>h.in:r','l1.out>nb.n:b','h.out>nb.n:b','nb.n>m.N:b'],
@@ -299,26 +193,23 @@ function load(p){
  C=[];W=[];K={};
  p.c.forEach(([k,t,x,y,s])=>{const c=mk(t,x,y);if(s)c.s=s;K[k]=c;C.push(c)});
  const tid=a=>{const[k,t]=a.split('.');if(!K[k])return null;return K[k].id+':'+t};
- const busCount={};
- const tidBus=a=>{const[k,t]=a.split('.'); if(!K[k])return null; if(K[k].t==='NBar'&&t==='n'){busCount[k]=(busCount[k]||0)+1; return K[k].id+':n'+Math.min(8,busCount[k]);} if(K[k].t==='EBar'&&(t==='n'||t==='PE')){busCount[k]=(busCount[k]||0)+1; return K[k].id+':pe'+Math.min(8,busCount[k]);} return K[k].id+':'+t;};
- p.w.forEach(s=>{const[a,r]=s.split(':'),[x,y]=a.split('>');const ta=tidBus(x),tb=tidBus(y);if(ta&&tb)link(ta,tb,r==='b'?'black':r==='y'?'blue':r==='k'?'yellow':r==='g'?'green':'red')});
+ p.w.forEach(s=>{const[a,r]=s.split(':'),[x,y]=a.split('>');const ta=tid(x),tb=tid(y);if(ta&&tb)link(ta,tb,r==='b'?'blue':r==='y'?'yellow':r==='k'?'black':r==='g'?'green':'red')});
  return tid;
 }
 // FIX: حماية fx من مفاتيح غير موجودة
 function fx(list,tid){
  list.forEach(([o,a,b])=>{
   if(o==='cutw'){
-    const expand=id=>{ const [cid,tn]=id.split(':'); const c=C.find(v=>v.id===cid); if(c&&c.t==='NBar'&&tn==='n') return Array.from({length:8},(_,i)=>cid+':n'+(i+1)); if(c&&c.t==='EBar'&&(tn==='n'||tn==='PE')) return Array.from({length:8},(_,i)=>cid+':pe'+(i+1)); return [id]; };
-    const xs=expand(tid(a)), ys=expand(tid(b));
-    if(!xs[0]||!ys[0])return;
-    W=W.filter(w=>!(xs.includes(w.a)&&ys.includes(w.b)||xs.includes(w.b)&&ys.includes(w.a)));
+    const x=tid(a),y=tid(b);
+    if(!x||!y)return;
+    W=W.filter(w=>!((w.a===x&&w.b===y)||(w.a===y&&w.b===x)));
     return;
   }
   if(!K[a])return;
   if(o==='off')K[a].s='OFF';if(o==='dead')K[a].dead=1;if(o==='stuck')K[a].stuck=1;
  });
 }
-function setSize(s){size=s;const[w,h]=TS[s];boardW=w;boardH=h;$('bs').value=s;applyZoom();
+function setSize(s){size=s;const[w,h]=TS[s];board.style.width=w+'px';board.style.height=h+'px';$('bs').value=s;
  C.forEach(c=>{c.x=Math.min(c.x,w-T[c.t].w);c.y=Math.min(c.y,h-T[c.t].h)})}
 function inject(i){
  const tid=load(P[cur]);diag=null;
@@ -332,12 +223,12 @@ function sim(){
  if(!run)return r('المحاكاة متوقفة – اضغط تشغيل','y');
  const aw1=new Map(),aw2=new Map(),aw3=new Map(),an=new Map();
  const add=(m,a,b)=>{(m.get(a)||m.set(a,[]).get(a)).push(b);(m.get(b)||m.set(b,[]).get(b)).push(a)};
- // ألوان ثابتة: أحمر=L1 أزرق=L2 أصفر=L3 أسود=N أخضر×أبيض=PE
+ // ألوان الأسلاك: أحمر=L1 أصفر=L2 أسود=L3 أزرق=N أخضر=Earth (لا يدخل L/N)
  W.forEach(w=>{
    if(w.col==='red')add(aw1,w.a,w.b);
-   else if(w.col==='blue')add(aw2,w.a,w.b);
-   else if(w.col==='yellow')add(aw3,w.a,w.b);
-   else if(w.col==='black')add(an,w.a,w.b);
+   else if(w.col==='yellow')add(aw2,w.a,w.b);
+   else if(w.col==='black')add(aw3,w.a,w.b);
+   else if(w.col==='blue')add(an,w.a,w.b);
  });
  // التوصيل الداخلي للقطع حسب عدد الأقطاب
  C.forEach(c=>{const k=T[c.t].k;
@@ -347,7 +238,6 @@ function sim(){
    else if(k==='pass'&&!c.dead)add(aw1,c.id+':in',c.id+':out');
  });
  C.forEach(c=>{if(T[c.t].k==='meter'&&!c.dead){add(aw1,c.id+':Li',c.id+':Lo');add(an,c.id+':Ni',c.id+':No')}});
- C.forEach(c=>{ if(c.t==='NBar'){ for(let i=1;i<8;i++) add(an,c.id+':n'+i,c.id+':n'+(i+1)); } });
  const walk=(s,adj,set)=>{const q=[s];set.add(s);while(q.length){const x=q.pop();(adj.get(x)||[]).forEach(y=>{if(!set.has(y)){set.add(y);q.push(y)}})}};
  // مصادر أحادية + ثلاثية + بارة N كمصدر مساعد للنيوترال
  const src1=C.filter(c=>T[c.t].k==='src'&&c.s==='ON'&&!c.dead);
@@ -391,88 +281,21 @@ const st=(c,e)=>{const d=T[c.t];
  if(d.k==='pass')return e?(c.t==='Ammeter'?down(c).reduce((s,l)=>s+amp(l),0).toFixed(2)+'A':(c.kwh||0).toFixed(3)+' kWh'):'—';
  if(d.k==='meter')return e?down(c).reduce((s,l)=>s+l.w,0)+' W':'—';
  return '';};
-
-const INFO={
-Mains:{f:'مصدر الشبكة 220V - بداية أي دائرة أحادية.',w:['وصّل طرف <b>L</b> (أحمر) إلى دخل القاطع الرئيسي أو السكينة','وصّل طرف <b>N</b> (أسود) إلى بارة N أو مباشرة للحمل','لا توصل L مع N مباشرة بدون حمل - ده قصر دائرة'],tip:'افصل العمومي قبل أي تعديل.'},
-Generator:{f:'مولد ديزل 220V - مصدر بديل عند انقطاع الشبكة.',w:['وصّل <b>L</b> للقاطع الرئيسي','وصّل <b>N</b> لبارة N','اضغط المولد للتشغيل START / الإيقاف STOP','راقب الوقود - لو خلص المولد هيقف'],tip:'لا تشغل الشبكة والمولد معاً بدون ATS.'},
-Mains3Ph:{f:'مصدر شبكة 3 فاز 380V - L1+L2+L3+N.',w:['وصّل <b>L1</b> (أحمر) و <b>L2</b> (أزرق) و <b>L3</b> (أصفر) إلى القاطع 3P','وصّل <b>N</b> (أسود) إلى بارة N','أحمال 3 فاز تاخد الفازات الثلاث، والأحمال الأحادية تاخد فازة واحدة + N'],tip:'فقد فازة واحدة يخلي الموتور يزن ويسخن.'},
-Generator3Ph:{f:'مولد 3 فاز - مصدر بديل ثلاثي.',w:['وصّل L1/L2/L3 إلى القاطع 3P','وصّل N إلى بارة N','اضغط للتشغيل ومتابعة الوقود'],tip:'لا تدمج مولدين أو مولد مع شبكة بدون تزامن.'},
-Isolator:{f:'سكينة فصل - تفصل الدائرة يدوياً للصيانة، مش حماية.',w:['الدخل <b>1</b> من المصدر','الخرج <b>2</b> للقاطع أو الحمل','اضغط للفصل / التوصيل'],tip:'السكينة لا تفصل عند القصر - لازم قاطع معاها.'},
-Isolator3P:{f:'سكينة 3 فاز - تفصل الفازات الثلاث معاً للصيانة.',w:['دخل in1/in2/in3 من المصدر 3 فاز','خرج out1/out2/out3 للقاطع 3P أو الحمل'],tip:'افصلها قبل فك أي موتور 3 فاز.'},
-MCB:{f:'قاطع MCB C16 - حماية من زيادة الحمل والقصر، 16A.',w:['الدخل <b>1</b> من المصدر أو القاطع الرئيسي','الخرج <b>2</b> للحمل (لمبة / بريزة)','اضغط القاطع للفصل / التوصيل'],tip:'لو فصل لوحده، لا ترفعه قبل ما تعرف سبب الفصل.'},
-MCB25:{f:'قاطع MCB C25 - حماية 25A للأحمال الأكبر زي السخان.',w:['الدخل من المصدر','الخرج للحمل'],tip:'لا تكبر القاطع عن سعة السلك.'},
-MCB2P:{f:'قاطع ثنائي القطب - يفصل فازتين معاً (L1+L2) أو L+N.',w:['in1 (L1) → out1','in2 (L2) → out2'],tip:'يستخدم للأحمال الثنائية والتكييفات.'},
-MCB3P:{f:'قاطع ثلاثي - يفصل L1+L2+L3 معاً، حماية المواتير 3 فاز.',w:['in1/in2/in3 من المصدر','out1/out2/out3 للحمل 3 فاز'],tip:'لو فازة واحدة سقطت جوه القاطع، الموتور هيزن.'},
-MCCB:{f:'قاطع MCCB 100A - حماية رئيسية للوحات الكبيرة.',w:['الدخل من المصدر الرئيسي','الخرج للقواطع الفرعية'],tip:'يضبط تيار الفصل حسب حمل اللوحة.'},
-MCCB3P:{f:'قاطع MCCB 3 فاز 100A - رئيسي للوحات 3 فاز.',w:['in1/in2/in3 من المصدر','out1/out2/out3 للفرعيات'],tip:'لا تلمس أطرافه وهو شغال.'},
-RCCB:{f:'قاطع RCCB 30mA - حماية من التسريب الأرضي والصعق.',w:['الدخل من المصدر','الخرج للقواطع الفرعية','N يدخل ويخرج من الـ RCCB - لا تشارك N بعده مع دائرة قبله'],tip:'لو فصل، افصل كل الفرعيات وارفع واحد واحد لتحديد التسريب.'},
-RCCB3P:{f:'قاطع RCCB 3 فاز - حماية تسريب للوحات 3 فاز.',w:['دخل 3 فاز + N','خرج 3 فاز + N للفرعيات'],tip:'N المشترك الغلط يخليه يفصل على طول.'},
-SPD:{f:'مانع صواعق SPD - يحمي من ارتفاع الجهد المفاجئ.',w:['طرفه in من الفازة','طرفه out إلى بارة الأرضي PE'],tip:'يُركب بعد القاطع الرئيسي.'},
-Contactor:{f:'كونتاكتور - مفتاح كهرومغناطيسي يشغل الحمل الكبير من إشارة صغيرة.',w:['الدخل <b>1</b> من القاطع','الخرج <b>2</b> للحمل','ملف التشغيل A1-A2 يوصله زر أو تايمر'],tip:'لو سمعت زنة، الملف أو التلامسات فيها مشكلة.'},
-Contactor3P:{f:'كونتاكتور 3 فاز - يشغل مواتير 3 فاز.',w:['in1/in2/in3 من القاطع 3P','out1/out2/out3 للموتور'],tip:'ركب أوفرلود بعده لحماية الموتور.'},
-Overload:{f:'أوفرلود - يفصل عند زيادة تيار الموتور.',w:['الدخل من الكونتاكتور','الخرج للموتور','اضبطه على تيار الموتور +20%'],tip:'بعد الفصل اضغط Reset.'},
-Overload3P:{f:'أوفرلود 3 فاز - حماية الموتور 3 فاز من زيادة الحمل.',w:['دخل 3 فاز من الكونتاكتور','خرج 3 فاز للموتور'],tip:'لا ترفع ضبطه فوق تيار الموتور.'},
-TimerOnDelay:{f:'تايمر تأخير تشغيل - يؤخر تشغيل الحمل وقت معين.',w:['الدخل من القاطع','الخرج للكونتاكتور أو الحمل'],tip:'يستخدم في ستار دلتا وتشغيل المراحل.'},
-Timer24H:{f:'تايمر 24 ساعة - يشغل ويطفي الحمل حسب الوقت.',w:['الدخل من القاطع','الخرج للكونتاكتور'],tip:'اضبط الوقت قبل التشغيل.'},
-Photocell:{f:'خلية ضوئية - تشغل الإضاءة ليلاً وتطفيها نهاراً.',w:['الدخل من القاطع','الخرج للكونتاكتور / اللمبات'],tip:'لا تغطي حساس الضوء.'},
-Selector:{f:'مفتاح اختيار - يبدل بين وضعين (يدوي / أوتوماتيك).',w:['الدخل من القاطع','الخرج للحمل أو الكونتاكتور'],tip:'اضغط للتبديل بين الوضعين.'},
-PBG:{f:'زر تشغيل أخضر - نبضة تشغيل للكونتاكتور.',w:['وصّله في مسار ملف الكونتاكتور'],tip:'يشتغل مع زر إيقاف أحمر.'},
-PBR:{f:'زر إيقاف أحمر - يفصل الدائرة.',w:['وصّله في مسار ملف الكونتاكتور بالتوالي مع زر التشغيل'],tip:'دائماً في مسار الإيقاف.'},
-Lamp:{f:'لمبة - حمل إضاءة، تشتغل بـ L + N.',w:['طرف <b>in</b> (أحمر) من خرج القاطع','طرف <b>out</b> (أسود) إلى بارة N'],tip:'لو لمبة ترعش، افحص N.'},
-LampR:{f:'لمبة بيان حمراء - تبين أن الدائرة شغالة أو فيها عطل.',w:['in من الفازة','out إلى N'],tip:'تستخدم كإشارة.'},
-LampG:{f:'لمبة بيان خضراء - تبين التشغيل السليم.',w:['in من الفازة','out إلى N'],tip:'تستخدم كإشارة.'},
-Ammeter:{f:'أميتر - يقيس التيار المار في الدائرة بالتوالي.',w:['الدخل <b>in</b> من القاطع','الخرج <b>out</b> للحمل','يتوصل توالي - لا توصله توازي مع المصدر'],tip:'توصيله توازي يعمل قصر.'},
-Voltmeter:{f:'فولتميتر - يقيس الجهد بالتوازي.',w:['in من الفازة','out إلى N'],tip:'يتوصل توازي فقط.'},
-Meter:{f:'عداد kWh - يحسب استهلاك الدائرة.',w:['in من القاطع','out للحمل','N يدخل ويخرج منه'],tip:'لا تعكس الدخل والخرج.'},
-HMeter:{f:'عداد منزلي - يحسب استهلاك الشقة بالكامل.',w:['Li من الفازة - Ni من N','Lo للحمل - No لبارة N'],tip:'قراءته تزيد مع الاستهلاك.'},
-NBar:{f:'بارة نيوترال - فيها 8 نقاط (N1..N8) موصولة ببعضها جوه البارة.',w:['وصّل N المصدر لها','وصّل N كل حمل لها'],tip:'مسمار مفكوك هنا يعمل ارتفاع جهد على الأحمال.'},
-EBar:{f:'بارة أرضي PE - فيها 8 نقاط (PE1..PE8) موصولة ببعضها جوه البارة.',w:['وصّل أخضر×أبيض من أجسام الأجهزة لها','وصّلها لأرضي المبنى'],tip:'لا تخلط PE مع N.'},
-Motor:{f:'موتور أحادي - حمل حركي يشتغل بـ L + N.',w:['in (أحمر) من القاطع أو الكونتاكتور','out (أسود) إلى بارة N'],tip:'لو يزن ولا يدور، افحص المكثف.'},
-Fan:{f:'مروحة - حمل أحادي.',w:['in من القاطع','out إلى N'],tip:'حملها صغير.'},
-Heater:{f:'سخان - حمل حراري، يسحب تيار عالي.',w:['in من قاطع C25','out إلى N'],tip:'لازم قاطع مناسب وسلك سميك.'},
-Socket:{f:'بريزة 16A - نقطة توصيل للأجهزة.',w:['in من القاطع','out إلى N'],tip:'لا تحملها فوق 16A.'},
-Cooker:{f:'بوتاجاز - حمل عالي.',w:['in من قاطع خاص','out إلى N'],tip:'له دائرة مستقلة.'},
-Washer:{f:'غسالة - حمل حركي + سخان.',w:['in من القاطع','out إلى N'],tip:'تحتاج أرضي PE.'},
-Fridge:{f:'ثلاجة - حمل دائم.',w:['in من القاطع','out إلى N'],tip:'لا تفصلها كثيراً.'},
-Motor3Ph:{f:'موتور 3 فاز - يشتغل بـ L1+L2+L3 بدون N.',w:['in1 (أحمر) - in2 (أزرق) - in3 (أصفر) من القاطع 3P','out إلى N (اختياري للبيان)'],tip:'لو عكست فازتين، اتجاهه يعكس.'},
-Heater3Ph:{f:'سخان 3 فاز - حمل حراري ثلاثي.',w:['in1/in2/in3 من القاطع 3P','out إلى N'],tip:'يسحب تيار متساوي على الفازات الثلاث.'},
-Socket3Ph:{f:'بريزة 3 فاز - نقطة توصيل ثلاثية.',w:['in1/in2/in3 من القاطع 3P','out إلى N'],tip:'تأكد من ترتيب الفازات قبل توصيل الجهاز.'},
-VFD3:{f:'محول سرعات VFD 3 فاز - يتحكم في سرعة الموتور بتغيير التردد.',w:['دخل in1/in2/in3 من القاطع 3P','خرج U/V/W للموتور 3 فاز','حدد السرعة من خانة القدرة (Hz)'],tip:'لا توصل مكثفات تحسين على خرجه.'},
-VFD1:{f:'محول سرعات VFD 1 فاز - دخل أحادي وخرج ثلاثي للموتور.',w:['دخل in (L) و inN (N) من قاطع أحادي','خرج U/V/W للموتور 3 فاز'],tip:'حل ممتاز لو عندك شبكة أحادية وموتور ثلاثي.'},
-Rev3:{f:'عكس اتجاه 3 فاز - يعكس اتجاه الموتور بتبديل فازتين.',w:['دخل in1/in2/in3 من القاطع 3P','خرج U/V/W للموتور','اضغط: متوقف → أمامي → عكسي'],tip:'لا تعكس والموتور لسه بيدور.'},
-StarDelta:{f:'بادئ ستار دلتا - يبدأ الموتور ستار لتقليل تيار البدء ثم يحول دلتا.',w:['دخل in1/in2/in3 من القاطع 3P','خرج U/V/W للموتور','اضغط للتشغيل - يحول من ستار لدلتا أوتوماتيك بعد ~4 ثوان'],tip:'تشغيل طويل على ستار يسخن الموتور.'},
-MotorDah:{f:'موتور داهلاندر - موتور سرعتين.',w:['in1/in2/in3 من القاطع 3P','اضغط الموتور نفسه لتبديل سرعة 1 ↔ سرعة 2'],tip:'سرعة 2 تسحب تيار أعلى.'},
-MotorRev:{f:'موتور عكس اتجاه - موتور 3 فاز مصمم للعكس.',w:['in1/in2/in3 من قطعة عكس الاتجاه','out إلى N'],tip:'استخدم معاه إنترلوك.'}
-};
-function showInfo(t){
-  const inf = INFO[t] || {f:'قطعة كهربائية.',w:['وصّل أطرافها حسب الاسم المكتوب عليها'],tip:'افصل الكهرباء قبل التعديل.'};
-  const name = T[t]?T[t].n:t;
-  $('infoTitle').textContent = '؟ '+name;
-  $('infoBody').innerHTML = `<div class="tag">${T[t]?T[t].c:''}</div><div><b>📌 الوظيفة:</b><br>${inf.f}</div><div style="margin-top:8px"><b>🔌 كيفية التوصيل:</b><ol>${inf.w.map(x=>`<li>${x}</li>`).join('')}</ol></div><div class="warn">⚠️ <b>نصيحة:</b> ${inf.tip}</div>`;
-  $('infoModal').classList.add('on');
-}
-
-function denyEdit(){const m=$('msg');if(m){m.textContent='⏸ أوقف التشغيل أولاً للتعديل على القطع أو الأسلاك';m.className='r'}setTimeout(()=>render(),1800);return false}
 function render(){
  res=sim();
- document.body.classList.toggle('locked', !!run);
- const be=$('boardEmpty'); if(be) be.style.display=C.length?'none':'flex';
  comps.innerHTML=C.map(c=>{
   const d=T[c.t],e=res.E.has(c.id),lamp=c.t in LIT,fg=TL(d.b);
   const cls=['c',sel===c.id?'sel':'',e&&d.k!=='ld'?'live':'',e&&lamp?'glow':'',c.dead?'bd':'',e&&['Motor','Fan','Washer','Motor3Ph'].includes(c.t)?'spin':''].join(' ');
   const hot=c.t==='Heater'&&e?`background:hsl(${Math.max(0,210-(c.temp-20)*3)},80%,80%);`:'';
   const lv=d.k==='sw'?`<div class="lv"><i class="${c.s==='ON'||c.stuck?'u':''}"></i></div>`:d.g?`<div class="gl">${d.g}</div>`:'';
-  const isReal=['MCB','MCB25','MCB2P','MCB3P','MCCB3P','MCCB','Lamp','LampR','LampG','Motor','Motor3Ph'].includes(c.t);
-  return `<div class="${cls}${isReal?' real':''}" data-id="${c.id}" style="left:${c.x*zoom}px;top:${c.y*zoom}px;width:${d.w}px;height:${d.h}px;transform:rotate(${c.rot||0}deg) scale(${(c.sc||1)*zoom});background:${isReal?'transparent':d.b};color:${fg};--lit:${LIT[c.t]||'#fff'};--inv:${1/((c.sc||1)*zoom)};${hot}">
-   ${isReal?'':`<b>${c.l}</b>`}${gfx(c,e)||lv}${isReal?'':`<small>${st(c,e)}</small>`}
-   ${terms(c.t).map(([n,p,l])=>`<i class="t ${p}${pend===c.id+':'+n?' p':''}" data-t="${c.id}:${n}" data-l="${l}"></i>`).join('')}<i class="qbtn" data-q="${c.t}" title="شرح القطعة">؟</i>${sel===c.id&&!run?'<i class="hd rot" data-h="rot">↻</i><i class="hd siz" data-h="siz">⤡</i>':''}</div>`;
+  return `<div class="${cls}" data-id="${c.id}" style="left:${c.x}px;top:${c.y}px;width:${d.w}px;height:${d.h}px;transform:rotate(${c.rot||0}deg) scale(${c.sc||1});background:${d.b};color:${fg};--lit:${LIT[c.t]||'#fff'};--inv:${1/(c.sc||1)};${hot}">
+   <b>${c.l}</b>${gfx(c,e)||lv}<small>${st(c,e)}</small>
+   ${terms(c.t).map(([n,p,l])=>`<i class="t ${p}${pend===c.id+':'+n?' p':''}" data-t="${c.id}:${n}" data-l="${l}"></i>`).join('')}${sel===c.id?'<i class="hd rot" data-h="rot">↻</i><i class="hd siz" data-h="siz">⤡</i>':''}</div>`;
  }).join('');
- const m=$('msg');m.textContent=res.msg;m.className=res.c;m.style.display=res.msg?'':'none';
+ const m=$('msg');m.textContent=res.msg;m.className=res.c;
  {const ls=C.filter(c=>T[c.t].k==='ld'&&res.E.has(c.id));$('kwh').textContent=`⚡ ${ls.reduce((s,c)=>s+c.w,0)} W • ${ls.reduce((s,c)=>s+amp(c),0).toFixed(2)} A • ${kwh.toFixed(3)} kWh`}
  $('bw').className=wire?'on':'';
- $('br').textContent=run?'⏸ إيقاف':'▶ تشغيل'; $('br').className='go runBtn'+(run?'':' stop');
- const scEl=$('stComp'), swEl=$('stWire'), szEl=$('stZoom'), ssEl=$('stState');
- if(scEl){ scEl.textContent=C.length+' comp'; swEl.textContent=W.length+' wire'; szEl.textContent=Math.round(zoom*100)+'%'; ssEl.textContent=run?'● RUNNING':'○ STOPPED'; ssEl.className=run?'run':'stp'; }
+ $('br').textContent=run?'⏸ إيقاف المحاكاة':'▶ تشغيل المحاكاة';
  $('tb').className=tab==='b'?'on':'';$('tm').className=tab==='m'?'on':'';
  document.body.className=tab==='m'?'mt':'';
  $('wl').innerHTML=W.map(w=>{
@@ -493,47 +316,40 @@ function render(){
 function draw(){
  const br=board.getBoundingClientRect();
  const pt=id=>{const el=board.querySelector(`[data-t="${id}"]`);if(!el)return null;const r=el.getBoundingClientRect();return[r.left-br.left+r.width/2,r.top-br.top+r.height/2]};
- // توزيع الأسلاك المشتركة في نقطة واحدة: كل سلك ياخد إزاحة أفقية مختلفة
- const perTerm={}; W.forEach(w=>{ (perTerm[w.a]=perTerm[w.a]||[]).push(w.id); (perTerm[w.b]=perTerm[w.b]||[]).push(w.id); });
- const offFor=(wId,term)=>{ const arr=perTerm[term]||[wId]; const idx=arr.indexOf(wId); return (idx-(arr.length-1)/2)*7; };
  svg.innerHTML=W.map(w=>{
-  let a=pt(w.a),b=pt(w.b);if(!a||!b)return '';
-  a=[a[0]+offFor(w.id,w.a), a[1]]; b=[b[0]+offFor(w.id,w.b), b[1]];
-  const midY=(a[1]+b[1])/2; const dd=`M${a[0]} ${a[1]} L${a[0]} ${midY} L${b[0]} ${midY} L${b[0]} ${b[1]}`,sw=selW===w.id,lv=res&&['L1','L2','L3','N'].some(k=>res[k]&&res[k].has(w.a)&&res[k].has(w.b));
-  const base=`<path data-w="${w.id}" d="${dd}" fill="none" stroke="transparent" stroke-width="18" style="pointer-events:stroke;cursor:pointer"/><path d="${dd}" fill="none" stroke="${COL[w.col]}" stroke-width="${sw?6:lv?4:3}" stroke-linecap="round" ${sw?'stroke-dasharray="8 5"':''} ${lv?`style="filter:drop-shadow(0 0 4px ${COL[w.col]})"`:''}/>`; if(w.col==='green') return base+`<path d="${dd}" fill="none" stroke="#fff" stroke-width="2" stroke-dasharray="10 10" opacity=".9" style="pointer-events:none"/>`; return base;
- }).join('') + Object.entries(perTerm).filter(([_,arr])=>arr.length>1).map(([term,arr])=>{ const p0=pt(term); if(!p0) return ''; return `<circle cx="${p0[0]}" cy="${p0[1]}" r="7" fill="#b45309" stroke="#fff" stroke-width="1.5" style="pointer-events:none"/><text x="${p0[0]}" y="${p0[1]+3}" text-anchor="middle" font-size="8" font-weight="800" fill="#fff" style="pointer-events:none">${arr.length}</text>`; }).join('');
+  const a=pt(w.a),b=pt(w.b);if(!a||!b)return '';
+  const dd=`M${a[0]} ${a[1]} C${a[0]} ${a[1]+50},${b[0]} ${b[1]-50},${b[0]} ${b[1]}`,sw=selW===w.id,lv=res&&((res.L.has(w.a)&&res.L.has(w.b))||(res.N.has(w.a)&&res.N.has(w.b)));
+  return `<path data-w="${w.id}" d="${dd}" fill="none" stroke="transparent" stroke-width="18" style="pointer-events:stroke;cursor:pointer"/><path d="${dd}" fill="none" stroke="${COL[w.col]}" stroke-width="${sw?6:lv?4:3}" stroke-linecap="round" ${sw?'stroke-dasharray="8 5"':''} ${lv?`style="filter:drop-shadow(0 0 4px ${COL[w.col]})"`:''}/>`;
+ }).join('');
 }
 function lib(){
  const q=($('dq')?$('dq').value:'').trim();
  const cats=[...new Set(A.map(a=>a[2]))];
- $('dr').innerHTML=`<div class="bar" style="margin-bottom:4px"><button id="dc">✕ إغلاق</button><button id="ds">⇄ الجهة</button></div>
+ $('dr').innerHTML=`<div class="bar" style="margin-bottom:4px"><button id="dc">✕ طي</button><button id="ds">⇄ الجهة</button></div>
   <input id="dq" placeholder="ابحث: موتور، مولد، قاطع…" value="${q}">`+
   cats.map(c=>{const it=A.filter(a=>a[2]===c&&(!q||a[1].includes(q)||a[0].toLowerCase().includes(q.toLowerCase())));
    return it.length?`<div class="cat">${c}</div><div class="gr">${it.map(a=>`<button data-add="${a[0]}">${a[7]&&a[7].length<3?a[7]+' ':''}${a[1]}</button>`).join('')}</div>`:''}).join('');
  const i=$('dq');if(q){i.focus();i.setSelectionRange(q.length,q.length)}
  i.oninput=lib;
 }
-function panel(){$('wrap').className='R'+(open?'':' cl')}
-board.addEventListener('pointerdown',e=>{ if(e.target.closest('.qbtn'))return;
- if(open){open=false;panel();return;}
- if(e.target.dataset.h){if(run){denyEdit();return}const c=cur1(),el=e.target.closest('.c');if(c&&el){const r=el.getBoundingClientRect();hd={m:e.target.dataset.h,c,el,cx:r.left+r.width/2,cy:r.top+r.height/2};e.preventDefault()}return}
+function panel(){$('wrap').className=side+(open?'':' cl')}
+board.addEventListener('pointerdown',e=>{
+ if(e.target.dataset.h){const c=cur1(),el=e.target.closest('.c');if(c&&el){const r=el.getBoundingClientRect();hd={m:e.target.dataset.h,c,el,cx:r.left+r.width/2,cy:r.top+r.height/2};e.preventDefault()}return}
  if(e.target.closest('.t'))return;
  const el=e.target.closest('.c');if(!el){if(!e.target.dataset.w&&(sel||selW)){sel=null;selW=null;render()}return}
  const c=C.find(x=>x.id===el.dataset.id);sel=c.id;selW=null;
- drag={c,el,sx:e.clientX,sy:e.clientY,ox:c.x,oy:c.y,moved:false,locked:!!run};
+ drag={c,el,sx:e.clientX,sy:e.clientY,ox:c.x,oy:c.y,moved:false};
  el.classList.add('sel');
 });
 addEventListener('pointermove',e=>{
  if(!drag)return;
- if(drag.locked)return;
  const dx=e.clientX-drag.sx,dy=e.clientY-drag.sy;
  if(!drag.moved&&Math.hypot(dx,dy)<4)return;
  drag.moved=true;
  const el=drag.el;
- const rect=el.getBoundingClientRect();
- drag.c.x=Math.max(0,Math.min(boardW-rect.width/zoom,drag.ox+dx/zoom));
- drag.c.y=Math.max(0,Math.min(boardH-rect.height/zoom,drag.oy+dy/zoom));
- el.style.left=(drag.c.x*zoom)+'px';el.style.top=(drag.c.y*zoom)+'px';
+ drag.c.x=Math.max(0,Math.min(board.clientWidth-el.offsetWidth,drag.ox+dx));
+ drag.c.y=Math.max(0,Math.min(board.clientHeight-el.offsetHeight,drag.oy+dy));
+ el.style.left=drag.c.x+'px';el.style.top=drag.c.y+'px';
  if(!raf)raf=requestAnimationFrame(()=>{raf=0;draw()});
 });
 addEventListener('pointerup',()=>{
@@ -545,16 +361,14 @@ addEventListener('pointerup',()=>{
 });
 board.addEventListener('click',e=>{
  const t=e.target.closest('.t');if(!t||!wire||tab!=='b')return;
- if(run){denyEdit();return}
  const id=t.dataset.t;
  if(!pend)pend=id;
- else if(pend!==id&&!W.some(w=>(w.a===pend&&w.b===id)||(w.a===id&&w.b===pend))){link(pend,id,wireColorForPair(pend,id));pend=null}
+ else if(pend!==id&&!W.some(w=>(w.a===pend&&w.b===id)||(w.a===id&&w.b===pend))){link(pend,id,$('bc').value);pend=null}
  else pend=null;
  render();
 });
 document.addEventListener('click',e=>{
  const d=e.target.dataset;
- if(run&&(d.add||d.dw)){denyEdit();return}
  if(d.add){const[w,h]=TS[size],c=mk(d.add,30+Math.random()*Math.max(40,w-220),20+Math.random()*100);C.push(c);sel=c.id;render()}
  if(d.dw){W=W.filter(w=>w.id!==d.dw);render()}
  if(d.tab&&d.tab!==tab){
@@ -570,19 +384,11 @@ document.addEventListener('click',e=>{
  if(e.target.id==='dh'){open=true;panel()}
  if(e.target.id==='ds'){side=side==='R'?'L':'R';panel()}
 });
-$('bw').onclick=()=>{if(run){denyEdit();return}wire=!wire;pend=null;render()};
+$('bw').onclick=()=>{wire=!wire;pend=null;render()};
 $('br').onclick=()=>{run=!run;render()};
-$('bs').onchange=e=>{if(run){$('bs').value=size;denyEdit();return}setSize(e.target.value);render()};
-function setZoom(z){ zoom=Math.max(.5,Math.min(2,z)); applyZoom(); render(); }
-$('zoomIn').onclick=()=>setZoom(zoom+.1);
-$('zoomOut').onclick=()=>setZoom(zoom-.1);
-$('zoomReset').onclick=()=>setZoom(1);
-$('zoomRange').oninput=e=>setZoom(+e.target.value/100);
-$('sc').addEventListener('wheel',e=>{ if(e.ctrlKey||e.metaKey){ e.preventDefault(); setZoom(zoom+(e.deltaY<0?0.1:-0.1)); } },{passive:false});
-board.addEventListener('dblclick',e=>{ if(!e.target.closest('.c')) setZoom(1); });
+$('bs').onchange=e=>{setSize(e.target.value);render()};
 // FIX: تم حذف let selW,hd من هنا - أصبحت في الأعلى
 function sbUpdate(){
- if(run){$('sb').className='bar';return}
  const c=C.find(x=>x.id===sel);
  $('sb').className='bar'+((c||selW)?' on':'');
  $('sbc').style.display=c?'flex':'none';
@@ -590,13 +396,12 @@ function sbUpdate(){
  if(c){$('rr').value=c.rot||0;$('rv').textContent=Math.round(c.rot||0)+'°';$('sr').value=Math.round((c.sc||1)*100);$('sv').textContent=Math.round((c.sc||1)*100)+'%'}
 }
 const cur1=()=>C.find(x=>x.id===sel);
-function applyT(c){const el=comps.querySelector(`[data-id="${c.id}"]`);if(el){el.style.transform=`rotate(${c.rot}deg) scale(${c.sc*zoom})`;el.style.setProperty('--inv',1/(c.sc*zoom))}draw()}
-$('rr').oninput=e=>{if(run){denyEdit();return}const c=cur1();if(!c)return;c.rot=+e.target.value;$('rv').textContent=c.rot+'°';applyT(c)};
-$('sr').oninput=e=>{if(run){denyEdit();return}const c=cur1();if(!c)return;c.sc=e.target.value/100;$('sv').textContent=e.target.value+'%';applyT(c)};
-$('r90').onclick=()=>{if(run){denyEdit();return}const c=cur1();if(!c)return;c.rot=((c.rot||0)+90)%360;render()};
-$('sx').onclick=()=>{if(run){denyEdit();return}const c=cur1();if(!c)return;c.rot=0;c.sc=1;render()};
+function applyT(c){const el=comps.querySelector(`[data-id="${c.id}"]`);if(el){el.style.transform=`rotate(${c.rot}deg) scale(${c.sc})`;el.style.setProperty('--inv',1/c.sc)}draw()}
+$('rr').oninput=e=>{const c=cur1();if(!c)return;c.rot=+e.target.value;$('rv').textContent=c.rot+'°';applyT(c)};
+$('sr').oninput=e=>{const c=cur1();if(!c)return;c.sc=e.target.value/100;$('sv').textContent=e.target.value+'%';applyT(c)};
+$('r90').onclick=()=>{const c=cur1();if(!c)return;c.rot=((c.rot||0)+90)%360;render()};
+$('sx').onclick=()=>{const c=cur1();if(!c)return;c.rot=0;c.sc=1;render()};
 function del(){
- if(run){denyEdit();return}
  if(selW){W=W.filter(w=>w.id!==selW);selW=null;render();return}
  if(!sel)return;
  C=C.filter(c=>c.id!==sel);W=W.filter(w=>!w.a.startsWith(sel+':')&&!w.b.startsWith(sel+':'));sel=null;render();
@@ -606,7 +411,7 @@ addEventListener('pointermove',e=>{
  if(!hd)return;
  const c=hd.c,dx=e.clientX-hd.cx,dy=e.clientY-hd.cy;
  if(hd.m==='rot'){let a=Math.atan2(dy,dx)*180/Math.PI+90;a=((a%360)+360)%360;const s=Math.round(a/90)*90;if(Math.abs(a-s)<4)a=s%360;c.rot=Math.round(a)}
- else{const d=T[c.t],base=Math.hypot(d.w,d.h)/2;c.sc=Math.max(.4,Math.min(3,(Math.hypot(dx,dy)/zoom)/base))}
+ else{const d=T[c.t],base=Math.hypot(d.w,d.h)/2;c.sc=Math.max(.4,Math.min(3,Math.hypot(dx,dy)/base))}
  applyT(c);sbUpdate();
 });
 addEventListener('pointerup',()=>{if(hd){hd=null;render()}});
@@ -636,12 +441,8 @@ function snd(){
 const bulb=(on,col)=>`<svg width='42' height='54' viewBox='0 0 42 54'><defs><radialGradient id='bg' cx='50%' cy='40%'><stop offset='0' stop-color='#fff'/><stop offset='.5' stop-color='${col}'/><stop offset='1' stop-color='${col}' stop-opacity='.35'/></radialGradient></defs><path d='M21 3a15 15 0 0 0-8 27v6h16v-6A15 15 0 0 0 21 3z' fill='${on?'url(#bg)':'#dbe4ea'}' stroke='#64748b' stroke-width='1.5' ${on?`style='filter:drop-shadow(0 0 12px ${col})'`:''}/><path d='M16 30l3-9 3 6 3-6 3 9' fill='none' stroke='${on?'#fff':'#475569'}' stroke-width='1.5'/><rect x='13' y='36' width='16' height='12' rx='2' fill='#94a3b8'/><rect x='15' y='48' width='12' height='4' rx='2' fill='#475569'/></svg>`;
 const pilot=(on,col)=>`<svg width='40' height='40' viewBox='0 0 40 40'><circle cx='20' cy='20' r='17' fill='#222' stroke='#999' stroke-width='3'/><circle cx='20' cy='20' r='12' fill='${on?col:col+'55'}' ${on?`style='filter:drop-shadow(0 0 10px ${col})'`:''}/><ellipse cx='16' cy='15' rx='5' ry='3' fill='#fff' opacity='${on?.8:.35}'/></svg>`;
 function gfx(c,e){
- if(['MCB','MCB25'].includes(c.t))return `<div class="mcb ${c.s==='ON'?'on':''}" style="width:100%;height:100%"><div style="font:700 7px Arial;color:#111">1/2</div><div class="mt"></div><div class="lb">${c.t==='MCB25'?'C25':'C16'}<small>400V ~ 6000</small></div><div class="lv2"></div><div style="font:700 7px Arial;color:#111">2/1</div><div class="mt"></div></div>`;
- if(c.t==='MCB2P')return `<div class="mcb ${c.s==='ON'?'on':''}" style="flex-direction:row;padding:0 3px"><div style="flex:1;text-align:center"><div class="lb">C25</div><div class="lv2" style="margin:4px auto"></div></div><div style="flex:1;text-align:center"><div class="lb">C25</div><div class="lv2" style="margin:4px auto"></div></div></div>`;
- if(['MCB3P','MCCB3P','MCCB'].includes(c.t))return `<div class="mcb ${c.s==='ON'?'on':''}" style="flex-direction:row;padding:0 2px">${[1,2,3].map(()=>`<div style="flex:1;text-align:center"><div class="lb" style="font-size:9px">C32</div><div class="lv2" style="margin:3px auto"></div></div>`).join('')}</div>`;
- if(['Lamp','LampR','LampG'].includes(c.t))return `<div class="lampReal ${e?'':'off'}"></div>`;
- if(['Motor','Motor3Ph','MotorDah','MotorRev'].includes(c.t))return `<div class="motorReal"></div>`;
-
+ if(c.t==='Lamp')return bulb(e,LIT.Lamp);
+ if(c.t==='LampR'||c.t==='LampG')return pilot(e,LIT[c.t]);
  if(c.t==='HMeter'){const run1=e&&down(c).length>0;return `<div style='background:#9db78a;color:#1b2b1a;font:700 14px monospace;padding:2px 6px;border:2px solid #555;border-radius:3px;letter-spacing:1px'>${(c.kwh||0).toFixed(2).padStart(8,'0')}</div><div style='position:relative;overflow:hidden;width:72px;height:10px;border-radius:5px;background:#cbd5e1;margin:5px 0'><i class='${run1?'dsc':''}' style='position:absolute;top:0;bottom:0;left:0;width:14px;background:#ef4444'></i></div><div style='font-size:9px'>kWh • 220V 50Hz</div>`}
  if(c.t==='Selector')return `<div class='ks'><i class='key ${c.s==='ON'?'k1':''} ${Date.now()-(c.at||0)<600?'ka':''}'></i></div>`;
  if(/^PB/.test(c.t)){const on=c.s==='ON';return `<div style='width:44px;height:44px;border-radius:50%;background:${c.t==='PBG'?'#16a34a':'#dc2626'};border:4px solid #ddd;box-shadow:${on?'inset 0 3px 8px #0009':'0 5px 0 #0006'};transform:translateY(${on?4:0}px)'></div>`}
@@ -650,26 +451,18 @@ function gfx(c,e){
 function down(c){
  const adj=new Map(),add=(a,b)=>{(adj.get(a)||adj.set(a,[]).get(a)).push(b);(adj.get(b)||adj.set(b,[]).get(b)).push(a)};
  // FIX: down() يمشي في أسلاك L فقط (أحمر) حتى لا يحسب أحمال من مسار N
- W.forEach(w=>{if(['red','blue','yellow'].includes(w.col))add(w.a,w.b)});
+ W.forEach(w=>{if(w.col==='red')add(w.a,w.b)});
  C.forEach(x=>{const k=T[x.t].k;if(x!==c&&((k==='sw'&&closed(x))||(k==='pass'&&!x.dead)))add(x.id+':in',x.id+':out')});
  const o=c.id+(T[c.t].k==='meter'?':Lo':':out'),s=new Set([o]),q=[o];
  while(q.length){const v=q.pop();(adj.get(v)||[]).forEach(y=>{if(!s.has(y)){s.add(y);q.push(y)}})}
  return C.filter(l=>T[l.t].k==='ld'&&res.E.has(l.id)&&s.has(l.id+':in'));
 }
-$('wv').oninput=e=>{if(run){denyEdit();return}const c=cur1();if(c){c.w=Math.max(0,+e.target.value||0);render()}};
+$('wv').oninput=e=>{const c=cur1();if(c){c.w=Math.max(0,+e.target.value||0);render()}};
 $('sp').onchange=e=>{SP=+e.target.value};
 $('bm').onclick=()=>{mute=!mute;$('bm').textContent=mute?'🔇':'🔊';snd()};
 let LD=[{n:'لمبة LED',w:10,h:6,q:8},{n:'ثلاجة',w:150,h:12,q:1},{n:'غسالة',w:500,h:1.5,q:1},{n:'مروحة',w:75,h:8,q:2},{n:'تكييف 1.5 حصان',w:1200,h:8,q:1}];
 const TR=[.68,.8736,1.064,1.736,2.184,2.352,2.89],FEE=[0,0,0,20,50,60,0],LIM=[50,100,200,350,650,1000];
-/* تجاري: من الكيلو الأول - الشريحة اللي توصلها يتحاسب عليها كل الاستهلاك */
-const TRC=[1.62,2.16,2.64,2.74,2.79],FEEC=[0,0,0,0,0],LIMC=[100,250,600,1000];
-let BILL_TYPE='home';
 function bill(k){
- if(BILL_TYPE==='comm'){
-  if(k<=0)return{v:0,f:0,t:1};
-  for(let i=0;i<4;i++)if(k<=LIMC[i])return{v:k*TRC[i],f:FEEC[i],t:i+1};
-  return{v:k*TRC[4],f:FEEC[4],t:5};
- }
  if(k<=0)return{v:0,f:0,t:1};
  if(k>1000)return{v:k*TR[6],f:FEE[6],t:7};
  let v=0,p=0,t=0;
@@ -682,21 +475,15 @@ function cres(){
 }
 function calc(){
  const el=$('calc');if(el.style.display==='none')return;
- el.innerHTML=`<h3>🧮 حاسبة الأحمال والفاتورة</h3><div class='bar' style='margin-top:6px'><label>نوع التعريفة <select id='tt'><option value='home' ${BILL_TYPE==='home'?'selected':''}>🏠 منزلي</option><option value='comm' ${BILL_TYPE==='comm'?'selected':''}>🏪 تجاري</option></select></label><span style='font-size:11px;color:var(--mut)'>${BILL_TYPE==='comm'?'التجاري: تحسب من الكيلو الأول':'المنزلي: تحسب تدريجياً'}</span></div><table><tr><th>الجهاز</th><th>واط</th><th>ساعة/يوم</th><th>عدد</th><th></th></tr>${LD.map((l,i)=>`<tr>${['n','w','h','q'].map(k=>`<td><input ${k==='n'?'':'type=number step=any '}data-k='${k}' data-i='${i}' value='${l[k]}'></td>`).join('')}<td><button data-ld='${i}'>✕</button></td></tr>`).join('')}</table><div class='bar' style='margin-top:6px'><button id='la'>＋ جهاز</button><button id='li'>استيراد من اللوحة</button></div><div id='cr'></div><details><summary>تعديل التعريفة المنزلية (ج/ك.و.س) ورسوم الخدمة</summary><div class='gr'>${TR.map((p,i)=>`<label>ش${i+1} سعر<input type=number step=any data-tr='${i}' value='${p}'></label><label>ش${i+1} خدمة<input type=number step=any data-fee='${i}' value='${FEE[i]}'></label>`).join('')}</div></details><details><summary>تعديل التعريفة التجارية (ج/ك.و.س) ورسوم الخدمة - من الكيلو الأول</summary><div class='gr'>${TRC.map((p,i)=>`<label>ش${i+1} تجاري سعر<input type=number step=any data-trc='${i}' value='${p}'></label><label>ش${i+1} تجاري خدمة<input type=number step=any data-feec='${i}' value='${FEEC[i]}'></label>`).join('')}</div><div class='hint'>حدود التجاري: 100 / 250 / 600 / 1000 ك.و.س</div></details><div class='hint'>المنزلي من أغسطس 2026: الشرائح 1–6 تُحاسَب تدريجياً، وما فوق 1000 ك.و.س يُحاسَب كل الاستهلاك بسعر الشريحة 7. التجاري: كل شريحة تُحاسَب من الكيلو الأول (مثلاً 200 ك.و.س تجاري = 200 × 2.16). رسوم الخدمة للشرائح 4–6 من الإعلان المنشور، أما غيرها فاضبطها من فاتورتك. تقدير فقط وليس فاتورة رسمية.</div>`;
+ el.innerHTML=`<h3>🧮 حاسبة الأحمال والفاتورة</h3><table><tr><th>الجهاز</th><th>واط</th><th>ساعة/يوم</th><th>عدد</th><th></th></tr>${LD.map((l,i)=>`<tr>${['n','w','h','q'].map(k=>`<td><input ${k==='n'?'':'type=number step=any '}data-k='${k}' data-i='${i}' value='${l[k]}'></td>`).join('')}<td><button data-ld='${i}'>✕</button></td></tr>`).join('')}</table><div class='bar' style='margin-top:6px'><button id='la'>＋ جهاز</button><button id='li'>استيراد من اللوحة</button></div><div id='cr'></div><details><summary>تعديل التعريفة (ج/ك.و.س) ورسوم الخدمة</summary><div class='gr'>${TR.map((p,i)=>`<label>ش${i+1} سعر<input type=number step=any data-tr='${i}' value='${p}'></label><label>ش${i+1} خدمة<input type=number step=any data-fee='${i}' value='${FEE[i]}'></label>`).join('')}</div></details><div class='hint'>التعريفة المنزلية من أغسطس 2026 (زيادة ≈12%): الشرائح 1–6 تُحاسَب تدريجياً، وما فوق 1000 ك.و.س يُحاسَب كل الاستهلاك بسعر الشريحة 7. رسوم الخدمة للشرائح 4–6 من الإعلان المنشور، أما غيرها فاضبطها من فاتورتك. تقدير فقط وليس فاتورة رسمية.</div>`;
  cres();
 }
 $('calc').addEventListener('input',e=>{const d=e.target.dataset;
- if(e.target.id==='tt'){BILL_TYPE=e.target.value;calc();return}
  if(d.i!==undefined)LD[+d.i][d.k]=d.k==='n'?e.target.value:(+e.target.value||0);
  else if(d.tr!==undefined)TR[+d.tr]=+e.target.value||0;
  else if(d.fee!==undefined)FEE[+d.fee]=+e.target.value||0;
- else if(d.trc!==undefined)TRC[+d.trc]=+e.target.value||0;
- else if(d.feec!==undefined)FEEC[+d.feec]=+e.target.value||0;
  cres()});
 document.addEventListener('click',e=>{const t=e.target;
- if(t.dataset && t.dataset.q){ showInfo(t.dataset.q); return; }
- if(t.id==='infoClose'){ $('infoModal').classList.remove('on'); return; }
- if(t.id==='infoModal'){ $('infoModal').classList.remove('on'); return; }
  if(t.id==='bk'){const el=$('calc');el.style.display=el.style.display==='none'?'block':'none';calc()}
  if(t.id==='la'){LD.push({n:'جهاز',w:100,h:4,q:1});calc()}
  if(t.id==='li'){LD=C.filter(c=>T[c.t].k==='ld'&&c.w>0).map(c=>({n:c.l,w:c.w,h:8,q:1}));calc()}
@@ -704,8 +491,7 @@ document.addEventListener('click',e=>{const t=e.target;
 });
 svg.addEventListener('click',e=>{const id=e.target.dataset&&e.target.dataset.w;if(id){selW=id;sel=null;render()}});
 addEventListener('keydown',e=>{if((e.key==='Delete'||e.key==='Backspace')&&!/INPUT|SELECT/.test(document.activeElement.tagName))del()});
-$('bx').onclick=()=>{if(run){denyEdit();return}C=[];W=[];sel=null;pend=null;render()};
-$('breset').onclick=()=>{if(run){denyEdit();return}const m=mk('Mains',40,20),b=mk('MCB',70,150),l=mk('Lamp',70,290),n=mk('NBar',250,400);C=[m,b,l,n];link(m.id+':L',b.id+':in','red');link(b.id+':out',l.id+':in','red');link(l.id+':out',n.id+':n','blue');link(n.id+':n',m.id+':N','blue');sel=null;pend=null;render()};
+$('bx').onclick=()=>{C=[];W=[];sel=null;pend=null;render()};
 addEventListener('resize',draw);
 setInterval(()=>{
  if(drag||!run)return;
@@ -718,11 +504,7 @@ setInterval(()=>{
  C.forEach(c=>{if(T[c.t].k==='ld'&&res.E.has(c.id)){kwh+=c.w/1000*dh;ch=true}if((c.t==='Meter'||T[c.t].k==='meter')&&res.E.has(c.id)){c.kwh=(c.kwh||0)+down(c).reduce((s,l)=>s+l.w,0)/1000*dh;ch=true}});
  if(ch)render();
 },700);
-function hideSplash(){const el=document.getElementById('splash');if(!el)return;el.classList.add('hide');setTimeout(()=>{if(el)el.remove()},700)}
-window.addEventListener('load',()=>setTimeout(hideSplash,1600));
-document.addEventListener('click',e=>{if(e.target.closest('#splash'))hideSplash()});
-setTimeout(hideSplash,2500);
-function init(){
+(function init(){
  const m=mk('Mains',40,20),b=mk('MCB',70,150),l=mk('Lamp',70,290),n=mk('NBar',250,400);
  C=[m,b,l,n];
  link(m.id+':L',b.id+':in','red');link(b.id+':out',l.id+':in','red');link(l.id+':out',n.id+':n','blue');link(n.id+':n',m.id+':N','blue');
@@ -731,7 +513,7 @@ function init(){
 </script>
 <script>
 // ===== PWA: تثبيت + أوفلاين + تحديث تلقائي =====
-const APP_VERSION = 'v2.9.4';
+const APP_VERSION = 'v2.1.0';
 let deferredPrompt = null, newWorker = null;
 const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
 const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
@@ -752,40 +534,22 @@ document.getElementById('installBtn').onclick = async ()=>{
   deferredPrompt = null;
 };
 window.addEventListener('appinstalled', ()=>{ document.getElementById('installBtn').style.display='none'; });
-// عرض رقم النسخة الحالية
-try{ document.getElementById('verLabel').textContent = APP_VERSION; }catch(e){}
-document.getElementById('checkBar').style.display='flex';
 // تسجيل Service Worker - يعمل فقط على https أو localhost (GitHub Pages ✓)
 if('serviceWorker' in navigator && (location.protocol==='https:' || location.hostname==='localhost' || location.hostname==='127.0.0.1')){
   window.addEventListener('load', ()=>{
-    window.__swReg = null;
-    const showUpdateBar = (w)=>{ newWorker = w; const v=document.getElementById('updateVer'); if(v) v.textContent=''; document.getElementById('updateBar').style.display='flex'; };
     navigator.serviceWorker.register('./sw.js').then(reg=>{
-      window.__swReg = reg;
-      const checkUpdate = ()=>{ if(navigator.onLine) reg.update().catch(()=>{}); };
-      // لو فيه تحديث جاهز من قبل ما الصفحة تفتح
-      if(reg.waiting && navigator.serviceWorker.controller) showUpdateBar(reg.waiting);
-      checkUpdate();
-      setInterval(checkUpdate, 60*1000);
-      document.addEventListener('visibilitychange', ()=>{ if(!document.hidden) checkUpdate(); });
+      // فحص تحديث كل مرة يفتح فيها التطبيق بالإنترنت
+      reg.update();
+      setInterval(()=>{ if(navigator.onLine) reg.update(); }, 60*1000);
       reg.addEventListener('updatefound', ()=>{
         newWorker = reg.installing;
-        if(!newWorker) return;
         newWorker.addEventListener('statechange', ()=>{
           if(newWorker.state==='installed' && navigator.serviceWorker.controller){
-            showUpdateBar(newWorker);
+            // فيه نسخة جديدة جاهزة
+            document.getElementById('updateBar').style.display='flex';
           }
         });
       });
-      document.getElementById('checkUpdateBtn').onclick = ()=>{
-        const m=document.getElementById('checkMsg'); m.textContent='⏳ جاري الفحص...';
-        checkUpdate();
-        setTimeout(()=>{
-          if(document.getElementById('updateBar').style.display==='flex') m.textContent='🆕 فيه تحديث جديد - اضغط حدّث الآن بالأعلى';
-          else if(!navigator.onLine) m.textContent='📴 أنت أوفلاين - هيتم الفحص أول ما النت يرجع';
-          else m.textContent='✅ أنت على أحدث نسخة ('+APP_VERSION+')';
-        }, 2500);
-      };
     }).catch(err=>{ console.log('SW غير متاح في هذا السياق:', err); });
   });
   // لما الـ SW الجديد ياخد السيطرة، أعد تحميل الصفحة
@@ -793,12 +557,8 @@ if('serviceWorker' in navigator && (location.protocol==='https:' || location.hos
   navigator.serviceWorker.addEventListener('controllerchange', ()=>{ if(!refreshing){ refreshing=true; window.location.reload(); } });
 }
 document.getElementById('updateBtn').onclick = ()=>{
-  const b=document.getElementById('updateBtn'); b.textContent='⏳ جاري التحديث...'; b.disabled=true;
   if(newWorker){ newWorker.postMessage({type:'SKIP_WAITING'}); }
-  else if(window.__swReg && window.__swReg.waiting){ window.__swReg.waiting.postMessage({type:'SKIP_WAITING'}); }
   else window.location.reload(true);
-  setTimeout(()=>{ window.location.reload(); }, 4000);
 };
-document.getElementById('updateLater').onclick = ()=>{ document.getElementById('updateBar').style.display='none'; };
 </script>
 <script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}function isInlineMediaSlotElement(node){return !!(node&&node.getAttribute&&node.getAttribute("data-clippy-inline-media-slot")!==null)}function findInlineMediaSlot(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(isInlineMediaSlotElement(node))return node}return null}function readInlineMediaUrl(node){if(!node)return null;return node.getAttribute&&((node.getAttribute("data-clippy-inline-media-url")||node.getAttribute("data-url")||node.getAttribute("data_url")))||node.href||null}function stripHash(url){return String(url).replace(/#.*$/,"")}function urlsMatch(a,b){if(!a||!b)return false;try{return stripHash(new URL(a,loc).href)===stripHash(new URL(b,loc).href)}catch(_){return stripHash(a)===stripHash(b)}}function isFirstPartyReelUrl(value){try{var url=new URL(value,loc);if(url.protocol!=="https:")return false;var host=url.hostname.toLowerCase();var supported=host==="instagram.com"||host.endsWith(".instagram.com")||host==="facebook.com"||host.endsWith(".facebook.com");return supported&&/\/reels?\//i.test(url.pathname)}catch(_){return false}}function isInlineMediaUrlClick(node,href){var slot=findInlineMediaSlot(node);if(!slot)return false;var slotUrl=readInlineMediaUrl(slot);if(slotUrl)return urlsMatch(href,slotUrl);return isFirstPartyReelUrl(href)}function findDataHref(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(node.getAttribute){var href=node.getAttribute("data-href")||node.getAttribute("data-url");if(href)return{href:href,node:node}}}return null}var nativeOpen=window.open;window.open=function(url){if(parent!==window&&typeof url==="string"&&/^https?:\/\//.test(url)){parent.postMessage({type:"ecto:usercontent-link-click",href:url},"*");return null}return nativeOpen?nativeOpen.apply(window,arguments):null};document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;if(parent===window)return;var a=target.closest?target.closest("a[href]"):null;if(a&&a.href&&/^https?:\/\//.test(a.href)&&a.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(a,a.href))return;var productId=extractProductId(target)||extractProductId(a);if(productId){e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*");return}e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:a.href},"*");return}var dataHref=findDataHref(target);if(dataHref&&/^https?:\/\//.test(dataHref.href)&&dataHref.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(dataHref.node,dataHref.href))return;e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:dataHref.href},"*")}},true)})();</script><script>(function(){var FOCUS_TYPE="ecto:artifact-focus-request";var CLOSE_TYPE="ecto:artifact-close-request";function focusArtifactDocument(){var body=document.body;if(!body)return;try{window.focus();}catch(e){}if(!body.hasAttribute("tabindex"))body.setAttribute("tabindex","-1");try{body.focus({preventScroll:true});}catch(e){try{body.focus();}catch(e2){}}}window.addEventListener("message",function(event){if(event.source!==window.parent)return;var data=event.data;if(!data||typeof data!=="object"||data.type!==FOCUS_TYPE)return;if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",focusArtifactDocument,{once:true});return;}focusArtifactDocument();});window.addEventListener("keydown",function(event){if(event.key!=="Escape")return;window.setTimeout(function(){if(event.defaultPrevented)return;window.parent.postMessage({type:CLOSE_TYPE},"*");},0);});})();</script></body></html>
