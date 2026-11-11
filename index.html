@@ -96,9 +96,35 @@ body.termMove .t{outline:3px solid #facc15!important;box-shadow:0 0 10px #facc15
 #wl div{display:flex;justify-content:space-between;align-items:center}
 .card{margin-top:8px;font-size:12px;line-height:1.7}.card h3{margin:0 0 4px;font-size:14px}
 .hint{font-size:11px;color:var(--mut);margin:6px 0}
+/* ===== افتتاحية DEC - 16 ثانية - ختم + قصاصات ناعمة + نجوم ===== */
+#intro{position:fixed;inset:0;z-index:9999;background:radial-gradient(ellipse at 50% 40%,#0a1028 0%,#050814 45%,#010208 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;transition:opacity 1.2s}
+#intro.done{opacity:0;pointer-events:none}
+#introStars{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+#introLogoWrap{position:relative;width:280px;height:280px;z-index:5;transition:opacity 2s,transform 2s;filter:drop-shadow(0 0 28px rgba(250,204,21,.45)) drop-shadow(0 0 60px rgba(239,68,68,.25))}
+#introLogo{width:280px;height:280px;object-fit:contain;background:transparent}
+#introTiles{position:absolute;inset:0;display:none}
+#introTiles .tile{position:absolute;background-size:280px 280px;border-radius:50%;will-change:transform,opacity;transition:transform 2.6s cubic-bezier(.22,1,.36,1),opacity 1.8s ease}
+#introCount{position:absolute;top:16px;inset-inline-end:16px;z-index:10;background:#0008;color:#fff;padding:6px 14px;border-radius:999px;font-size:14px;font-weight:800;border:1px solid #ffffff33}
+#introSkip{position:absolute;bottom:26px;inset-inline-start:50%;transform:translateX(-50%);z-index:10;background:#ef4444;color:#fff;border:2px solid #fff;font-size:15px;font-weight:900;padding:10px 26px;border-radius:999px;box-shadow:0 0 20px #ef444488;cursor:pointer}
+#introBar{position:absolute;bottom:0;inset-inline-start:0;height:6px;background:linear-gradient(90deg,#ef4444,#facc15,#22c55e);width:0%;z-index:10;transition:width .3s linear}
+#introFlash{position:fixed;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:10000;transition:opacity 1s}
+#introFlash.on{opacity:1}
 </style></head><body>
+<div id="intro" style="display:none">
+  <canvas id="introStars"></canvas>
+  <div id="introCount">16</div>
+  <div id="introLogoWrap">
+    <img id="introLogo" src="./logo.png" alt="DEC">
+    <div id="introTiles"></div>
+  </div>
+  <button id="introSkip">تخطي ⏭️</button>
+  <div id="introBar"></div>
+</div>
+<div id="introFlash"></div>
+
 <header id="logoBar" style="display:flex;align-items:center;gap:10px;margin:0 0 8px">
   <img src="./logo.png" alt="DEC" style="width:52px;height:52px;object-fit:contain;border-radius:12px;background:#0f172a;border:1px solid #334155" onerror="this.style.display='none'">
+  <button id="introReplay" title="شغّل الافتتاحية تاني">🎉 افتتاحية</button>
   <button id="logoHide" style="margin-inline-start:auto;font-size:11px;padding:4px 10px">إخفاء</button>
 </header>
 <button id="logoShow" style="display:none;margin:0 0 8px;font-size:11px;padding:4px 10px">🔰 إظهار اللوجو</button>
@@ -629,7 +655,7 @@ setInterval(()=>{
 </script>
 <script>
 // ===== PWA: تثبيت + أوفلاين + تحديث تلقائي =====
-const APP_VERSION = 'v3.0.8';
+const APP_VERSION = 'v3.2.0';
 let deferredPrompt = null, newWorker = null;
 const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
 const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
@@ -653,7 +679,7 @@ window.addEventListener('appinstalled', ()=>{ document.getElementById('installBt
 // تسجيل Service Worker - يعمل فقط على https أو localhost (GitHub Pages ✓)
 if('serviceWorker' in navigator && (location.protocol==='https:' || location.hostname==='localhost' || location.hostname==='127.0.0.1')){
   window.addEventListener('load', ()=>{
-    navigator.serviceWorker.register('./sw.js?v=3.0.8').then(reg=>{
+    navigator.serviceWorker.register('./sw.js?v=3.2.0').then(reg=>{
       // فحص تحديث كل مرة يفتح فيها التطبيق بالإنترنت
       reg.update();
       setInterval(()=>{ if(navigator.onLine) reg.update(); }, 60*1000);
@@ -674,11 +700,49 @@ if('serviceWorker' in navigator && (location.protocol==='https:' || location.hos
 }
 document.getElementById('forceUpdateBtn').onclick = async ()=>{
   try{ if('serviceWorker' in navigator){ const regs = await navigator.serviceWorker.getRegistrations(); for(const r of regs){ await r.update(); } await caches.keys().then(ks=>Promise.all(ks.map(k=>caches.delete(k)))); } }catch(e){}
-  window.location.href = window.location.pathname + '?v=308&ts=' + Date.now();
+  window.location.href = window.location.pathname + '?v=320&ts=' + Date.now();
 };
 document.getElementById('updateBtn').onclick = ()=>{
   if(newWorker){ newWorker.postMessage({type:'SKIP_WAITING'}); }
   else window.location.reload(true);
 };
+</script>
+
+
+
+<script>
+// ===== افتتاحية DEC - 16 ثانية - بتشتغل بس لو التطبيق محمّل على الجهاز =====
+// 0-2: الشعار يظهر | 2-9: الشعار يتحول لقصاصات صغيرة جداً وتتجمع (تنتهي في 9)
+// 9-11: شاشة بيضاء | 11-12: تلاشي البيضاء | 12-14: الشعار يظهر تاني | 14-16: الشعار يتلاشى
+(function(){
+  const intro=document.getElementById('intro'),starsCv=document.getElementById('introStars'),flash=document.getElementById('introFlash'),
+  tilesEl=document.getElementById('introTiles'),logo=document.getElementById('introLogo'),logoWrap=document.getElementById('introLogoWrap'),
+  countEl=document.getElementById('introCount'),bar=document.getElementById('introBar'),skipBtn=document.getElementById('introSkip');
+  if(!intro)return;
+  const isInstalled = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone===true || new URLSearchParams(location.search).get('intro')==='1';
+  let timers=[],rafId=null,done=false,started=false,stars=[],floatRaf=null,floatStart=0;
+  const sctx=starsCv.getContext('2d');
+  function resize(){starsCv.width=starsCv.clientWidth*devicePixelRatio;starsCv.height=starsCv.clientHeight*devicePixelRatio;stars=[];for(let i=0;i<200;i++){stars.push({x:Math.random()*starsCv.width,y:Math.random()*starsCv.height,r:(Math.random()*.9+.2)*(devicePixelRatio||1),tw:Math.random()*Math.PI*2,sp:.01+Math.random()*.03,alpha:.25+Math.random()*.6})}}
+  function drawStars(t){sctx.clearRect(0,0,starsCv.width,starsCv.height);stars.forEach(s=>{const a=s.alpha*(.55+.45*Math.sin(t*s.sp*60+s.tw));sctx.globalAlpha=a;sctx.fillStyle='#fff';sctx.beginPath();sctx.arc(s.x,s.y,s.r,0,7);sctx.fill()});sctx.globalAlpha=1;if(!done)rafId=requestAnimationFrame(drawStars)}
+  function buildTiles(){tilesEl.innerHTML='';const N=22,S=280/N;const img=logo.src;for(let r=0;r<N;r++)for(let c=0;c<N;c++){const d=document.createElement('div');d.className='tile';d.style.cssText=`left:${c*S}px;top:${r*S}px;width:${S}px;height:${S}px;background-image:url('${img}');background-position:${-c*S}px ${-r*S}px`;tilesEl.appendChild(d)}}
+  function scatter(){buildTiles();logo.style.display='none';tilesEl.style.display='block';[...tilesEl.children].forEach((t,i)=>{const r=Math.floor(i/22),c=i%22;const dx=(c-11)/11,dy=(r-11)/11;const distFromCenter=Math.sqrt(dx*dx+dy*dy);const a=Math.atan2(dy,dx)+(Math.random()-.5)*.6;const dist=130+distFromCenter*220+Math.random()*80;const delay=distFromCenter*0.55+Math.random()*0.15;t.style.transitionDuration=(2.4+Math.random()*0.6)+'s';t.style.transitionTimingFunction='cubic-bezier(.22,1,.36,1)';t.style.transitionDelay=delay+'s';t.style.transform=`translate(${Math.cos(a)*dist}px,${Math.sin(a)*dist}px) rotate(${(Math.random()*360-180).toFixed(0)}deg) scale(${(.7+Math.random()*.4).toFixed(2)})`;t.style.opacity='1';t.dataset.fx=Math.cos(a)*dist;t.dataset.fy=Math.sin(a)*dist});startFloat()}
+  function startFloat(){if(floatRaf)cancelAnimationFrame(floatRaf);floatStart=performance.now();const loop=(now)=>{const t=(now-floatStart)/1000;[...tilesEl.children].forEach((el,i)=>{if(el.dataset.gathering)return;const fx=parseFloat(el.dataset.fx||0),fy=parseFloat(el.dataset.fy||0);const ox=Math.sin(t*.7+i*1.7)*7;const oy=Math.cos(t*.55+i*2.3)*7;el.style.translate=`${ox}px ${oy}px`});if(!done)floatRaf=requestAnimationFrame(loop)};floatRaf=requestAnimationFrame(loop)}
+  function gather(){if(floatRaf)cancelAnimationFrame(floatRaf);[...tilesEl.children].forEach((t,i)=>{t.dataset.gathering='1';t.style.translate='0px 0px';const r=Math.floor(i/22),c=i%22;const dx=(c-11)/11,dy=(r-11)/11;const distFromCenter=Math.sqrt(dx*dx+dy*dy);const delay=(1.4-distFromCenter)*0.45+Math.random()*0.2;t.style.transitionDuration='1.9s';t.style.transitionTimingFunction='cubic-bezier(.22,1,.36,1)';t.style.transitionDelay=delay+'s';t.style.transform='translate(0,0) rotate(0deg) scale(1)';t.style.opacity='1'});setTimeout(()=>{tilesEl.style.display='none';logo.style.display='';},2400)}
+  function endIntro(){if(done)return;done=true;timers.forEach(clearTimeout);timers=[];if(rafId)cancelAnimationFrame(rafId);if(floatRaf)cancelAnimationFrame(floatRaf);intro.classList.add('done');setTimeout(()=>{intro.style.display='none';flash.classList.remove('on')},1300)}
+  function startIntro(){if(started)return;started=true;done=false;intro.classList.remove('done');intro.style.display='flex';logo.style.display='';tilesEl.style.display='none';logoWrap.style.opacity='0';logoWrap.style.transform='scale(.85)';resize();drawStars(0);
+    const start=Date.now(),TOTAL=16000;const tick=setInterval(()=>{const left=Math.max(0,TOTAL-(Date.now()-start));countEl.textContent=Math.ceil(left/1000);bar.style.width=((1-left/TOTAL)*100)+'%';if(left<=0)clearInterval(tick)},200);timers.push(tick);
+    requestAnimationFrame(()=>{logoWrap.style.opacity='1';logoWrap.style.transform='scale(1)'});
+    timers.push(setTimeout(scatter,2000));
+    timers.push(setTimeout(gather,6500));
+    timers.push(setTimeout(()=>{flash.classList.add('on')},9000));
+    timers.push(setTimeout(()=>{flash.classList.remove('on')},11000));
+    timers.push(setTimeout(()=>{logoWrap.style.opacity='1';logoWrap.style.transform='scale(1)';logo.style.display='';tilesEl.style.display='none'},12000));
+    timers.push(setTimeout(()=>{logoWrap.style.opacity='0';logoWrap.style.transform='scale(1.15)'},14000));
+    timers.push(setTimeout(endIntro,16000));}
+  skipBtn.onclick=endIntro;
+  const replay=document.getElementById('introReplay'); if(replay) replay.onclick=()=>{started=false;done=false;startIntro()};
+  window.__startIntro=startIntro;
+  if(isInstalled){ window.addEventListener('load',()=>setTimeout(startIntro,350)) } else { intro.style.display='none' }
+})();
 </script>
 <script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}function isInlineMediaSlotElement(node){return !!(node&&node.getAttribute&&node.getAttribute("data-clippy-inline-media-slot")!==null)}function findInlineMediaSlot(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(isInlineMediaSlotElement(node))return node}return null}function readInlineMediaUrl(node){if(!node)return null;return node.getAttribute&&((node.getAttribute("data-clippy-inline-media-url")||node.getAttribute("data-url")||node.getAttribute("data_url")))||node.href||null}function stripHash(url){return String(url).replace(/#.*$/,"")}function urlsMatch(a,b){if(!a||!b)return false;try{return stripHash(new URL(a,loc).href)===stripHash(new URL(b,loc).href)}catch(_){return stripHash(a)===stripHash(b)}}function isFirstPartyReelUrl(value){try{var url=new URL(value,loc);if(url.protocol!=="https:")return false;var host=url.hostname.toLowerCase();var supported=host==="instagram.com"||host.endsWith(".instagram.com")||host==="facebook.com"||host.endsWith(".facebook.com");return supported&&/\/reels?\//i.test(url.pathname)}catch(_){return false}}function isInlineMediaUrlClick(node,href){var slot=findInlineMediaSlot(node);if(!slot)return false;var slotUrl=readInlineMediaUrl(slot);if(slotUrl)return urlsMatch(href,slotUrl);return isFirstPartyReelUrl(href)}function findDataHref(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(node.getAttribute){var href=node.getAttribute("data-href")||node.getAttribute("data-url");if(href)return{href:href,node:node}}}return null}var nativeOpen=window.open;window.open=function(url){if(parent!==window&&typeof url==="string"&&/^https?:\/\//.test(url)){parent.postMessage({type:"ecto:usercontent-link-click",href:url},"*");return null}return nativeOpen?nativeOpen.apply(window,arguments):null};document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;if(parent===window)return;var a=target.closest?target.closest("a[href]"):null;if(a&&a.href&&/^https?:\/\//.test(a.href)&&a.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(a,a.href))return;var productId=extractProductId(target)||extractProductId(a);if(productId){e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*");return}e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:a.href},"*");return}var dataHref=findDataHref(target);if(dataHref&&/^https?:\/\//.test(dataHref.href)&&dataHref.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(dataHref.node,dataHref.href))return;e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:dataHref.href},"*")}},true)})();</script><script>(function(){var FOCUS_TYPE="ecto:artifact-focus-request";var CLOSE_TYPE="ecto:artifact-close-request";function focusArtifactDocument(){var body=document.body;if(!body)return;try{window.focus();}catch(e){}if(!body.hasAttribute("tabindex"))body.setAttribute("tabindex","-1");try{body.focus({preventScroll:true});}catch(e){try{body.focus();}catch(e2){}}}window.addEventListener("message",function(event){if(event.source!==window.parent)return;var data=event.data;if(!data||typeof data!=="object"||data.type!==FOCUS_TYPE)return;if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",focusArtifactDocument,{once:true});return;}focusArtifactDocument();});window.addEventListener("keydown",function(event){if(event.key!=="Escape")return;window.setTimeout(function(){if(event.defaultPrevented)return;window.parent.postMessage({type:CLOSE_TYPE},"*");},0);});})();</script></body></html>
