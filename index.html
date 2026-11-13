@@ -43,6 +43,7 @@
 }
 
 /* ===== FIX V3.9.26 - درج الأمثلة سحب لفوق/لتحت ===== */
+#zoomLabel{display:inline-flex;align-items:center;font-size:11px;font-weight:800;min-width:44px;justify-content:center;color:#fff}
 #examplesDrawer{position:absolute!important;left:8px!important;right:8px!important;bottom:8px!important;z-index:60!important;background:var(--card)!important;border:1px solid var(--bd)!important;border-radius:14px!important;box-shadow:0 -8px 24px #0003!important;overflow:hidden!important}
 #examplesDrawer .ex-handle{display:flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;width:100%!important;padding:14px 8px 8px!important;cursor:grab!important;touch-action:pan-y!important;border:none!important;background:transparent!important;font-weight:800!important;position:relative!important}
 #examplesDrawer .ex-handle:before{content:"";width:44px;height:5px;border-radius:99px;background:#d1d5db;position:absolute;top:5px;left:50%;transform:translateX(-50%)}
@@ -54,7 +55,7 @@
 #examplesDrawer .ex-body .gr{grid-template-columns:repeat(2,1fr)!important}
 </style><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>ElectroPanel V3.9.28</title>
+<title>ElectroPanel V3.9.37</title>
 <link rel="manifest" href="./manifest.webmanifest">
 <meta name="theme-color" content="#111827">
 <meta name="mobile-web-app-capable" content="yes">
@@ -106,7 +107,7 @@ body.mt .bo,body:not(.mt) .mo{display:none!important}
 #wrap > #boardTools.collapsed{display:none!important}
 /* الرجوع بيظهر من JS بس - fixed فوق الكل */
 #sc{overflow:hidden;max-height:72vh;min-height:420px;background:var(--board);border-radius:14px;border:1px solid var(--bd)}
-#board{position:relative;background:var(--board);overflow:hidden;user-select:none;background-image:linear-gradient(#0001 1px,transparent 1px),linear-gradient(90deg,#0001 1px,transparent 1px);background-size:22px 22px}
+#board{position:relative;background:var(--board);overflow:hidden;user-select:none;transform-origin:0 0;will-change:transform;touch-action:none;background-image:linear-gradient(#0001 1px,transparent 1px),linear-gradient(90deg,#0001 1px,transparent 1px);background-size:22px 22px}
 #wires{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2}
 #dr{position:absolute!important;top:0!important;bottom:0!important;width:236px!important;z-index:50!important;background:var(--card)!important;border:1px solid var(--bd)!important;border-radius:14px 0 0 14px!important;overflow:hidden!important;padding:8px!important;box-sizing:border-box!important;transition:transform .25s!important;box-shadow:-8px 0 30px #0008!important;display:flex!important;flex-direction:column!important}#dr>.bar,#dr>#dq{flex:0 0 auto!important}#dr .dr-scroll{flex:1 1 auto!important;overflow-y:auto!important;overflow-x:hidden!important;-webkit-overflow-scrolling:touch!important;overscroll-behavior:contain!important;touch-action:pan-y!important}
 #dh{position:static!important;z-index:auto!important;display:inline-flex!important;flex:0 0 auto!important;white-space:nowrap!important}
@@ -147,7 +148,7 @@ body.mt .bo,body:not(.mt) .mo{display:none!important}
  #bw{order:1!important}
  #fsBoard{order:2!important}
  #bd{order:3!important}
- #bs{order:4!important}
+ 
  #dupBtn{order:5!important}
  #saveFileBtn{order:6!important}
  #loadFileBtn{order:7!important}
@@ -195,7 +196,7 @@ h1{position:relative!important;z-index:1!important;background:var(--bg,#f1f5f9)!
 #settingsBar select{display:none!important}
 </style></head><body>
 
-<div id="settingsBar"><label style="font-size:12px;white-space:nowrap">⏱ سرعة الزمن <span class="selbox"><button type="button" class="selPrev" data-for="sp" title="السابق">◀</button><select id="sp" title="سرعة الزمن"><option value="1">زمن حقيقي ×1</option><option value="60">×60 (ث = دقيقة)</option><option value="3600">×3600 (ث = ساعة)</option></select><button type="button" class="selNext" data-for="sp" title="التالي">▶</button></span></label><label style="font-size:12px;white-space:nowrap">📐 حجم اللوحة <span class="selbox"><button type="button" class="selPrev" data-for="bs" title="السابق">◀</button><select id="bs"><option value="40x60">40×60 سم</option><option value="60x80">60×80 سم</option><option value="80x100" selected>80×100 سم</option><option value="100x80">100×80 سم</option><option value="100x120">100×120 سم</option></select><button type="button" class="selNext" data-for="bs" title="التالي">▶</button></span></label><label style="font-size:11px;white-space:nowrap">مقطع السلك <span class="selbox"><button type="button" class="selPrev" data-for="gs" title="السابق">◀</button><select id="gs" title="مقطع السلك - بيحدد سماكة الرسم والتيار المسموح"><option value="1">سلك 1 مم² • ~10A</option><option value="1.5" selected>سلك 1.5 مم² • ~14A</option><option value="2">سلك 2 مم² • ~17A</option><option value="2.5">سلك 2.5 مم² • ~20A</option><option value="3">سلك 3 مم² • ~22A</option><option value="4">سلك 4 مم² • ~25A</option><option value="6">سلك 6 مم² • ~32A</option><option value="10">سلك 10 مم² • ~44A</option><option value="c2x1">كابل ترمو 2×1 مم²</option><option value="c2x1.5">كابل ترمو 2×1.5 مم²</option><option value="c2x2">كابل ترمو 2×2 مم²</option><option value="c2x2.5">كابل ترمو 2×2.5 مم²</option><option value="c2x4">كابل ترمو 2×4 مم²</option><option value="c3x1.5">كابل ترمو 3×1.5 مم²</option><option value="c3x2.5">كابل ترمو 3×2.5 مم²</option></select><button type="button" class="selNext" data-for="gs" title="التالي">▶</button></span></label><label style="font-size:11px;white-space:nowrap">زمن الاختبار <span class="selbox"><button type="button" class="selPrev" data-for="testH" title="السابق">◀</button><select id="testH" title="الساعة الواحدة = 5 ثواني حقيقية"><option value="0">تشغيل مستمر (بدون توقيت)</option><option value="1">1 ساعة</option><option value="2">2 ساعة</option><option value="4">4 ساعات</option><option value="8">8 ساعات</option><option value="12">12 ساعة</option><option value="24">24 ساعة</option></select><button type="button" class="selNext" data-for="testH" title="التالي">▶</button></span></label><span id="testClock" style="font-size:11px;white-space:nowrap">⏱ تشغيل مستمر</span></div>
+<div id="settingsBar"><label style="font-size:12px;white-space:nowrap">⏱ سرعة الزمن <span class="selbox"><button type="button" class="selPrev" data-for="sp" title="السابق">◀</button><select id="sp" title="سرعة الزمن"><option value="1">زمن حقيقي ×1</option><option value="60">×60 (ث = دقيقة)</option><option value="3600">×3600 (ث = ساعة)</option></select><button type="button" class="selNext" data-for="sp" title="التالي">▶</button></span></label><label style="font-size:11px;white-space:nowrap">مقطع السلك <span class="selbox"><button type="button" class="selPrev" data-for="gs" title="السابق">◀</button><select id="gs" title="مقطع السلك - بيحدد سماكة الرسم والتيار المسموح"><option value="1">سلك 1 مم² • ~10A</option><option value="1.5" selected>سلك 1.5 مم² • ~14A</option><option value="2">سلك 2 مم² • ~17A</option><option value="2.5">سلك 2.5 مم² • ~20A</option><option value="3">سلك 3 مم² • ~22A</option><option value="4">سلك 4 مم² • ~25A</option><option value="6">سلك 6 مم² • ~32A</option><option value="10">سلك 10 مم² • ~44A</option><option value="c2x1">كابل ترمو 2×1 مم²</option><option value="c2x1.5">كابل ترمو 2×1.5 مم²</option><option value="c2x2">كابل ترمو 2×2 مم²</option><option value="c2x2.5">كابل ترمو 2×2.5 مم²</option><option value="c2x4">كابل ترمو 2×4 مم²</option><option value="c3x1.5">كابل ترمو 3×1.5 مم²</option><option value="c3x2.5">كابل ترمو 3×2.5 مم²</option></select><button type="button" class="selNext" data-for="gs" title="التالي">▶</button></span></label><label style="font-size:11px;white-space:nowrap">زمن الاختبار <span class="selbox"><button type="button" class="selPrev" data-for="testH" title="السابق">◀</button><select id="testH" title="الساعة الواحدة = 5 ثواني حقيقية"><option value="0">تشغيل مستمر (بدون توقيت)</option><option value="1">1 ساعة</option><option value="2">2 ساعة</option><option value="4">4 ساعات</option><option value="8">8 ساعات</option><option value="12">12 ساعة</option><option value="24">24 ساعة</option></select><button type="button" class="selNext" data-for="testH" title="التالي">▶</button></span></label><span id="testClock" style="font-size:11px;white-space:nowrap">⏱ تشغيل مستمر</span></div>
 <div id="pwaBar" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;align-items:center">
  <button id="installBtn" style="display:none;background:#111827;color:#fff">📲 تثبيت التطبيق على جهازك</button>
  <button id="iosBtn" style="display:none">🍎 تثبيت على iPhone: مشاركة ← إضافة للشاشة الرئيسية</button>
@@ -226,6 +227,8 @@ h1{position:relative!important;z-index:1!important;background:var(--bg,#f1f5f9)!
  <button id="symBtn" title="بدّل شكل القطع: رسم واقعي أو رمز هندسي - الدايرة والأسلاك ثابتة">〰️ رمز هندسي</button>
  <button id="termMoveBtn" title="شغّل الوضع، وبعدين اسحب أي نقطة نحاسية بصباعك لأي جنب من القطعة">✋ تحريك النقاط</button>
  <button id="fsBoard" title="ملء الشاشة للوحة الرسم - القايمة دي هتبقى جوه اللوحة">⛶ تكبير الشاشة</button>
+ <button id="zoomOut" title="تصغير اللوحة - بصباعين كمان">➖</button><span id="zoomLabel">100%</span><button id="zoomIn" title="تكبير اللوحة - بصباعين كمان">➕</button><button id="zoomReset" title="ارجع 100%">⟲ 100%</button><button id="panBtn" title="صباع واحد يحرك اللوحة كلها - دوس تاني ترجع تسحب القطع">✋ تحريك اللوحة</button>
+ <button id="expandBoard" title="كبّر مساحة اللوحة والشبكة - اللوحة بتكبر لوحدها برضه لما تسحب قطعة للحرف">➕ وسّع اللوحة</button>
  <button id="saveFileBtn" title="حفظ الدايرة كملف وتفتحه تاني">💾 حفظ الدايرة</button>
  <button id="loadFileBtn" title="فتح ملف دايرة محفوظ">📂 فتح دايرة</button>
  <input type="file" id="loadFileInput" accept=".json,.electropanel.json,application/json" style="display:none">
@@ -260,7 +263,6 @@ const T={},LIT={Lamp:'#facc15',LampR:'#ef4444',LampG:'#22c55e'};
 A.forEach(([k,n,c,kd,w,h,b,g])=>T[k]={n,c,k:kd,w,h,b,g});
 const WT={Lamp:60,LampR:3,LampG:3,Motor:750,Fan:75,Heater:2000,Socket:1000,Cooker:3000,Washer:500,Fridge:150,Motor3Ph:3000,Heater3Ph:6000,Socket3Ph:5000,Mains3Ph:0,Generator3Ph:0},PF={Motor:.8,Fan:.9,Washer:.75,Fridge:.7,Motor3Ph:.85,Heater3Ph:1,Socket3Ph:.9},amp=c=>c.w/(220*(PF[c.t]||1));
 const TL=h=>{const v=parseInt(h.slice(1),16);return((v>>16)*299+((v>>8)&255)*587+(v&255)*114)/1000>140?'#111':'#fff'};
-const TS={'40x60':[360,540],'60x80':[520,700],'80x100':[700,860],'100x80':[880,700],'100x120':[880,1020]};
 const COL={l1:'#ef4444',l:'#ef4444',l2:'#3b82f6',l3:'#eab308',n:'#111827',pe:'#22c55e',red:'#ef4444',yellow:'#eab308',black:'#111827',blue:'#3b82f6',green:'#22c55e'};
 const WIRE_NAME={l1:'L1 أحمر',l:'L أحمر',l2:'L2 أزرق',l3:'L3 أصفر',n:'N أسود',pe:'PE أخضر × أبيض'};
 function migrateWireColor(c){return {red:'l1',yellow:'l3',black:'n',blue:'l2',green:'pe',l1:'l1',l2:'l2',l3:'l3',l:'l',n:'n',pe:'pe'}[c]||'l1'}
@@ -384,7 +386,7 @@ const TEST_HOURS_PER_TICK=0.14;
 const gaugeW=g=>{const G=GAUGE[g]||GAUGE['1.5'];return Math.max(2,Math.round(1.5+Math.sqrt(G.mm)*1.6))};
 const gaugeLabel=g=>(GAUGE[g]||GAUGE['1.5']).l+' • ~'+(GAUGE[g]||GAUGE['1.5']).amp+'A';
 
-let simClock=9*60+19,helpOpen=false,C=[],W=[],K={},sel=null,wire=false,run=false,pend=null,uid=1,kwh=0,drag=null,raf=0,tab='b',saved=null,cur='DB',diag=null,open=true,side='R',res=null,size='80x100';
+let simClock=9*60+19,helpOpen=false,C=[],W=[],K={},sel=null,wire=false,run=false,pend=null,uid=1,kwh=0,drag=null,raf=0,tab='b',saved=null,cur='DB',diag=null,open=true,side='R',res=null;
 let selW=null,hd=null,symMode=false,termMove=false;
 function isLocked(){ return run && tab==='b'; } // القاعدة: مقفول = تصنيع + تشغيل فقط | صيانة دايماً مفتوحة للتعديل
 const $=id=>document.getElementById(id),board=$('board'),comps=$('comps'),svg=$('wires');
@@ -418,8 +420,6 @@ function fx(list,tid){
   if(o==='off')K[a].s='OFF';if(o==='dead')K[a].dead=1;if(o==='stuck')K[a].stuck=1;
  });
 }
-function setSize(s){if(!TS[s])return;size=s;const[w,h]=TS[s];board.style.width=w+'px';board.style.height=h+'px';$('bs').value=s;
- C.forEach(c=>{c.x=Math.min(c.x,w-T[c.t].w);c.y=Math.min(c.y,h-T[c.t].h)})}
 function inject(i){
  const tid=load(P[cur]);diag=null;
  if(i>=0){diag=P[cur].f[i];fx(diag.x,tid)}
@@ -604,6 +604,8 @@ const st=(c,e)=>{const d=T[c.t];
  if(c.dead)return 'عطل';
  if(['sw','sw2','sw3'].includes(d.k))return (c.t.includes('Overload')?(c.olTripped?'TRIP':c.olStopped?'STOP':'ON'):(c.s==='ON'?'ON':'OFF'))+(c.stuck?'*':'');
  if(d.k==='src'||d.k==='src3')return c.t.includes('Generator')?(c.s==='ON'?'RUN '+c.fuel.toFixed(0)+'%':'STOP'):c.s;
+ if(d.k==='dev')return closed(c)?'وضع 1 • COM-L1':'وضع 2 • COM-L2';
+ if(d.k==='mid')return closed(c)?'مستقيم':'متقاطع';
  if(d.k==='ld'||d.k==='ld2'||d.k==='ld3')return e?(c.t==='Voltmeter'?'220V':amp(c).toFixed(1)+'A '+c.w+'W'+(c.t.includes('Heater')?' '+c.temp.toFixed(0)+'°':'')):(c.w?c.w+'W':'—');
  if(d.k==='pass')return e?(c.t==='Ammeter'?down(c).reduce((s,l)=>s+amp(l),0).toFixed(2)+'A':(c.kwh||0).toFixed(3)+' kWh'):'—';
  if(d.k==='meter')return e?down(c).reduce((s,l)=>s+l.w,0)+' W':'—';
@@ -649,9 +651,35 @@ function render(){
  draw();
 }
 // FIX: حذف الكود الميت بعد return الأول
+/* FIX: مكان النقطة من بيانات القطعة نفسها (x,y,دوران,حجم) - مش من الشاشة.
+   القديم كان بيحسب من getBoundingClientRect (مكان على الشاشة) ويحطه جوه SVG جوه البورد
+   اللي هو نفسه متكبّر ومتنقل، فالسلك كان بيطلع في حتة تانية مع أي زوم/تحريك. */
+function termPoint(id){
+  const parts=id.split(':'), c=C.find(x=>x.id===parts[0]);
+  if(!c) return null;
+  const d=T[c.t]; if(!d) return null;
+  const w=d.w, h=d.h, dh=(typeof wire!=='undefined'&&wire)?8:5.5;
+  const el=board.querySelector(`[data-t="${id}"]`);
+  const has=n=>el&&el.classList.contains(n);
+  let ax=w/2, ay=0;
+  if(has('topl2')){ax=0.02*w+dh; ay=-8+dh;}
+  else if(has('topr2')){ax=0.98*w-dh; ay=-8+dh;}
+  else if(has('botl2')){ax=0.02*w+dh; ay=h-8+dh;}
+  else if(has('botr2')){ax=0.98*w-dh; ay=h-8+dh;}
+  else if(has('topl')){ax=0.20*w+dh; ay=-8+dh;}
+  else if(has('topr')){ax=0.80*w-dh; ay=-8+dh;}
+  else if(has('botl')){ax=0.20*w+dh; ay=h-8+dh;}
+  else if(has('botr')){ax=0.80*w-dh; ay=h-8+dh;}
+  else if(has('mid')){ax=0.5*w-8+dh; ay=0.5*h-8+dh;}
+  else if(has('bot')){ax=0.5*w-8+dh; ay=h-8+dh;}
+  else if(has('top')){ax=0.5*w-8+dh; ay=-8+dh;}
+  else if(!el) return null;
+  const sc=c.sc||1, rot=((c.rot||0)*Math.PI)/180;
+  const dx=(ax-w/2)*sc, dy=(ay-h/2)*sc, cs=Math.cos(rot), sn=Math.sin(rot);
+  return [c.x+w/2+dx*cs-dy*sn, c.y+h/2+dx*sn+dy*cs];
+}
 function draw(){
- const br=board.getBoundingClientRect();
- const pt=id=>{const el=board.querySelector(`[data-t="${id}"]`);if(!el)return null;const r=el.getBoundingClientRect();return[r.left-br.left+r.width/2,r.top-br.top+r.height/2]};
+ const pt=id=>termPoint(id);
  svg.innerHTML=W.map(w=>{
   const a=pt(w.a),b=pt(w.b);if(!a||!b)return '';
   const dd=`M${a[0]} ${a[1]} C${a[0]} ${a[1]+50},${b[0]} ${b[1]-50},${b[0]} ${b[1]}`,sw=selW===w.id,lv=res&&((res.L.has(w.a)&&res.L.has(w.b))||(res.N.has(w.a)&&res.N.has(w.b)));
@@ -676,6 +704,8 @@ function lib(){
 }
 function panel(){$('wrap').className=side+(open?'':' cl');const dh=$('dh');if(dh)dh.textContent=open?'✕ اقفل القطع':'☰ القطع';if(open&&toolsBarEl&&toolsBarEl.classList.contains('collapsed'))setToolsCollapsed(false)}
 board.addEventListener('pointerdown',e=>{
+ if(typeof panMode!=='undefined' && panMode){ panDrag={sx:e.clientX,sy:e.clientY,px:boardPanX,py:boardPanY}; return; }
+ if(typeof boardZoom!=='undefined' && !e.target.closest('.c') && !e.target.closest('.t') && !e.target.closest('#helpPop') && !e.target.closest('[data-q]')){ panDrag={sx:e.clientX,sy:e.clientY,px:boardPanX,py:boardPanY}; }
  if(e.target.closest('#helpPop'))return;
  if(e.target.closest('[data-q]')){helpOpen=!helpOpen;e.preventDefault();e.stopPropagation();render();return;}
  if(e.target.dataset.h){const c=cur1(),el=e.target.closest('.c');if(c&&el){const r=el.getBoundingClientRect();hd={m:e.target.dataset.h,c,el,cx:r.left+r.width/2,cy:r.top+r.height/2};e.preventDefault()}return}
@@ -688,23 +718,28 @@ board.addEventListener('pointerdown',e=>{
  el.classList.add('sel');
 });
 addEventListener('pointermove',e=>{window._lastPX=e.clientX;window._lastPY=e.clientY;
+ if(typeof panDrag!=='undefined' && panDrag){ boardPanX=panDrag.px+(e.clientX-panDrag.sx); boardPanY=panDrag.py+(e.clientY-panDrag.sy); if(typeof applyBoardZoom==='function') applyBoardZoom(); return; }
  if(window._termDrag){const td=window._termDrag;window._termDrag=null;const c=td.c;if(!c.termPos)c.termPos={};let side='top';const el=document.querySelector(`[data-id="${c.id}"]`);if(el){const r=el.getBoundingClientRect();const cx=r.left+r.width/2,cy=r.top+r.height/2;const dx=(window._lastPX||cx)-cx,dy=(window._lastPY||cy)-cy;const ax=Math.abs(dx),ay=Math.abs(dy);if(ax<12&&ay<12)side='mid';else if(ay>ax*1.2)side=dy<0?'top':'bot';else if(ax>ay*1.2)side=dx<0?'topl':'topr';else side=dy<0?(dx<0?'topl':'topr'):(dx<0?'botl':'botr')}c.termPos[td.tn]=side;render();return}
   if(!drag)return;
- const dx=e.clientX-drag.sx,dy=e.clientY-drag.sy;
+ const _rdx=e.clientX-drag.sx,_rdy=e.clientY-drag.sy;
  if(drag.locked)return;
-  if(!drag.moved&&Math.hypot(dx,dy)<10)return;
+  if(!drag.moved&&Math.hypot(_rdx,_rdy)<10)return;
+ const dx=_rdx/(typeof boardZoom!=='undefined'?boardZoom:1),dy=_rdy/(typeof boardZoom!=='undefined'?boardZoom:1);
  drag.moved=true;
  const el=drag.el;
- drag.c.x=Math.max(0,Math.min(board.clientWidth-el.offsetWidth,drag.ox+dx));
- drag.c.y=Math.max(0,Math.min(board.clientHeight-el.offsetHeight,drag.oy+dy));
+ drag.c.x=Math.max(0,drag.ox+dx);
+ drag.c.y=Math.max(0,drag.oy+dy);
+ if(drag.c.x+el.offsetWidth>board.clientWidth-20)board.style.width=(drag.c.x+el.offsetWidth+120)+'px';
+ if(drag.c.y+el.offsetHeight>board.clientHeight-20)board.style.height=(drag.c.y+el.offsetHeight+120)+'px';
  el.style.left=drag.c.x+'px';el.style.top=drag.c.y+'px';
  if(!raf)raf=requestAnimationFrame(()=>{raf=0;draw()});
 });
 addEventListener('pointerup',()=>{
+ if(typeof panDrag!=='undefined' && panDrag){ panDrag=null; return; }
  if(!drag)return;
  const d=drag;drag=null;
  const k=T[d.c.t].k;
- if(!d.moved&&['sw','sw2','sw3','src','src3'].includes(k)&&!d.c.dead&&!d.c.stuck){d.c.s=d.c.s==='ON'?'OFF':'ON';swSnd(d.c)}
+ if(!d.moved&&['sw','sw2','sw3','src','src3','dev','mid'].includes(k)&&!d.c.dead&&!d.c.stuck){d.c.s=d.c.s==='ON'?'OFF':'ON';swSnd(d.c)}
  render();
 });
 board.addEventListener('click',e=>{
@@ -717,13 +752,13 @@ board.addEventListener('click',e=>{
 });
 document.addEventListener('click',e=>{
  const d=e.target.dataset;
- if(d.add){if(window.innerWidth<760){open=false;panel()}if(isLocked()){alert('المحاكاة شغالة - اوقفها الأول عشان تضيف قطعة');return;}const[w,h]=TS[size],tw=T[d.add].w,th=T[d.add].h;let px=30,py=70,found=false;for(let yy=70;yy<h-th-10&&!found;yy+=20){for(let xx=30;xx<w-tw-10&&!found;xx+=20){const overlap=C.some(o=>!(xx+tw+12<o.x||xx>o.x+T[o.t].w+12||yy+th+12<o.y||yy>o.y+T[o.t].h+12));if(!overlap){px=xx;py=yy;found=true}}}if(!found){px=30+((C.length*30)%Math.max(40,w-tw-60));py=70+((C.length*30)%Math.max(40,h-th-80))}const c=mk(d.add,px,py);C.push(c);sel=c.id;helpOpen=false;render();if($('sc'))$('sc').scrollTo({left:Math.max(0,px-60),top:Math.max(0,py-70),behavior:'smooth'})}
+ if(d.add){if(window.innerWidth<760){open=false;panel()}if(isLocked()){alert('المحاكاة شغالة - اوقفها الأول عشان تضيف قطعة');return;}const[w,h]=[10000,10000],tw=T[d.add].w,th=T[d.add].h;let px=30,py=70,found=false;for(let yy=70;yy<h-th-10&&!found;yy+=20){for(let xx=30;xx<w-tw-10&&!found;xx+=20){const overlap=C.some(o=>!(xx+tw+12<o.x||xx>o.x+T[o.t].w+12||yy+th+12<o.y||yy>o.y+T[o.t].h+12));if(!overlap){px=xx;py=yy;found=true}}}if(!found){px=30+((C.length*30)%Math.max(40,w-tw-60));py=70+((C.length*30)%Math.max(40,h-th-80))}const c=mk(d.add,px,py);C.push(c);sel=c.id;helpOpen=false;render();if($('sc'))$('sc').scrollTo({left:Math.max(0,px-60),top:Math.max(0,py-70),behavior:'smooth'})}
  if(d.dw){W=W.filter(w=>w.id!==d.dw);render()}
  if(d.tab&&d.tab!==tab){
-  if(tab==='b')saved={C,W,K,size};
+  if(tab==='b')saved={C,W,K};
   tab=d.tab;
   if(tab==='m'){wire=false;pend=null;run=false;inject(-1);}
-  else if(saved){C=saved.C;W=saved.W;K=saved.K;diag=null;setSize(saved.size);render()}
+  else if(saved){C=saved.C;W=saved.W;K=saved.K;diag=null;render()}
   else render();
  }
  if(d.p){cur=d.p;inject(-1)}
@@ -734,7 +769,7 @@ document.addEventListener('click',e=>{
 });
 $('bw').onclick=()=>{wire=!wire;pend=null;render()};
 $('br').onclick=()=>{run=!run;if(run){wire=false;pend=null;} render();};
-$('bs').onchange=e=>{setSize(e.target.value);const m=$('msg');if(m){m.textContent='حجم اللوحة: '+e.target.value+' سم ✓';m.className='g'}render()};
+
 // FIX: تم حذف let selW,hd من هنا - أصبحت في الأعلى
 function sbUpdate(){
  const c=C.find(x=>x.id===sel);
@@ -759,7 +794,7 @@ function del(){
 $('bd').onclick=del;$('bd2').onclick=del;
 addEventListener('pointermove',e=>{
  if(!hd)return;
- const c=hd.c,dx=e.clientX-hd.cx,dy=e.clientY-hd.cy;
+ const c=hd.c,dx=(e.clientX-hd.cx)/(typeof boardZoom!=='undefined'?boardZoom:1),dy=(e.clientY-hd.cy)/(typeof boardZoom!=='undefined'?boardZoom:1);
  if(hd.m==='rot'){let a=Math.atan2(dy,dx)*180/Math.PI+90;a=((a%360)+360)%360;const s=Math.round(a/90)*90;if(Math.abs(a-s)<4)a=s%360;c.rot=Math.round(a)}
  else{const d=T[c.t],base=Math.hypot(d.w,d.h)/2;c.sc=Math.max(.4,Math.min(3,Math.hypot(dx,dy)/base))}
  applyT(c);sbUpdate();
@@ -1061,13 +1096,13 @@ const fsBtn=$('fsBoard');if(fsBtn)fsBtn.onclick=()=>{if(document.fullscreenEleme
 document.addEventListener('fullscreenchange',()=>{const b=$('fsBoard');const on=!!document.fullscreenElement;if(on){toolsMoveIn()}else{toolsMoveOut()}if(b){b.textContent=on?'⤢ خروج من تكبير الشاشة':'⛶ تكبير الشاشة';b.classList.toggle('on',on)}});
 /* سحب البار: طبيعي من المتصفح (overflow-x:auto) - مفيش سحب يدوي بالـ JS عشان القوائم المنسدلة تفتح */
 function downloadFile(name,blob){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),2000)}
-function saveCircuitFile(){const data={app:'ElectroPanel',version:'v3.9.28',savedAt:new Date().toISOString(),size,totalKwh:kwh,C:C.map(c=>({id:c.id,t:c.t,x:c.x,y:c.y,s:c.s,rot:c.rot,sc:c.sc,w:c.w,temp:c.temp,fuel:c.fuel,dead:!!c.dead,stuck:!!c.stuck,termPos:c.termPos||{},l:c.l,diesel:c.diesel,oil:c.oil,water:c.water,dTemp:c.dTemp,hz:c.hz,hzSet:c.hzSet,dVolt:c.dVolt,emergency:!!c.emergency,loadTemp:c.loadTemp,onTime:c.onTime,timerMin:c.timerMin,offByTimer:!!c.offByTimer,coilOn:!!c.coilOn,phMode:c.phMode,phDark:!!c.phDark,phOut:!!c.phOut,logoProg:c.logoProg,logoQ:c.logoQ,logoI:c.logoI,logoTimers:c.logoTimers,logoSel:c.logoSel,logoMode:c.logoMode,logoPowered:!!c.logoPowered,tmOn:c.tmOn,tmOff:c.tmOff,tmMode:c.tmMode,tmOut:!!c.tmOut,olSet:c.olSet,olHeat:c.olHeat,olTripped:!!c.olTripped,olStopped:!!c.olStopped,olMode:c.olMode,wireHeatLoad:c.wireHeatLoad||0,breakerHeatLoad:c.breakerHeatLoad||0,tripHeat:c.tripHeat||0,tripped:!!c.tripped,balance:c.balance||0,price:c.price||1.5,theft:!!c.theft,kwh:c.kwh||0,totalCharged:c.totalCharged||0,page:c.page||0})),W:W.map(w=>({a:w.a,b:w.b,col:w.col,gauge:w.gauge||curGauge,heat:w.heat||0,burnt:!!w.burnt}))};downloadFile('electropanel-'+Date.now()+'.electropanel.json',new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));const m=$('msg');if(m){m.textContent='تم حفظ الدايرة كملف ✓';m.className='g'}}
+function saveCircuitFile(){const data={app:'ElectroPanel',version:'v3.9.37',savedAt:new Date().toISOString(),totalKwh:kwh,C:C.map(c=>({id:c.id,t:c.t,x:c.x,y:c.y,s:c.s,rot:c.rot,sc:c.sc,w:c.w,temp:c.temp,fuel:c.fuel,dead:!!c.dead,stuck:!!c.stuck,termPos:c.termPos||{},l:c.l,diesel:c.diesel,oil:c.oil,water:c.water,dTemp:c.dTemp,hz:c.hz,hzSet:c.hzSet,dVolt:c.dVolt,emergency:!!c.emergency,loadTemp:c.loadTemp,onTime:c.onTime,timerMin:c.timerMin,offByTimer:!!c.offByTimer,coilOn:!!c.coilOn,phMode:c.phMode,phDark:!!c.phDark,phOut:!!c.phOut,logoProg:c.logoProg,logoQ:c.logoQ,logoI:c.logoI,logoTimers:c.logoTimers,logoSel:c.logoSel,logoMode:c.logoMode,logoPowered:!!c.logoPowered,tmOn:c.tmOn,tmOff:c.tmOff,tmMode:c.tmMode,tmOut:!!c.tmOut,olSet:c.olSet,olHeat:c.olHeat,olTripped:!!c.olTripped,olStopped:!!c.olStopped,olMode:c.olMode,wireHeatLoad:c.wireHeatLoad||0,breakerHeatLoad:c.breakerHeatLoad||0,tripHeat:c.tripHeat||0,tripped:!!c.tripped,balance:c.balance||0,price:c.price||1.5,theft:!!c.theft,kwh:c.kwh||0,totalCharged:c.totalCharged||0,page:c.page||0})),W:W.map(w=>({a:w.a,b:w.b,col:w.col,gauge:w.gauge||curGauge,heat:w.heat||0,burnt:!!w.burnt}))};downloadFile('electropanel-'+Date.now()+'.electropanel.json',new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));const m=$('msg');if(m){m.textContent='تم حفظ الدايرة كملف ✓';m.className='g'}}
 function loadCircuitFile(file){if(isLocked()){alert('لا يمكن فتح ملف في وضع التشغيل - اخرج من التشغيل أولاً');return}const rd=new FileReader();rd.onload=()=>{try{const d=JSON.parse(rd.result);if(!d||!Array.isArray(d.C)||!Array.isArray(d.W))throw new Error('bad');C=[];W=[];uid=1;sel=null;selW=null;pend=null;d.C.forEach(rc=>{if(rc.t==='Timer24H')rc.t='TimerDigital';const c=mk(rc.t,rc.x||30,rc.y||30);c.s=rc.s||'ON';c.rot=rc.rot||0;c.sc=rc.sc||1;c.w=rc.w!=null?rc.w:(WT[rc.t]||0);c.temp=rc.temp!=null?rc.temp:22;c.fuel=rc.fuel!=null?rc.fuel:80;c.dead=!!rc.dead;c.stuck=!!rc.stuck;c.balance=rc.balance||0;c.price=rc.price||1.5;c.theft=!!rc.theft;c.kwh=rc.kwh||0;c.totalCharged=rc.totalCharged||0;c.page=rc.page||0;c.wireHeatLoad=rc.wireHeatLoad||0;c.coilOn=!!rc.coilOn;if(rc.tmOn!=null)c.tmOn=rc.tmOn;if(rc.tmOff!=null)c.tmOff=rc.tmOff;if(rc.tmMode)c.tmMode=rc.tmMode;c.tmOut=!!rc.tmOut;if(rc.phMode)c.phMode=rc.phMode;c.phDark=!!rc.phDark;c.phOut=!!rc.phOut;if(rc.logoProg)c.logoProg=rc.logoProg;if(rc.logoQ)c.logoQ=rc.logoQ;if(rc.logoI)c.logoI=rc.logoI;if(rc.logoTimers)c.logoTimers=rc.logoTimers;if(rc.logoSel)c.logoSel=rc.logoSel;if(rc.logoMode)c.logoMode=rc.logoMode;c.logoPowered=rc.logoPowered!==false;if(rc.olSet!=null)c.olSet=rc.olSet;if(rc.olHeat!=null)c.olHeat=rc.olHeat;c.olTripped=!!rc.olTripped;c.olStopped=!!rc.olStopped;if(rc.olMode)c.olMode=rc.olMode;c.breakerHeatLoad=rc.breakerHeatLoad||0;c.tripHeat=rc.tripHeat||0;c.tripped=!!rc.tripped;if(rc.dVolt!=null)c.dVolt=rc.dVolt;if(rc.diesel!=null)c.diesel=rc.diesel;if(rc.oil!=null)c.oil=rc.oil;if(rc.water!=null)c.water=rc.water;if(rc.dTemp!=null)c.dTemp=rc.dTemp;if(rc.hz!=null)c.hz=rc.hz;if(rc.hzSet!=null)c.hzSet=rc.hzSet;c.emergency=!!rc.emergency;if(rc.loadTemp!=null)c.loadTemp=rc.loadTemp;if(rc.onTime!=null)c.onTime=rc.onTime;if(rc.timerMin!=null)c.timerMin=rc.timerMin;c.offByTimer=!!rc.offByTimer;c.termPos=rc.termPos||{};if(rc.t==='PMeter3'&&c.termPos){if(c.termPos.PEi){c.termPos.Ni=c.termPos.PEi;delete c.termPos.PEi}if(c.termPos.PEo){c.termPos.No=c.termPos.PEo;delete c.termPos.PEo}}if(rc.l)c.l=rc.l;C.push(c)});const oldToNew={};d.C.forEach((rc,i)=>{if(rc.id&&C[i])oldToNew[rc.id]=C[i].id});d.W.forEach(rw=>{const conv=id=>{const parts=id.split(':');if(parts.length<2)return id;const nid=oldToNew[parts[0]];let tn=parts.slice(1).join(':');const _rc2=d.C.find(x=>x.id===parts[0]);if(_rc2&&_rc2.t==='Photocell'){if(tn==='in')tn='L';if(tn==='out')tn='Load'}if(_rc2&&(_rc2.t==='TimerDigital'||_rc2.t==='Timer24H')){if(tn==='in')tn='4';if(tn==='out')tn='3'}if(_rc2&&(_rc2.t==='Overload'||_rc2.t==='Overload3P')){if(tn==='in')tn='1L1';if(tn==='out')tn='2T1';if(tn==='in1')tn='1L1';if(tn==='out1')tn='2T1'}
-if(_rc2&&(_rc2.t==='Contactor')){if(tn==='in')tn='1L1';if(tn==='out')tn='2T1';if(tn==='in1')tn='1L1';if(tn==='out1')tn='2T1';if(tn==='in2')tn='3L2';if(tn==='out2')tn='4T2';if(tn==='in3')tn='5L3';if(tn==='out3')tn='6T3'}if(_rc2&&_rc2.t==='Contactor3P'){if(tn==='in1')tn='1L1';if(tn==='out1')tn='2T1';if(tn==='in2')tn='3L2';if(tn==='out2')tn='4T2';if(tn==='in3')tn='5L3';if(tn==='out3')tn='6T3'}const _rc=d.C.find(x=>x.id===parts[0]);if(_rc&&_rc.t==='PMeter3'){if(tn==='PEi')tn='Ni';if(tn==='PEo')tn='No'}return nid?nid+':'+tn:id};const a=conv(rw.a),b=conv(rw.b);if(a&&b){const nw=link(a,b,migrateWireColor(rw.col||'l1'),rw.gauge||'1.5');const lw=W[W.length-1];if(lw){lw.heat=rw.heat||0;lw.burnt=!!rw.burnt}}});if(d.totalKwh!=null)kwh=d.totalKwh;setSize(d.size||size);render();const m=$('msg');if(m){m.textContent='تم فتح الدايرة المحفوظة ✓';m.className='g'}}catch(err){alert('الملف ده مش دايرة ElectroPanel صالحة')}};rd.readAsText(file)}
+if(_rc2&&(_rc2.t==='Contactor')){if(tn==='in')tn='1L1';if(tn==='out')tn='2T1';if(tn==='in1')tn='1L1';if(tn==='out1')tn='2T1';if(tn==='in2')tn='3L2';if(tn==='out2')tn='4T2';if(tn==='in3')tn='5L3';if(tn==='out3')tn='6T3'}if(_rc2&&_rc2.t==='Contactor3P'){if(tn==='in1')tn='1L1';if(tn==='out1')tn='2T1';if(tn==='in2')tn='3L2';if(tn==='out2')tn='4T2';if(tn==='in3')tn='5L3';if(tn==='out3')tn='6T3'}const _rc=d.C.find(x=>x.id===parts[0]);if(_rc&&_rc.t==='PMeter3'){if(tn==='PEi')tn='Ni';if(tn==='PEo')tn='No'}return nid?nid+':'+tn:id};const a=conv(rw.a),b=conv(rw.b);if(a&&b){const nw=link(a,b,migrateWireColor(rw.col||'l1'),rw.gauge||'1.5');const lw=W[W.length-1];if(lw){lw.heat=rw.heat||0;lw.burnt=!!rw.burnt}}});if(d.totalKwh!=null)kwh=d.totalKwh;render();const m=$('msg');if(m){m.textContent='تم فتح الدايرة المحفوظة ✓';m.className='g'}}catch(err){alert('الملف ده مش دايرة ElectroPanel صالحة')}};rd.readAsText(file)}
 const saveBtn=$('saveFileBtn');if(saveBtn)saveBtn.onclick=saveCircuitFile;
 const loadBtn=$('loadFileBtn');if(loadBtn)loadBtn.onclick=()=>$('loadFileInput').click();
 const loadInput=$('loadFileInput');if(loadInput)loadInput.onchange=e=>{const f=e.target.files&&e.target.files[0];if(f)loadCircuitFile(f);e.target.value=''};
-function saveCircuitImage(){const bw=Math.max(board.clientWidth||700,board.scrollWidth||700),bh=Math.max(board.clientHeight||860,board.scrollHeight||860);const cv=document.createElement('canvas');cv.width=Math.max(200,bw);cv.height=Math.max(200,bh);const ctx=cv.getContext('2d');ctx.fillStyle='#141b2e';ctx.fillRect(0,0,cv.width,cv.height);ctx.strokeStyle='rgba(255,255,255,.07)';ctx.lineWidth=1;for(let x=0;x<cv.width;x+=22){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,cv.height);ctx.stroke()}for(let y=0;y<cv.height;y+=22){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(cv.width,y);ctx.stroke()}const br=board.getBoundingClientRect();const pt=id=>{const el=board.querySelector(`[data-t="${id}"]`);if(!el)return null;const r=el.getBoundingClientRect();return[r.left-br.left+r.width/2,r.top-br.top+r.height/2]};W.forEach(w=>{const a=pt(w.a),b=pt(w.b);if(!a||!b)return;const col=migrateWireColor(w.col);const drawSeg=(style,width,dash)=>{ctx.strokeStyle=style;ctx.lineWidth=width;if(dash)ctx.setLineDash(dash);else ctx.setLineDash([]);ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.bezierCurveTo(a[0],a[1]+50,b[0],b[1]-50,b[0],b[1]);ctx.stroke();ctx.setLineDash([])};if(w.burnt){drawSeg('#111827',4,[8,6]);drawSeg('#ef4444',2,[8,6])}else if(col==='pe'){drawSeg('#ffffff',4);drawSeg('#22c55e',4,[7,5])}else{const Gg2=GAUGE[w.gauge]||GAUGE['1.5'];drawSeg(COL[col]||'#ef4444',Math.max(2,Math.round(1.5+Math.sqrt(Gg2.mm)*1.6)))}const lbl=w.gauge?String(w.gauge):'';if(lbl&&a&&b){ctx.fillStyle='#fff';ctx.font='700 9px system-ui';ctx.textAlign='center';ctx.fillText(lbl,(a[0]+b[0])/2,(a[1]+b[1])/2-4)}});C.forEach(c=>{const d=T[c.t];ctx.save();ctx.translate(c.x+d.w/2,c.y+d.h/2);ctx.rotate((c.rot||0)*Math.PI/180);ctx.scale(c.sc||1,c.sc||1);ctx.fillStyle=d.b;ctx.fillRect(-d.w/2,-d.h/2,d.w,d.h);ctx.strokeStyle='#0006';ctx.lineWidth=2;ctx.strokeRect(-d.w/2,-d.h/2,d.w,d.h);ctx.fillStyle='#fff';ctx.font='700 11px system-ui';ctx.textAlign='center';ctx.fillText(d.g||'',0,-d.h/2+18);ctx.fillStyle='#fff';ctx.font='700 10px system-ui';ctx.fillText(c.l,0,d.h/2-6);
+function saveCircuitImage(){const bw=Math.max(board.clientWidth||700,board.scrollWidth||700),bh=Math.max(board.clientHeight||860,board.scrollHeight||860);const cv=document.createElement('canvas');cv.width=Math.max(200,bw);cv.height=Math.max(200,bh);const ctx=cv.getContext('2d');ctx.fillStyle='#141b2e';ctx.fillRect(0,0,cv.width,cv.height);ctx.strokeStyle='rgba(255,255,255,.07)';ctx.lineWidth=1;for(let x=0;x<cv.width;x+=22){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,cv.height);ctx.stroke()}for(let y=0;y<cv.height;y+=22){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(cv.width,y);ctx.stroke()}const br=board.getBoundingClientRect();const pt=id=>termPoint(id);W.forEach(w=>{const a=pt(w.a),b=pt(w.b);if(!a||!b)return;const col=migrateWireColor(w.col);const drawSeg=(style,width,dash)=>{ctx.strokeStyle=style;ctx.lineWidth=width;if(dash)ctx.setLineDash(dash);else ctx.setLineDash([]);ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.bezierCurveTo(a[0],a[1]+50,b[0],b[1]-50,b[0],b[1]);ctx.stroke();ctx.setLineDash([])};if(w.burnt){drawSeg('#111827',4,[8,6]);drawSeg('#ef4444',2,[8,6])}else if(col==='pe'){drawSeg('#ffffff',4);drawSeg('#22c55e',4,[7,5])}else{const Gg2=GAUGE[w.gauge]||GAUGE['1.5'];drawSeg(COL[col]||'#ef4444',Math.max(2,Math.round(1.5+Math.sqrt(Gg2.mm)*1.6)))}const lbl=w.gauge?String(w.gauge):'';if(lbl&&a&&b){ctx.fillStyle='#fff';ctx.font='700 9px system-ui';ctx.textAlign='center';ctx.fillText(lbl,(a[0]+b[0])/2,(a[1]+b[1])/2-4)}});C.forEach(c=>{const d=T[c.t];ctx.save();ctx.translate(c.x+d.w/2,c.y+d.h/2);ctx.rotate((c.rot||0)*Math.PI/180);ctx.scale(c.sc||1,c.sc||1);ctx.fillStyle=d.b;ctx.fillRect(-d.w/2,-d.h/2,d.w,d.h);ctx.strokeStyle='#0006';ctx.lineWidth=2;ctx.strokeRect(-d.w/2,-d.h/2,d.w,d.h);ctx.fillStyle='#fff';ctx.font='700 11px system-ui';ctx.textAlign='center';ctx.fillText(d.g||'',0,-d.h/2+18);ctx.fillStyle='#fff';ctx.font='700 10px system-ui';ctx.fillText(c.l,0,d.h/2-6);
      if(c.t==='PMeter2'||c.t==='PMeter3'||c.t==='PMeter'){ctx.font='700 10px system-ui';ctx.fillText('رصيد '+(c.balance||0).toFixed(0)+' ج',0,6);ctx.font='700 9px system-ui';ctx.fillText((c.kwh||0).toFixed(1)+' kWh',0,18);if(c.theft)ctx.fillText('⚠️ تلاعب',0,30)}
      if(c.t==='Generator'||c.t==='Generator3Ph'){ctx.font='700 10px system-ui';ctx.fillText('ديزل '+(c.diesel||0).toFixed(0)+'% • '+(c.hz||50).toFixed(0)+'Hz',0,6);ctx.font='700 9px system-ui';ctx.fillText('حرارة '+(c.dTemp||35).toFixed(0)+'° زيت '+(c.oil||0).toFixed(0)+'% مياه '+(c.water||0).toFixed(0)+'%',0,18)}
      if(c.t==='Overload'||c.t==='Overload3P'){
@@ -1081,7 +1116,7 @@ function saveCircuitImage(){const bw=Math.max(board.clientWidth||700,board.scrol
      if(c.olTripped&&c.olMode==='A'&&(c.olHeat||0)<=0){c.olTripped=false;ch=true;const m=$('msg');if(m){m.textContent='🔄 الأوفرلود رجع أوتوماتيك (وضع A) بعد ما برد';m.className='g'}}
    }
    if(['Heater','Heater3Ph','Fridge','Washer','Cooker'].includes(c.t)){ctx.font='700 9px system-ui';ctx.fillText('حرارة '+(c.loadTemp||22).toFixed(0)+'°',0,6);if(c.timerMin)ctx.fillText('مؤقت '+c.timerMin+'د',0,18)}
-     ctx.restore()});ctx.fillStyle='#fff';ctx.font='700 14px system-ui';ctx.textAlign='right';ctx.fillText('ElectroPanel • DEC • '+size,cv.width-10,22);const a=document.createElement('a');a.href=cv.toDataURL('image/png');a.download='electropanel-'+Date.now()+'.png';a.click()}
+     ctx.restore()});ctx.fillStyle='#fff';ctx.font='700 14px system-ui';ctx.textAlign='right';ctx.fillText('ElectroPanel',cv.width-10,22);const a=document.createElement('a');a.href=cv.toDataURL('image/png');a.download='electropanel-'+Date.now()+'.png';a.click()}
 const imgBtn=$('saveImgBtn');if(imgBtn)imgBtn.onclick=saveCircuitImage;
 addEventListener('resize',draw);
 setInterval(()=>{
@@ -1192,16 +1227,103 @@ document.addEventListener('pointerdown', function(e){
   if(el) return;
   closeAllMenus();
 }, true);
+
+/* FIX: زوم بالقرصة بصباعين - اللوحة والمحتوى يصغروا ويكبروا مع بعض */
+let boardZoom=1, boardPanX=0, boardPanY=0, pinchPtrs=new Map(), pinch=null;
+let panMode=false, panDrag=null;
+function applyBoardZoom(){
+  const sc=$('sc');
+  if(sc){
+    const bw=board.clientWidth*boardZoom, bh=board.clientHeight*boardZoom;
+    const _offX=parseInt(board.style.left||'0',10)||0, _offY=parseInt(board.style.top||'0',10)||0;
+    // بورد مفتوح: 50px على الاقل يفضل باين عشان متضيعش
+    const minX=-_offX-bw+50, maxX=-_offX+sc.clientWidth-50;
+    const minY=-_offY-bh+50, maxY=-_offY+sc.clientHeight-50;
+    boardPanX=Math.max(minX, Math.min(maxX, boardPanX)); boardPanY=Math.max(minY, Math.min(maxY, boardPanY));
+  }
+  board.style.transform='translate('+boardPanX+'px,'+boardPanY+'px) scale('+boardZoom+')';
+  /* FIX: الشبكة على #sc نفسها - أي فراغ يسيبه البورد لما يتحرك يفضل شبكة مش رمادي سادة */
+  if(sc){
+    const gs=22*boardZoom;
+    const bx=(((boardPanX%gs)+gs)%gs), by=(((boardPanY%gs)+gs)%gs);
+    sc.style.backgroundImage='linear-gradient(#0001 1px,transparent 1px),linear-gradient(90deg,#0001 1px,transparent 1px)';
+    sc.style.backgroundSize=gs+'px '+gs+'px';
+    sc.style.backgroundPosition=bx+'px '+by+'px';
+  }
+  const zl=$('zoomLabel'); if(zl) zl.textContent=Math.round(boardZoom*100)+'%';
+}
+/* FIX: بورد شبكي مفتوح بلا مقاس - 10000x10000 والاصل في النص */
+(function(){
+  try{
+    board.style.width='10000px'; board.style.height='10000px';
+    board.style.left='0px'; board.style.top='0px';
+    boardPanX=0; boardPanY=0;
+    const _ex=$('expandBoard'); if(_ex) _ex.style.display='none';
+    applyBoardZoom();
+  }catch(e){}
+})();
+function setBoardZoom(nz, cx, cy){
+  nz=Math.max(0.35, Math.min(2.5, nz));
+  if(nz===boardZoom) return;
+  const sc=$('sc'), r=sc?sc.getBoundingClientRect():board.getBoundingClientRect();
+  const mx=(cx!==undefined?cx:r.left+r.width/2)-r.left, my=(cy!==undefined?cy:r.top+r.height/2)-r.top;
+  const f=nz/boardZoom;
+  boardPanX=mx-(mx-boardPanX)*f; boardPanY=my-(my-boardPanY)*f;
+  boardZoom=nz; applyBoardZoom();
+}
+function pinchDist(){ const a=[...pinchPtrs.values()]; return Math.hypot(a[0].x-a[1].x, a[0].y-a[1].y); }
+function pinchMid(){ const a=[...pinchPtrs.values()]; return {x:(a[0].x+a[1].x)/2, y:(a[0].y+a[1].y)/2}; }
+board.addEventListener('pointerdown', e=>{
+  if(e.target.closest && e.target.closest('#dr, #examplesDrawer')) return;
+  pinchPtrs.set(e.pointerId, {x:e.clientX, y:e.clientY});
+  if(pinchPtrs.size===2){
+    if(typeof drag!=='undefined') drag=null;
+    if(typeof panDrag!=='undefined') panDrag=null;
+    if(typeof hd!=='undefined') hd=null;
+    const mid=pinchMid();
+    pinch={d0:pinchDist(), zoom0:boardZoom, panX0:boardPanX, panY0:boardPanY, mid0:mid};
+  }
+});
+addEventListener('pointermove', e=>{
+  if(!pinchPtrs.has(e.pointerId)) return;
+  pinchPtrs.set(e.pointerId, {x:e.clientX, y:e.clientY});
+  if(pinch && pinchPtrs.size>=2){
+    const d=pinchDist(); if(d<10) return;
+    const nz=Math.max(0.35, Math.min(2.5, pinch.zoom0*(d/pinch.d0)));
+    const mid=pinchMid();
+    const sc=$('sc'), r=sc.getBoundingClientRect();
+    const mx=mid.x-r.left, my=mid.y-r.top;
+    const m0x=pinch.mid0.x-r.left, m0y=pinch.mid0.y-r.top;
+    const f=nz/pinch.zoom0;
+    // النقطة اللي كانت تحت الصباعين تفضل تحت الصباعين: pan = mid - (mid0-pan0)*f
+    boardZoom=nz;
+    boardPanX=mx-(m0x-pinch.panX0)*f;
+    boardPanY=my-(m0y-pinch.panY0)*f;
+    applyBoardZoom();
+  }
+});
+function pinchEnd(e){ pinchPtrs.delete(e.pointerId); if(pinchPtrs.size<2) pinch=null; }
+addEventListener('pointerup', pinchEnd);
+addEventListener('pointercancel', pinchEnd);
+board.addEventListener('wheel', e=>{ e.preventDefault(); setBoardZoom(boardZoom*(e.deltaY<0?1.1:0.9), e.clientX, e.clientY); }, {passive:false});
+
+document.addEventListener('click', e=>{
+  if(e.target.id==='zoomIn') setBoardZoom(boardZoom*1.25);
+  else if(e.target.id==='zoomOut') setBoardZoom(boardZoom/1.25);
+  else if(e.target.id==='zoomReset'){ boardZoom=1; boardPanX=0; boardPanY=0; applyBoardZoom(); }
+  else if(e.target.id==='expandBoard'){ board.style.width=(board.clientWidth+300)+'px'; board.style.height=(board.clientHeight+300)+'px'; const _m=$('msg'); if(_m){ _m.textContent='اتوسعت اللوحة - اسحب القطعة براحتك في المساحة الجديدة'; _m.className='g'; } }
+  else if(e.target.id==='panBtn'){ panMode=!panMode; const b=$('panBtn'); if(b){ b.textContent=panMode?'✋ بتحرك اللوحة - دوس ترجع':'✋ تحريك اللوحة'; b.style.background=panMode?'#16a34a':''; b.style.color=panMode?'#fff':''; } board.style.cursor=panMode?'grab':'default'; }
+});
 (function init(){
  const m=mk('Mains',40,20),b=mk('MCB',70,150),l=mk('Lamp',70,290),n=mk('NBar',250,400);
  C=[m,b,l,n];
  link(m.id+':L',b.id+':in','l1');link(b.id+':out',l.id+':in','l1');link(l.id+':out',n.id+':n','n');link(n.id+':n',m.id+':N','n');
- lib();panel();setSize('80x100');setToolsCollapsed(false);render();
+ lib();panel();setToolsCollapsed(false);render();
 })();
 </script>
 <script>
 // ===== PWA: تثبيت + أوفلاين + تحديث تلقائي =====
-const APP_VERSION = 'v3.9.28';
+const APP_VERSION = 'v3.9.37';
 let deferredPrompt = null, newWorker = null;
 const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
 const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
