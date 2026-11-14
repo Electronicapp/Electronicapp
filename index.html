@@ -240,10 +240,13 @@ h1{position:relative!important;z-index:1!important;background:var(--bg,#f1f5f9)!
 #wrap > #settingsBar{position:sticky!important;top:0!important;z-index:312!important;margin:0 0 6px!important;border-radius:12px!important}
 #wrap:fullscreen > #settingsBar{position:sticky!important;top:0!important;z-index:312!important}
 #wrap:fullscreen #sc{max-height:calc(100dvh - 150px)!important;min-height:calc(100dvh - 150px)!important}
+
+/* V3.9.51 - رقم الفيرجن أقصى اليمين في صف كهربائي / تطبيقات */
+#verBadge{position:absolute!important;right:10px!important;top:50%!important;transform:translateY(-50%)!important;background:#0f172a!important;color:#facc15!important;border:1px solid #facc15!important;border-radius:999px!important;padding:4px 10px!important;font-size:11px!important;font-weight:900!important;direction:ltr!important;letter-spacing:.5px!important;white-space:nowrap!important;box-shadow:0 2px 8px #0003!important}
 </style></head><body>
 
 <!-- راس الصفحة من فوق خالص - الإضافات الجديدة تتحط هنا جنب زرار كهربائي -->
-<header id="topHeader"><button id="elecBtn" type="button" title="تواصل مع صاحب التطبيق">⚡ كهربائي</button><button id="appsBtn" type="button" title="تطبيقات قادمة">📱 تطبيقات</button></header>
+<header id="topHeader"><span id="verBadge">V3.9.51</span><button id="elecBtn" type="button" title="تواصل مع صاحب التطبيق">⚡ كهربائي</button><button id="appsBtn" type="button" title="تطبيقات قادمة">📱 تطبيقات</button></header>
 
 <div id="pwaBar" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;align-items:center">
  <button id="installBtn" style="display:none;background:#111827;color:#fff">📲 تثبيت التطبيق على جهازك</button>
