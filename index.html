@@ -92,7 +92,7 @@
 
 </style><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>ElectroPanel V3.9.47</title>
+<title>ElectroPanel V3.9.50</title>
 <link rel="manifest" href="./manifest.webmanifest">
 <meta name="theme-color" content="#111827">
 <meta name="mobile-web-app-capable" content="yes">
@@ -240,7 +240,7 @@ h1{position:relative!important;z-index:1!important;background:var(--bg,#f1f5f9)!
 <!-- راس الصفحة من فوق خالص - الإضافات الجديدة تتحط هنا جنب زرار كهربائي -->
 <header id="topHeader"><button id="elecBtn" type="button" title="تواصل مع صاحب التطبيق">⚡ كهربائي</button><button id="appsBtn" type="button" title="تطبيقات قادمة">📱 تطبيقات</button></header>
 
-<div id="settingsBar"><label style="font-size:12px;white-space:nowrap">⏱ سرعة الزمن <span class="selbox"><button type="button" class="selPrev" data-for="sp" title="السابق">◀</button><select id="sp" title="سرعة الزمن"><option value="1">زمن حقيقي ×1</option><option value="60">×60 (ث = دقيقة)</option><option value="3600">×3600 (ث = ساعة)</option></select><button type="button" class="selNext" data-for="sp" title="التالي">▶</button></span></label><label style="font-size:12px;white-space:nowrap">📐 حجم اللوحة <span class="selbox"><button type="button" class="selPrev" data-for="bs" title="السابق">◀</button><select id="bs"><option value="40x60">40×60 سم</option><option value="60x80">60×80 سم</option><option value="80x100" selected>80×100 سم</option><option value="100x80">100×80 سم</option><option value="100x120">100×120 سم</option></select><button type="button" class="selNext" data-for="bs" title="التالي">▶</button></span></label><label style="font-size:11px;white-space:nowrap">مقطع السلك <span class="selbox"><button type="button" class="selPrev" data-for="gs" title="السابق">◀</button><select id="gs" title="مقطع السلك - بيحدد سماكة الرسم والتيار المسموح"><option value="1">سلك 1 مم² • ~10A</option><option value="1.5" selected>سلك 1.5 مم² • ~14A</option><option value="2">سلك 2 مم² • ~17A</option><option value="2.5">سلك 2.5 مم² • ~20A</option><option value="3">سلك 3 مم² • ~22A</option><option value="4">سلك 4 مم² • ~25A</option><option value="6">سلك 6 مم² • ~32A</option><option value="10">سلك 10 مم² • ~44A</option><option value="c2x1">كابل ترمو 2×1 مم²</option><option value="c2x1.5">كابل ترمو 2×1.5 مم²</option><option value="c2x2">كابل ترمو 2×2 مم²</option><option value="c2x2.5">كابل ترمو 2×2.5 مم²</option><option value="c2x4">كابل ترمو 2×4 مم²</option><option value="c3x1.5">كابل ترمو 3×1.5 مم²</option><option value="c3x2.5">كابل ترمو 3×2.5 مم²</option></select><button type="button" class="selNext" data-for="gs" title="التالي">▶</button></span></label><label style="font-size:11px;white-space:nowrap">زمن الاختبار <span class="selbox"><button type="button" class="selPrev" data-for="testH" title="السابق">◀</button><select id="testH" title="الساعة الواحدة = 5 ثواني حقيقية"><option value="0">تشغيل مستمر (بدون توقيت)</option><option value="1">1 ساعة</option><option value="2">2 ساعة</option><option value="4">4 ساعات</option><option value="8">8 ساعات</option><option value="12">12 ساعة</option><option value="24">24 ساعة</option></select><button type="button" class="selNext" data-for="testH" title="التالي">▶</button></span></label><span id="testClock" style="font-size:11px;white-space:nowrap">⏱ تشغيل مستمر</span></div>
+<div id="settingsBar"><label style="font-size:12px;white-space:nowrap"><span class="selbox"><button type="button" class="selPrev" data-for="sp" title="السابق">◀</button><select id="sp" title="سرعة الزمن"><option value="1">زمن حقيقي ×1</option><option value="60">×60 (ث = دقيقة)</option><option value="3600">×3600 (ث = ساعة)</option></select><button type="button" class="selNext" data-for="sp" title="التالي">▶</button></span></label><label style="font-size:12px;white-space:nowrap"><span class="selbox"><button type="button" class="selPrev" data-for="bs" title="السابق">◀</button><select id="bs"><option value="40x60">40×60 سم</option><option value="60x80">60×80 سم</option><option value="80x100" selected>80×100 سم</option><option value="100x80">100×80 سم</option><option value="100x120">100×120 سم</option></select><button type="button" class="selNext" data-for="bs" title="التالي">▶</button></span></label><label style="font-size:11px;white-space:nowrap"><span class="selbox"><button type="button" class="selPrev" data-for="gs" title="السابق">◀</button><select id="gs" title="مقطع السلك - بيحدد سماكة الرسم والتيار المسموح"><option value="1">سلك 1 مم² • ~10A</option><option value="1.5" selected>سلك 1.5 مم² • ~14A</option><option value="2">سلك 2 مم² • ~17A</option><option value="2.5">سلك 2.5 مم² • ~20A</option><option value="3">سلك 3 مم² • ~22A</option><option value="4">سلك 4 مم² • ~25A</option><option value="6">سلك 6 مم² • ~32A</option><option value="10">سلك 10 مم² • ~44A</option><option value="c2x1">كابل ترمو 2×1 مم²</option><option value="c2x1.5">كابل ترمو 2×1.5 مم²</option><option value="c2x2">كابل ترمو 2×2 مم²</option><option value="c2x2.5">كابل ترمو 2×2.5 مم²</option><option value="c2x4">كابل ترمو 2×4 مم²</option><option value="c3x1.5">كابل ترمو 3×1.5 مم²</option><option value="c3x2.5">كابل ترمو 3×2.5 مم²</option></select><button type="button" class="selNext" data-for="gs" title="التالي">▶</button></span></label><label style="font-size:11px;white-space:nowrap"><span class="selbox"><button type="button" class="selPrev" data-for="testH" title="السابق">◀</button><select id="testH" title="الساعة الواحدة = 5 ثواني حقيقية"><option value="0">تشغيل مستمر (بدون توقيت)</option><option value="1">1 ساعة</option><option value="2">2 ساعة</option><option value="4">4 ساعات</option><option value="8">8 ساعات</option><option value="12">12 ساعة</option><option value="24">24 ساعة</option></select><button type="button" class="selNext" data-for="testH" title="التالي">▶</button></span></label><span id="testClock" style="font-size:11px;white-space:nowrap"></span></div>
 <div id="pwaBar" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;align-items:center">
  <button id="installBtn" style="display:none;background:#111827;color:#fff">📲 تثبيت التطبيق على جهازك</button>
  <button id="iosBtn" style="display:none">🍎 تثبيت على iPhone: مشاركة ← إضافة للشاشة الرئيسية</button>
@@ -260,22 +260,22 @@ h1{position:relative!important;z-index:1!important;background:var(--bg,#f1f5f9)!
 <div class="hint" style="font-size:10px;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">ألوان الأسلاك تلقائي: L1 أحمر • L2 أزرق • L3 أصفر • N أسود • PE أخضر × أبيض — من غير اختيار، اللون بيتحدد من اسم النقطة اللي بتوصّلها.</div>
 <div class="bar mo" id="pc"></div>
 <div class="bar mo" id="fl"></div>
- <button id="toolsExpand" style="display:none">🧰 إظهار البار</button><div id="boardTools"><button id="toolsCollapse" title="إخفاء بار اللوحة - هيرجع بزرار إظهار البار فوق">⬆️ إخفاء البار</button><button id="dh">☰ القطع</button>
- <button id="br" class="go"></button><button data-tab="b" id="tb">تصنيع حر</button><button data-tab="m" id="tm">صيانة وأعطال</button><button id="bm">🔊</button><button id="zoomOut" title="تصغير الشبكة">➖</button><span id="zoomLabel" style="font-size:11px;white-space:nowrap">100%</span><button id="zoomIn" title="تكبير الشبكة">➕</button><span id="kwh" style="font-size:11px;white-space:nowrap"></span>
- <button id="bw">🔌 وضع التوصيل</button>
+ <button id="toolsExpand" style="display:none">🧰 إظهار البار</button><div id="boardTools"><button id="toolsCollapse" title="إخفاء بار اللوحة - هيرجع بزرار إظهار البار فوق">⬆️</button><button id="dh" title="القطع">☰</button>
+ <button id="br" class="go"></button><button data-tab="b" id="tb" title="تصنيع حر">🎛️</button><button data-tab="m" id="tm" title="صيانة وأعطال">🔧</button><button id="bm">🔊</button><button id="zoomOut" title="تصغير الشبكة">➖</button><span id="zoomLabel" style="font-size:11px;white-space:nowrap">100%</span><button id="zoomIn" title="تكبير الشبكة">➕</button><span id="kwh" style="font-size:11px;white-space:nowrap"></span>
+ <button id="bw" title="وضع التوصيل">🔌</button>
  
  
  
- <button id="bd">✕ حذف المحدد</button>
- <button id="dupBtn" title="نسخ القطعة المظللة بنفس بياناتها من غير أسلاك">⧉ تكرار القطعة</button>
- <button id="symBtn" title="بدّل شكل القطع: رسم واقعي أو رمز هندسي - الدايرة والأسلاك ثابتة">〰️ رمز هندسي</button>
- <button id="termMoveBtn" title="شغّل الوضع، وبعدين اسحب أي نقطة نحاسية بصباعك لأي جنب من القطعة">✋ تحريك النقاط</button>
- <button id="fsBoard" title="ملء الشاشة للوحة الرسم - القايمة دي هتبقى جوه اللوحة">⛶ تكبير الشاشة</button>
- <button id="saveFileBtn" title="حفظ الدايرة كملف وتفتحه تاني">💾 حفظ الدايرة</button>
- <button id="loadFileBtn" title="فتح ملف دايرة محفوظ">📂 فتح دايرة</button>
+ <button id="bd" title="حذف المحدد">✕</button>
+ <button id="dupBtn" title="نسخ القطعة المظللة بنفس بياناتها من غير أسلاك">⧉</button>
+ <button id="symBtn" title="بدّل شكل القطع: رسم واقعي أو رمز هندسي - الدايرة والأسلاك ثابتة">〰️</button>
+ <button id="termMoveBtn" title="شغّل الوضع، وبعدين اسحب أي نقطة نحاسية بصباعك لأي جنب من القطعة">✋</button>
+ <button id="fsBoard" title="ملء الشاشة للوحة الرسم - القايمة دي هتبقى جوه اللوحة">⛶</button>
+ <button id="saveFileBtn" title="حفظ الدايرة كملف وتفتحه تاني">💾</button>
+ <button id="loadFileBtn" title="فتح ملف دايرة محفوظ">📂</button>
  <input type="file" id="loadFileInput" accept=".json,.electropanel.json,application/json" style="display:none">
- <button id="saveImgBtn" title="حفظ صورة PNG للوحة كلها">🖼️ حفظ صورة</button>
- <button id="bx">مسح الكل</button>
+ <button id="saveImgBtn" title="حفظ صورة PNG للوحة كلها">🖼️</button>
+ <button id="bx" title="مسح الكل">🗑️</button>
 </div>
 <div id="sc"><div id="board"><svg id="wires"></svg><div id="comps"></div><div id="helpPop"></div></div>
 <div id="dr"></div>
@@ -701,7 +701,7 @@ function render(){
  const m=$('msg');m.textContent=res.msg;m.className=res.c;
  {const ls=C.filter(c=>T[c.t].k==='ld'&&res.E.has(c.id));$('kwh').textContent=`⚡ ${ls.reduce((s,c)=>s+c.w,0)} W • ${ls.reduce((s,c)=>s+amp(c),0).toFixed(2)} A • ${kwh.toFixed(3)} kWh`}
  $('bw').className=wire?'on':'';
- $('br').textContent=run?'⏸ إيقاف المحاكاة':'▶ تشغيل المحاكاة';
+ $('br').textContent=run?'⏸':'▶';$('br').title=run?'إيقاف المحاكاة':'تشغيل المحاكاة';
  $('tb').className=tab==='b'?'on':'';$('tm').className=tab==='m'?'on':'';
  document.body.classList.toggle('mt',tab==='m');
  $('wl').innerHTML=W.map(w=>{
@@ -746,7 +746,7 @@ function lib(){
  i.oninput=lib;
  const _sc=$('dr').querySelector('.dr-scroll');if(_sc&&!_sc.dataset.bound){_sc.dataset.bound='1';_sc.addEventListener('touchmove',e=>e.stopPropagation(),{passive:true});_sc.addEventListener('wheel',e=>e.stopPropagation(),{passive:true});}
 }
-function panel(){$('wrap').className=side+(open?'':' cl');const dh=$('dh');if(dh)dh.textContent=open?'✕ اقفل القطع':'☰ القطع';if(open&&toolsBarEl&&toolsBarEl.classList.contains('collapsed'))setToolsCollapsed(false)}
+function panel(){$('wrap').className=side+(open?'':' cl');const dh=$('dh');if(dh)dh.textContent=open?'✕':'☰';dh.title=open?'اقفل القطع':'القطع';if(open&&toolsBarEl&&toolsBarEl.classList.contains('collapsed'))setToolsCollapsed(false)}
 board.addEventListener('pointerdown',e=>{
  ptrs.set(e.pointerId,{x:e.clientX,y:e.clientY});
  if(ptrs.size===2){const a=[...ptrs.values()];pinch={d0:Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y),z0:boardZoom};drag=null;panDrag=null;hd=null;window._termDrag=null;return;}
@@ -1201,7 +1201,7 @@ document.querySelectorAll('#settingsBar select').forEach(sel=>{
   sel.addEventListener('pointerdown',e=>{e.stopPropagation();});
   sel.addEventListener('click',e=>{e.stopPropagation();try{if(sel.showPicker)sel.showPicker()}catch(_){}});
 });
-const testHEl=$('testH');if(testHEl)testHEl.onchange=e=>{testHours=+e.target.value;testElapsed=0;const tc=$('testClock');if(tc)tc.textContent=testHours>0?('⏱ 0 / '+testHours+' ساعة'):'⏱ تشغيل مستمر'};
+const testHEl=$('testH');if(testHEl)testHEl.onchange=e=>{testHours=+e.target.value;testElapsed=0;const tc=$('testClock');if(tc)tc.textContent=testHours>0?('⏱ 0 / '+testHours+' ساعة'):''};
 const gsEl=$('gs');if(gsEl)gsEl.onchange=e=>{curGauge=e.target.value;const m=$('msg');if(m){m.textContent='مقطع السلك: '+gaugeLabel(curGauge);m.className='g'}render()};
 $('bm').onclick=()=>{mute=!mute;$('bm').textContent=mute?'🔇':'🔊';snd()};
 let LD=[{n:'لمبة LED',w:10,h:6,q:8},{n:'ثلاجة',w:150,h:12,q:1},{n:'غسالة',w:500,h:1.5,q:1},{n:'مروحة',w:75,h:8,q:2},{n:'تكييف 1.5 حصان',w:1200,h:8,q:1}];
@@ -1253,7 +1253,7 @@ const fsBtn=$('fsBoard');if(fsBtn)fsBtn.onclick=()=>{if(document.fullscreenEleme
 document.addEventListener('fullscreenchange',()=>{const b=$('fsBoard');const on=!!document.fullscreenElement;if(on){toolsMoveIn()}else{toolsMoveOut()}if(b){b.textContent=on?'⤢ خروج من تكبير الشاشة':'⛶ تكبير الشاشة';b.classList.toggle('on',on)}});
 /* سحب البار: طبيعي من المتصفح (overflow-x:auto) - مفيش سحب يدوي بالـ JS عشان القوائم المنسدلة تفتح */
 function downloadFile(name,blob){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),2000)}
-function saveCircuitFile(){const data={app:'ElectroPanel',version:'v3.9.47',savedAt:new Date().toISOString(),size,totalKwh:kwh,C:C.map(c=>({id:c.id,t:c.t,x:c.x,y:c.y,s:c.s,rot:c.rot,sc:c.sc,w:c.w,temp:c.temp,fuel:c.fuel,dead:!!c.dead,stuck:!!c.stuck,termPos:c.termPos||{},l:c.l,diesel:c.diesel,oil:c.oil,water:c.water,dTemp:c.dTemp,hz:c.hz,hzSet:c.hzSet,dVolt:c.dVolt,emergency:!!c.emergency,loadTemp:c.loadTemp,onTime:c.onTime,timerMin:c.timerMin,offByTimer:!!c.offByTimer,coilOn:!!c.coilOn,phMode:c.phMode,phDark:!!c.phDark,phOut:!!c.phOut,logoProg:c.logoProg,logoQ:c.logoQ,logoI:c.logoI,logoTimers:c.logoTimers,logoSel:c.logoSel,logoMode:c.logoMode,logoPowered:!!c.logoPowered,tmOn:c.tmOn,tmOff:c.tmOff,tmMode:c.tmMode,tmOut:!!c.tmOut,olSet:c.olSet,olHeat:c.olHeat,olTripped:!!c.olTripped,olStopped:!!c.olStopped,olMode:c.olMode,wireHeatLoad:c.wireHeatLoad||0,breakerHeatLoad:c.breakerHeatLoad||0,tripHeat:c.tripHeat||0,tripped:!!c.tripped,balance:c.balance||0,price:c.price||1.5,theft:!!c.theft,kwh:c.kwh||0,totalCharged:c.totalCharged||0,page:c.page||0})),W:W.map(w=>({a:w.a,b:w.b,col:w.col,gauge:w.gauge||curGauge,heat:w.heat||0,burnt:!!w.burnt}))};downloadFile('electropanel-'+Date.now()+'.electropanel.json',new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));const m=$('msg');if(m){m.textContent='تم حفظ الدايرة كملف ✓';m.className='g'}}
+function saveCircuitFile(){const data={app:'ElectroPanel',version:'v3.9.50',savedAt:new Date().toISOString(),size,totalKwh:kwh,C:C.map(c=>({id:c.id,t:c.t,x:c.x,y:c.y,s:c.s,rot:c.rot,sc:c.sc,w:c.w,temp:c.temp,fuel:c.fuel,dead:!!c.dead,stuck:!!c.stuck,termPos:c.termPos||{},l:c.l,diesel:c.diesel,oil:c.oil,water:c.water,dTemp:c.dTemp,hz:c.hz,hzSet:c.hzSet,dVolt:c.dVolt,emergency:!!c.emergency,loadTemp:c.loadTemp,onTime:c.onTime,timerMin:c.timerMin,offByTimer:!!c.offByTimer,coilOn:!!c.coilOn,phMode:c.phMode,phDark:!!c.phDark,phOut:!!c.phOut,logoProg:c.logoProg,logoQ:c.logoQ,logoI:c.logoI,logoTimers:c.logoTimers,logoSel:c.logoSel,logoMode:c.logoMode,logoPowered:!!c.logoPowered,tmOn:c.tmOn,tmOff:c.tmOff,tmMode:c.tmMode,tmOut:!!c.tmOut,olSet:c.olSet,olHeat:c.olHeat,olTripped:!!c.olTripped,olStopped:!!c.olStopped,olMode:c.olMode,wireHeatLoad:c.wireHeatLoad||0,breakerHeatLoad:c.breakerHeatLoad||0,tripHeat:c.tripHeat||0,tripped:!!c.tripped,balance:c.balance||0,price:c.price||1.5,theft:!!c.theft,kwh:c.kwh||0,totalCharged:c.totalCharged||0,page:c.page||0})),W:W.map(w=>({a:w.a,b:w.b,col:w.col,gauge:w.gauge||curGauge,heat:w.heat||0,burnt:!!w.burnt}))};downloadFile('electropanel-'+Date.now()+'.electropanel.json',new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));const m=$('msg');if(m){m.textContent='تم حفظ الدايرة كملف ✓';m.className='g'}}
 function loadCircuitFile(file){if(isLocked()){alert('لا يمكن فتح ملف في وضع التشغيل - اخرج من التشغيل أولاً');return}const rd=new FileReader();rd.onload=()=>{try{const d=JSON.parse(rd.result);if(!d||!Array.isArray(d.C)||!Array.isArray(d.W))throw new Error('bad');C=[];W=[];uid=1;sel=null;selW=null;pend=null;d.C.forEach(rc=>{if(rc.t==='Timer24H')rc.t='TimerDigital';const c=mk(rc.t,rc.x||30,rc.y||30);c.s=rc.s||'ON';c.rot=rc.rot||0;c.sc=rc.sc||1;c.w=rc.w!=null?rc.w:(WT[rc.t]||0);c.temp=rc.temp!=null?rc.temp:22;c.fuel=rc.fuel!=null?rc.fuel:80;c.dead=!!rc.dead;c.stuck=!!rc.stuck;c.balance=rc.balance||0;c.price=rc.price||1.5;c.theft=!!rc.theft;c.kwh=rc.kwh||0;c.totalCharged=rc.totalCharged||0;c.page=rc.page||0;c.wireHeatLoad=rc.wireHeatLoad||0;c.coilOn=!!rc.coilOn;if(rc.tmOn!=null)c.tmOn=rc.tmOn;if(rc.tmOff!=null)c.tmOff=rc.tmOff;if(rc.tmMode)c.tmMode=rc.tmMode;c.tmOut=!!rc.tmOut;if(rc.phMode)c.phMode=rc.phMode;c.phDark=!!rc.phDark;c.phOut=!!rc.phOut;if(rc.logoProg)c.logoProg=rc.logoProg;if(rc.logoQ)c.logoQ=rc.logoQ;if(rc.logoI)c.logoI=rc.logoI;if(rc.logoTimers)c.logoTimers=rc.logoTimers;if(rc.logoSel)c.logoSel=rc.logoSel;if(rc.logoMode)c.logoMode=rc.logoMode;c.logoPowered=rc.logoPowered!==false;if(rc.olSet!=null)c.olSet=rc.olSet;if(rc.olHeat!=null)c.olHeat=rc.olHeat;c.olTripped=!!rc.olTripped;c.olStopped=!!rc.olStopped;if(rc.olMode)c.olMode=rc.olMode;c.breakerHeatLoad=rc.breakerHeatLoad||0;c.tripHeat=rc.tripHeat||0;c.tripped=!!rc.tripped;if(rc.dVolt!=null)c.dVolt=rc.dVolt;if(rc.diesel!=null)c.diesel=rc.diesel;if(rc.oil!=null)c.oil=rc.oil;if(rc.water!=null)c.water=rc.water;if(rc.dTemp!=null)c.dTemp=rc.dTemp;if(rc.hz!=null)c.hz=rc.hz;if(rc.hzSet!=null)c.hzSet=rc.hzSet;c.emergency=!!rc.emergency;if(rc.loadTemp!=null)c.loadTemp=rc.loadTemp;if(rc.onTime!=null)c.onTime=rc.onTime;if(rc.timerMin!=null)c.timerMin=rc.timerMin;c.offByTimer=!!rc.offByTimer;c.termPos=rc.termPos||{};if(rc.t==='PMeter3'&&c.termPos){if(c.termPos.PEi){c.termPos.Ni=c.termPos.PEi;delete c.termPos.PEi}if(c.termPos.PEo){c.termPos.No=c.termPos.PEo;delete c.termPos.PEo}}if(rc.l)c.l=rc.l;C.push(c)});const oldToNew={};d.C.forEach((rc,i)=>{if(rc.id&&C[i])oldToNew[rc.id]=C[i].id});d.W.forEach(rw=>{const conv=id=>{const parts=id.split(':');if(parts.length<2)return id;const nid=oldToNew[parts[0]];let tn=parts.slice(1).join(':');const _rc2=d.C.find(x=>x.id===parts[0]);if(_rc2&&_rc2.t==='Photocell'){if(tn==='in')tn='L';if(tn==='out')tn='Load'}if(_rc2&&(_rc2.t==='TimerDigital'||_rc2.t==='Timer24H')){if(tn==='in')tn='4';if(tn==='out')tn='3'}if(_rc2&&(_rc2.t==='Overload'||_rc2.t==='Overload3P')){if(tn==='in')tn='1L1';if(tn==='out')tn='2T1';if(tn==='in1')tn='1L1';if(tn==='out1')tn='2T1'}
 if(_rc2&&(_rc2.t==='Contactor')){if(tn==='in')tn='1L1';if(tn==='out')tn='2T1';if(tn==='in1')tn='1L1';if(tn==='out1')tn='2T1';if(tn==='in2')tn='3L2';if(tn==='out2')tn='4T2';if(tn==='in3')tn='5L3';if(tn==='out3')tn='6T3'}if(_rc2&&_rc2.t==='Contactor3P'){if(tn==='in1')tn='1L1';if(tn==='out1')tn='2T1';if(tn==='in2')tn='3L2';if(tn==='out2')tn='4T2';if(tn==='in3')tn='5L3';if(tn==='out3')tn='6T3'}const _rc=d.C.find(x=>x.id===parts[0]);if(_rc&&_rc.t==='PMeter3'){if(tn==='PEi')tn='Ni';if(tn==='PEo')tn='No'}return nid?nid+':'+tn:id};const a=conv(rw.a),b=conv(rw.b);if(a&&b){const nw=link(a,b,migrateWireColor(rw.col||'l1'),rw.gauge||'1.5');const lw=W[W.length-1];if(lw){lw.heat=rw.heat||0;lw.burnt=!!rw.burnt}}});if(d.totalKwh!=null)kwh=d.totalKwh;setSize(d.size||size);render();const m=$('msg');if(m){m.textContent='تم فتح الدايرة المحفوظة ✓';m.className='g'}}catch(err){alert('الملف ده مش دايرة ElectroPanel صالحة')}};rd.readAsText(file)}
 const saveBtn=$('saveFileBtn');if(saveBtn)saveBtn.onclick=saveCircuitFile;
@@ -1361,7 +1361,7 @@ setInterval(()=>{
        run=false;testElapsed=0;
      }
    } else {
-     const tc=$('testClock');if(tc)tc.textContent='⏱ تشغيل مستمر';
+     const tc=$('testClock');if(tc)tc.textContent='';
    }
   }
  if(ch)render();
@@ -1381,7 +1381,7 @@ document.addEventListener('click',e=>{if(e.target.closest('#exBody [data-p]')){d
 </script>
 <script>
 // ===== PWA: تثبيت + أوفلاين + تحديث تلقائي =====
-const APP_VERSION = 'v3.9.47';
+const APP_VERSION = 'v3.9.50';
 let deferredPrompt = null, newWorker = null;
 const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
 const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
