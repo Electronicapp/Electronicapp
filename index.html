@@ -288,10 +288,10 @@ h1{position:relative!important;z-index:1!important;background:var(--bg,#f1f5f9)!
  <button id="symBtn" title="بدّل شكل القطع: رسم واقعي أو رمز هندسي - الدايرة والأسلاك ثابتة">〰️</button>
  <button id="termMoveBtn" title="شغّل الوضع، وبعدين اسحب أي نقطة نحاسية بصباعك لأي جنب من القطعة">✋</button>
  <button id="fsBoard" title="ملء الشاشة للوحة الرسم - القايمة دي هتبقى جوه اللوحة">⛶</button>
- <button id="saveFileBtn" title="حفظ الدايرة كملف وتفتحه تاني">💾</button>
- <button id="loadFileBtn" title="فتح ملف دايرة محفوظ">📂</button>
+ <button id="saveFileBtn" title="حفظ الدايرة كملف JSON وتفتحه تاني بزرار فتح ملف">💾 حفظ ملف</button>
+ <button id="loadFileBtn" title="فتح ملف دايرة محفوظ">📂 فتح ملف</button>
  <input type="file" id="loadFileInput" accept=".json,.electropanel.json,application/json" style="display:none">
- <button id="saveImgBtn" title="حفظ صورة PNG للوحة كلها">🖼️</button>
+ <button id="saveImgBtn" title="حفظ صورة PNG للوحة كلها">🖼️ حفظ صورة</button>
  <button id="bx" title="مسح الكل">🗑️</button>
 </div>
 <div id="sc"><div id="board"><svg id="wires"></svg><div id="comps"></div><div id="helpPop"></div></div>
@@ -1281,7 +1281,7 @@ const fsBtn=$('fsBoard');if(fsBtn)fsBtn.onclick=()=>{if(document.fullscreenEleme
 document.addEventListener('fullscreenchange',()=>{const b=$('fsBoard');const on=!!document.fullscreenElement;if(on){toolsMoveIn()}else{toolsMoveOut()}if(b){b.textContent=on?'⤢ خروج من تكبير الشاشة':'⛶ تكبير الشاشة';b.classList.toggle('on',on)}});
 /* سحب البار: طبيعي من المتصفح (overflow-x:auto) - مفيش سحب يدوي بالـ JS عشان القوائم المنسدلة تفتح */
 function downloadFile(name,blob){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),2000)}
-function saveCircuitFile(){const data={app:'ElectroPanel',version:'v3.9.51',savedAt:new Date().toISOString(),size,totalKwh:kwh,C:C.map(c=>({id:c.id,t:c.t,x:c.x,y:c.y,s:c.s,rot:c.rot,sc:c.sc,w:c.w,temp:c.temp,fuel:c.fuel,dead:!!c.dead,stuck:!!c.stuck,termPos:c.termPos||{},l:c.l,diesel:c.diesel,oil:c.oil,water:c.water,dTemp:c.dTemp,hz:c.hz,hzSet:c.hzSet,dVolt:c.dVolt,emergency:!!c.emergency,loadTemp:c.loadTemp,onTime:c.onTime,timerMin:c.timerMin,offByTimer:!!c.offByTimer,coilOn:!!c.coilOn,phMode:c.phMode,phDark:!!c.phDark,phOut:!!c.phOut,logoProg:c.logoProg,logoQ:c.logoQ,logoI:c.logoI,logoTimers:c.logoTimers,logoSel:c.logoSel,logoMode:c.logoMode,logoPowered:!!c.logoPowered,tmOn:c.tmOn,tmOff:c.tmOff,tmMode:c.tmMode,tmOut:!!c.tmOut,olSet:c.olSet,olHeat:c.olHeat,olTripped:!!c.olTripped,olStopped:!!c.olStopped,olMode:c.olMode,wireHeatLoad:c.wireHeatLoad||0,breakerHeatLoad:c.breakerHeatLoad||0,tripHeat:c.tripHeat||0,tripped:!!c.tripped,balance:c.balance||0,price:c.price||1.5,theft:!!c.theft,kwh:c.kwh||0,totalCharged:c.totalCharged||0,page:c.page||0})),W:W.map(w=>({a:w.a,b:w.b,col:w.col,gauge:w.gauge||curGauge,heat:w.heat||0,burnt:!!w.burnt}))};downloadFile('electropanel-'+Date.now()+'.electropanel.json',new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));const m=$('msg');if(m){m.textContent='تم حفظ الدايرة كملف ✓';m.className='g'}}
+function saveCircuitFile(){const data={app:'ElectroPanel',version:'v3.9.51',savedAt:new Date().toISOString(),size,totalKwh:kwh,C:C.map(c=>({id:c.id,t:c.t,x:c.x,y:c.y,s:c.s,rot:c.rot,sc:c.sc,w:c.w,temp:c.temp,fuel:c.fuel,dead:!!c.dead,stuck:!!c.stuck,termPos:c.termPos||{},l:c.l,diesel:c.diesel,oil:c.oil,water:c.water,dTemp:c.dTemp,hz:c.hz,hzSet:c.hzSet,dVolt:c.dVolt,emergency:!!c.emergency,loadTemp:c.loadTemp,onTime:c.onTime,timerMin:c.timerMin,offByTimer:!!c.offByTimer,coilOn:!!c.coilOn,phMode:c.phMode,phDark:!!c.phDark,phOut:!!c.phOut,logoProg:c.logoProg,logoQ:c.logoQ,logoI:c.logoI,logoTimers:c.logoTimers,logoSel:c.logoSel,logoMode:c.logoMode,logoPowered:!!c.logoPowered,tmOn:c.tmOn,tmOff:c.tmOff,tmMode:c.tmMode,tmOut:!!c.tmOut,olSet:c.olSet,olHeat:c.olHeat,olTripped:!!c.olTripped,olStopped:!!c.olStopped,olMode:c.olMode,wireHeatLoad:c.wireHeatLoad||0,breakerHeatLoad:c.breakerHeatLoad||0,tripHeat:c.tripHeat||0,tripped:!!c.tripped,balance:c.balance||0,price:c.price||1.5,theft:!!c.theft,kwh:c.kwh||0,totalCharged:c.totalCharged||0,page:c.page||0})),W:W.map(w=>({a:w.a,b:w.b,col:w.col,gauge:w.gauge||curGauge,heat:w.heat||0,burnt:!!w.burnt}))};downloadFile('electropanel-'+Date.now()+'.electropanel.json',new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));const m=$('msg');if(m){m.textContent='تم حفظ الدايرة كملف JSON ✓ — ده كود الدايرة، افتحه تاني بزرار 📂 فتح ملف. لو عايز صورة دوس 🖼️ حفظ صورة';m.className='g'}}
 function loadCircuitFile(file){if(isLocked()){alert('لا يمكن فتح ملف في وضع التشغيل - اخرج من التشغيل أولاً');return}const rd=new FileReader();rd.onload=()=>{try{const d=JSON.parse(rd.result);if(!d||!Array.isArray(d.C)||!Array.isArray(d.W))throw new Error('bad');C=[];W=[];uid=1;sel=null;selW=null;pend=null;d.C.forEach(rc=>{if(rc.t==='Timer24H')rc.t='TimerDigital';const c=mk(rc.t,rc.x||30,rc.y||30);c.s=rc.s||'ON';c.rot=rc.rot||0;c.sc=rc.sc||1;c.w=rc.w!=null?rc.w:(WT[rc.t]||0);c.temp=rc.temp!=null?rc.temp:22;c.fuel=rc.fuel!=null?rc.fuel:80;c.dead=!!rc.dead;c.stuck=!!rc.stuck;c.balance=rc.balance||0;c.price=rc.price||1.5;c.theft=!!rc.theft;c.kwh=rc.kwh||0;c.totalCharged=rc.totalCharged||0;c.page=rc.page||0;c.wireHeatLoad=rc.wireHeatLoad||0;c.coilOn=!!rc.coilOn;if(rc.tmOn!=null)c.tmOn=rc.tmOn;if(rc.tmOff!=null)c.tmOff=rc.tmOff;if(rc.tmMode)c.tmMode=rc.tmMode;c.tmOut=!!rc.tmOut;if(rc.phMode)c.phMode=rc.phMode;c.phDark=!!rc.phDark;c.phOut=!!rc.phOut;if(rc.logoProg)c.logoProg=rc.logoProg;if(rc.logoQ)c.logoQ=rc.logoQ;if(rc.logoI)c.logoI=rc.logoI;if(rc.logoTimers)c.logoTimers=rc.logoTimers;if(rc.logoSel)c.logoSel=rc.logoSel;if(rc.logoMode)c.logoMode=rc.logoMode;c.logoPowered=rc.logoPowered!==false;if(rc.olSet!=null)c.olSet=rc.olSet;if(rc.olHeat!=null)c.olHeat=rc.olHeat;c.olTripped=!!rc.olTripped;c.olStopped=!!rc.olStopped;if(rc.olMode)c.olMode=rc.olMode;c.breakerHeatLoad=rc.breakerHeatLoad||0;c.tripHeat=rc.tripHeat||0;c.tripped=!!rc.tripped;if(rc.dVolt!=null)c.dVolt=rc.dVolt;if(rc.diesel!=null)c.diesel=rc.diesel;if(rc.oil!=null)c.oil=rc.oil;if(rc.water!=null)c.water=rc.water;if(rc.dTemp!=null)c.dTemp=rc.dTemp;if(rc.hz!=null)c.hz=rc.hz;if(rc.hzSet!=null)c.hzSet=rc.hzSet;c.emergency=!!rc.emergency;if(rc.loadTemp!=null)c.loadTemp=rc.loadTemp;if(rc.onTime!=null)c.onTime=rc.onTime;if(rc.timerMin!=null)c.timerMin=rc.timerMin;c.offByTimer=!!rc.offByTimer;c.termPos=rc.termPos||{};if(rc.t==='PMeter3'&&c.termPos){if(c.termPos.PEi){c.termPos.Ni=c.termPos.PEi;delete c.termPos.PEi}if(c.termPos.PEo){c.termPos.No=c.termPos.PEo;delete c.termPos.PEo}}if(rc.l)c.l=rc.l;C.push(c)});const oldToNew={};d.C.forEach((rc,i)=>{if(rc.id&&C[i])oldToNew[rc.id]=C[i].id});d.W.forEach(rw=>{const conv=id=>{const parts=id.split(':');if(parts.length<2)return id;const nid=oldToNew[parts[0]];let tn=parts.slice(1).join(':');const _rc2=d.C.find(x=>x.id===parts[0]);if(_rc2&&_rc2.t==='Photocell'){if(tn==='in')tn='L';if(tn==='out')tn='Load'}if(_rc2&&(_rc2.t==='TimerDigital'||_rc2.t==='Timer24H')){if(tn==='in')tn='4';if(tn==='out')tn='3'}if(_rc2&&(_rc2.t==='Overload'||_rc2.t==='Overload3P')){if(tn==='in')tn='1L1';if(tn==='out')tn='2T1';if(tn==='in1')tn='1L1';if(tn==='out1')tn='2T1'}
 if(_rc2&&(_rc2.t==='Contactor')){if(tn==='in')tn='1L1';if(tn==='out')tn='2T1';if(tn==='in1')tn='1L1';if(tn==='out1')tn='2T1';if(tn==='in2')tn='3L2';if(tn==='out2')tn='4T2';if(tn==='in3')tn='5L3';if(tn==='out3')tn='6T3'}if(_rc2&&_rc2.t==='Contactor3P'){if(tn==='in1')tn='1L1';if(tn==='out1')tn='2T1';if(tn==='in2')tn='3L2';if(tn==='out2')tn='4T2';if(tn==='in3')tn='5L3';if(tn==='out3')tn='6T3'}const _rc=d.C.find(x=>x.id===parts[0]);if(_rc&&_rc.t==='PMeter3'){if(tn==='PEi')tn='Ni';if(tn==='PEo')tn='No'}return nid?nid+':'+tn:id};const a=conv(rw.a),b=conv(rw.b);if(a&&b){const nw=link(a,b,migrateWireColor(rw.col||'l1'),rw.gauge||'1.5');const lw=W[W.length-1];if(lw){lw.heat=rw.heat||0;lw.burnt=!!rw.burnt}}});if(d.totalKwh!=null)kwh=d.totalKwh;setSize(d.size||size);render();const m=$('msg');if(m){m.textContent='تم فتح الدايرة المحفوظة ✓';m.className='g'}}catch(err){alert('الملف ده مش دايرة ElectroPanel صالحة')}};rd.readAsText(file)}
 const saveBtn=$('saveFileBtn');if(saveBtn)saveBtn.onclick=saveCircuitFile;
@@ -1459,29 +1459,58 @@ document.getElementById('updateBtn').onclick = ()=>{
 </script>
 <script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}function isInlineMediaSlotElement(node){return !!(node&&node.getAttribute&&node.getAttribute("data-clippy-inline-media-slot")!==null)}function findInlineMediaSlot(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(isInlineMediaSlotElement(node))return node}return null}function readInlineMediaUrl(node){if(!node)return null;return node.getAttribute&&((node.getAttribute("data-clippy-inline-media-url")||node.getAttribute("data-url")||node.getAttribute("data_url")))||node.href||null}function stripHash(url){return String(url).replace(/#.*$/,"")}function urlsMatch(a,b){if(!a||!b)return false;try{return stripHash(new URL(a,loc).href)===stripHash(new URL(b,loc).href)}catch(_){return stripHash(a)===stripHash(b)}}function isFirstPartyReelUrl(value){try{var url=new URL(value,loc);if(url.protocol!=="https:")return false;var host=url.hostname.toLowerCase();var supported=host==="instagram.com"||host.endsWith(".instagram.com")||host==="facebook.com"||host.endsWith(".facebook.com");return supported&&/\/reels?\//i.test(url.pathname)}catch(_){return false}}function isInlineMediaUrlClick(node,href){var slot=findInlineMediaSlot(node);if(!slot)return false;var slotUrl=readInlineMediaUrl(slot);if(slotUrl)return urlsMatch(href,slotUrl);return isFirstPartyReelUrl(href)}function findDataHref(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(node.getAttribute){var href=node.getAttribute("data-href")||node.getAttribute("data-url");if(href)return{href:href,node:node}}}return null}var nativeOpen=window.open;window.open=function(url){if(parent!==window&&typeof url==="string"&&/^https?:\/\//.test(url)){parent.postMessage({type:"ecto:usercontent-link-click",href:url},"*");return null}return nativeOpen?nativeOpen.apply(window,arguments):null};document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;if(parent===window)return;var a=target.closest?target.closest("a[href]"):null;if(a&&a.href&&/^https?:\/\//.test(a.href)&&a.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(a,a.href))return;var productId=extractProductId(target)||extractProductId(a);if(productId){e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*");return}e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:a.href},"*");return}var dataHref=findDataHref(target);if(dataHref&&/^https?:\/\//.test(dataHref.href)&&dataHref.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(dataHref.node,dataHref.href))return;e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:dataHref.href},"*")}},true)})();</script><script>(function(){var FOCUS_TYPE="ecto:artifact-focus-request";var CLOSE_TYPE="ecto:artifact-close-request";function focusArtifactDocument(){var body=document.body;if(!body)return;try{window.focus();}catch(e){}if(!body.hasAttribute("tabindex"))body.setAttribute("tabindex","-1");try{body.focus({preventScroll:true});}catch(e){try{body.focus();}catch(e2){}}}window.addEventListener("message",function(event){if(event.source!==window.parent)return;var data=event.data;if(!data||typeof data!=="object"||data.type!==FOCUS_TYPE)return;if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",focusArtifactDocument,{once:true});return;}focusArtifactDocument();});window.addEventListener("keydown",function(event){if(event.key!=="Escape")return;window.setTimeout(function(){if(event.defaultPrevented)return;window.parent.postMessage({type:CLOSE_TYPE},"*");},0);});})();</script>
 <!-- ===== SNelectric مدمج جوّه ElectroPanel — نفس الملف ===== -->
-<div id="snView" style="display:none;position:fixed;inset:0;background:#0b1220;z-index:10001;flex-direction:column">
+<div id="snView" style="display:none;position:fixed;inset:0;background:#0b1220;z-index:10001;flex-direction:column;overflow:hidden">
   <div style="display:flex;align-items:center;gap:8px;padding:8px 10px;background:#0f172a;color:#fff;flex-wrap:wrap">
     <button id="snBack" type="button" style="background:#facc15;color:#111827;border:none;border-radius:999px;padding:7px 14px;font-weight:900;cursor:pointer">‹ رجوع لـ ElectroPanel</button>
-    <b>⚡ SNelectric</b><span style="color:#94a3b8;font-size:12px">رسم مدني + كهرباء + سباكة — اختار قطعة ودوس إضافة، بعدين اسحبها</span>
+    <b>⚡ SNelectric</b><span style="color:#94a3b8;font-size:12px">رسم مدني + كهرباء + سباكة</span>
     <span id="snStat" style="margin-inline-start:auto;font-size:12px;color:#7dd3fc"></span>
   </div>
   <div style="display:flex;gap:6px;padding:6px 8px;background:#1e293b;flex-wrap:wrap;align-items:center">
-    <span style="color:#fff;font-size:12px;font-weight:800">قطعة:</span>
-    <select id="snPart" style="padding:6px;border-radius:10px">
-      <optgroup label="مدني"><option value="room">غرفة</option><option value="wall">حائط</option><option value="door">باب</option><option value="window">شباك</option><option value="column">عمود</option><option value="balcony">بلكونة</option><option value="stairs">سلم</option><option value="slab">بلاطة</option></optgroup>
-      <optgroup label="كهرباء"><option value="socket">بريزة عادية</option><option value="socketQ">بريزة قوى</option><option value="switch">مفتاح</option><option value="switch2">ديفاتوري</option><option value="lamp">لمبة إنارة</option><option value="bell">جرس</option><option value="mcb">قاطع MCB</option><option value="panel">لوحة توزيع</option><option value="earth">تأريض</option><option value="source">مصدر L/N</option></optgroup>
-      <optgroup label="سباكة وصحي"><option value="basin">حوض</option><option value="wc">مرحاض</option><option value="pump">مضخة</option><option value="heater">سخان</option></optgroup>
-    </select>
-    <button id="snAdd" type="button" style="background:#0ea5e9;color:#fff;border:none;border-radius:10px;padding:7px 12px;font-weight:900;cursor:pointer">＋ إضافة قطعة</button>
+    <button id="snPartsBtn" type="button" style="background:#0ea5e9;color:#fff;border:none;border-radius:10px;padding:7px 14px;font-weight:900;cursor:pointer">🧩 القطع ▸</button>
+    <span style="color:#cbd5e1;font-size:11px">دوس القطع تفتح القايمة الجانبية — ولمس أي مكان برّه القايمة بيخفيها</span>
     <span style="color:#fff;font-size:12px;font-weight:800">سلك:</span>
     <select id="snWire" style="padding:6px;border-radius:10px">
       <option value="phase">فاز أحمر</option><option value="neutral">محايد أزرق</option><option value="return">راجع أصفر</option><option value="earthW">أرضي أخضر</option><option value="main">رئيسي أسود</option><option value="cold">بارد فاتح</option><option value="hot">ساخن أحمر</option><option value="drain">صرف أخضر</option><option value="feed">تغذية بنفسجي</option>
     </select>
     <button id="snWireMode" type="button" style="background:#f59e0b;color:#111827;border:none;border-radius:10px;padding:7px 12px;font-weight:900;cursor:pointer">وضع توصيل: متوقف</button>
     <button id="snDel" type="button" style="background:#ef4444;color:#fff;border:none;border-radius:10px;padding:7px 12px;font-weight:900;cursor:pointer">حذف المحدد</button>
+    <button id="snSaveImg" type="button" style="background:#22c55e;color:#fff;border:none;border-radius:10px;padding:7px 12px;font-weight:900;cursor:pointer">🖼️ حفظ صورة SN</button>
+    <button id="snSaveFile" type="button" style="background:#0ea5e9;color:#fff;border:none;border-radius:10px;padding:7px 12px;font-weight:900;cursor:pointer">💾 حفظ ملف SN</button>
+    <button id="snLoadBtn" type="button" style="background:#f59e0b;color:#111827;border:none;border-radius:10px;padding:7px 12px;font-weight:900;cursor:pointer">📂 فتح ملف SN</button>
+    <input id="snLoadInput" type="file" accept=".json" style="display:none">
     <button id="snClear" type="button" style="background:#475569;color:#fff;border:none;border-radius:10px;padding:7px 12px;font-weight:900;cursor:pointer">مسح الكل</button>
   </div>
-  <div style="padding:4px 10px;color:#e2e8f0;font-size:11px;background:#0f172a">مفتاح الألوان: <b style="color:#ef4444">فاز أحمر</b> • <b style="color:#60a5fa">محايد أزرق</b> • <b style="color:#facc15">راجع أصفر</b> • <b style="color:#4ade80">أرضي أخضر</b> • <b style="color:#e5e7eb">رئيسي أسود</b> • <b style="color:#38bdf8">بارد</b> • <b style="color:#ef4444">ساخن</b> • <b style="color:#4ade80">صرف</b> • <b style="color:#c084fc">تغذية</b> — اسحب من نقطة ملوّنة لنقطة تانية للتوصيل • اسحب القطعة للتحريك • دوس ↻ للتدوير • دوس ✕ للحذف</div>
+  <div style="padding:4px 10px;color:#e2e8f0;font-size:11px;background:#0f172a">مفتاح الألوان: <b style="color:#ef4444">فاز أحمر</b> • <b style="color:#60a5fa">محايد أزرق</b> • <b style="color:#facc15">راجع أصفر</b> • <b style="color:#4ade80">أرضي أخضر</b> • <b style="color:#e5e7eb">رئيسي أسود</b> • <b style="color:#38bdf8">بارد</b> • <b style="color:#ef4444">ساخن</b> • <b style="color:#4ade80">صرف</b> • <b style="color:#c084fc">تغذية</b> — اسحب من نقطة ملوّنة لنقطة تانية للتوصيل • اسحب القطعة للتحريك • دوس R للتدوير • دوس x للحذف</div>
+  <div id="snDrawer" style="position:absolute;top:0;bottom:0;inset-inline-start:0;width:230px;background:#0f172a;border-inline-end:2px solid #38bdf8;transform:translateX(105%);transition:transform .25s ease;z-index:20;overflow-y:auto;padding:10px;display:flex;flex-direction:column;gap:6px">
+    <div style="display:flex;justify-content:space-between;align-items:center;color:#fff"><b>🧩 قطع SNelectric</b><button id="snDrawerClose" type="button" style="background:#334155;color:#fff;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer">✕</button></div>
+    <div style="color:#94a3b8;font-size:11px">دوس على القطعة تنزل في نص اللوحة — ولمس أي مكان برّه القايمة بيخفيها</div>
+    <div style="color:#facc15;font-size:12px;font-weight:900;margin-top:6px">🏗️ مدني</div>
+    <button class="snPartBtn" data-kind="room" type="button">غرفة</button>
+    <button class="snPartBtn" data-kind="wall" type="button">حائط</button>
+    <button class="snPartBtn" data-kind="door" type="button">باب</button>
+    <button class="snPartBtn" data-kind="window" type="button">شباك</button>
+    <button class="snPartBtn" data-kind="column" type="button">عمود</button>
+    <button class="snPartBtn" data-kind="balcony" type="button">بلكونة</button>
+    <button class="snPartBtn" data-kind="stairs" type="button">سلم</button>
+    <button class="snPartBtn" data-kind="slab" type="button">بلاطة</button>
+    <div style="color:#7dd3fc;font-size:12px;font-weight:900;margin-top:6px">⚡ كهرباء</div>
+    <button class="snPartBtn" data-kind="socket" type="button">بريزة عادية</button>
+    <button class="snPartBtn" data-kind="socketQ" type="button">بريزة قوى</button>
+    <button class="snPartBtn" data-kind="switch" type="button">مفتاح</button>
+    <button class="snPartBtn" data-kind="switch2" type="button">ديفاتوري</button>
+    <button class="snPartBtn" data-kind="lamp" type="button">لمبة إنارة</button>
+    <button class="snPartBtn" data-kind="bell" type="button">جرس</button>
+    <button class="snPartBtn" data-kind="mcb" type="button">قاطع MCB</button>
+    <button class="snPartBtn" data-kind="panel" type="button">لوحة توزيع</button>
+    <button class="snPartBtn" data-kind="earth" type="button">تأريض</button>
+    <button class="snPartBtn" data-kind="source" type="button">مصدر L/N</button>
+    <div style="color:#4ade80;font-size:12px;font-weight:900;margin-top:6px">🚿 سباكة وصحي</div>
+    <button class="snPartBtn" data-kind="basin" type="button">حوض</button>
+    <button class="snPartBtn" data-kind="wc" type="button">مرحاض</button>
+    <button class="snPartBtn" data-kind="pump" type="button">مضخة</button>
+    <button class="snPartBtn" data-kind="heater" type="button">سخان</button>
+  </div>
+  <style>#snDrawer .snPartBtn{background:#1e293b;color:#fff;border:1px solid #334155;border-radius:10px;padding:8px 10px;text-align:start;cursor:pointer;font-size:13px}#snDrawer .snPartBtn:active{background:#0ea5e9}#snDrawer.open{transform:translateX(0)!important}</style>
   <canvas id="snCanvas" style="flex:1;width:100%;background:#0b1220;touch-action:none;cursor:crosshair"></canvas>
 </div>
 <script>
@@ -1508,14 +1537,13 @@ function termPos(p,term){ var c=Math.cos(p.rot*Math.PI/180),s=Math.sin(p.rot*Mat
 function allTerms(){ var out=[]; parts.forEach(function(p){ termsOf(p.kind).forEach(function(tm){ out.push(termPos(p,tm)); }); }); return out; }
 function nearTerm(x,y){ var best=null,bd=24; allTerms().forEach(function(tp){ var d=Math.hypot(tp.x-x,tp.y-y); if(d<bd){bd=d;best=tp;} }); return best; }
 function draw(){
-  if(!ctx) return; var W=cv.width/cssScale(), H=cv.height/cssScale(); ctx.clearRect(0,0,W,H);
+  if(!ctx) return; var r=cv.getBoundingClientRect(); var W=r.width,H=r.height; ctx.clearRect(0,0,W,H);
   ctx.strokeStyle='rgba(255,255,255,0.06)'; ctx.lineWidth=1; for(var gx=0;gx<W;gx+=24){ctx.beginPath();ctx.moveTo(gx,0);ctx.lineTo(gx,H);ctx.stroke();} for(var gy=0;gy<H;gy+=24){ctx.beginPath();ctx.moveTo(0,gy);ctx.lineTo(W,gy);ctx.stroke();}
   wires.forEach(function(w){ var a=termPos(w.from.part,w.from.term), b=termPos(w.to.part,w.to.term); ctx.strokeStyle=COLORS[w.kind]||'#fff'; ctx.lineWidth=3; ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke(); ctx.fillStyle=COLORS[w.kind]; ctx.font='11px sans-serif'; ctx.textAlign='center'; ctx.fillText(NAMES[w.kind]||'',(a.x+b.x)/2,(a.y+b.y)/2-6); });
   parts.forEach(drawPart);
   if(hoverTerm){ ctx.fillStyle='#fff'; ctx.font='12px sans-serif'; ctx.textAlign='center'; ctx.fillText(hoverTerm.term.label, hoverTerm.x, hoverTerm.y-14); }
   var st=document.getElementById('snStat'); if(st) st.textContent = sel? (LABELS[sel.kind]+' | زاوية '+(sel.rot|0)+'°') : ('القطع: '+parts.length+' • الأسلاك: '+wires.length);
 }
-function cssScale(){ return cv.width / cv.getBoundingClientRect().width || 1; }
 function drawPart(p){
   ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot*Math.PI/180); ctx.scale(p.s,p.s);
   ctx.strokeStyle=(sel===p)?'#22d3ee':'#e2e8f0'; ctx.lineWidth=(sel===p)?2:1.4; ctx.fillStyle='#e2e8f0'; ctx.textAlign='center';
@@ -1548,12 +1576,19 @@ function drawPart(p){
 }
 function pt(e){ var r=cv.getBoundingClientRect(); return {x:(e.touches?e.touches[0].clientX:e.clientX)-r.left, y:(e.touches?e.touches[0].clientY:e.clientY)-r.top}; }
 function hitPart(x,y){ for(var i=parts.length-1;i>=0;i--){ var p=parts[i]; if(Math.abs(x-p.x)<55 && Math.abs(y-p.y)<55) return p; } return null; }
+function snAddPart(kind){ var r=cv.getBoundingClientRect(); parts.push({kind:kind,x:r.width/2+(Math.random()*40-20),y:r.height/2+(Math.random()*40-20),rot:0,s:1}); sel=parts[parts.length-1]; draw(); }
 function init(){
   if(initDone) return; initDone=true;
   cv=document.getElementById('snCanvas'); ctx=cv.getContext('2d');
   function resize(){ var r=cv.getBoundingClientRect(); cv.width=r.width; cv.height=r.height; draw(); }
   window.addEventListener('resize',resize); setTimeout(resize,60);
-  document.getElementById('snAdd').onclick=function(){ var r=cv.getBoundingClientRect(); parts.push({kind:document.getElementById('snPart').value,x:r.width/2+(Math.random()*40-20),y:r.height/2+(Math.random()*40-20),rot:0,s:1}); sel=parts[parts.length-1]; draw(); };
+  document.getElementById('snPartsBtn').onclick=function(e){ e.stopPropagation(); document.getElementById('snDrawer').classList.toggle('open'); };
+  document.getElementById('snDrawerClose').onclick=function(e){ e.stopPropagation(); document.getElementById('snDrawer').classList.remove('open'); };
+  var dr=document.getElementById('snDrawer');
+  dr.addEventListener('pointerdown',function(e){ e.stopPropagation(); });
+  dr.addEventListener('click',function(e){ e.stopPropagation(); });
+  document.querySelectorAll('#snDrawer .snPartBtn').forEach(function(b){ b.onclick=function(e){ e.stopPropagation(); snAddPart(b.dataset.kind); }; });
+  document.getElementById('snView').addEventListener('pointerdown',function(e){ var d=document.getElementById('snDrawer'); if(d.classList.contains('open') && !d.contains(e.target) && !e.target.closest('#snPartsBtn')){ d.classList.remove('open'); } }, true);
   document.getElementById('snWireMode').onclick=function(){ wireMode=!wireMode; this.textContent = wireMode? 'وضع توصيل: شغال — اسحب من نقطة لنقطة' : 'وضع توصيل: متوقف'; };
   document.getElementById('snDel').onclick=function(){ if(!sel) return; var s=sel; parts=parts.filter(function(x){return x!==s;}); wires=wires.filter(function(w){return w.from.part!==s && w.to.part!==s;}); sel=null; draw(); };
   document.getElementById('snClear').onclick=function(){ if(confirm('مسح كل قطع SNelectric؟')){ parts=[]; wires=[]; sel=null; draw(); } };
@@ -1566,14 +1601,21 @@ function init(){
   cv.addEventListener('pointermove',function(e){ var p=pt(e); hoverTerm = wireMode? nearTerm(p.x,p.y):null; if(!drag){ draw(); return; }
     if(drag.type==='move'){ drag.part.x=p.x-drag.dx; drag.part.y=p.y-drag.dy; }
     else if(drag.type==='rotate'){ drag.part.rot = Math.round(Math.atan2(p.y-drag.part.y,p.x-drag.part.x)*180/Math.PI+90); }
-    else if(drag.type==='wire'){ drag.x=p.x; drag.y=p.y; }
     draw(); if(drag.type==='wire' && wireFrom){ ctx.strokeStyle=COLORS[document.getElementById('snWire').value]; ctx.lineWidth=3; ctx.beginPath(); ctx.moveTo(wireFrom.x,wireFrom.y); ctx.lineTo(p.x,p.y); ctx.stroke(); }
   });
   window.addEventListener('pointerup',function(e){ if(!drag) return; if(drag.type==='wire' && wireFrom){ var p=pt(e); var to=nearTerm(p.x,p.y); if(to && to.part!==wireFrom.part){ wires.push({from:wireFrom,to:to,kind:document.getElementById('snWire').value}); } wireFrom=null; } drag=null; draw(); });
   parts.push({kind:'room',x:260,y:220,rot:0,s:1},{kind:'socket',x:180,y:300,rot:0,s:1},{kind:'switch',x:340,y:300,rot:0,s:1},{kind:'lamp',x:260,y:140,rot:0,s:1});
   draw();
 }
-window.snInit = init;
+
+  function snSaveImage(){ if(!cv) return; var a=document.createElement('a'); a.href=cv.toDataURL('image/png'); a.download='snelectric-'+Date.now()+'.png'; a.click(); }
+  function snSaveFile(){ var data={app:'SNelectric',savedAt:new Date().toISOString(),parts:parts}; var blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}); var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='snelectric-'+Date.now()+'.snelectric.json'; a.click(); setTimeout(function(){URL.revokeObjectURL(a.href);},2000); alert('تم حفظ SNelectric كملف JSON ✓\nده كود الرسمة — افتحه تاني بزرار فتح ملف SN.\nلو عايز صورة دوس حفظ صورة SN'); }
+  function snLoadFile(file){ var rd=new FileReader(); rd.onload=function(){ try{ var d=JSON.parse(rd.result); if(!d||!Array.isArray(d.parts)) throw new Error('bad'); parts=d.parts; wires=[]; sel=null; draw(); alert('تم فتح ملف SNelectric ✓\nالقطع رجعت. الأسلاك محتاجة إعادة توصيل.'); }catch(e){ alert('الملف ده مش ملف SNelectric صالح'); } }; rd.readAsText(file); }
+  document.getElementById('snSaveImg').onclick=snSaveImage;
+  document.getElementById('snSaveFile').onclick=snSaveFile;
+  document.getElementById('snLoadBtn').onclick=function(){ document.getElementById('snLoadInput').click(); };
+  document.getElementById('snLoadInput').onchange=function(e){ var f=e.target.files&&e.target.files[0]; if(f) snLoadFile(f); e.target.value=''; };
+  window.snInit = init;
 })();
 </script>
 
