@@ -897,8 +897,7 @@ $('elecPhoneNum').onclick=()=>{
 function openApps(){ $('appsOverlay').classList.add('on'); }
 function closeApps(){ $('appsOverlay').classList.remove('on'); }
 $('appsBtn').onclick=openApps;
-/* SNelectric مدمج جوّه نفس الملف — مفيش ملف منفصل ولا رابط ولا iframe.
-   دوس على SNelectric يفتح واجهته جوّه نفس الصفحة، والرجوع يرجع ElectroPanel وشغله محفوظ. */
+/* SNelectric مدمج جوّه نفس الملف — مفيش ملف منفصل ولا رابط ولا iframe. */
 function openSNelectric(){ closeApps(); var v=document.getElementById('snView'); if(v){ v.style.display='flex'; if(window.snInit) window.snInit(); } }
 function closeSNelectric(){ var v=document.getElementById('snView'); if(v) v.style.display='none'; }
 $('snOpenBtn').onclick=openSNelectric;
@@ -1281,27 +1280,72 @@ const fsBtn=$('fsBoard');if(fsBtn)fsBtn.onclick=()=>{if(document.fullscreenEleme
 document.addEventListener('fullscreenchange',()=>{const b=$('fsBoard');const on=!!document.fullscreenElement;if(on){toolsMoveIn()}else{toolsMoveOut()}if(b){b.textContent=on?'⤢ خروج من تكبير الشاشة':'⛶ تكبير الشاشة';b.classList.toggle('on',on)}});
 /* سحب البار: طبيعي من المتصفح (overflow-x:auto) - مفيش سحب يدوي بالـ JS عشان القوائم المنسدلة تفتح */
 function downloadFile(name,blob){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),2000)}
-function saveCircuitFile(){const data={app:'ElectroPanel',version:'v3.9.51',savedAt:new Date().toISOString(),size,totalKwh:kwh,C:C.map(c=>({id:c.id,t:c.t,x:c.x,y:c.y,s:c.s,rot:c.rot,sc:c.sc,w:c.w,temp:c.temp,fuel:c.fuel,dead:!!c.dead,stuck:!!c.stuck,termPos:c.termPos||{},l:c.l,diesel:c.diesel,oil:c.oil,water:c.water,dTemp:c.dTemp,hz:c.hz,hzSet:c.hzSet,dVolt:c.dVolt,emergency:!!c.emergency,loadTemp:c.loadTemp,onTime:c.onTime,timerMin:c.timerMin,offByTimer:!!c.offByTimer,coilOn:!!c.coilOn,phMode:c.phMode,phDark:!!c.phDark,phOut:!!c.phOut,logoProg:c.logoProg,logoQ:c.logoQ,logoI:c.logoI,logoTimers:c.logoTimers,logoSel:c.logoSel,logoMode:c.logoMode,logoPowered:!!c.logoPowered,tmOn:c.tmOn,tmOff:c.tmOff,tmMode:c.tmMode,tmOut:!!c.tmOut,olSet:c.olSet,olHeat:c.olHeat,olTripped:!!c.olTripped,olStopped:!!c.olStopped,olMode:c.olMode,wireHeatLoad:c.wireHeatLoad||0,breakerHeatLoad:c.breakerHeatLoad||0,tripHeat:c.tripHeat||0,tripped:!!c.tripped,balance:c.balance||0,price:c.price||1.5,theft:!!c.theft,kwh:c.kwh||0,totalCharged:c.totalCharged||0,page:c.page||0})),W:W.map(w=>({a:w.a,b:w.b,col:w.col,gauge:w.gauge||curGauge,heat:w.heat||0,burnt:!!w.burnt}))};downloadFile('electropanel-'+Date.now()+'.electropanel.json',new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));const m=$('msg');if(m){m.textContent='تم حفظ الدايرة كملف JSON ✓ — ده كود الدايرة، افتحه تاني بزرار 📂 فتح ملف. لو عايز صورة دوس 🖼️ حفظ صورة';m.className='g'}}
+function saveCircuitFile(){const data={app:'ElectroPanel',version:'v3.9.51',savedAt:new Date().toISOString(),size,totalKwh:kwh,C:C.map(c=>({id:c.id,t:c.t,x:c.x,y:c.y,s:c.s,rot:c.rot,sc:c.sc,w:c.w,temp:c.temp,fuel:c.fuel,dead:!!c.dead,stuck:!!c.stuck,termPos:c.termPos||{},l:c.l,diesel:c.diesel,oil:c.oil,water:c.water,dTemp:c.dTemp,hz:c.hz,hzSet:c.hzSet,dVolt:c.dVolt,emergency:!!c.emergency,loadTemp:c.loadTemp,onTime:c.onTime,timerMin:c.timerMin,offByTimer:!!c.offByTimer,coilOn:!!c.coilOn,phMode:c.phMode,phDark:!!c.phDark,phOut:!!c.phOut,logoProg:c.logoProg,logoQ:c.logoQ,logoI:c.logoI,logoTimers:c.logoTimers,logoSel:c.logoSel,logoMode:c.logoMode,logoPowered:!!c.logoPowered,tmOn:c.tmOn,tmOff:c.tmOff,tmMode:c.tmMode,tmOut:!!c.tmOut,olSet:c.olSet,olHeat:c.olHeat,olTripped:!!c.olTripped,olStopped:!!c.olStopped,olMode:c.olMode,wireHeatLoad:c.wireHeatLoad||0,breakerHeatLoad:c.breakerHeatLoad||0,tripHeat:c.tripHeat||0,tripped:!!c.tripped,balance:c.balance||0,price:c.price||1.5,theft:!!c.theft,kwh:c.kwh||0,totalCharged:c.totalCharged||0,page:c.page||0})),W:W.map(w=>({a:w.a,b:w.b,col:w.col,gauge:w.gauge||curGauge,heat:w.heat||0,burnt:!!w.burnt}))};downloadFile('electropanel-'+Date.now()+'.electropanel.json',new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));const m=$('msg');if(m){m.textContent='تم حفظ الدايرة كملف JSON ✓ — ده كود الدايرة، افتحه تاني بزرار فتح ملف. لو عايز صورة دوس حفظ صورة';m.className='g'}}
 function loadCircuitFile(file){if(isLocked()){alert('لا يمكن فتح ملف في وضع التشغيل - اخرج من التشغيل أولاً');return}const rd=new FileReader();rd.onload=()=>{try{const d=JSON.parse(rd.result);if(!d||!Array.isArray(d.C)||!Array.isArray(d.W))throw new Error('bad');C=[];W=[];uid=1;sel=null;selW=null;pend=null;d.C.forEach(rc=>{if(rc.t==='Timer24H')rc.t='TimerDigital';const c=mk(rc.t,rc.x||30,rc.y||30);c.s=rc.s||'ON';c.rot=rc.rot||0;c.sc=rc.sc||1;c.w=rc.w!=null?rc.w:(WT[rc.t]||0);c.temp=rc.temp!=null?rc.temp:22;c.fuel=rc.fuel!=null?rc.fuel:80;c.dead=!!rc.dead;c.stuck=!!rc.stuck;c.balance=rc.balance||0;c.price=rc.price||1.5;c.theft=!!rc.theft;c.kwh=rc.kwh||0;c.totalCharged=rc.totalCharged||0;c.page=rc.page||0;c.wireHeatLoad=rc.wireHeatLoad||0;c.coilOn=!!rc.coilOn;if(rc.tmOn!=null)c.tmOn=rc.tmOn;if(rc.tmOff!=null)c.tmOff=rc.tmOff;if(rc.tmMode)c.tmMode=rc.tmMode;c.tmOut=!!rc.tmOut;if(rc.phMode)c.phMode=rc.phMode;c.phDark=!!rc.phDark;c.phOut=!!rc.phOut;if(rc.logoProg)c.logoProg=rc.logoProg;if(rc.logoQ)c.logoQ=rc.logoQ;if(rc.logoI)c.logoI=rc.logoI;if(rc.logoTimers)c.logoTimers=rc.logoTimers;if(rc.logoSel)c.logoSel=rc.logoSel;if(rc.logoMode)c.logoMode=rc.logoMode;c.logoPowered=rc.logoPowered!==false;if(rc.olSet!=null)c.olSet=rc.olSet;if(rc.olHeat!=null)c.olHeat=rc.olHeat;c.olTripped=!!rc.olTripped;c.olStopped=!!rc.olStopped;if(rc.olMode)c.olMode=rc.olMode;c.breakerHeatLoad=rc.breakerHeatLoad||0;c.tripHeat=rc.tripHeat||0;c.tripped=!!rc.tripped;if(rc.dVolt!=null)c.dVolt=rc.dVolt;if(rc.diesel!=null)c.diesel=rc.diesel;if(rc.oil!=null)c.oil=rc.oil;if(rc.water!=null)c.water=rc.water;if(rc.dTemp!=null)c.dTemp=rc.dTemp;if(rc.hz!=null)c.hz=rc.hz;if(rc.hzSet!=null)c.hzSet=rc.hzSet;c.emergency=!!rc.emergency;if(rc.loadTemp!=null)c.loadTemp=rc.loadTemp;if(rc.onTime!=null)c.onTime=rc.onTime;if(rc.timerMin!=null)c.timerMin=rc.timerMin;c.offByTimer=!!rc.offByTimer;c.termPos=rc.termPos||{};if(rc.t==='PMeter3'&&c.termPos){if(c.termPos.PEi){c.termPos.Ni=c.termPos.PEi;delete c.termPos.PEi}if(c.termPos.PEo){c.termPos.No=c.termPos.PEo;delete c.termPos.PEo}}if(rc.l)c.l=rc.l;C.push(c)});const oldToNew={};d.C.forEach((rc,i)=>{if(rc.id&&C[i])oldToNew[rc.id]=C[i].id});d.W.forEach(rw=>{const conv=id=>{const parts=id.split(':');if(parts.length<2)return id;const nid=oldToNew[parts[0]];let tn=parts.slice(1).join(':');const _rc2=d.C.find(x=>x.id===parts[0]);if(_rc2&&_rc2.t==='Photocell'){if(tn==='in')tn='L';if(tn==='out')tn='Load'}if(_rc2&&(_rc2.t==='TimerDigital'||_rc2.t==='Timer24H')){if(tn==='in')tn='4';if(tn==='out')tn='3'}if(_rc2&&(_rc2.t==='Overload'||_rc2.t==='Overload3P')){if(tn==='in')tn='1L1';if(tn==='out')tn='2T1';if(tn==='in1')tn='1L1';if(tn==='out1')tn='2T1'}
 if(_rc2&&(_rc2.t==='Contactor')){if(tn==='in')tn='1L1';if(tn==='out')tn='2T1';if(tn==='in1')tn='1L1';if(tn==='out1')tn='2T1';if(tn==='in2')tn='3L2';if(tn==='out2')tn='4T2';if(tn==='in3')tn='5L3';if(tn==='out3')tn='6T3'}if(_rc2&&_rc2.t==='Contactor3P'){if(tn==='in1')tn='1L1';if(tn==='out1')tn='2T1';if(tn==='in2')tn='3L2';if(tn==='out2')tn='4T2';if(tn==='in3')tn='5L3';if(tn==='out3')tn='6T3'}const _rc=d.C.find(x=>x.id===parts[0]);if(_rc&&_rc.t==='PMeter3'){if(tn==='PEi')tn='Ni';if(tn==='PEo')tn='No'}return nid?nid+':'+tn:id};const a=conv(rw.a),b=conv(rw.b);if(a&&b){const nw=link(a,b,migrateWireColor(rw.col||'l1'),rw.gauge||'1.5');const lw=W[W.length-1];if(lw){lw.heat=rw.heat||0;lw.burnt=!!rw.burnt}}});if(d.totalKwh!=null)kwh=d.totalKwh;setSize(d.size||size);render();const m=$('msg');if(m){m.textContent='تم فتح الدايرة المحفوظة ✓';m.className='g'}}catch(err){alert('الملف ده مش دايرة ElectroPanel صالحة')}};rd.readAsText(file)}
 const saveBtn=$('saveFileBtn');if(saveBtn)saveBtn.onclick=saveCircuitFile;
 const loadBtn=$('loadFileBtn');if(loadBtn)loadBtn.onclick=()=>$('loadFileInput').click();
 const loadInput=$('loadFileInput');if(loadInput)loadInput.onchange=e=>{const f=e.target.files&&e.target.files[0];if(f)loadCircuitFile(f);e.target.value=''};
-function saveCircuitImage(){const bw=Math.max(board.clientWidth||700,board.scrollWidth||700),bh=Math.max(board.clientHeight||860,board.scrollHeight||860);const cv=document.createElement('canvas');cv.width=Math.max(200,bw);cv.height=Math.max(200,bh);const ctx=cv.getContext('2d');ctx.fillStyle='#141b2e';ctx.fillRect(0,0,cv.width,cv.height);ctx.strokeStyle='rgba(255,255,255,.07)';ctx.lineWidth=1;for(let x=0;x<cv.width;x+=22){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,cv.height);ctx.stroke()}for(let y=0;y<cv.height;y+=22){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(cv.width,y);ctx.stroke()}const br=board.getBoundingClientRect();const pt=id=>{const el=board.querySelector(`[data-t="${id}"]`);if(!el)return null;const r=el.getBoundingClientRect();return[(r.left-br.left+r.width/2)/boardZoom,(r.top-br.top+r.height/2)/boardZoom]};W.forEach(w=>{const a=pt(w.a),b=pt(w.b);if(!a||!b)return;const col=migrateWireColor(w.col);const drawSeg=(style,width,dash)=>{ctx.strokeStyle=style;ctx.lineWidth=width;if(dash)ctx.setLineDash(dash);else ctx.setLineDash([]);ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.bezierCurveTo(a[0],a[1]+50,b[0],b[1]-50,b[0],b[1]);ctx.stroke();ctx.setLineDash([])};if(w.burnt){drawSeg('#111827',4,[8,6]);drawSeg('#ef4444',2,[8,6])}else if(col==='pe'){drawSeg('#ffffff',4);drawSeg('#22c55e',4,[7,5])}else{const Gg2=GAUGE[w.gauge]||GAUGE['1.5'];drawSeg(COL[col]||'#ef4444',Math.max(2,Math.round(1.5+Math.sqrt(Gg2.mm)*1.6)))}const lbl=w.gauge?String(w.gauge):'';if(lbl&&a&&b){ctx.fillStyle='#fff';ctx.font='700 9px system-ui';ctx.textAlign='center';ctx.fillText(lbl,(a[0]+b[0])/2,(a[1]+b[1])/2-4)}});C.forEach(c=>{const d=T[c.t];ctx.save();ctx.translate(c.x+d.w/2,c.y+d.h/2);ctx.rotate((c.rot||0)*Math.PI/180);ctx.scale(c.sc||1,c.sc||1);ctx.fillStyle=d.b;ctx.fillRect(-d.w/2,-d.h/2,d.w,d.h);ctx.strokeStyle='#0006';ctx.lineWidth=2;ctx.strokeRect(-d.w/2,-d.h/2,d.w,d.h);ctx.fillStyle='#fff';ctx.font='700 11px system-ui';ctx.textAlign='center';ctx.fillText(d.g||'',0,-d.h/2+18);ctx.fillStyle='#fff';ctx.font='700 10px system-ui';ctx.fillText(c.l,0,d.h/2-6);
-     if(c.t==='PMeter2'||c.t==='PMeter3'||c.t==='PMeter'){ctx.font='700 10px system-ui';ctx.fillText('رصيد '+(c.balance||0).toFixed(0)+' ج',0,6);ctx.font='700 9px system-ui';ctx.fillText((c.kwh||0).toFixed(1)+' kWh',0,18);if(c.theft)ctx.fillText('⚠️ تلاعب',0,30)}
-     if(c.t==='Generator'||c.t==='Generator3Ph'){ctx.font='700 10px system-ui';ctx.fillText('ديزل '+(c.diesel||0).toFixed(0)+'% • '+(c.hz||50).toFixed(0)+'Hz',0,6);ctx.font='700 9px system-ui';ctx.fillText('حرارة '+(c.dTemp||35).toFixed(0)+'° زيت '+(c.oil||0).toFixed(0)+'% مياه '+(c.water||0).toFixed(0)+'%',0,18)}
-     if(c.t==='Overload'||c.t==='Overload3P'){
-     const energized=res&&res.L1.has(c.id+':1L1');
-     const Itot=C.filter(x=>res&&res.E.has(x.id)&&T[x.t].k==='ld').reduce((s,x)=>s+amp(x),0);
-     if(energized&&!c.olTripped&&!c.dead){
-       const set=c.olSet||18;
-       if(Itot>set){c.olHeat=Math.min(120,(c.olHeat||0)+(Itot/set-1)*22);ch=true;if((c.olHeat||0)>=100){c.olTripped=true;ch=true;const m=$('msg');if(m){m.textContent='⚠️ الأوفرلود فصل TRIP! التيار '+Itot.toFixed(1)+'A أعلى من الضبط '+set+'A - دوس RESET بعد ما يبرد';m.className='r'}}}
-       else c.olHeat=Math.max(0,(c.olHeat||0)-3);
-     } else if(!energized){c.olHeat=Math.max(0,(c.olHeat||0)-3);}
-     if(c.olTripped&&c.olMode==='A'&&(c.olHeat||0)<=0){c.olTripped=false;ch=true;const m=$('msg');if(m){m.textContent='🔄 الأوفرلود رجع أوتوماتيك (وضع A) بعد ما برد';m.className='g'}}
-   }
-   if(['Heater','Heater3Ph','Fridge','Washer','Cooker'].includes(c.t)){ctx.font='700 9px system-ui';ctx.fillText('حرارة '+(c.loadTemp||22).toFixed(0)+'°',0,6);if(c.timerMin)ctx.fillText('مؤقت '+c.timerMin+'د',0,18)}
-     ctx.restore()});ctx.fillStyle='#fff';ctx.font='700 14px system-ui';ctx.textAlign='right';ctx.fillText('ElectroPanel • DEC • '+size,cv.width-10,22);const a=document.createElement('a');a.href=cv.toDataURL('image/png');a.download='electropanel-'+Date.now()+'.png';a.click()}
+function saveCircuitImage(){
+  if(!C || !C.length){ alert('اللوحة فاضية — ضيف قطع الأول'); return; }
+  var PAD = 50;
+  var minX=Infinity, minY=Infinity, maxX=-Infinity, maxY=-Infinity;
+  C.forEach(function(c){ var d=T[c.t]; if(!d) return; var w=(d.w||60)*(c.sc||1), h=(d.h||60)*(c.sc||1); minX=Math.min(minX, c.x); minY=Math.min(minY, c.y); maxX=Math.max(maxX, c.x+w); maxY=Math.max(maxY, c.y+h); });
+  if(!isFinite(minX)){ alert('اللوحة فاضية'); return; }
+  var bw = Math.max(200, maxX-minX + PAD*2), bh = Math.max(200, maxY-minY + PAD*2);
+  var cv=document.createElement('canvas'); cv.width=bw; cv.height=bh;
+  var ctx=cv.getContext('2d');
+  ctx.fillStyle='#141b2e'; ctx.fillRect(0,0,bw,bh);
+  ctx.strokeStyle='rgba(255,255,255,.07)'; ctx.lineWidth=1;
+  for(var gx=0;gx<bw;gx+=22){ ctx.beginPath(); ctx.moveTo(gx,0); ctx.lineTo(gx,bh); ctx.stroke(); }
+  for(var gy=0;gy<bh;gy+=22){ ctx.beginPath(); ctx.moveTo(0,gy); ctx.lineTo(bw,gy); ctx.stroke(); }
+  function findById(id){ for(var k=0;k<C.length;k++) if(C[k].id===id) return C[k]; return null; }
+  /* الأسلاك متخزنة كـ "c1:1L1" = القطعة + النقطة. لازم نفكها، مش ندوّر على قطعة اسمها "c1:1L1" */
+  function wireEnd(wireId){
+    var parts = String(wireId).split(':'); var comp = findById(parts[0]); if(!comp) return null;
+    var d = T[comp.t]; var cx = comp.x + (d.w||60)*(comp.sc||1)/2 - minX + PAD; var cy = comp.y + (d.h||60)*(comp.sc||1)/2 - minY + PAD;
+    var halfW = (d.w||60)*(comp.sc||1)/2, halfH = (d.h||60)*(comp.sc||1)/2;
+    var term = (parts[1]||'').toLowerCase();
+    if(comp.t==='Mains' || comp.t==='Mains3Ph') return [cx, cy + halfH];
+    if(comp.t==='NBar' || comp.t==='EBar') return [cx, cy - halfH];
+    if(term.indexOf('out')>=0 || term.indexOf('lo')>=0 || term.charAt(0)==='2') return [cx, cy + halfH];
+    if(term.indexOf('in')>=0 || term.indexOf('li')>=0 || term.charAt(0)==='1') return [cx, cy - halfH];
+    return [cx, cy];
+  }
+  W.forEach(function(w){
+    var a=wireEnd(w.a), b=wireEnd(w.b); if(!a||!b) return;
+    var col=migrateWireColor(w.col);
+    function drawSeg(style,width,dash){ ctx.strokeStyle=style; ctx.lineWidth=width; ctx.setLineDash(dash||[]); ctx.beginPath(); ctx.moveTo(a[0],a[1]); ctx.bezierCurveTo(a[0],a[1]+50,b[0],b[1]-50,b[0],b[1]); ctx.stroke(); ctx.setLineDash([]); }
+    if(w.burnt){ drawSeg('#111827',4,[8,6]); drawSeg('#ef4444',2,[8,6]); }
+    else if(col==='pe'){ drawSeg('#ffffff',4); drawSeg('#22c55e',4,[7,5]); }
+    else { var Gg2=(typeof GAUGE!=='undefined'&&GAUGE[w.gauge])?GAUGE[w.gauge]:{mm:1.5}; drawSeg((typeof COL!=='undefined'&&COL[col])?COL[col]:'#ef4444', Math.max(2, Math.round(1.5+Math.sqrt(Gg2.mm||1.5)*1.6))); }
+    var lbl=w.gauge?String(w.gauge):''; if(lbl){ ctx.fillStyle='#fff'; ctx.font='700 9px system-ui'; ctx.textAlign='center'; ctx.fillText(lbl,(a[0]+b[0])/2,(a[1]+b[1])/2-4); }
+  });
+  C.forEach(function(c){
+    var d=T[c.t]; if(!d) return;
+    ctx.save();
+    ctx.translate(c.x - minX + PAD + (d.w||60)*(c.sc||1)/2, c.y - minY + PAD + (d.h||60)*(c.sc||1)/2);
+    ctx.rotate((c.rot||0)*Math.PI/180); ctx.scale(c.sc||1, c.sc||1);
+    ctx.fillStyle=d.b; ctx.fillRect(-d.w/2,-d.h/2,d.w,d.h);
+    ctx.strokeStyle='#0006'; ctx.lineWidth=2; ctx.strokeRect(-d.w/2,-d.h/2,d.w,d.h);
+    ctx.fillStyle='#fff'; ctx.font='700 11px system-ui'; ctx.textAlign='center'; ctx.fillText(d.g||'',0,-d.h/2+18);
+    ctx.fillStyle='#fff'; ctx.font='700 10px system-ui'; ctx.fillText(c.l||'',0,d.h/2-6);
+    if(/MCB|MCCB|RCCB|Isolator/.test(c.t)){
+      ctx.fillStyle='#0f172a'; ctx.fillRect(-14,-18,28,36);
+      ctx.fillStyle=(c.s==='ON')?'#22c55e':'#ef4444'; ctx.fillRect(-8,-14,16,12);
+      ctx.fillStyle='#fff'; ctx.font='700 9px system-ui'; ctx.fillText((c.s==='ON')?'ON':'OFF',0,-1);
+      ctx.fillStyle='#fff'; ctx.font='700 8px system-ui'; ctx.fillText('MCB',0,26);
+    }
+    if(/Lamp/.test(c.t)){ ctx.beginPath(); ctx.arc(0,-6,12,0,7); ctx.fillStyle=(c.s==='ON'||!c.s)?'#facc15':'#94a3b8'; ctx.fill(); ctx.fillStyle='#0f172a'; ctx.font='700 10px system-ui'; ctx.fillText('💡',0,-2); }
+    if(c.t==='Mains' || c.t==='Mains3Ph'){ ctx.beginPath(); ctx.arc(12,-d.h/2+12,5,0,7); ctx.fillStyle=(c.s==='ON')?'#22c55e':'#ef4444'; ctx.fill(); }
+    if(c.t==='PMeter2'||c.t==='PMeter3'||c.t==='PMeter'){ ctx.font='700 10px system-ui'; ctx.fillText('رصيد '+(c.balance||0).toFixed(0)+' ج',0,6); ctx.font='700 9px system-ui'; ctx.fillText((c.kwh||0).toFixed(1)+' kWh',0,18); if(c.theft) ctx.fillText('تلاعب',0,30); }
+    if(c.t==='Generator'||c.t==='Generator3Ph'){ ctx.font='700 10px system-ui'; ctx.fillText('ديزل '+(c.diesel||0).toFixed(0)+'% • '+(c.hz||50).toFixed(0)+'Hz',0,6); }
+    if(['Heater','Heater3Ph','Fridge','Washer','Cooker'].includes(c.t)){ ctx.font='700 9px system-ui'; ctx.fillText('حرارة '+(c.loadTemp||22).toFixed(0)+'°',0,6); }
+    ctx.restore();
+  });
+  ctx.fillStyle='#fff'; ctx.font='700 14px system-ui'; ctx.textAlign='right'; ctx.fillText('ElectroPanel • DEC • '+size, bw-10, 22);
+  var a=document.createElement('a'); a.href=cv.toDataURL('image/png'); a.download='electropanel-'+Date.now()+'.png'; a.click();
+}
 const imgBtn=$('saveImgBtn');if(imgBtn)imgBtn.onclick=saveCircuitImage;
 addEventListener('resize',draw);
 setInterval(()=>{
@@ -1469,9 +1513,7 @@ document.getElementById('updateBtn').onclick = ()=>{
     <button id="snPartsBtn" type="button" style="background:#0ea5e9;color:#fff;border:none;border-radius:10px;padding:7px 14px;font-weight:900;cursor:pointer">🧩 القطع ▸</button>
     <span style="color:#cbd5e1;font-size:11px">دوس القطع تفتح القايمة الجانبية — ولمس أي مكان برّه القايمة بيخفيها</span>
     <span style="color:#fff;font-size:12px;font-weight:800">سلك:</span>
-    <select id="snWire" style="padding:6px;border-radius:10px">
-      <option value="phase">فاز أحمر</option><option value="neutral">محايد أزرق</option><option value="return">راجع أصفر</option><option value="earthW">أرضي أخضر</option><option value="main">رئيسي أسود</option><option value="cold">بارد فاتح</option><option value="hot">ساخن أحمر</option><option value="drain">صرف أخضر</option><option value="feed">تغذية بنفسجي</option>
-    </select>
+    <select id="snWire" style="padding:6px;border-radius:10px"><option value="phase">فاز أحمر</option><option value="neutral">محايد أزرق</option><option value="return">راجع أصفر</option><option value="earthW">أرضي أخضر</option><option value="main">رئيسي أسود</option><option value="cold">بارد فاتح</option><option value="hot">ساخن أحمر</option><option value="drain">صرف أخضر</option><option value="feed">تغذية بنفسجي</option></select>
     <button id="snWireMode" type="button" style="background:#f59e0b;color:#111827;border:none;border-radius:10px;padding:7px 12px;font-weight:900;cursor:pointer">وضع توصيل: متوقف</button>
     <button id="snDel" type="button" style="background:#ef4444;color:#fff;border:none;border-radius:10px;padding:7px 12px;font-weight:900;cursor:pointer">حذف المحدد</button>
     <button id="snSaveImg" type="button" style="background:#22c55e;color:#fff;border:none;border-radius:10px;padding:7px 12px;font-weight:900;cursor:pointer">🖼️ حفظ صورة SN</button>
@@ -1577,6 +1619,9 @@ function drawPart(p){
 function pt(e){ var r=cv.getBoundingClientRect(); return {x:(e.touches?e.touches[0].clientX:e.clientX)-r.left, y:(e.touches?e.touches[0].clientY:e.clientY)-r.top}; }
 function hitPart(x,y){ for(var i=parts.length-1;i>=0;i--){ var p=parts[i]; if(Math.abs(x-p.x)<55 && Math.abs(y-p.y)<55) return p; } return null; }
 function snAddPart(kind){ var r=cv.getBoundingClientRect(); parts.push({kind:kind,x:r.width/2+(Math.random()*40-20),y:r.height/2+(Math.random()*40-20),rot:0,s:1}); sel=parts[parts.length-1]; draw(); }
+function snSaveImage(){ if(!cv) return; var a=document.createElement('a'); a.href=cv.toDataURL('image/png'); a.download='snelectric-'+Date.now()+'.png'; a.click(); }
+function snSaveFile(){ var data={app:'SNelectric',savedAt:new Date().toISOString(),parts:parts}; var blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}); var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='snelectric-'+Date.now()+'.snelectric.json'; a.click(); setTimeout(function(){URL.revokeObjectURL(a.href);},2000); alert('تم حفظ SNelectric كملف JSON ✓'); }
+function snLoadFile(file){ var rd=new FileReader(); rd.onload=function(){ try{ var d=JSON.parse(rd.result); if(!d||!Array.isArray(d.parts)) throw new Error('bad'); parts=d.parts; wires=[]; sel=null; draw(); alert('تم فتح ملف SNelectric ✓'); }catch(e){ alert('الملف ده مش ملف SNelectric صالح'); } }; rd.readAsText(file); }
 function init(){
   if(initDone) return; initDone=true;
   cv=document.getElementById('snCanvas'); ctx=cv.getContext('2d');
@@ -1591,6 +1636,10 @@ function init(){
   document.getElementById('snView').addEventListener('pointerdown',function(e){ var d=document.getElementById('snDrawer'); if(d.classList.contains('open') && !d.contains(e.target) && !e.target.closest('#snPartsBtn')){ d.classList.remove('open'); } }, true);
   document.getElementById('snWireMode').onclick=function(){ wireMode=!wireMode; this.textContent = wireMode? 'وضع توصيل: شغال — اسحب من نقطة لنقطة' : 'وضع توصيل: متوقف'; };
   document.getElementById('snDel').onclick=function(){ if(!sel) return; var s=sel; parts=parts.filter(function(x){return x!==s;}); wires=wires.filter(function(w){return w.from.part!==s && w.to.part!==s;}); sel=null; draw(); };
+  document.getElementById('snSaveImg').onclick=snSaveImage;
+  document.getElementById('snSaveFile').onclick=snSaveFile;
+  document.getElementById('snLoadBtn').onclick=function(){ document.getElementById('snLoadInput').click(); };
+  document.getElementById('snLoadInput').onchange=function(e){ var f=e.target.files&&e.target.files[0]; if(f) snLoadFile(f); e.target.value=''; };
   document.getElementById('snClear').onclick=function(){ if(confirm('مسح كل قطع SNelectric؟')){ parts=[]; wires=[]; sel=null; draw(); } };
   document.getElementById('snBack').onclick=function(){ if(window.closeSNelectric) window.closeSNelectric(); };
   cv.addEventListener('pointerdown',function(e){ var p=pt(e); var tm=nearTerm(p.x,p.y); if(wireMode && tm){ wireFrom=tm; drag={type:'wire'}; return; } var hit=hitPart(p.x,p.y); sel=hit; if(!sel){ draw(); return; }
@@ -1607,15 +1656,7 @@ function init(){
   parts.push({kind:'room',x:260,y:220,rot:0,s:1},{kind:'socket',x:180,y:300,rot:0,s:1},{kind:'switch',x:340,y:300,rot:0,s:1},{kind:'lamp',x:260,y:140,rot:0,s:1});
   draw();
 }
-
-  function snSaveImage(){ if(!cv) return; var a=document.createElement('a'); a.href=cv.toDataURL('image/png'); a.download='snelectric-'+Date.now()+'.png'; a.click(); }
-  function snSaveFile(){ var data={app:'SNelectric',savedAt:new Date().toISOString(),parts:parts}; var blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}); var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='snelectric-'+Date.now()+'.snelectric.json'; a.click(); setTimeout(function(){URL.revokeObjectURL(a.href);},2000); alert('تم حفظ SNelectric كملف JSON ✓\nده كود الرسمة — افتحه تاني بزرار فتح ملف SN.\nلو عايز صورة دوس حفظ صورة SN'); }
-  function snLoadFile(file){ var rd=new FileReader(); rd.onload=function(){ try{ var d=JSON.parse(rd.result); if(!d||!Array.isArray(d.parts)) throw new Error('bad'); parts=d.parts; wires=[]; sel=null; draw(); alert('تم فتح ملف SNelectric ✓\nالقطع رجعت. الأسلاك محتاجة إعادة توصيل.'); }catch(e){ alert('الملف ده مش ملف SNelectric صالح'); } }; rd.readAsText(file); }
-  document.getElementById('snSaveImg').onclick=snSaveImage;
-  document.getElementById('snSaveFile').onclick=snSaveFile;
-  document.getElementById('snLoadBtn').onclick=function(){ document.getElementById('snLoadInput').click(); };
-  document.getElementById('snLoadInput').onchange=function(e){ var f=e.target.files&&e.target.files[0]; if(f) snLoadFile(f); e.target.value=''; };
-  window.snInit = init;
+window.snInit = init;
 })();
 </script>
 
