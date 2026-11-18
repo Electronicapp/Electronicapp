@@ -71,7 +71,7 @@
 
 </style><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>ElectroPanel V3.9.58</title>
+<title>ElectroPanel V3.9.68</title>
 <link rel="manifest" href="./manifest.webmanifest">
 <meta name="theme-color" content="#111827">
 <meta name="mobile-web-app-capable" content="yes">
@@ -240,7 +240,7 @@ h1{position:relative!important;z-index:1!important;background:var(--bg,#f1f5f9)!
 </style></head><body>
 
 <!-- راس الصفحة من فوق خالص - الإضافات الجديدة تتحط هنا جنب زرار كهربائي -->
-<header id="topHeader"><span id="verBadge">V3.9.58</span><button id="elecBtn" type="button" title="تواصل مع صاحب التطبيق">⚡ كهربائي</button><button id="appsBtn" type="button" title="تطبيقات قادمة">📱 تطبيقات</button></header>
+<header id="topHeader"><span id="verBadge">V3.9.68</span><button id="elecBtn" type="button" title="تواصل مع صاحب التطبيق">⚡ كهربائي</button><button id="appsBtn" type="button" title="تطبيقات قادمة">📱 تطبيقات</button></header>
 
 <div id="pwaBar" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;align-items:center">
  <button id="installBtn" style="display:none;background:#111827;color:#fff">📲 تثبيت التطبيق على جهازك</button>
@@ -263,7 +263,9 @@ h1{position:relative!important;z-index:1!important;background:var(--bg,#f1f5f9)!
 <div class="bar mo" id="pc"></div>
 <div class="bar mo" id="fl"></div>
  <button id="toolsExpand" style="display:none">🧰 إظهار البار</button><div id="boardTools"><button id="toolsCollapse" title="إخفاء بار اللوحة - هيرجع بزرار إظهار البار فوق">⬆️ إخفاء البار</button><button id="dh" title="القطع">☰ القطع</button>
- <button id="br" class="go"></button><button data-tab="b" id="tb" title="تصنيع حر">🎛️ تصنيع حر</button><button data-tab="m" id="tm" title="صيانة وأعطال">🔧 صيانة</button><button id="bm">🔊 صوت</button><button id="zoomOut" title="تصغير الشبكة">➖ تصغير</button><span id="zoomLabel" style="font-size:11px;white-space:nowrap">100%</span><button id="zoomIn" title="تكبير الشبكة">➕ تكبير</button><span id="kwh" style="font-size:11px;white-space:nowrap"></span>
+ <button id="br" class="go"></button><button data-tab="b" id="tb" title="تصنيع حر">🎛️ تصنيع حر</button><button data-tab="m" id="tm" title="صيانة وأعطال">🔧 صيانة</button>
+ <button id="decGameBtn" type="button" style="background:#7c3aed;color:#fff;border:none;border-radius:10px;padding:7px 12px;font-weight:900;cursor:pointer">🎮 لعبة الأعطال</button>
+ <button data-dec-leader="open" type="button" style="background:#b45309;color:#fff;border:none;border-radius:10px;padding:7px 12px;font-weight:900;cursor:pointer">🏆 لوحة الشرف</button><button id="bm">🔊 صوت</button><button id="zoomOut" title="تصغير الشبكة">➖ تصغير</button><span id="zoomLabel" style="font-size:11px;white-space:nowrap">100%</span><button id="zoomIn" title="تكبير الشبكة">➕ تكبير</button><span id="kwh" style="font-size:11px;white-space:nowrap"></span>
  <button id="bw" title="وضع التوصيل">🔌 توصيل</button>
  
  
@@ -279,6 +281,8 @@ h1{position:relative!important;z-index:1!important;background:var(--bg,#f1f5f9)!
  <button id="saveImgBtn" title="حفظ صورة PNG للوحة كلها">🖼️ حفظ صورة</button>
  <button id="bx" title="مسح الكل">🗑️ مسح الكل</button>
 </div>
+<div id="decGameBar" style="display:none;background:#4c1d95;color:#fff;padding:8px 10px;font-size:12px;font-weight:700;border-radius:0 0 12px 12px;margin:0 8px"></div>
+<div id="decRegisterPop" style="display:none;position:fixed;z-index:500;left:50%;top:50%;width:min(320px,90vw);background:rgba(2,6,23,.98);border:2px solid #facc15;border-radius:16px;padding:16px;color:#e2e8f0;font-size:13px;line-height:1.6;transform:translate(-50%,-50%)"><div style="font-weight:900;color:#facc15;font-size:17px">🎉 وصلت <span id="decRegPts">500</span> نقطة!</div><div style="color:#94a3b8;font-size:12px">سجّل حسابك عشان نحفظ نقاطك وتستلم هداياك</div><label style="display:block;margin-top:10px;color:#fff;font-weight:800">الاسم</label><input id="decRegName" type="text" placeholder="اسمك" style="width:100%;box-sizing:border-box;background:#0f172a;color:#fff;border:1px solid #334155;border-radius:9px;padding:9px;margin-top:4px"><label style="display:block;margin-top:8px;color:#fff;font-weight:800">رقم الموبايل (واتساب)</label><input id="decRegPhone" type="tel" placeholder="01xxxxxxxxx" style="width:100%;box-sizing:border-box;background:#0f172a;color:#fff;border:1px solid #334155;border-radius:9px;padding:9px;margin-top:4px"><button data-dec-reg="save" type="button" style="width:100%;margin-top:12px;background:#22c55e;color:#fff;border:none;border-radius:10px;padding:10px;font-weight:900;cursor:pointer">✅ إنشاء حساب وحفظ النقاط</button><button data-dec-reg="later" type="button" style="width:100%;margin-top:6px;background:transparent;color:#94a3b8;border:1px solid #334155;border-radius:10px;padding:9px;font-weight:800;cursor:pointer">لاحقًا</button></div><div id="decGiftsPop" style="display:none;position:fixed;z-index:500;left:50%;top:50%;width:min(340px,92vw);max-height:82vh;overflow:auto;background:rgba(2,6,23,.98);border:2px solid #a78bfa;border-radius:16px;padding:16px;color:#e2e8f0;font-size:13px;line-height:1.6;transform:translate(-50%,-50%)"><div style="display:flex;justify-content:space-between"><b style="font-size:16px;color:#fff">🎁 الهدايا</b><button data-dec-gift="close" type="button" style="background:#334155;color:#fff;border:none;border-radius:8px;padding:4px 10px;font-weight:900;cursor:pointer">✕</button></div><div id="decGiftsBody" style="margin-top:8px"></div></div><div id="decLeadersPage" style="display:none;position:fixed;inset:0;z-index:600;background:#0b1220;overflow:auto;padding:12px;direction:rtl;color:#e2e8f0;font-size:13px;line-height:1.6"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><b style="font-size:17px;color:#facc15">🏆 لوحة الشرف</b><button data-dec-leader="close" type="button" style="background:#334155;color:#fff;border:none;border-radius:9px;padding:7px 14px;font-weight:900;cursor:pointer">✕ رجوع</button></div><div style="color:#94a3b8;font-size:12px">اللي عدّوا 500 نقطة في لعبة الأعطال</div><div id="decLeadersCount" style="color:#facc15;font-weight:900;margin-top:6px"></div><div id="decLeadersList"></div><div style="margin-top:14px;background:#111827;border:1px solid #334155;border-radius:12px;padding:10px"><b style="color:#fff">➕ إضافة لاعب</b><div style="color:#94a3b8;font-size:11px">لما لاعب يسجّل، رسالته بتوصلك واتساب — ضيفيه هنا من رسالته.</div><input id="decLeaderName" type="text" placeholder="الاسم" style="width:100%;box-sizing:border-box;background:#0f172a;color:#fff;border:1px solid #334155;border-radius:9px;padding:9px;margin-top:8px"><input id="decLeaderPhone" type="tel" placeholder="رقم الموبايل" style="width:100%;box-sizing:border-box;background:#0f172a;color:#fff;border:1px solid #334155;border-radius:9px;padding:9px;margin-top:6px"><input id="decLeaderPts" type="number" placeholder="عدد النقاط" style="width:100%;box-sizing:border-box;background:#0f172a;color:#fff;border:1px solid #334155;border-radius:9px;padding:9px;margin-top:6px"><button data-dec-leader="add" type="button" style="width:100%;margin-top:8px;background:#22c55e;color:#fff;border:none;border-radius:10px;padding:10px;font-weight:900;cursor:pointer">➕ إضافة للوحة الشرف</button><div style="color:#fff;font-weight:800;margin-top:12px">أو الصق رسالة الواتساب:</div><textarea id="decLeaderPaste" rows="3" placeholder="الصق رسالة التسجيل اللي وصلتك واتساب هنا..." style="width:100%;box-sizing:border-box;background:#0f172a;color:#fff;border:1px solid #334155;border-radius:9px;padding:9px;margin-top:6px"></textarea><button data-dec-leader="parse" type="button" style="width:100%;margin-top:6px;background:#a855f7;color:#fff;border:none;border-radius:10px;padding:10px;font-weight:900;cursor:pointer">📋 تحليل الرسالة وإضافة اللاعب</button></div></div><div id="decGamePicker" style="display:none;position:fixed;z-index:400;left:50%;top:120px;width:250px;background:rgba(2,6,23,.97);border:1.5px solid #a78bfa;border-radius:14px;padding:10px;color:#e2e8f0;font-size:12px;line-height:1.5;transform:translateX(-50%)"></div>
 <div id="sc"><div id="board"><svg id="wires"></svg><div id="comps"></div><div id="helpPop"></div></div>
 <div id="dr"></div>
 <div id="examplesDrawer"><button class="ex-handle" id="exHandle" type="button">☰ &nbsp; أمثلة جاهزة - اسحب لفوق للفتح</button><div class="ex-body" id="exBody"></div></div>
@@ -736,7 +740,7 @@ function sim(){
  return r('لا يوجد مسار مكتمل – افحص القواطع والتوصيلات والفازات','y');
 }
 const st=(c,e)=>{const d=T[c.t];
- if(c.dead)return 'عطل';
+ if(c.dead&&!(decGame.active&&c.gameFault))return 'عطل';
  if(['sw','sw2','sw3'].includes(d.k))return (c.t.includes('Overload')?(c.olTripped?'TRIP':c.olStopped?'STOP':'ON'):(c.s==='ON'?'ON':'OFF'))+(c.stuck?'*':'');
  if(d.k==='dev')return closed(c)?'وضع 1 • COM-L1':'وضع 2 • COM-L2';
  if(d.k==='mid')return closed(c)?'مستقيم':'متقاطع';
@@ -746,12 +750,289 @@ const st=(c,e)=>{const d=T[c.t];
  if(d.k==='meter')return e?down(c).reduce((s,l)=>s+l.w,0)+' W':'—';
   if(d.k==='pmeter'||d.k==='pmeter2'||d.k==='pmeter3')return e?('الرصيد: '+(c.balance||0).toFixed(2)+' ج • '+down(c).reduce((s,l)=>s+l.w,0)+' W'):'اشحن العداد';
  return '';};
+
+
+// ===== 🎁 نظام النقاط والحساب والهدايا =====
+var DEC_GIFTS=[
+ {pts:500, name:'شهادة تقدير رقمية', desc:'شهادة باسمك إنك خلّصت 500 نقطة'},
+ {pts:1000, name:'استشارة مجانية', desc:'استشارة واتساب مجانية مع م. سماح'},
+ {pts:2000, name:'خصم 25% على كورس', desc:'خصم على أي كورس كهربا'},
+ {pts:3500, name:'كورس مجاني', desc:'كورس كهربا كامل مجانًا'},
+ {pts:5000, name:'عدة كهربائي هدية', desc:'عدة كهربائي كاملة هدية'},
+];
+var DEC_OWNER_WA='201558837118';
+function decOpenWhatsApp(msg){
+ var url='https://wa.me/'+DEC_OWNER_WA+(msg?'?text='+encodeURIComponent(msg):'');
+ var a=document.createElement('a'); a.href=url; a.target='_blank'; a.rel='noopener';
+ document.body.appendChild(a); a.click(); a.remove();
+}
+var decStorageOK=(function(){ try{ var t='__dec_test__'; localStorage.setItem(t,'1'); localStorage.removeItem(t); return true; }catch(e){ return false; } })();
+var decMemStore={};
+function decStoreGet(k){ try{ var v=localStorage.getItem(k); if(v!=null) return v; }catch(e){} return (k in decMemStore)?decMemStore[k]:null; }
+function decStoreSet(k,v){ var ok=false; try{ localStorage.setItem(k,v); ok=true; }catch(e){} if(!ok) decMemStore[k]=v; return ok; }
+function decStoreRemove(k){ try{ localStorage.removeItem(k); }catch(e){} delete decMemStore[k]; }
+if(!decStorageOK){ try{ var _w=document.createElement('div'); _w.style.cssText='background:#7f1d1d;color:#fff;text-align:center;font-weight:900;font-size:12px;padding:8px;position:sticky;top:0;z-index:999'; _w.textContent='⚠️ المتصفح ده مش بيحفظ النقاط — افتحي التطبيق من المعاينة أو متصفح كروم عشان التسجيل ولوحة الشرف يتحفظوا'; document.body.insertBefore(_w, document.body.firstChild); }catch(e){} }
+var decRegisterDismissed=false;
+function decLoadAccount(){ try{ var v=decStoreGet('decAccount'); return v?JSON.parse(v):null; }catch(e){ return null; } }
+function decSaveAccount(acc){ decStoreSet('decAccount', JSON.stringify(acc)); }
+function decPointsHook(gameKey, sessionScore){
+ var acc=decLoadAccount();
+ if(!acc){
+  if(sessionScore>=500&&!decRegisterDismissed) decShowRegisterPopup(sessionScore);
+  return;
+ }
+ var last=acc[gameKey]||0;
+ if(sessionScore>last){ acc.points=(acc.points||0)+(sessionScore-last); acc[gameKey]=sessionScore; decSaveAccount(acc); decUpsertLeader({name:acc.name, phone:acc.phone, points:acc.points}); }
+}
+function decShowRegisterPopup(pts){
+ var pop=document.getElementById('decRegisterPop'); if(!pop) return;
+ pop.style.display='block';
+ var el=document.getElementById('decRegPts'); if(el) el.textContent=pts;
+}
+function decHideRegisterPopup(){ var pop=document.getElementById('decRegisterPop'); if(pop) pop.style.display='none'; }
+function decDoRegister(){
+ var nameEl=document.getElementById('decRegName'); var phEl=document.getElementById('decRegPhone');
+ var name=nameEl?nameEl.value.trim():''; var phone=phEl?phEl.value.trim():'';
+ if(!name){ alert('اكتب اسمك الأول'); return; }
+ var digits=phone.replace(/\D/g,'');
+ if(digits.length<10){ alert('اكتب رقم موبايل صحيح (واتساب)'); return; }
+ var pts=Math.max(decGame.active?decGame.score:0, snGame.active?snGame.score:0);
+ var acc={name:name, phone:phone, points:pts, dec:(decGame.active?decGame.score:0), sn:(snGame.active?snGame.score:0), createdAt:new Date().toISOString(), claimed:[]};
+ decSaveAccount(acc);
+ decHideRegisterPopup();
+ decUpsertLeader({name:name, phone:phone, points:pts});
+ decOpenWhatsApp('أهلًا، أنا '+name+'، سجلت حساب جديد في لعبة الأعطال، عندي '+pts+' نقطة، ورقمي '+phone);
+ decShowGifts();
+}
+function decShowGifts(){
+ var pop=document.getElementById('decGiftsPop'); if(!pop) return;
+ var acc=decLoadAccount();
+ var body=document.getElementById('decGiftsBody'); if(!body) return;
+ if(!acc){
+  body.innerHTML='<div style="color:#94a3b8">لسه معندكش حساب — العب لحد ما توصل 500 نقطة وسجّل حسابك.</div>';
+ } else {
+  var _regMsg='أهلًا، أنا '+acc.name+'، سجلت حساب جديد في لعبة الأعطال، عندي '+(acc.points||0)+' نقطة، ورقمي '+acc.phone;
+  var html='<div style="color:#fff;font-weight:900">أهلًا '+acc.name+' 👋</div><div style="color:#facc15;font-weight:900;font-size:16px">نقاطك المحفوظة: '+(acc.points||0)+' ⭐</div>'
+  +'<a href="https://wa.me/'+DEC_OWNER_WA+'?text='+encodeURIComponent(_regMsg)+'" target="_blank" rel="noopener" style="display:block;margin-top:8px;background:#22c55e;color:#fff;border-radius:10px;padding:10px;font-weight:900;text-align:center;text-decoration:none">📲 ابعت تسجيلي واتساب</a>'
+  +'<div style="color:#94a3b8;font-size:11px">لو الواتساب مفتحش لوحده، دوسي هنا 👆</div>'
+  +(!decStorageOK?'<div style="color:#facc15;font-size:11px">⚠️ النقاط محفوظة في الجلسة دي بس — افتحي التطبيق من المتصفح عشان تتحفظ على طول</div>':'')+'<button data-dec-leader="open" type="button" style="margin-top:6px;background:#b45309;color:#fff;border:none;border-radius:8px;padding:6px 12px;font-weight:900;cursor:pointer">🏆 شوف لوحة الشرف</button><div style="color:#94a3b8;font-size:11px">كل ما تلعب وتكسب نقاط، هداياك بتتفتح. اطلب الهدية واتساب وهتوصلك.</div>';
+  DEC_GIFTS.forEach(function(g){
+   var unlocked=(acc.points||0)>=g.pts;
+   var claimed=(acc.claimed||[]).indexOf(g.pts)>=0;
+   html+='<div style="margin-top:8px;background:#0f172a;border:1px solid '+(unlocked?'#22c55e':'#334155')+';border-radius:10px;padding:8px"><div style="display:flex;justify-content:space-between"><b style="color:#fff">'+(unlocked?'✅ ':'🔒 ')+g.name+'</b><span style="color:#facc15;font-weight:900">'+g.pts+' نقطة</span></div><div style="color:#94a3b8;font-size:11px">'+g.desc+'</div>';
+   if(unlocked){
+    var _claimMsg='أهلًا، أنا '+acc.name+'، عندي '+(acc.points||0)+' نقطة في لعبة الأعطال، وعايز أستلم هدية: '+g.name;
+    html+='<a href="https://wa.me/'+DEC_OWNER_WA+'?text='+encodeURIComponent(_claimMsg)+'" target="_blank" rel="noopener" data-dec-claim="'+g.pts+'" style="display:inline-block;margin-top:6px;background:#22c55e;color:#fff;border-radius:8px;padding:6px 12px;font-weight:900;cursor:pointer;text-decoration:none">'+(claimed?'✅ اطلبها تاني واتساب':'📲 اطلب الهدية واتساب')+'</a>';
+   } else {
+    var need=g.pts-(acc.points||0);
+    html+='<div style="margin-top:6px;background:#1e293b;border-radius:6px;height:8px;overflow:hidden"><div style="width:'+Math.min(100,Math.floor((acc.points||0)/g.pts*100))+'%;height:100%;background:#facc15"></div></div><div style="color:#94a3b8;font-size:11px">فاضل '+need+' نقطة</div>';
+   }
+   html+='</div>';
+  });
+  html+='<button data-dec-gift="delete" type="button" style="margin-top:10px;background:transparent;color:#f87171;border:1px solid #7f1d1d;border-radius:8px;padding:6px 12px;font-weight:700;cursor:pointer">🗑️ حذف حسابي</button>';
+  body.innerHTML=html;
+ }
+ pop.style.display='block';
+}
+function decHideGifts(){ var pop=document.getElementById('decGiftsPop'); if(pop) pop.style.display='none'; }
+function decClaimGift(pts){
+ var acc=decLoadAccount(); if(!acc){ alert('سجّل حسابك الأول'); return; }
+ var g=DEC_GIFTS.find(function(x){ return x.pts===pts; }); if(!g) return;
+ if((acc.points||0)<pts){ alert('لسه محتاج '+(pts-(acc.points||0))+' نقطة'); return; }
+ if((acc.claimed||[]).indexOf(pts)<0){ acc.claimed.push(pts); decSaveAccount(acc); }
+ // الواتساب بيفتح من اللينك نفسه — متعملش حاجة هنا عشان متقطعش التنقل
+}
+
+
+// ===== 🏆 لوحة الشرف — اللي عدّوا 500 نقطة =====
+function decLoadLeaders(){ try{ var v=decStoreGet('decLeaders'); return v?JSON.parse(v):[]; }catch(e){ return []; } }
+function decSaveLeaders(list){ decStoreSet('decLeaders', JSON.stringify(list)); }
+function decNormPhone(p){
+  var d=String(p||'').replace(/\D/g,'');
+  if(d.indexOf('0')===0) d='20'+d.slice(1);
+  return d;
+}
+function decUpsertLeader(entry){
+  var list=decLoadLeaders();
+  var key=decNormPhone(entry.phone);
+  var found=null;
+  for(var i=0;i<list.length;i++){ if(decNormPhone(list[i].phone)===key){ found=list[i]; break; } }
+  if(found){ found.name=entry.name; found.points=Math.max(found.points||0, entry.points||0); }
+  else { list.push({name:entry.name, phone:entry.phone, points:entry.points||0, addedAt:new Date().toISOString()}); }
+  decSaveLeaders(list);
+}
+function decEscapeHtml(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function decRenderLeaders(){
+  var acc=decLoadAccount();
+  if(acc&&(acc.points||0)>=500) decUpsertLeader({name:acc.name, phone:acc.phone, points:acc.points});
+  var list=decLoadLeaders();
+  list.sort(function(a,b){ return (b.points||0)-(a.points||0); });
+  var cnt=document.getElementById('decLeadersCount');
+  if(cnt) cnt.textContent='عدد اللاعبين: '+list.length+' 🏆';
+  var box=document.getElementById('decLeadersList');
+  if(!box) return;
+  if(!list.length){
+    box.innerHTML='<div style="color:#94a3b8;text-align:center;padding:20px">لسه مفيش حد وصل 500 نقطة — العب وكن أول واحد! 🎮</div>';
+    return;
+  }
+  box.innerHTML=list.map(function(l,i){
+    return '<div style="background:#0f172a;border:1px solid #334155;border-radius:12px;padding:10px;margin-top:8px;display:flex;justify-content:space-between;align-items:center;gap:8px">'
+    +'<div><div style="color:#fff;font-weight:900;font-size:15px">'+(i+1)+'. '+decEscapeHtml(l.name||'؟')+'</div>'
+    +'<div style="color:#94a3b8;font-size:12px">📱 '+(l.phone||'—')+'</div></div>'
+    +'<div style="text-align:left"><div style="color:#facc15;font-weight:900;font-size:16px">⭐ '+(l.points||0)+'</div>'
+    +'<div style="display:flex;gap:4px;margin-top:4px"><a href="https://wa.me/'+decNormPhone(l.phone)+'?text='+encodeURIComponent('أهلًا '+(l.name||'')+'، مبروك وصلت '+(l.points||0)+' نقطة في لعبة الأعطال! 🎉')+'" target="_blank" rel="noopener" style="background:#22c55e;color:#fff;border-radius:8px;padding:5px 9px;font-weight:900;cursor:pointer;font-size:11px;text-decoration:none">📲 واتساب</a>'
+    +'<button data-dec-leader="del" data-phone="'+(l.phone||'')+'" type="button" style="background:#7f1d1d;color:#fff;border:none;border-radius:8px;padding:5px 9px;font-weight:900;cursor:pointer;font-size:11px">🗑️</button></div></div></div>';
+  }).join('');
+}
+function decShowLeaders(){ decRenderLeaders(); var pg=document.getElementById('decLeadersPage'); if(pg) pg.style.display='block'; }
+function decHideLeaders(){ var pg=document.getElementById('decLeadersPage'); if(pg) pg.style.display='none'; }
+function decAddLeaderFromForm(){
+  var n=document.getElementById('decLeaderName'); var p=document.getElementById('decLeaderPhone'); var pts=document.getElementById('decLeaderPts');
+  var name=n?n.value.trim():''; var phone=p?p.value.trim():''; var points=pts?parseInt(pts.value,10):0;
+  if(!name){ alert('اكتب اسم اللاعب'); return; }
+  if(decNormPhone(phone).length<10){ alert('اكتب رقم موبايل صحيح'); return; }
+  if(!(points>=500)){ alert('اللاعب لازم يكون عدّى 500 نقطة'); return; }
+  decUpsertLeader({name:name, phone:phone, points:points});
+  if(n) n.value=''; if(p) p.value=''; if(pts) pts.value='';
+  decRenderLeaders();
+  alert('✅ اتضاف للوحة الشرف');
+}
+function decParseLeaderMsg(){
+  var ta=document.getElementById('decLeaderPaste'); var txt=ta?ta.value:'';
+  if(!txt.trim()){ alert('الصق رسالة الواتساب الأول'); return; }
+  var m=txt.match(/أنا\s+(.+?)،.*?عندي\s+(\d+)\s*نقطة.*?ورقمي\s+([0-9+ ]+)/s);
+  if(m){
+    var name=m[1].trim(); var points=parseInt(m[2],10); var phone=m[3].replace(/\s/g,'').trim();
+    if(!(points>=500)){ alert('اللاعب ده لسه موصلش 500 نقطة'); return; }
+    decUpsertLeader({name:name, phone:phone, points:points});
+    if(ta) ta.value='';
+    decRenderLeaders();
+    alert('✅ اتضاف: '+name+' — '+points+' نقطة');
+    return;
+  }
+  var m2=txt.match(/أنا\s+(.+?)،.*?عندي\s+(\d+)\s*نقطة/s);
+  if(m2){
+    var n2=document.getElementById('decLeaderName'); var p2=document.getElementById('decLeaderPts');
+    if(n2) n2.value=m2[1].trim(); if(p2) p2.value=m2[2];
+    alert('الرسالة دي مفيهاش رقم موبايل — كمّل الرقم ودوس إضافة');
+    return;
+  }
+  alert('مش قادر أقرا الرسالة — الصق رسالة التسجيل كاملة');
+}
+
+// ===== 🎮 لعبة الأعطال — DEC ElectroPanel =====
+var decGame={active:false,level:1,score:0,startAt:0,levelDone:false,lastBonus:0};
+var DEC_FAULT_LABEL={dead:'محروق',stuck:'ماسك',burnt:'سلك محروق'};
+function decPlantFaults(n){
+ var cands=[];
+ C.forEach(function(c){ var k=T[c.t].k; if((k==='ld'||k==='ld2'||k==='ld3')&&!c.dead&&!c.gameFault) cands.push({kind:'comp',c:c,fault:'dead'}); else if((k==='sw'||k==='sw2'||k==='sw3')&&!c.stuck&&!c.gameFault) cands.push({kind:'comp',c:c,fault:'stuck'}); });
+ W.forEach(function(w){ if(!w.burnt&&!w.gameFault) cands.push({kind:'wire',w:w,fault:'burnt'}); });
+ for(var i=cands.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var tmp=cands[i]; cands[i]=cands[j]; cands[j]=tmp; }
+ var planted=0;
+ for(var i2=0;i2<cands.length&&planted<n;i2++){ var cd=cands[i2]; if(cd.kind==='comp'){ if(cd.fault==='dead') cd.c.dead=true; else cd.c.stuck=true; cd.c.gameFault=true; cd.c.faultAt=Date.now(); } else { cd.w.burnt=true; cd.w.gameFault=true; } planted++; }
+ return planted>0;
+}
+function decStartGame(){
+ if(C.length<3){ alert('حط قطع على اللوحة الأول — جرّب مثال جاهز من الدرج اللي تحت'); return; }
+ C.forEach(function(c){ if(c.gameFault){ delete c.gameFault; if(c.dead) c.dead=false; if(c.stuck) c.stuck=false; } });
+ W.forEach(function(w){ if(w.gameFault){ delete w.gameFault; w.burnt=false; } });
+ decGame.active=true; decGame.level=1; decGame.score=0; decGame.levelDone=false; decGame.lastBonus=0;
+ if(!decPlantFaults(1)){ alert('مفيش قطع تنفع للأعطال — حط حمل أو مفتاح أو سلك'); decGame.active=false; return; }
+ decGame.startAt=Date.now();
+ var _a=decLoadAccount(); if(_a){ _a.dec=0; decSaveAccount(_a); } decRegisterDismissed=false;
+ render();
+}
+function decEndGame(){
+ decGame.active=false; decGame.levelDone=false;
+ C.forEach(function(c){ if(c.gameFault){ delete c.gameFault; if(c.dead) c.dead=false; if(c.stuck) c.stuck=false; } });
+ W.forEach(function(w){ if(w.gameFault){ delete w.gameFault; w.burnt=false; } });
+ decHidePicker(); render();
+}
+function decGameSymptoms(){
+ var sym=[];
+ if(C.some(function(c){ return c.gameFault&&c.dead; })) sym.push('💡 في حمل مش شغال!');
+ if(C.some(function(c){ return c.gameFault&&c.stuck; })) sym.push('🔘 في مفتاح مش بيطفي!');
+ if(W.some(function(w){ return w.gameFault&&w.burnt; })) sym.push('🔥 في سلك محروق!');
+ return sym;
+}
+function decUpdateGameBar(){
+ var bar=document.getElementById('decGameBar'); if(!bar) return;
+ if(decGame.active) decPointsHook('dec', decGame.score);
+ var gb=document.getElementById('decGameBtn'); if(gb){ gb.textContent=decGame.active?'🎮 اللعبة شغالة':'🎮 لعبة الأعطال'; }
+ if(!decGame.active){ bar.style.display='none'; return; }
+ var secs=Math.floor((Date.now()-decGame.startAt)/1000);
+ var sym=decGameSymptoms();
+ var html='🎮 لعبة الأعطال | المستوى '+decGame.level+' | ⭐ النقاط: '+decGame.score+' | ⏱ '+secs+'ث';
+ if(decGame.levelDone){ html+=' | ✅ خلّصت المستوى! مكافأة وقت: +'+decGame.lastBonus+' | <button data-dec="next" type="button" style="background:#22c55e;color:#fff;border:none;border-radius:8px;padding:5px 12px;font-weight:900;cursor:pointer">➡️ المستوى الجاي</button>'; }
+ else { html+=' | الأعراض: '+(sym.length?sym.join(' • '):'—')+' | <button data-dec="hint" type="button" style="background:#f59e0b;color:#111827;border:none;border-radius:8px;padding:5px 12px;font-weight:900;cursor:pointer">🔍 تلميح (15-)</button>'; }
+ html+=' <button data-dec="end" type="button" style="background:#ef4444;color:#fff;border:none;border-radius:8px;padding:5px 12px;font-weight:900;cursor:pointer">❌ إنهاء</button>';
+ html+=' <button data-dec-points type="button" style="background:#a855f7;color:#fff;border:none;border-radius:8px;padding:5px 12px;font-weight:900;cursor:pointer">🎁 الهدايا</button>';
+ html+=' <button data-dec-leader="open" type="button" style="background:#b45309;color:#fff;border:none;border-radius:8px;padding:5px 12px;font-weight:900;cursor:pointer">🏆 لوحة الشرف</button>';
+ if(!decLoadAccount()&&decGame.score>=500) html+=' <button data-dec-reg="open" type="button" style="background:#facc15;color:#111827;border:none;border-radius:8px;padding:5px 12px;font-weight:900;cursor:pointer">📝 سجّل وحفظ نقاطك</button>';
+ var _acc=decLoadAccount(); if(_acc) html+=' | 🎁 نقاطك المحفوظة: '+(_acc.points||0);
+ bar.innerHTML=html; bar.style.display='block';
+}
+function decHidePicker(){ var pk=document.getElementById('decGamePicker'); if(pk) pk.style.display='none'; }
+function decShowDiagnosePicker(c){
+ var pk=document.getElementById('decGamePicker'); if(!pk) return;
+ var k=T[c.t].k;
+ var html='<div style="font-weight:900;color:#fff;font-size:14px;margin-bottom:4px">🔍 تشخيص: '+(c.l||T[c.t].n)+'</div><div style="color:#94a3b8;font-size:11px">إيه العطل اللي في القطعة دي؟</div><div style="display:flex;flex-direction:column;gap:5px;margin-top:6px">';
+ if(k==='ld'||k==='ld2'||k==='ld3'){ html+='<button data-dec-fault="dead" type="button" style="background:#7f1d1d;color:#fff;border:none;border-radius:9px;padding:7px;font-weight:900;cursor:pointer">💥 محروق</button>'; }
+ if(k==='sw'||k==='sw2'||k==='sw3'){ html+='<button data-dec-fault="stuck" type="button" style="background:#7f1d1d;color:#fff;border:none;border-radius:9px;padding:7px;font-weight:900;cursor:pointer">🔘 ماسك (مش بيطفي)</button>'; }
+ html+='<button data-dec-fault="__none" type="button" style="background:#16a34a;color:#fff;border:none;border-radius:9px;padding:7px;font-weight:900;cursor:pointer">✅ مفيش عطل — سليمة</button>';
+ html+='<button data-dec-fault="__close" type="button" style="background:#334155;color:#fff;border:none;border-radius:9px;padding:7px;font-weight:900;cursor:pointer">إلغاء</button></div>';
+ pk.innerHTML=html; pk.style.display='block';
+ pk.dataset.target='comp:'+c.id;
+}
+function decShowWireDiagnosePicker(w){
+ var pk=document.getElementById('decGamePicker'); if(!pk) return;
+ var html='<div style="font-weight:900;color:#fff;font-size:14px;margin-bottom:4px">🔍 تشخيص: سلك</div><div style="color:#94a3b8;font-size:11px">إيه العطل اللي في السلك ده؟</div><div style="display:flex;flex-direction:column;gap:5px;margin-top:6px">';
+ html+='<button data-dec-fault="burnt" type="button" style="background:#7f1d1d;color:#fff;border:none;border-radius:9px;padding:7px;font-weight:900;cursor:pointer">🔥 سلك محروق</button>';
+ html+='<button data-dec-fault="__none" type="button" style="background:#16a34a;color:#fff;border:none;border-radius:9px;padding:7px;font-weight:900;cursor:pointer">✅ سليم</button>';
+ html+='<button data-dec-fault="__close" type="button" style="background:#334155;color:#fff;border:none;border-radius:9px;padding:7px;font-weight:900;cursor:pointer">إلغاء</button></div>';
+ pk.innerHTML=html; pk.style.display='block';
+ pk.dataset.target='wire:'+w.id;
+}
+function decJudge(fault){
+ var pk=document.getElementById('decGamePicker'); if(!pk) return;
+ var tgt=(pk.dataset.target||'').split(':');
+ var isComp=tgt[0]==='comp';
+ var obj=isComp?C.find(function(x){ return x.id===tgt[1]; }):W.find(function(x){ return String(x.id)===tgt[1]; });
+ decHidePicker();
+ if(!obj){ render(); return; }
+ if(fault==='__close'){ render(); return; }
+ if(fault==='__none'){
+  if(obj.gameFault){ decGame.score=Math.max(0,decGame.score-20); alert('❌ غلط! القطعة دي فيها عطل — ركّز في الأعراض (-20)'); }
+  else { alert('✅ صح — القطعة دي سليمة'); }
+  render(); return;
+ }
+ var actual=isComp?(obj.dead?'dead':(obj.stuck?'stuck':null)):(obj.burnt?'burnt':null);
+ if(obj.gameFault&&actual===fault){
+  decGame.score+=100;
+  if(isComp){ delete obj.gameFault; if(fault==='dead') obj.dead=false; if(fault==='stuck') obj.stuck=false; }
+  else { delete obj.gameFault; obj.burnt=false; }
+  alert('✅ صح! لقيت العطل: '+(DEC_FAULT_LABEL[fault]||fault)+' (+100)');
+  if(!C.some(function(x){ return x.gameFault; })&&!W.some(function(x){ return x.gameFault; })){
+   decGame.levelDone=true;
+   var secs=Math.floor((Date.now()-decGame.startAt)/1000);
+   decGame.lastBonus=secs<60?50:(secs<120?25:0);
+   decGame.score+=decGame.lastBonus;
+   alert('🎉 خلّصت المستوى '+decGame.level+'! مكافأة وقت: +'+decGame.lastBonus);
+  }
+ } else {
+  decGame.score=Math.max(0,decGame.score-20);
+  alert('❌ غلط! مش ده العطل (-20)');
+ }
+ render();
+}
+
 function render(){
+ decUpdateGameBar();
  res=sim();
  board.classList.toggle('sym',!!symMode);
  comps.innerHTML=C.map(c=>{
   const d=T[c.t],e=res.E.has(c.id),lamp=c.t in LIT,fg=TL(d.b);
-  const cls=['c',sel===c.id?'sel':'',e&&d.k!=='ld'?'live':'',e&&lamp?'glow':'',c.dead?'bd':'',e&&['Motor','Fan','Washer','Motor3Ph'].includes(c.t)?'spin':''].join(' ');
+  const cls=['c',sel===c.id?'sel':'',e&&d.k!=='ld'?'live':'',e&&lamp?'glow':'',(c.dead&&!(decGame.active&&c.gameFault))?'bd':'',e&&['Motor','Fan','Washer','Motor3Ph'].includes(c.t)?'spin':''].join(' ');
   const hot=c.t==='Heater'&&e?`background:hsl(${Math.max(0,210-(c.temp-20)*3)},80%,80%);`:'';
   const lv=d.k==='sw'?`<div class="lv"><i class="${c.s==='ON'||c.stuck?'u':''}"></i></div>`:d.g?`<div class="gl">${d.g}</div>`:'';
   return `<div class="${cls}" data-id="${c.id}" style="left:${c.x}px;top:${c.y}px;width:${d.w}px;height:${d.h}px;transform:rotate(${c.rot||0}deg) scale(${c.sc||1});background:${d.b};color:${fg};--lit:${LIT[c.t]||'#fff'};--inv:${1/(c.sc||1)};${hot}">
@@ -787,7 +1068,7 @@ function draw(){
  svg.innerHTML=W.map(w=>{
   const a=pt(w.a),b=pt(w.b);if(!a||!b)return '';
   const dd=`M${a[0]} ${a[1]} C${a[0]} ${a[1]+50},${b[0]} ${b[1]-50},${b[0]} ${b[1]}`,sw=selW===w.id,lv=res&&((res.L.has(w.a)&&res.L.has(w.b))||(res.N.has(w.a)&&res.N.has(w.b)));
-  if(w.burnt)return `<path d="${dd}" fill="none" stroke="#6b7280" stroke-width="2" stroke-dasharray="3 9" opacity=".6"/>`;
+  if(w.burnt&&!(decGame.active&&w.gameFault))return `<path d="${dd}" fill="none" stroke="#6b7280" stroke-width="2" stroke-dasharray="3 9" opacity=".6"/>`;
   const col=migrateWireColor(w.col);
   if(col==='pe')return `<path data-w="${w.id}" d="${dd}" fill="none" stroke="transparent" stroke-width="18" style="pointer-events:stroke;cursor:pointer"/><path d="${dd}" fill="none" stroke="#ffffff" stroke-width="${sw?gaugeW(w.gauge)+2:lv?gaugeW(w.gauge)+1:gaugeW(w.gauge)}" stroke-linecap="round"/><path d="${dd}" fill="none" stroke="#22c55e" stroke-width="${sw?gaugeW(w.gauge)+2:lv?gaugeW(w.gauge)+1:gaugeW(w.gauge)}" stroke-linecap="round" stroke-dasharray="7 5" ${lv?`style="filter:drop-shadow(0 0 4px #22c55e)"`:''}/>`;
    const Gg=GAUGE[w.gauge]||GAUGE['1.5'];if(Gg.t==='cable')return `<path data-w="${w.id}" d="${dd}" fill="none" stroke="transparent" stroke-width="22" style="pointer-events:stroke;cursor:pointer"/><path d="${dd}" fill="none" stroke="#1f2937" stroke-width="${gaugeW(w.gauge)+5}" stroke-linecap="round" opacity="0.9"/><path d="${dd}" fill="none" stroke="${COL[col]||'#ef4444'}" stroke-width="${gaugeW(w.gauge)}" stroke-linecap="round" transform="translate(-3,0)"/><path d="${dd}" fill="none" stroke="${col==='n'?'#1f2937':'#1e40af'}" stroke-width="${gaugeW(w.gauge)}" stroke-linecap="round" transform="translate(3,0)"/><title>${Gg.l} • ~${Gg.amp}A</title>`;
@@ -844,6 +1125,7 @@ addEventListener('pointerup',()=>{
  if(panDrag){const pd=panDrag;panDrag=null;if(!pd.moved&&!pd.w&&(sel||selW)){sel=null;selW=null;helpOpen=false;render()}return;}
  if(!drag)return;
  const d=drag;drag=null;
+ if(decGame.active&&!d.moved){ decShowDiagnosePicker(d.c); render(); return; }
  const k=T[d.c.t].k;
  if(!d.moved&&['sw','sw2','sw3','src','src3','dev','mid'].includes(k)&&!d.c.dead&&!d.c.stuck){d.c.s=d.c.s==='ON'?'OFF':'ON';swSnd(d.c)}
  render();
@@ -857,6 +1139,13 @@ board.addEventListener('click',e=>{
  render();
 });
 document.addEventListener('click',e=>{
+ if(e.target.closest&&e.target.closest('[data-dec-fault]')){ decJudge(e.target.closest('[data-dec-fault]').dataset.decFault); return; }
+ if(e.target.closest&&e.target.closest('[data-dec-reg]')){ var ra=e.target.closest('[data-dec-reg]').dataset.decReg; if(ra==='save') decDoRegister(); else if(ra==='open'){ decRegisterDismissed=false; decShowRegisterPopup(decGame.active?decGame.score:(snGame.active?snGame.score:500)); } else { decRegisterDismissed=true; decHideRegisterPopup(); } return; }
+ if(e.target.closest&&e.target.closest('[data-dec-claim]')){ decClaimGift(+e.target.closest('[data-dec-claim]').dataset.decClaim); return; }
+ if(e.target.closest&&e.target.closest('[data-dec-gift]')){ var ga=e.target.closest('[data-dec-gift]').dataset.decGift; if(ga==='close') decHideGifts(); else if(ga==='delete'){ if(confirm('متأكد إنك عايز تحذف حسابك ونقاطك؟')){ decStoreRemove('decAccount'); decHideGifts(); alert('تم حذف الحساب'); } } return; }
+ if(e.target.closest&&e.target.closest('[data-dec-points]')){ decShowGifts(); return; }
+ if(e.target.closest&&e.target.closest('[data-dec-leader]')){ var _lb=e.target.closest('[data-dec-leader]'); var la=_lb.dataset.decLeader; var ph=_lb.dataset.phone||''; if(la==='open') decShowLeaders(); else if(la==='close') decHideLeaders(); else if(la==='add') decAddLeaderFromForm(); else if(la==='parse') decParseLeaderMsg(); else if(la==='del'){ if(confirm('تحذف اللاعب ده من لوحة الشرف؟')){ var _l=decLoadLeaders().filter(function(x){ return decNormPhone(x.phone)!==decNormPhone(ph); }); decSaveLeaders(_l); decRenderLeaders(); } } return; }
+ if(e.target.closest&&e.target.closest('[data-dec]')){ var act=e.target.closest('[data-dec]').dataset.dec; if(act==='end'){ decEndGame(); } else if(act==='hint'){ var rem=[]; C.forEach(function(x){ if(x.gameFault) rem.push(x); }); W.forEach(function(x){ if(x.gameFault) rem.push(x); }); if(!rem.length){ alert('مفيش أعطال متبقية'); } else { var f0=rem[Math.floor(Math.random()*rem.length)]; var tp=(f0.dead?'dead':(f0.stuck?'stuck':'burnt')); decGame.score=Math.max(0,decGame.score-15); alert('🔍 تلميح: في عطل من نوع "'+(DEC_FAULT_LABEL[tp]||tp)+'" مستخبي في حتة ما (-15)'); } render(); } else if(act==='next'){ decGame.level++; decGame.levelDone=false; decGame.startAt=Date.now(); if(!decPlantFaults(decGame.level)){ alert('مفيش قطع كفاية للمستوى '+decGame.level+' — زوّد قطع'); decGame.level--; } render(); } return; }
  const d=e.target.dataset;
  if(d.add){if(window.innerWidth<760){open=false;panel()}if(isLocked()){alert('المحاكاة شغالة - اوقفها الأول عشان تضيف قطعة');return;}const[w,h]=TS[size],tw=T[d.add].w,th=T[d.add].h;let px=30,py=70,found=false;for(let yy=70;yy<h-th-10&&!found;yy+=20){for(let xx=30;xx<w-tw-10&&!found;xx+=20){const overlap=C.some(o=>!(xx+tw+12<o.x||xx>o.x+T[o.t].w+12||yy+th+12<o.y||yy>o.y+T[o.t].h+12));if(!overlap){px=xx;py=yy;found=true}}}if(!found){px=30+((C.length*30)%Math.max(40,w-tw-60));py=70+((C.length*30)%Math.max(40,h-th-80))}const c=mk(d.add,px,py);C.push(c);sel=c.id;helpOpen=false;render();{const sc=$('sc');if(sc){panX=sc.clientWidth/2-(px+tw/2)*boardZoom;panY=sc.clientHeight/2-(py+th/2)*boardZoom;applyBoardView();}}}
  if(d.dw){W=W.filter(w=>w.id!==d.dw);render()}
@@ -915,8 +1204,8 @@ function openElec(){
  const fl=$('elecFlash');fl.classList.remove('go');void fl.offsetWidth;fl.classList.add('go');
  $('elecPhoneHint').textContent='الرقم بيلف زي العداد... اضغط عليه عشان يثبت';
  $('elecWaHint').textContent='الرقم بيلف زي العداد... اضغط عليه عشان يثبت';
- startOdo($('elecPhoneNum'),'01287837118',()=>{$('elecPhoneHint').textContent='اضغط على الرقم للاتصال 📞';});
- startOdo($('elecWaNum'),'01287837118',()=>{$('elecWaHint').textContent='اضغط على الرقم لفتح واتساب 💬';});
+ startOdo($('elecPhoneNum'),'01558837118',()=>{$('elecPhoneHint').textContent='اضغط على الرقم للاتصال 📞';});
+ startOdo($('elecWaNum'),'01558837118',()=>{$('elecWaHint').textContent='اضغط على الرقم لفتح واتساب 💬';});
 }
 function closeElec(){
  $('elecOverlay').classList.remove('on');
@@ -928,7 +1217,7 @@ $('elecOverlay').addEventListener('click',e=>{if(e.target===$('elecOverlay'))clo
 $('elecPhoneNum').onclick=()=>{
  const el=$('elecPhoneNum');
  if(el.dataset.state!=='settled'){el._settle&&el._settle();return;}
- window.location.href='tel:+201287837118';
+ window.location.href='tel:+201558837118';
 };
 
 /* زرار تطبيقات: بوب أب قايمة التطبيقات */
@@ -946,7 +1235,7 @@ $('appsOverlay').addEventListener('click',e=>{if(e.target===$('appsOverlay'))clo
 $('elecWaNum').onclick=()=>{
  const el=$('elecWaNum');
  if(el.dataset.state!=='settled'){el._settle&&el._settle();return;}
- window.open('https://wa.me/201287837118','_blank');
+ decOpenWhatsApp('');
 };
 
 /* FIX: زوم بعجلة الفأرة (Ctrl+عجلة) على النقطة تحت المؤشر */
@@ -1119,6 +1408,7 @@ function roleHTML(c){
  return `<div style='margin-top:8px;background:#eff6ff;border:1px solid #bfdbfe;border-radius:10px;padding:8px;font-size:12px;line-height:1.7'><div style='font-weight:800'>🎯 وظيفة القطعة في الدائرة دي</div>${base}${uniq.length?'<br>'+uniq.join(' • '):'<br><span style="color:#64748b">مش متوصلّة بأي قطعة لسه — وصّلها عشان تشتغل</span>'}</div>`;
 }
 function helpHTML(){
+ if(decGame.active)return '';
  const c=C.find(x=>x.id===sel);if(!c)return '';
  const d=T[c.t];
  const wiring=WIRING[c.t]||terms(c.t,c).map(([n,p,l])=>`<b>${l}</b> (${n})`).join(' • ');
@@ -1150,7 +1440,7 @@ function detailHTML(){
   const brkAmp=brk.length?Math.min(...brk.map(breakerAmp)):999;
   const onMin=((c.onTime||0)/60).toFixed(1);
   const left=c.timerMin>0?Math.max(0,c.timerMin-((c.onTime||0)/60)).toFixed(1):'—';
-  return `<div class='dcard'><div style='display:flex;justify-content:space-between'><b>♨️ ${c.l} - ${T[c.t].n}</b><span>${c.offByTimer?'⏱ مفصول بالمؤقت':c.dead?'💥 محروق':(res&&res.E.has(c.id)?'▶ شغال':'⏹ واقف')}</span></div><div style='display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px'><div>🌡 حرارة الحمل<br><b style='font-size:18px'>${(c.loadTemp||22).toFixed(1)}°C</b>${bar(((c.loadTemp||22)/1.8),'#ef4444')}<small>${c.loadTemp>=180?'💥 هيتحرق!':c.loadTemp>=120?'⚠️ سخن جداً':c.loadTemp>=80?'⚠️ سخن':'طبيعي'}</small></div><div>⚡ تيار / سلك / قاطع<br><b>${I.toFixed(2)} A</b> • سلك ${wireAmp} A • قاطع ${brkAmp} A<br><small>${I>wireAmp?'⚠️ التيار أعلى من السلك - السلك هيسخن قبل القاطع':I>brkAmp?'⚠️ التيار أعلى من القاطع - القاطع هيفصل ويحمي السلك':'✅ السلك والقاطع مناسبين'}</small></div><div>⚡ القدرة — وات / أمبير<br><b>${c.w||0} W</b> • <b>${amp(c).toFixed(2)} A</b><div style='display:flex;gap:4px;margin-top:4px;align-items:center;flex-wrap:wrap'><input type='number' data-watt-input min='0' step='5' value='${c.w||0}' style='width:80px'> واط <input type='number' data-amp-input min='0' step='0.1' value='${amp(c).toFixed(2)}' style='width:70px'> أمبير <button data-load='set-watt'>ضبط</button></div><small>غيّر الوات (لمبة 10W ← 50W) أو الأمبير — الأمبير = وات ÷ (220 × معامل القدرة ${PF[c.t]||1})</small></div><div>⏱ مدة التشغيل<br><b>${onMin} دقيقة</b> • فاضل ${left} د<br>${bar(c.timerMin>0?((c.onTime||0)/60)/c.timerMin*100:0,'#eab308')}<div style='display:flex;gap:4px;margin-top:4px'><input type='number' data-timer-input min='0' max='480' value='${c.timerMin||0}'><button data-load='set-timer'>ضبط المؤقت</button></div><small>0 = من غير مؤقت</small></div><div>🔥 حرارة السلك المغذي<br><b>${(c.wireHeatLoad||0).toFixed(0)} / 100</b>${bar(c.wireHeatLoad||0,'#f97316')}<small>لو وصل 100 السلك يحترق</small></div></div><div style='display:flex;gap:6px;margin-top:10px'><button data-load='reset-load' style='flex:1;background:#0f172a;color:#fff;border:none;border-radius:8px;padding:8px;font-weight:800'>🔄 تبريد وإعادة تشغيل</button><button data-load='cool-wire' style='flex:1;background:#16a34a;color:#fff;border:none;border-radius:8px;padding:8px;font-weight:800'>❄️ تبريد السلك</button></div><div style='font-size:11px;color:#64748b;margin-top:6px'>المعادلة: تيار > تحمل السلك → السلك يسخن → لو القاطع أكبر من السلك السلك يحترق الأول. لو القاطع أصغر القاطع يفصل ويحمي السلك.</div></div>`;
+  return `<div class='dcard'><div style='display:flex;justify-content:space-between'><b>♨️ ${c.l} - ${T[c.t].n}</b><span>${c.offByTimer?'⏱ مفصول بالمؤقت':(c.dead&&!(decGame.active&&c.gameFault))?'💥 محروق':(res&&res.E.has(c.id)?'▶ شغال':'⏹ واقف')}</span></div><div style='display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px'><div>🌡 حرارة الحمل<br><b style='font-size:18px'>${(c.loadTemp||22).toFixed(1)}°C</b>${bar(((c.loadTemp||22)/1.8),'#ef4444')}<small>${c.loadTemp>=180?'💥 هيتحرق!':c.loadTemp>=120?'⚠️ سخن جداً':c.loadTemp>=80?'⚠️ سخن':'طبيعي'}</small></div><div>⚡ تيار / سلك / قاطع<br><b>${I.toFixed(2)} A</b> • سلك ${wireAmp} A • قاطع ${brkAmp} A<br><small>${I>wireAmp?'⚠️ التيار أعلى من السلك - السلك هيسخن قبل القاطع':I>brkAmp?'⚠️ التيار أعلى من القاطع - القاطع هيفصل ويحمي السلك':'✅ السلك والقاطع مناسبين'}</small></div><div>⚡ القدرة — وات / أمبير<br><b>${c.w||0} W</b> • <b>${amp(c).toFixed(2)} A</b><div style='display:flex;gap:4px;margin-top:4px;align-items:center;flex-wrap:wrap'><input type='number' data-watt-input min='0' step='5' value='${c.w||0}' style='width:80px'> واط <input type='number' data-amp-input min='0' step='0.1' value='${amp(c).toFixed(2)}' style='width:70px'> أمبير <button data-load='set-watt'>ضبط</button></div><small>غيّر الوات (لمبة 10W ← 50W) أو الأمبير — الأمبير = وات ÷ (220 × معامل القدرة ${PF[c.t]||1})</small></div><div>⏱ مدة التشغيل<br><b>${onMin} دقيقة</b> • فاضل ${left} د<br>${bar(c.timerMin>0?((c.onTime||0)/60)/c.timerMin*100:0,'#eab308')}<div style='display:flex;gap:4px;margin-top:4px'><input type='number' data-timer-input min='0' max='480' value='${c.timerMin||0}'><button data-load='set-timer'>ضبط المؤقت</button></div><small>0 = من غير مؤقت</small></div><div>🔥 حرارة السلك المغذي<br><b>${(c.wireHeatLoad||0).toFixed(0)} / 100</b>${bar(c.wireHeatLoad||0,'#f97316')}<small>لو وصل 100 السلك يحترق</small></div></div><div style='display:flex;gap:6px;margin-top:10px'><button data-load='reset-load' style='flex:1;background:#0f172a;color:#fff;border:none;border-radius:8px;padding:8px;font-weight:800'>🔄 تبريد وإعادة تشغيل</button><button data-load='cool-wire' style='flex:1;background:#16a34a;color:#fff;border:none;border-radius:8px;padding:8px;font-weight:800'>❄️ تبريد السلك</button></div><div style='font-size:11px;color:#64748b;margin-top:6px'>المعادلة: تيار > تحمل السلك → السلك يسخن → لو القاطع أكبر من السلك السلك يحترق الأول. لو القاطع أصغر القاطع يفصل ويحمي السلك.</div></div>`;
  }
  return '';
 }
@@ -1307,13 +1597,15 @@ document.addEventListener('click',e=>{const t=e.target;
  if(t.id==='li'){LD=C.filter(c=>T[c.t].k==='ld'&&c.w>0).map(c=>({n:c.l,w:c.w,h:8,q:1}));calc()}
  if(t.dataset.ld!==undefined){LD.splice(+t.dataset.ld,1);calc()}
 });
-svg.addEventListener('click',e=>{const id=e.target.dataset&&e.target.dataset.w;if(id){selW=id;sel=null;render()}});
+svg.addEventListener('click',e=>{const id=e.target.dataset&&e.target.dataset.w;if(id){ if(decGame.active){ var wv=W.find(function(x){ return String(x.id)===String(id); }); if(wv){ decShowWireDiagnosePicker(wv); render(); return; } } selW=id;sel=null;render()}});
 addEventListener('keydown',e=>{if((e.key==='Delete'||e.key==='Backspace')&&!/INPUT|SELECT/.test(document.activeElement.tagName))del()});
 $('bx').onclick=()=>{C=[];W=[];sel=null;pend=null;render()};
 // ===== أزرار البار: تكرار / رمز / تحريك نقاط / تكبير / حفظ / فتح / صورة =====
 function dupComp(){if(isLocked())return;const src=C.find(x=>x.id===sel);if(!src){alert('حدّد قطعة الأول');return}const n=mk(src.t,Math.min(board.clientWidth-80,src.x+30),Math.min(board.clientHeight-80,src.y+30));n.s=src.s;n.rot=src.rot||0;n.sc=src.sc||1;n.w=src.w;n.temp=src.temp;n.fuel=src.fuel;n.termPos=JSON.parse(JSON.stringify(src.termPos||{}));C.push(n);sel=n.id;selW=null;render()}
 const dupBtn=$('dupBtn');if(dupBtn)dupBtn.onclick=dupComp;
 const symBtn=$('symBtn');if(symBtn)symBtn.onclick=e=>{symMode=!symMode;e.target.textContent=symMode?'🖼️ رسم واقعي':'〰️ رمز هندسي';render()};
+const decGameBtn=$('decGameBtn');if(decGameBtn)decGameBtn.onclick=()=>{ if(decGame.active) decEndGame(); else decStartGame(); };
+setInterval(()=>{ if(decGame.active) decUpdateGameBar(); },500);
 function syncLockClasses(){document.body.classList.toggle('wiring',!!wire);document.body.classList.toggle('running',!!isLocked());}
 const termBtn=$('termMoveBtn');if(termBtn)termBtn.onclick=e=>{termMove=!termMove;e.target.textContent=termMove?'✋ تحريك النقاط (شغال - اسحب أي نقطة)':'✋ تحريك النقاط';if(termMove){wire=false;run=false;pend=null}syncLockClasses();render()};
 const toolsBar=$('boardTools'),wrapEl=$('wrap');let toolsHome=null;
@@ -1457,7 +1749,7 @@ document.addEventListener('click',e=>{if(e.target.closest('#exBody [data-p]')){d
 </script>
 <script>
 // ===== PWA: تثبيت + أوفلاين + تحديث تلقائي =====
-const APP_VERSION = 'v3.9.51';
+const APP_VERSION = 'v3.9.68';
 let deferredPrompt = null, newWorker = null;
 const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
 const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
@@ -1515,6 +1807,9 @@ document.getElementById('updateBtn').onclick = ()=>{
   <div id="snTopStrip" style="display:flex;gap:6px;padding:6px 8px;background:#1e293b;flex-wrap:nowrap;align-items:center;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none"><style>#snTopStrip>*{flex:none}#snTopStrip::-webkit-scrollbar{display:none}</style>
     <button id="snPartsBtn" type="button" style="background:#0ea5e9;color:#fff;border:none;border-radius:10px;padding:7px 14px;font-weight:900;cursor:pointer">🧩 القطع ▸</button>
     <button id="snSoundBtn" type="button" style="background:#334155;color:#fff;border:none;border-radius:10px;padding:7px 12px;font-weight:900;cursor:pointer">🔊 صوت</button>
+    <button id="snFaultBtn" type="button" style="background:#7f1d1d;color:#fff;border:none;border-radius:10px;padding:7px 12px;font-weight:900;cursor:pointer">⚠️ أعطال</button>
+    <button id="snGameBtn" type="button" style="background:#7c3aed;color:#fff;border:none;border-radius:10px;padding:7px 12px;font-weight:900;cursor:pointer">🎮 لعبة الأعطال</button>
+    <button id="snSimBtn" type="button" style="background:#16a34a;color:#fff;border:none;border-radius:10px;padding:7px 12px;font-weight:900;cursor:pointer">▶ محاكاة: شغالة</button>
     <span style="color:#cbd5e1;font-size:11px">دوس القطع تفتح القايمة الجانبية — ولمس أي مكان برّه القايمة بيخفيها</span>
     <button id="snDel" type="button" style="background:#ef4444;color:#fff;border:none;border-radius:10px;padding:7px 12px;font-weight:900;cursor:pointer">حذف المحدد</button>
     <button id="snSaveImg" type="button" style="background:#22c55e;color:#fff;border:none;border-radius:10px;padding:7px 12px;font-weight:900;cursor:pointer">🖼️ حفظ صورة SN</button>
@@ -1527,6 +1822,8 @@ document.getElementById('updateBtn').onclick = ()=>{
      <button id="snElecBtn" type="button" style="background:linear-gradient(180deg,#fff7cc,#ffd700,#b8860b);color:#3a2a00;border:2px solid #fff3b0;border-radius:999px;padding:7px 14px;font-weight:900;cursor:pointer">⚡ معاك كهربائي</button>
      <button id="snPlumbBtn" type="button" style="background:linear-gradient(180deg,#bae6fd,#0ea5e9,#0369a1);color:#fff;border:2px solid #bae6fd;border-radius:999px;padding:7px 14px;font-weight:900;cursor:pointer">🚿 معاك سباك</button>
   </div>
+  <div id="snFaultBar" style="display:none;padding:6px 10px;background:#7f1d1d;color:#fff;font-size:12px;font-weight:700"></div>
+  <div id="snGameBar" style="display:none;padding:6px 10px;background:#4c1d95;color:#fff;font-size:12px;font-weight:700"></div>
   <div id="snDrawer" style="position:absolute;top:0;bottom:0;inset-inline-start:0;width:230px;background:#0f172a;border-inline-end:2px solid #38bdf8;transform:translateX(105%);transition:transform .25s ease;z-index:20;overflow-y:auto;padding:10px;display:flex;flex-direction:column;gap:6px">
     <div style="display:flex;justify-content:space-between;align-items:center;color:#fff"><b>🧩 قطع SNelectric</b><button id="snDrawerClose" type="button" style="background:#334155;color:#fff;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer">✕</button></div>
     <div style="color:#94a3b8;font-size:11px">دوس على القطعة تنزل في نص اللوحة — ولمس أي مكان برّه القايمة بيخفيها</div>
@@ -1555,7 +1852,6 @@ document.getElementById('updateBtn').onclick = ()=>{
     <button class="snPartBtn" data-kind="wc" type="button">مرحاض</button>
     <button class="snPartBtn" data-kind="pump" type="button">مضخة</button>
     <button class="snPartBtn" data-kind="heater" type="button">سخان</button>
-    <button class="snPartBtn" data-kind="pipe" type="button">ماسورة مياه</button>
     <button class="snPartBtn" data-kind="valve" type="button">محبس مياه</button>
     <button class="snPartBtn" data-kind="mixer" type="button">خلاط (ساخن+بارد)</button>
     <button class="snPartBtn" data-kind="bathtub" type="button">بانيو</button>
@@ -1565,12 +1861,6 @@ document.getElementById('updateBtn').onclick = ()=>{
     <button class="snPartBtn" data-kind="wsource" type="button">خزان / مصدر مياه</button>
     <button class="snPartBtn" data-kind="maindrain" type="button">صرف رئيسي</button>
     <button class="snPartBtn" data-kind="floordrain" type="button">بيبة (بلاعة)</button>
-    <button class="snPartBtn" data-kind="dpipe" type="button">ماسورة صرف</button>
-    <button class="snPartBtn" data-kind="elbow90" type="button">كوع 90</button>
-    <button class="snPartBtn" data-kind="elbow45" type="button">كوع 45</button>
-    <button class="snPartBtn" data-kind="coupling" type="button">جلبة</button>
-    <button class="snPartBtn" data-kind="nipple" type="button">نبل</button>
-    <button class="snPartBtn" data-kind="manija" type="button">مانيجا سوستة</button>
      <div style="color:#fde68a;font-size:12px;font-weight:900;margin-top:6px">🔌 أحمال برموزها الهندسية</div>
      <button class="snPartBtn" data-kind="heaterE" type="button">⚡ سخان كهرباء</button>
      <button class="snPartBtn" data-kind="motor1" type="button">🌀 موتور أحادي</button>
@@ -1581,6 +1871,8 @@ document.getElementById('updateBtn').onclick = ()=>{
   </div>
   <style>#snDrawer .snPartBtn{background:#1e293b;color:#fff;border:1px solid #334155;border-radius:10px;padding:8px 10px;text-align:start;cursor:pointer;font-size:13px}#snDrawer .snPartBtn:active{background:#0ea5e9}#snDrawer.open{transform:translateX(0)!important}</style>
   <div id="snPlumbOverlay" style="display:none;position:absolute;inset:0;background:rgba(0,0,0,.62);z-index:30;align-items:center;justify-content:center"><div style="position:relative;width:min(345px,88vw);background:linear-gradient(180deg,#082f49,#0c4a6e);border:2px solid #38bdf8;border-radius:22px;padding:24px 18px 16px;text-align:center;color:#fff"><button id="snPlumbClose" type="button" style="position:absolute;top:8px;left:8px;width:30px;height:30px;border-radius:50%;border:1px solid #38bdf8;background:#082f49;color:#38bdf8;font-size:15px;cursor:pointer">✕</button><div style="font-size:24px;font-weight:900;color:#38bdf8;margin-bottom:10px">🚿 سباك 🚿</div><div style="font-size:15px;color:#e5e7eb;margin-bottom:14px;line-height:1.7">صاحب التطبيق<br><b style="font-size:20px;color:#fff">سامح النادى</b></div><div style="font-size:14px;color:#bae6fd;margin-bottom:6px">📞 رقم هاتف</div><div id="snPlumbPhone" style="direction:ltr;padding:8px;border-radius:12px;background:rgba(0,0,0,.35);border:1px solid #075985;font-weight:900;font-size:20px"></div><div style="font-size:14px;color:#bae6fd;margin:12px 0 6px">💬 واتس آب</div><div id="snPlumbWa" style="direction:ltr;padding:8px;border-radius:12px;background:rgba(0,0,0,.35);border:1px solid #075985;font-weight:900;font-size:20px"></div><div style="font-size:11px;color:#94a3b8;margin-top:12px">سباكة وصرف — تركيب وصيانة</div></div></div><canvas id="snCanvas" style="flex:1;width:100%;background:#0b1220;touch-action:none;cursor:crosshair"></canvas>
+  <div id="snWireCard" style="display:none;position:absolute;z-index:30;left:50%;top:118px;width:230px;background:rgba(2,6,23,.96);border:1.5px solid #38bdf8;border-radius:14px;padding:8px 10px;color:#e2e8f0;font-size:12px;line-height:1.5;pointer-events:auto;transform:translateX(-50%)"></div>
+  <div id="snFaultPicker" style="display:none;position:absolute;z-index:30;width:200px;background:rgba(2,6,23,.96);border:1.5px solid #ef4444;border-radius:14px;padding:8px 10px;color:#e2e8f0;font-size:12px;line-height:1.5;pointer-events:auto;transform:translateX(-50%)"></div>
   <div id="snPartCard" style="display:none;position:absolute;z-index:25;width:230px;max-width:62vw;background:rgba(2,6,23,.94);border:1.5px solid #38bdf8;border-radius:14px;padding:8px 10px;color:#e2e8f0;font-size:11px;line-height:1.55;pointer-events:none;transform:translateX(-50%)"></div><div id="snLegendStrip" style="position:absolute;left:0;right:0;bottom:0;z-index:39;white-space:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:5px 10px;color:#e2e8f0;font-size:11px;background:rgba(2,6,23,.92);border-top:1px solid #334155">مفتاح الألوان: <b style="color:#ef4444">فاز أحمر</b> • <b style="color:#60a5fa">محايد أزرق</b> • <b style="color:#facc15">راجع أصفر</b> • <b style="color:#4ade80">أرضي أخضر</b> • <b style="color:#fb923c">فازة 2 برتقالي</b> • <b style="color:#c084fc">فازة 3 بنفسجي</b> • <b style="color:#e5e7eb">رئيسي أسود</b> • <b style="color:#38bdf8">بارد</b> • <b style="color:#ef4444">ساخن</b> • <b style="color:#4ade80">صرف</b> • <b style="color:#c084fc">تغذية</b> — دوس نقطة التوصيل تنوّر بظل — دوس نقطة تانية والسلك هيتوصل لوحده بلون النقطة الأولى • للمحاكاة: دوس على المفتاح وهو محدد عشان تشغّله/تطفيه — أو دوس زر تشغيل في البار اللي تحت — واللمبة هتنوّر لو الدايرة كاملة • التحكم: اسحب القطعة للتحريك • اسحب مقبض التدوير اللي فوق الحلقة للتدوير • البار اللي تحت فيه تشغيل وتدوير 90° وتكبير وتصغير ونسخ وحذف • اسحب الباب/الشباك جنب حائط أو ضلع غرفة وهيلزق لوحده ويقطع الحائط • دوس على السلك يتحدد — دوس علامة الحذف اللي في نصه أو زر حذف السلك يمسحه</div><div id="snCtlBar" style="display:none;position:absolute;left:50%;bottom:36px;transform:translateX(-50%);z-index:40;gap:5px;align-items:center;background:rgba(2,6,23,.92);border:1px solid #334155;border-radius:14px;padding:5px;box-shadow:0 8px 24px rgba(0,0,0,.5);max-width:96vw;overflow-x:auto"><button id="snCtlPower" type="button" style="min-width:48px;min-height:36px;border:none;border-radius:12px;padding:5px 8px;font-weight:900;font-size:12px;color:#fff;cursor:pointer">تشغيل</button><button id="snCtlRot" type="button" style="min-width:44px;min-height:36px;border:none;border-radius:12px;padding:5px 8px;font-weight:900;font-size:12px;background:#0ea5e9;color:#fff;cursor:pointer">تدوير 90</button><button id="snCtlBig" type="button" style="min-width:44px;min-height:36px;border:none;border-radius:12px;padding:5px 8px;font-weight:900;font-size:13px;background:#7c3aed;color:#fff;cursor:pointer">تكبير</button><button id="snCtlSmall" type="button" style="min-width:44px;min-height:36px;border:none;border-radius:12px;padding:5px 8px;font-weight:900;font-size:13px;background:#7c3aed;color:#fff;cursor:pointer">تصغير</button><button id="snCtlCopy" type="button" style="min-width:44px;min-height:36px;border:none;border-radius:12px;padding:5px 8px;font-weight:900;font-size:12px;background:#f59e0b;color:#111827;cursor:pointer">نسخ</button><button id="snCtlDel" type="button" style="min-width:44px;min-height:36px;border:none;border-radius:12px;padding:5px 8px;font-weight:900;font-size:12px;background:#ef4444;color:#fff;cursor:pointer">حذف</button></div>
 </div>
 <script>
@@ -1650,7 +1942,7 @@ function snWaterSim(loadOn){
  var adj={}; function addEdge(a,b){ if(!adj[a])adj[a]=[]; if(!adj[b])adj[b]=[]; adj[a].push(b); adj[b].push(a); }
  wires.forEach(function(w){ var fi=snTermIdx(w.from.part,w.from.term),ti=snTermIdx(w.to.part,w.to.term); if(fi<0||ti<0)return; var tf=termsOf(w.from.part.kind)[fi],tt=termsOf(w.to.part.kind)[ti]; if(!WKINDS[tf.kind]||!WKINDS[tt.kind])return; addEdge(key(w.from.part,fi),key(w.to.part,ti)); });
  function intPairs(pp,pass){ if(pp.kind==='pipe'||pp.kind==='dpipe'||pp.kind==='wmeter'||pp.kind==='elbow90'||pp.kind==='elbow45'||pp.kind==='coupling'||pp.kind==='nipple'||pp.kind==='manija')return [[0,1]]; if(pp.kind==='floordrain')return [[0,1],[0,2],[0,3]]; if(pp.kind==='valve'&&snOn(pp))return [[0,1]]; if(pp.kind==='pump'&&loadOn&&loadOn[pp.id])return [[2,3]]; if(pp.kind==='mixer'&&snOn(pp)){ if(pass==='cold')return [[0,2]]; if(pass==='hot')return [[1,2]]; } return []; }
- function bfs(seeds,pass){ var seen={},q=[]; seeds.forEach(function(s){ if(!seen[s]){ seen[s]=1; q.push(s); } }); while(q.length){ var cur=q.shift(); (adj[cur]||[]).forEach(function(n){ if(!seen[n]){ seen[n]=1; q.push(n); } }); var sp=cur.split(':'); var pp=parts.find(function(x){ return x.id===sp[0]; }); if(!pp)continue; var idx=+sp[1]; intPairs(pp,pass).forEach(function(pr){ var n2=null; if(pr[0]===idx)n2=key(pp,pr[1]); else if(pr[1]===idx)n2=key(pp,pr[0]); if(n2&&!seen[n2]){ seen[n2]=1; q.push(n2); } }); } return seen; }
+ function bfs(seeds,pass){ var seen={},q=[]; seeds.forEach(function(s){ if(!seen[s]){ seen[s]=1; q.push(s); } }); while(q.length){ var cur=q.shift(); (adj[cur]||[]).forEach(function(n){ if(!seen[n]){ seen[n]=1; q.push(n); } }); var sp=cur.split(':'); var pp=parts.find(function(x){ return x.id===sp[0]; }); if(!pp)continue; var idx=+sp[1]; if(pp.fault!=='blocked') intPairs(pp,pass).forEach(function(pr){ var n2=null; if(pr[0]===idx)n2=key(pp,pr[1]); else if(pr[1]===idx)n2=key(pp,pr[0]); if(n2&&!seen[n2]){ seen[n2]=1; q.push(n2); } }); } return seen; }
  var coldSeeds=[]; parts.forEach(function(pp){ if(pp.kind==='wsource'){ termsOf(pp.kind).forEach(function(tm,idx){ if(tm.kind==='cold')coldSeeds.push(key(pp,idx)); }); } });
  var cold=bfs(coldSeeds,'cold');
  var hotSeeds=[]; parts.forEach(function(pp){ if(pp.kind==='heater'){ var ts=termsOf(pp.kind),ci=-1,hi=-1; ts.forEach(function(tm,idx){ if(tm.kind==='cold')ci=idx; if(tm.kind==='hot')hi=idx; }); if(ci>=0&&hi>=0&&cold[key(pp,ci)])hotSeeds.push(key(pp,hi)); } });
@@ -1666,16 +1958,20 @@ function snWaterSim(loadOn){
   else if(pp.kind==='wmeter')flow[pp.id]=!!has;
   else if(pp.kind==='wsource')flow[pp.id]=true;
  });
+ if(!snSimOn) flow={};
  var drainSeeds=[]; parts.forEach(function(pp){ if(flow[pp.id]){ termsOf(pp.kind).forEach(function(tm,idx){ if(tm.kind==='drain')drainSeeds.push(key(pp,idx)); }); } });
- var drainSeen={},dq=[]; drainSeeds.forEach(function(s){ if(!drainSeen[s]){ drainSeen[s]=1; dq.push(s); } }); while(dq.length){ var c2=dq.shift(); (adj[c2]||[]).forEach(function(n){ if(!drainSeen[n]){ drainSeen[n]=1; dq.push(n); } }); var sp2=c2.split(':'); var pp2=parts.find(function(x){ return x.id===sp2[0]; }); if(pp2){ var idx2=+sp2[1]; intPairs(pp2,'drain').forEach(function(pr){ var n2=null; if(pr[0]===idx2)n2=key(pp2,pr[1]); else if(pr[1]===idx2)n2=key(pp2,pr[0]); if(n2&&!drainSeen[n2]){ drainSeen[n2]=1; dq.push(n2); } }); } }
+ var drainSeen={},dq=[]; drainSeeds.forEach(function(s){ if(!drainSeen[s]){ drainSeen[s]=1; dq.push(s); } }); while(dq.length){ var c2=dq.shift(); (adj[c2]||[]).forEach(function(n){ if(!drainSeen[n]){ drainSeen[n]=1; dq.push(n); } }); var sp2=c2.split(':'); var pp2=parts.find(function(x){ return x.id===sp2[0]; }); if(pp2){ var idx2=+sp2[1]; if(pp2.fault!=='blocked') intPairs(pp2,'drain').forEach(function(pr){ var n2=null; if(pr[0]===idx2)n2=key(pp2,pr[1]); else if(pr[1]===idx2)n2=key(pp2,pr[0]); if(n2&&!drainSeen[n2]){ drainSeen[n2]=1; dq.push(n2); } }); } }
  var fullAdj={}; function fAdd(a,b){ if(!fullAdj[a])fullAdj[a]=[]; if(!fullAdj[b])fullAdj[b]=[]; fullAdj[a].push(b); fullAdj[b].push(a); }
  Object.keys(adj).forEach(function(a){ adj[a].forEach(function(b){ fAdd(a,b); }); });
- parts.forEach(function(pp){ ['cold','hot'].forEach(function(pa){ intPairs(pp,pa).forEach(function(pr){ fAdd(key(pp,pr[0]),key(pp,pr[1])); }); }); });
+ parts.forEach(function(pp){ ['cold','hot'].forEach(function(pa){ if(pp.fault!=='blocked') intPairs(pp,pa).forEach(function(pr){ fAdd(key(pp,pr[0]),key(pp,pr[1])); }); }); });
  var flowSeen={},fq=[]; ['basin','wc','bathtub','mixer','coldPoint','hotPoint'].forEach(function(kk){ parts.forEach(function(pp){ if(pp.kind===kk&&flow[pp.id]){ termsOf(pp.kind).forEach(function(tm,idx){ if(WKINDS[tm.kind]&&tm.kind!=='drain'){ var k2=key(pp,idx); if(!flowSeen[k2]){ flowSeen[k2]=1; fq.push(k2); } } }); } }); });
  while(fq.length){ var c3=fq.shift(); (fullAdj[c3]||[]).forEach(function(n){ if(!flowSeen[n]){ flowSeen[n]=1; fq.push(n); } }); }
  var wireWater=wires.map(function(w){ var fi=snTermIdx(w.from.part,w.from.term),ti=snTermIdx(w.to.part,w.to.term); if(fi<0||ti<0)return null; var tf=termsOf(w.from.part.kind)[fi],tt=termsOf(w.to.part.kind)[ti]; if(tf.kind==='drain'&&tt.kind==='drain'){ var k1=key(w.from.part,fi),k2=key(w.to.part,ti); if(drainSeen[k1]||drainSeen[k2])return 'drain'; return null; } if(!WKINDS[tf.kind]||!WKINDS[tt.kind])return null; var a1=key(w.from.part,fi),a2=key(w.to.part,ti); if(hot[a1]||hot[a2])return 'hot'; if(cold[a1]||cold[a2])return 'cold'; return null; });
  var wireFlow=wires.map(function(w,i){ if(wireWater[i]==='drain')return true; if(!wireWater[i])return false; var fi=snTermIdx(w.from.part,w.from.term),ti=snTermIdx(w.to.part,w.to.term); if(fi<0||ti<0)return false; return !!(flowSeen[key(w.from.part,fi)]||flowSeen[key(w.to.part,ti)]); });
- return {waterCold:cold,waterHot:hot,waterFlow:flow,wireWater:wireWater,wireFlow:wireFlow,drainSeen:drainSeen};
+ var weakFlow=parts.some(function(pp){ return pp.fault==='leak'&&['pipe','valve','mixer','elbow90','elbow45','coupling','nipple','manija','wmeter'].indexOf(pp.kind)>=0; });
+ function drainOKFor(pp){ var seen2={},q2=[]; termsOf(pp.kind).forEach(function(tm,idx){ if(tm.kind==='drain'){ var kk=key(pp,idx); seen2[kk]=1; q2.push(kk); } }); while(q2.length){ var cur2=q2.shift(); var isMain=false; parts.forEach(function(x){ if(x.kind==='maindrain'){ termsOf(x.kind).forEach(function(t2,i2){ if(key(x,i2)===cur2) isMain=true; }); } }); if(isMain) return true; (adj[cur2]||[]).forEach(function(n){ if(!seen2[n]){ seen2[n]=1; q2.push(n); } }); var sp3=cur2.split(':'); var pp3=parts.find(function(x){ return x.id===sp3[0]; }); if(pp3&&pp3.fault!=='blocked'){ var idx3=+sp3[1]; intPairs(pp3,'drain').forEach(function(pr){ var n3=null; if(pr[0]===idx3)n3=key(pp3,pr[1]); else if(pr[1]===idx3)n3=key(pp3,pr[0]); if(n3&&!seen2[n3]){ seen2[n3]=1; q2.push(n3); } }); } } return false; }
+ var blockedDrain={}; parts.forEach(function(pp){ if(flow[pp.id]&&drainConn(pp)&&!drainOKFor(pp)) blockedDrain[pp.id]=1; });
+ return {waterCold:cold,waterHot:hot,waterFlow:flow,wireWater:wireWater,wireFlow:wireFlow,drainSeen:drainSeen,weakFlow:weakFlow,blockedDrain:blockedDrain};
 }
 
 var SN_INFO={
@@ -1722,29 +2018,191 @@ function snUpdatePartCard(){
  if(p.size){ html+='<div style="margin-top:4px">المقاس: '+SN_SIZES.map(function(s){ return '<button data-snsize="'+s+'" type="button" style="pointer-events:auto;margin:2px 1px;border:'+(s===p.size?'2px solid #facc15':'1px solid #475569')+';background:'+(s===p.size?'#facc15':'#1e293b')+';color:'+(s===p.size?'#111827':'#fff')+';border-radius:8px;padding:3px 7px;font-size:11px;font-weight:900;cursor:pointer">'+s+'</button>'; }).join('')+'</div>'; }
  card.innerHTML=html; card.style.display='block';
 }
+
+
+var snSimOn=true;
+var SN_PIPE_SIZES={cold:['1/2','3/4','1','1.5','2'],hot:['1/2','3/4','1','1.5','2'],drain:['1.5','2','3','4','5','6'],water:['1/2','3/4','1','1.5','2']};
+var SN_SIZE_FACTOR={'1/2':1,'3/4':1.5,'1':2,'1.5':3,'2':4,'3':6,'4':8,'5':10,'6':12};
+function snWireKind(w,wi){ if(snSimCache&&snSimCache.wireWater&&snSimCache.wireWater[wi]) return snSimCache.wireWater[wi]; return w.kind; }
+function snUpdateWireCard(){
+ var card=document.getElementById('snWireCard'); if(!card) return;
+ if(!selWire){ card.style.display='none'; return; }
+ var wi=wires.indexOf(selWire); if(wi<0){ card.style.display='none'; return; }
+ var wk=snWireKind(selWire,wi);
+ if(['cold','hot','drain','water'].indexOf(wk)<0){ card.style.display='none'; return; }
+ var opts=SN_PIPE_SIZES[wk]||SN_PIPE_SIZES.cold;
+ var html='<div style="font-weight:900;color:#fff;font-size:13px;margin-bottom:4px">🚰 الخط: '+(NAMES[wk]||wk)+' — المقاس: '+(selWire.size||'1/2')+' بوصة</div><div style="color:#94a3b8;font-size:11px">دوس المقاس عشان تغيّره — كل ما المقاس كبر، الخط اتخن والمياه زادت</div><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:6px">';
+ opts.forEach(function(s){ html+='<button data-wsize="'+s+'" type="button" style="background:'+(selWire.size===s?'#0ea5e9':'#1e293b')+';color:#fff;border:1px solid #475569;border-radius:9px;padding:6px 10px;font-weight:900;cursor:pointer">'+s+'″</button>'; });
+ html+='</div><button data-wdel="1" type="button" style="display:block;width:100%;margin-top:8px;background:#ef4444;color:#fff;border:none;border-radius:9px;padding:6px;font-weight:900;cursor:pointer">🗑️ حذف الخط</button>';
+ card.innerHTML=html; card.style.display='block';
+}
+var snFaultMode=false;
+var SN_FAULT_LABEL={short:'شورت ⚡',overload:'حمل زيادة 🔥',leak:'تسريب 💧',blocked:'انسداد 🚫'};
+function snFaultsFor(kind){
+ if(kind==='pump'||kind==='heater') return ['short','overload','leak','blocked'];
+ if(['source','mcb','switch','switch2','panel','lamp','bell','heaterE','motor1','ac','washer','cooker','oven','socket','socketQ'].indexOf(kind)>=0) return ['short','overload'];
+ if(['pipe','valve','mixer','elbow90','elbow45','coupling','nipple','manija','wmeter','wsource','coldPoint','hotPoint'].indexOf(kind)>=0) return ['leak','blocked'];
+ if(['dpipe','floordrain','maindrain'].indexOf(kind)>=0) return ['blocked','leak'];
+ if(['basin','wc','bathtub'].indexOf(kind)>=0) return ['blocked','leak'];
+ return [];
+}
+function snActiveFaults(){ var out=[]; parts.forEach(function(pp){ if(pp.fault) out.push({part:pp,fault:pp.fault}); }); wires.forEach(function(w){ if(w.fault) out.push({wire:w,fault:w.fault}); }); return out; }
+var snFaultPickerPart=null;
+function snShowFaultPicker(pp){
+ var pk=document.getElementById('snFaultPicker'); if(!pk) return;
+ snFaultPickerPart=pp;
+ var sx=pp.x*snZoom+snPanX, sy=pp.y*snZoom+snPanY;
+ var W=cv.getBoundingClientRect().width;
+ pk.style.left=Math.max(105,Math.min(W-105,sx))+'px';
+ pk.style.top=Math.max(90,sy-150)+'px';
+ var fs=snFaultsFor(pp.kind);
+ var html='<div style="font-weight:900;color:#fff;margin-bottom:4px">⚠️ زرع عطل: '+(LABELS[pp.kind]||pp.kind)+'</div>';
+ if(pp.fault) html+='<div style="color:#fca5a5">العطل الحالي: '+(SN_FAULT_LABEL[pp.fault]||pp.fault)+'</div>';
+ if(!fs.length) html+='<div style="color:#94a3b8">القطعة دي مفيهاش أعطال (مدني)</div>';
+ fs.forEach(function(f){ html+='<button data-fault="'+f+'" type="button" style="display:block;width:100%;margin:3px 0;background:'+(pp.fault===f?'#ef4444':'#1e293b')+';color:#fff;border:1px solid #475569;border-radius:9px;padding:6px;font-weight:900;cursor:pointer">'+(SN_FAULT_LABEL[f]||f)+'</button>'; });
+ if(pp.fault) html+='<button data-fault="__fix" type="button" style="display:block;width:100%;margin:3px 0;background:#22c55e;color:#fff;border:none;border-radius:9px;padding:6px;font-weight:900;cursor:pointer">✅ إصلاح</button>';
+ html+='<button data-fault="__close" type="button" style="display:block;width:100%;margin:3px 0;background:#334155;color:#fff;border:none;border-radius:9px;padding:6px;font-weight:900;cursor:pointer">إلغاء</button>';
+ pk.innerHTML=html; pk.style.display='block';
+}
+function snHideFaultPicker(){ var pk=document.getElementById('snFaultPicker'); if(pk) pk.style.display='none'; snFaultPickerPart=null; }
+function snUpdateFaultBar(){
+ var bar=document.getElementById('snFaultBar'); if(!bar) return;
+ var fs=snActiveFaults();
+ if(snGame.active){ bar.style.display='none'; return; }
+ if(!fs.length){ bar.style.display='none'; return; }
+ var html='⚠️ أعطال نشطة: '+fs.map(function(f){ var nm=f.part?(LABELS[f.part.kind]||f.part.kind):'سلك'; return nm+' — '+(SN_FAULT_LABEL[f.fault]||f.fault); }).join(' • ');
+ if(snSimCache&&snSimCache.faultTripped) html+=' <span style="background:#facc15;color:#111827;border-radius:6px;padding:1px 6px">⚡ القاطع فصل!</span>';
+ html+=' <button id="snFixAllBtn" type="button" style="background:#22c55e;color:#fff;border:none;border-radius:8px;padding:4px 10px;font-weight:900;cursor:pointer;margin-inline-start:8px">✅ إصلاح الكل</button>';
+ bar.innerHTML=html; bar.style.display='block';
+ var fb=document.getElementById('snFixAllBtn'); if(fb) fb.onclick=function(){ parts.forEach(function(pp){ delete pp.fault; delete pp.faultAt; }); wires.forEach(function(w){ delete w.fault; }); snHideFaultPicker(); draw(); };
+}
+function snDrawFaults(){
+ if(!snSimCache) return;
+ var t=Date.now();
+ wires.forEach(function(w){ if(w.fault!=='short') return; var a=termPos(w.from.part,w.from.term), b=termPos(w.to.part,w.to.term); var mx=(a.x+b.x)/2, my=(a.y+b.y)/2; ctx.save(); ctx.strokeStyle='#fde047'; ctx.lineWidth=2; for(var si=0;si<5;si++){ var ang=(t/40+si*1.3)%6.28, len=6+((t/17+si*7)%9); ctx.beginPath(); ctx.moveTo(mx,my); ctx.lineTo(mx+Math.cos(ang)*len, my+Math.sin(ang)*len); ctx.stroke(); } ctx.fillStyle='#fff'; ctx.beginPath(); ctx.arc(mx,my,3.5,0,7); ctx.fill(); ctx.restore(); });
+ parts.forEach(function(pp){
+  if(!pp.fault) return;
+  if(snGame.active&&pp.gameFault) return;
+  var pulse=34+Math.sin(t/180)*4;
+  ctx.save(); ctx.strokeStyle='#ef4444'; ctx.lineWidth=2.5; ctx.setLineDash([8,6]); ctx.beginPath(); ctx.arc(pp.x,pp.y,pulse,0,7); ctx.stroke(); ctx.setLineDash([]); ctx.font='bold 20px sans-serif'; ctx.textAlign='center'; ctx.fillText(SN_FAULT_LABEL[pp.fault].split(' ')[1]||'⚠️', pp.x, pp.y-52); ctx.restore();
+  if(pp.fault==='leak'&&snPartWaterLive(pp,snSimCache)){
+   var age=Math.min(1,(t-(pp.faultAt||t))/8000);
+   ctx.save(); ctx.fillStyle='#38bdf8'; for(var di=0;di<3;di++){ var dy=((t/28+di*14)%40); ctx.beginPath(); ctx.arc(pp.x-12+di*12, pp.y+30+dy, 2.5, 0, 7); ctx.fill(); } ctx.fillStyle='rgba(56,189,248,.45)'; ctx.beginPath(); ctx.ellipse(pp.x, pp.y+72, 14+age*30, 5+age*4, 0, 0, 7); ctx.fill(); ctx.fillStyle='#fff'; ctx.font='bold 11px sans-serif'; ctx.fillText('💧 ضغط ضعيف', pp.x, pp.y+92); ctx.restore();
+  }
+  if(pp.fault==='overload'&&!(snSimCache.faultTripped)&&snPartElecLive(pp,snSimCache)){
+   ctx.save(); ctx.strokeStyle='#fb923c'; ctx.lineWidth=3; ctx.shadowColor='#f97316'; ctx.shadowBlur=14; ctx.beginPath(); ctx.arc(pp.x,pp.y,36,0,7); ctx.stroke(); ctx.fillStyle='#fff'; ctx.font='bold 12px sans-serif'; ctx.fillText('🔥 حمل زيادة!', pp.x, pp.y-58); ctx.restore();
+  }
+ });
+ if(snSimCache.blockedDrain) Object.keys(snSimCache.blockedDrain).forEach(function(id){ var pp=parts.find(function(x){ return x.id===id; }); if(!pp) return; var lvl=18+Math.sin(t/300)*4; ctx.save(); ctx.fillStyle='rgba(56,189,248,.55)'; ctx.beginPath(); ctx.ellipse(pp.x, pp.y-24, 30, lvl*0.5, 0, 0, 7); ctx.fill(); ctx.fillStyle='#fff'; ctx.font='bold 12px sans-serif'; ctx.fillText('🚫 مسدود! بيفيض', pp.x, pp.y-52); ctx.restore(); });
+ if(snSimCache.faultTripped) parts.forEach(function(pp){ if(pp.kind==='mcb'){ ctx.save(); ctx.fillStyle='#facc15'; ctx.font='bold 12px sans-serif'; ctx.textAlign='center'; ctx.fillText('⚡ فصل!', pp.x, pp.y-46); ctx.restore(); } });
+}
+
+var snGame={active:false,level:1,score:0,startAt:0,hints:0,levelDone:false,lastBonus:0};
+function snPlantGameFaults(n){
+ var cands=parts.filter(function(pp){ return snFaultsFor(pp.kind).length>0; });
+ if(cands.length<1) return false;
+ for(var i2=cands.length-1;i2>0;i2--){ var j2=Math.floor(Math.random()*(i2+1)); var tmp=cands[i2]; cands[i2]=cands[j2]; cands[j2]=tmp; }
+ var picked=cands.slice(0,Math.min(n,cands.length));
+ picked.forEach(function(pp){ var fs=snFaultsFor(pp.kind); pp.fault=fs[Math.floor(Math.random()*fs.length)]; pp.faultAt=Date.now(); pp.gameFault=true; });
+ return true;
+}
+function snStartGame(){
+ if(parts.length<3){ alert('ارسم دايرة فيها قطع الأول — جرّب القالب الجاهز'); return; }
+ parts.forEach(function(pp){ delete pp.fault; delete pp.faultAt; delete pp.gameFault; });
+ wires.forEach(function(w){ delete w.fault; });
+ snFaultMode=false; var fb=document.getElementById('snFaultBtn'); if(fb){ fb.style.background='#7f1d1d'; fb.textContent='⚠️ أعطال'; }
+ snGame.active=true; snGame.level=1; snGame.score=0; snGame.hints=0; snGame.levelDone=false;
+ snHideFaultPicker();
+ if(!snPlantGameFaults(1)){ alert('مفيش قطع تنفع للأعطال'); snGame.active=false; return; }
+ snGame.startAt=Date.now();
+ var _a2=decLoadAccount(); if(_a2){ _a2.sn=0; decSaveAccount(_a2); } decRegisterDismissed=false;
+ draw();
+}
+function snEndGame(){
+ snGame.active=false; snGame.levelDone=false;
+ parts.forEach(function(pp){ if(pp.gameFault){ delete pp.fault; delete pp.faultAt; delete pp.gameFault; } });
+ snHideFaultPicker(); draw();
+}
+function snGameSymptoms(){
+ var sym=[];
+ if(snSimCache&&snSimCache.faultTripped) sym.push('⚡ القاطع فصل!');
+ if(snSimCache&&snSimCache.blockedDrain&&Object.keys(snSimCache.blockedDrain).length) sym.push('🚫 في حاجة بتفيض!');
+ if(parts.some(function(pp){ return pp.gameFault&&pp.fault==='leak'&&snPartWaterLive(pp,snSimCache); })) sym.push('💧 الفاتورة بتزيد لوحدها!');
+ if(parts.some(function(pp){ return pp.gameFault&&pp.fault==='overload'&&!(snSimCache&&snSimCache.faultTripped)&&snPartElecLive(pp,snSimCache); })) sym.push('🔥 في حاجة بتسخن!');
+ if(!sym.length&&parts.some(function(pp){ return pp.gameFault; })) sym.push('🔍 مفيش أعراض ظاهرة — العطل مستخبي، افحص القطع');
+ return sym;
+}
+function snUpdateGameBar(){
+ var bar=document.getElementById('snGameBar'); if(!bar) return;
+ if(snGame.active) decPointsHook('sn', snGame.score);
+ if(!snGame.active){ bar.style.display='none'; return; }
+ var secs=Math.floor((Date.now()-snGame.startAt)/1000);
+ var sym=snGameSymptoms();
+ var html='🎮 لعبة الأعطال | المستوى '+snGame.level+' | ⭐ النقاط: '+snGame.score+' | ⏱ '+secs+'ث';
+ if(sym.length) html+=' | الأعراض: '+sym.join(' ');
+ if(snGame.levelDone){ html+=' <span style="background:#22c55e;color:#fff;border-radius:6px;padding:1px 6px">🎉 خلّصت! مكافأة وقت +'+snGame.lastBonus+'</span> <button id="snNextLevelBtn" type="button" style="background:#0ea5e9;color:#fff;border:none;border-radius:8px;padding:4px 10px;font-weight:900;cursor:pointer;margin-inline-start:6px">المستوى الجاي ▶</button>'; }
+ else { html+=' <button id="snHintBtn" type="button" style="background:#f59e0b;color:#111827;border:none;border-radius:8px;padding:4px 10px;font-weight:900;cursor:pointer;margin-inline-start:6px">🔍 تلميح (-15)</button>'; }
+ html+=' <button id="snEndGameBtn" type="button" style="background:#ef4444;color:#fff;border:none;border-radius:8px;padding:4px 10px;font-weight:900;cursor:pointer">❌ إنهاء</button>';
+ html+=' <button data-dec-points type="button" style="background:#a855f7;color:#fff;border:none;border-radius:8px;padding:4px 10px;font-weight:900;cursor:pointer">🎁 الهدايا</button>';
+ html+=' <button data-dec-leader="open" type="button" style="background:#b45309;color:#fff;border:none;border-radius:8px;padding:4px 10px;font-weight:900;cursor:pointer">🏆 لوحة الشرف</button>';
+ if(!decLoadAccount()&&snGame.score>=500) html+=' <button data-dec-reg="open" type="button" style="background:#facc15;color:#111827;border:none;border-radius:8px;padding:4px 10px;font-weight:900;cursor:pointer">📝 سجّل وحفظ نقاطك</button>';
+ var _acc2=decLoadAccount(); if(_acc2) html+=' | 🎁 نقاطك المحفوظة: '+(_acc2.points||0);
+ bar.innerHTML=html; bar.style.display='block';
+ var hb=document.getElementById('snHintBtn'); if(hb) hb.onclick=function(){ var rem=parts.filter(function(pp){ return pp.gameFault; }); if(!rem.length) return; var f0=rem[0]; var cat=(f0.fault==='short'||f0.fault==='overload')?'كهربا':(f0.fault==='blocked'?'صرف':'مياه'); snGame.score=Math.max(0,snGame.score-15); snGame.hints++; alert('🔍 تلميح: في عطل في '+cat+' — دوّر على الأعراض'); draw(); };
+ var eb=document.getElementById('snEndGameBtn'); if(eb) eb.onclick=function(){ snEndGame(); };
+ var nb=document.getElementById('snNextLevelBtn'); if(nb) nb.onclick=function(){ snGame.level++; snGame.levelDone=false; snGame.startAt=Date.now(); snPlantGameFaults(snGame.level); draw(); };
+}
+function snShowDiagnosePicker(pp){
+ var pk=document.getElementById('snFaultPicker'); if(!pk) return;
+ snFaultPickerPart=pp;
+ var sx=pp.x*snZoom+snPanX, sy=pp.y*snZoom+snPanY;
+ var W=cv.getBoundingClientRect().width;
+ pk.style.left=Math.max(105,Math.min(W-105,sx))+'px';
+ pk.style.top=Math.max(90,sy-150)+'px';
+ var fs=snFaultsFor(pp.kind);
+ var html='<div style="font-weight:900;color:#fff;margin-bottom:4px">🔍 تشخيص: '+(LABELS[pp.kind]||pp.kind)+'</div><div style="color:#fca5a5">إيه العطل اللي فيها؟</div>';
+ if(!fs.length) html+='<div style="color:#94a3b8">القطعة دي مفيهاش أعطال — يعني سليمة</div>';
+ fs.forEach(function(f){ html+='<button data-fault="'+f+'" type="button" style="display:block;width:100%;margin:3px 0;background:#1e293b;color:#fff;border:1px solid #475569;border-radius:9px;padding:6px;font-weight:900;cursor:pointer">'+(SN_FAULT_LABEL[f]||f)+'</button>'; });
+ html+='<button data-fault="__none" type="button" style="display:block;width:100%;margin:3px 0;background:#22c55e;color:#fff;border:none;border-radius:9px;padding:6px;font-weight:900;cursor:pointer">✅ مفيش عطل — سليمة</button>';
+ html+='<button data-fault="__close" type="button" style="display:block;width:100%;margin:3px 0;background:#334155;color:#fff;border:none;border-radius:9px;padding:6px;font-weight:900;cursor:pointer">إلغاء</button>';
+ pk.innerHTML=html; pk.style.display='block';
+}
+
+function snPartWaterLive(pp,sim){ if(!sim) return false; var ts=termsOf(pp.kind); for(var li=0;li<ts.length;li++){ if((ts[li].kind==='cold'||ts[li].kind==='hot'||ts[li].kind==='water')&&((sim.waterCold&&sim.waterCold[sim.key(pp,li)])||(sim.waterHot&&sim.waterHot[sim.key(pp,li)]))) return true; } return false; }
+function snPartElecLive(pp,sim){ if(!sim) return false; var ts=termsOf(pp.kind); for(var li=0;li<ts.length;li++){ if(sim.inSet&&sim.inSet(sim.live,pp,li)) return true; } return false; }
 function snSim(){ var parent={}; function find(a){ while(parent[a]!==a){ parent[a]=parent[parent[a]]; a=parent[a]; } return a; } function uni(a,b){ var ra=find(a), rb=find(b); if(ra!==rb) parent[ra]=rb; }
   var key=function(part,idx){ return part.id+':'+idx; };
   parts.forEach(function(pp){ termsOf(pp.kind).forEach(function(tm,idx){ parent[key(pp,idx)]=key(pp,idx); }); });
   wires.forEach(function(w){ var fi=snTermIdx(w.from.part,w.from.term), ti=snTermIdx(w.to.part,w.to.term); if(fi>=0&&ti>=0) uni(key(w.from.part,fi),key(w.to.part,ti)); });
-  parts.forEach(function(pp){ var pairs=[]; if(pp.kind==='switch'||pp.kind==='mcb'){ if(snOn(pp)) pairs=[[0,1]]; } else if(pp.kind==='switch2'){ pairs=snOn(pp)?[[0,1]]:[[0,2]]; } else if(pp.kind==='panel'){ pairs=[[0,1],[0,2],[0,3]]; } pairs.forEach(function(pr){ uni(key(pp,pr[0]),key(pp,pr[1])); }); });
+  // Pass 1: would-be live circuit (all switches assumed closed) on a separate union-find — a fault only trips the breaker if it is actually wired into a live circuit. No wires = no trip.
+  var p1={}; function f1(a){ while(p1[a]!==a){ p1[a]=p1[p1[a]]; a=p1[a]; } return a; } function u1(a,b){ var ra=f1(a), rb=f1(b); if(ra!==rb) p1[ra]=rb; }
+  parts.forEach(function(pp){ termsOf(pp.kind).forEach(function(tm,idx){ p1[key(pp,idx)]=key(pp,idx); }); });
+  wires.forEach(function(w){ var fi=snTermIdx(w.from.part,w.from.term), ti=snTermIdx(w.to.part,w.to.term); if(fi>=0&&ti>=0) u1(key(w.from.part,fi),key(w.to.part,ti)); });
+  parts.forEach(function(pp){ var pairs=[]; if(pp.kind==='switch'||pp.kind==='mcb'){ if(snOn(pp)) pairs=[[0,1]]; } else if(pp.kind==='switch2'){ pairs=snOn(pp)?[[0,1]]:[[0,2]]; } else if(pp.kind==='panel'){ pairs=[[0,1],[0,2],[0,3]]; } pairs.forEach(function(pr){ u1(key(pp,pr[0]),key(pp,pr[1])); }); });
+  var _live0=new Set(); parts.forEach(function(pp){ if(pp.kind==='source'){ termsOf(pp.kind).forEach(function(tm,idx){ if(tm.kind==='phase'||tm.kind==='phase2'||tm.kind==='phase3') _live0.add(f1(key(pp,idx))); }); } });
+  function _inLive0(part,idx){ return _live0.has(f1(key(part,idx))); }
+  function _partLive0(pp){ return termsOf(pp.kind).some(function(tm,idx){ return _inLive0(pp,idx); }); }
+  var snTrip=parts.some(function(pp){ if(pp.fault!=='short'&&!(pp.fault==='overload'&&pp.faultAt&&(Date.now()-pp.faultAt)>2000)) return false; return _partLive0(pp); })||wires.some(function(w){ if(w.fault!=='short') return false; var fi=snTermIdx(w.from.part,w.from.term), ti=snTermIdx(w.to.part,w.to.term); return (fi>=0&&_inLive0(w.from.part,fi))||(ti>=0&&_inLive0(w.to.part,ti)); });
+  parts.forEach(function(pp){ var pairs=[]; if(pp.kind==='switch'||pp.kind==='mcb'){ if(snOn(pp)&&!(snTrip&&pp.kind==='mcb')) pairs=[[0,1]]; } else if(pp.kind==='switch2'){ pairs=snOn(pp)?[[0,1]]:[[0,2]]; } else if(pp.kind==='panel'){ pairs=[[0,1],[0,2],[0,3]]; } pairs.forEach(function(pr){ uni(key(pp,pr[0]),key(pp,pr[1])); }); });
   var live=new Set(), neut=new Set();
   parts.forEach(function(pp){ if(pp.kind==='source'){ termsOf(pp.kind).forEach(function(tm,idx){ if(tm.kind==='phase'||tm.kind==='phase2'||tm.kind==='phase3') live.add(find(key(pp,idx))); if(tm.kind==='neutral') neut.add(find(key(pp,idx))); }); } });
   function inSet(s,part,idx){ return s.has(find(key(part,idx))); }
   var loadOn={}; var LOADS=['lamp','bell','pump','heaterE','motor1','ac','washer','cooker','oven','socket','socketQ'];
   parts.forEach(function(pp){ if(LOADS.indexOf(pp.kind)<0) return; var ts=termsOf(pp.kind); var fi=-1, ni=-1; ts.forEach(function(tm,idx){ if(fi<0 && (tm.kind==='phase'||tm.kind==='phase2'||tm.kind==='phase3'||tm.kind==='return')) fi=idx; if(ni<0 && tm.kind==='neutral') ni=idx; }); loadOn[pp.id]=(fi>=0&&ni>=0&&inSet(live,pp,fi)&&inSet(neut,pp,ni)); });
+  if(!snSimOn) Object.keys(loadOn).forEach(function(k){ loadOn[k]=false; });
   var wireLive=wires.map(function(w){ var fi=snTermIdx(w.from.part,w.from.term), ti=snTermIdx(w.to.part,w.to.term); var liveSide=(fi>=0&&inSet(live,w.from.part,fi))||(ti>=0&&inSet(live,w.to.part,ti)); var neutSide=(fi>=0&&inSet(neut,w.from.part,fi))||(ti>=0&&inSet(neut,w.to.part,ti)); var loadOnSide=loadOn[w.from.part.id]||loadOn[w.to.part.id]; return liveSide || (neutSide && loadOnSide); });
-  var wsim=snWaterSim(loadOn); return {live:live,neut:neut,loadOn:loadOn,wireLive:wireLive,find:find,key:key,inSet:inSet,waterCold:wsim.waterCold,waterHot:wsim.waterHot,waterFlow:wsim.waterFlow,wireWater:wsim.wireWater,wireFlow:wsim.wireFlow,drainSeen:wsim.drainSeen}; }
+  var wsim=snWaterSim(loadOn); return {live:live,neut:neut,loadOn:loadOn,wireLive:wireLive,find:find,key:key,inSet:inSet,waterCold:wsim.waterCold,waterHot:wsim.waterHot,waterFlow:wsim.waterFlow,wireWater:wsim.wireWater,wireFlow:wsim.wireFlow,drainSeen:wsim.drainSeen,faultTripped:snTrip,weakFlow:wsim.weakFlow,blockedDrain:wsim.blockedDrain}; }
 var snSimCache=null;
 function nearTerm(x,y){ var best=null,bd=24; allTerms().forEach(function(tp){ var d=Math.hypot(tp.x-x,tp.y-y); if(d<bd){bd=d;best=tp;} }); return best; }
-function draw(){   if(!ctx) return; var r=cv.getBoundingClientRect(); var W=r.width,H=r.height; ctx.setTransform(1,0,0,1,0,0); ctx.clearRect(0,0,W,H); var x0=-snPanX/snZoom, y0=-snPanY/snZoom, x1=(W-snPanX)/snZoom, y1=(H-snPanY)/snZoom; ctx.strokeStyle='rgba(255,255,255,0.06)'; ctx.lineWidth=1; for(var gx=Math.floor(x0/24)*24;gx<=x1;gx+=24){ctx.beginPath();ctx.moveTo(gx,y0);ctx.lineTo(gx,y1);ctx.stroke();} for(var gy=Math.floor(y0/24)*24;gy<=y1;gy+=24){ctx.beginPath();ctx.moveTo(x0,gy);ctx.lineTo(x1,gy);ctx.stroke();} ctx.save(); ctx.translate(snPanX,snPanY); ctx.scale(snZoom,snZoom); snSimCache=snSim(); wires.forEach(function(w,wi){ var a=termPos(w.from.part,w.from.term), b=termPos(w.to.part,w.to.term); var wl=snSimCache&&snSimCache.wireLive[wi]; ctx.save(); if(wl){ ctx.shadowColor=COLORS[w.kind]||'#fff'; ctx.shadowBlur=12; } var ww=snSimCache&&snSimCache.wireWater?snSimCache.wireWater[wi]:null; var wf=snSimCache&&snSimCache.wireFlow?snSimCache.wireFlow[wi]:false; var wcol=ww?({cold:'#38bdf8',hot:'#ef4444',drain:'#22c55e'}[ww]||'#94a3b8'):(COLORS[w.kind]||'#fff'); if(ww){ ctx.shadowColor=wcol; ctx.shadowBlur=12; } ctx.strokeStyle=wcol; ctx.lineWidth=ww?(wf?5:4):(wl?4:3); if(wf){ ctx.setLineDash([12,8]); ctx.lineDashOffset=-(snFlowTick||0); } ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke(); ctx.setLineDash([]); ctx.fillStyle=wcol; ctx.font='11px sans-serif'; ctx.textAlign='center'; ctx.fillText((ww?NAMES[ww]:NAMES[w.kind])||'',(a.x+b.x)/2,(a.y+b.y)/2-6); if(w===selWire){ ctx.save(); ctx.setLineDash([8,6]); ctx.strokeStyle='#ffffff'; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke(); ctx.restore(); } ctx.restore(); });
+function draw(){   if(!ctx) return; var r=cv.getBoundingClientRect(); var W=r.width,H=r.height; ctx.setTransform(1,0,0,1,0,0); ctx.clearRect(0,0,W,H); var x0=-snPanX/snZoom, y0=-snPanY/snZoom, x1=(W-snPanX)/snZoom, y1=(H-snPanY)/snZoom; ctx.strokeStyle='rgba(255,255,255,0.06)'; ctx.lineWidth=1; for(var gx=Math.floor(x0/24)*24;gx<=x1;gx+=24){ctx.beginPath();ctx.moveTo(gx,y0);ctx.lineTo(gx,y1);ctx.stroke();} for(var gy=Math.floor(y0/24)*24;gy<=y1;gy+=24){ctx.beginPath();ctx.moveTo(x0,gy);ctx.lineTo(x1,gy);ctx.stroke();} ctx.save(); ctx.translate(snPanX,snPanY); ctx.scale(snZoom,snZoom); snSimCache=snSim(); wires.forEach(function(w,wi){ var a=termPos(w.from.part,w.from.term), b=termPos(w.to.part,w.to.term); var wl=snSimCache&&snSimCache.wireLive[wi]; ctx.save(); if(wl){ ctx.shadowColor=COLORS[w.kind]||'#fff'; ctx.shadowBlur=12; } var ww=snSimCache&&snSimCache.wireWater?snSimCache.wireWater[wi]:null; var wf=snSimCache&&snSimCache.wireFlow?snSimCache.wireFlow[wi]:false; var wcol=ww?({cold:'#38bdf8',hot:'#ef4444',drain:'#22c55e'}[ww]||'#94a3b8'):(COLORS[w.kind]||'#fff'); if(ww){ ctx.shadowColor=wcol; ctx.shadowBlur=12; } ctx.strokeStyle=wcol; var _szf=ww?(SN_SIZE_FACTOR[w.size]||1):1; ctx.lineWidth=ww?(2+_szf*0.9+(wf?1:0)):(wl?4:3); if(wf){ ctx.setLineDash([12,8]); ctx.lineDashOffset=-(snFlowTick||0); } ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke(); ctx.setLineDash([]); ctx.fillStyle=wcol; ctx.font='11px sans-serif'; ctx.textAlign='center'; ctx.fillText((ww?(NAMES[ww]+(w.size?' '+w.size+'″':'')):NAMES[w.kind])||'',(a.x+b.x)/2,(a.y+b.y)/2-6); if(w===selWire){ ctx.save(); ctx.setLineDash([8,6]); ctx.strokeStyle='#ffffff'; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke(); ctx.restore(); } ctx.restore(); });
   snSimCache=snSim();
-  parts.forEach(drawPart);
+  parts.forEach(drawPart); snDrawFaults();
   if(selWire){ var a2=termPos(selWire.from.part,selWire.from.term), b2=termPos(selWire.to.part,selWire.to.term); var mx=(a2.x+b2.x)/2, my=(a2.y+b2.y)/2; ctx.save(); ctx.beginPath(); ctx.arc(mx,my,14,0,7); ctx.fillStyle='#ffffff'; ctx.fill(); ctx.strokeStyle='#ef4444'; ctx.lineWidth=2; ctx.stroke(); ctx.fillStyle='#ef4444'; ctx.font='bold 16px sans-serif'; ctx.fillText('X',mx,my+6); ctx.restore(); }
   ctx.restore();
   if(wireFrom){ var wx=wireFrom.x*snZoom+snPanX, wy=wireFrom.y*snZoom+snPanY; var wc=COLORS[wireFrom.term.kind]||'#facc15'; ctx.save(); ctx.setTransform(1,0,0,1,0,0); ctx.beginPath(); ctx.arc(wx,wy,18,0,7); ctx.fillStyle=wc; ctx.globalAlpha=0.35; ctx.fill(); ctx.globalAlpha=1; ctx.lineWidth=3; ctx.strokeStyle='#fff'; ctx.stroke(); ctx.beginPath(); ctx.arc(wx,wy,10,0,7); ctx.fillStyle=wc; ctx.fill(); ctx.fillStyle='#fff'; ctx.font='bold 12px sans-serif'; ctx.textAlign='center'; ctx.fillText((wireFrom.term.label||'')+' جاهزة — دوس النقطة التانية', wx, wy-26); ctx.restore(); }
   if(hoverTerm){ ctx.fillStyle='#fff'; ctx.font='12px sans-serif'; ctx.textAlign='center'; ctx.fillText(hoverTerm.term.label, hoverTerm.x*snZoom+snPanX, hoverTerm.y*snZoom+snPanY-14); }
   var bar=document.getElementById('snCtlBar'); if(bar){ bar.style.display=(sel||selWire)?'flex':'none'; var pw=document.getElementById('snCtlPower'); var rt=document.getElementById('snCtlRot'); var bg=document.getElementById('snCtlBig'); var sm=document.getElementById('snCtlSmall'); var cp=document.getElementById('snCtlCopy'); var dl=document.getElementById('snCtlDel'); if(selWire){ [pw,rt,bg,sm,cp].forEach(function(b){ if(b) b.style.display='none'; }); if(dl){ dl.style.display=''; dl.textContent='حذف السلك'; } } else { if(dl){ dl.style.display=''; dl.textContent='حذف'; } if(pw){ var showPw=sel&&snIsSwitchable(sel.kind); pw.style.display=showPw?'':'none'; if(showPw){ pw.textContent=(['valve','mixer','basin','wc','bathtub','coldPoint','hotPoint','wsource'].indexOf(sel.kind)>=0)?(snOn(sel)?'🔒 قفل':'🔓 فتح'):(snOn(sel)?'ايقاف':'تشغيل'); pw.style.background=snOn(sel)?'#16a34a':'#64748b'; } } } }
-  var st=document.getElementById('snStat'); if(st) st.textContent = sel? (LABELS[sel.kind]+(snIsSwitchable(sel.kind)?(' | '+(snOn(sel)?'ON':'OFF')):'')+' | زاوية '+(sel.rot|0)+'° | حجم '+(sel.s||1).toFixed(1)+'x') : ('القطع: '+parts.length+' • الأسلاك: '+wires.length+' | 💧 '+snLiters.toFixed(1)+' لتر • فاتورة '+(snLiters*snBillRate).toFixed(2)+' ج'); var zl=document.getElementById('snZoomLabel'); if(zl) zl.textContent=Math.round(snZoom*100)+'%'; snUpdatePartCard();
+  var st=document.getElementById('snStat'); if(st) st.textContent = sel? (LABELS[sel.kind]+(snIsSwitchable(sel.kind)?(' | '+(snOn(sel)?'ON':'OFF')):'')+' | زاوية '+(sel.rot|0)+'° | حجم '+(sel.s||1).toFixed(1)+'x') : ('القطع: '+parts.length+' • الأسلاك: '+wires.length+' | 💧 '+snLiters.toFixed(1)+' لتر • فاتورة '+(snLiters*snBillRate).toFixed(2)+' ج'); var zl=document.getElementById('snZoomLabel'); if(zl) zl.textContent=Math.round(snZoom*100)+'%'; snUpdatePartCard(); snUpdateFaultBar(); snUpdateGameBar(); snUpdateWireCard();
 }
 function drawPart(p){
   ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot*Math.PI/180); ctx.scale(p.s,p.s);
@@ -1838,8 +2296,15 @@ document.getElementById('snDel').onclick=function(){ if(selWire){ wires=wires.fi
    document.getElementById('snZoomOut').onclick=function(){ snZoom=Math.max(0.3,snZoom/1.25); draw(); };
    document.getElementById('snZoomReset').onclick=function(){ snZoom=1; snPanX=0; snPanY=0; draw(); };
   document.getElementById('snPartCard').addEventListener('click',function(e){ var b=e.target.closest&&e.target.closest('[data-snsize]'); if(b&&sel){ sel.size=b.dataset.snsize; snCardKey=''; draw(); } });
+  document.getElementById('snSimBtn').onclick=function(){ snSimOn=!snSimOn; this.style.background=snSimOn?'#16a34a':'#475569'; this.textContent=snSimOn?'▶ محاكاة: شغالة':'⏸ محاكاة: واقفة'; if(!snSimOn){ snPlayWater(false); snPlayPump(false); } draw(); };
+  document.getElementById('snWireCard').addEventListener('click',function(e){ var b=e.target.closest&&e.target.closest('[data-wsize]'); if(b&&selWire){ selWire.size=b.dataset.wsize; draw(); return; } var d=e.target.closest&&e.target.closest('[data-wdel]'); if(d&&selWire){ wires=wires.filter(function(w){ return w!==selWire; }); selWire=null; draw(); } });
+  document.getElementById('snGameBtn').onclick=function(){ if(snGame.active){ snEndGame(); this.textContent='🎮 لعبة الأعطال'; return; } snStartGame(); this.textContent='🎮 اللعبة شغالة'; };
+  document.getElementById('snFaultBtn').onclick=function(){ if(snGame.active){ alert('🎮 اللعبة شغالة — خلّص المستوى الأول أو دوس إنهاء'); return; } snFaultMode=!snFaultMode; this.style.background=snFaultMode?'#ef4444':'#7f1d1d'; this.textContent=snFaultMode?'⚠️ أعطال: شغال':'⚠️ أعطال'; if(!snFaultMode) snHideFaultPicker(); draw(); };
+  document.getElementById('snFaultPicker').addEventListener('click',function(e){ var b=e.target.closest&&e.target.closest('[data-fault]'); if(!b) return; var f=b.dataset.fault;
+  if(snGame.active){ if(f==='__close'){ snHideFaultPicker(); return; } if(!snFaultPickerPart){ snHideFaultPicker(); return; } var pp2=snFaultPickerPart; if(f==='__none'){ if(pp2.fault){ snGame.score=Math.max(0,snGame.score-20); snHideFaultPicker(); alert('❌ غلط! القطعة دي فيها عطل فعلاً — -20'); } else { snHideFaultPicker(); alert('✅ صح — القطعة دي سليمة'); } draw(); return; } if(!pp2.fault){ snGame.score=Math.max(0,snGame.score-20); snHideFaultPicker(); alert('❌ غلط! القطعة دي سليمة — -20'); draw(); return; } if(pp2.fault===f){ snGame.score+=100; delete pp2.fault; delete pp2.faultAt; delete pp2.gameFault; snHideFaultPicker(); if(!parts.some(function(x){ return x.gameFault; })){ var bonus=Math.max(0,120-Math.floor((Date.now()-snGame.startAt)/1000)); snGame.score+=bonus; snGame.levelDone=true; snGame.lastBonus=bonus; } alert('✅ صح! +100 نقطة'); } else { snGame.score=Math.max(0,snGame.score-20); snHideFaultPicker(); alert('❌ غلط! مش ده العطل — -20'); } draw(); return; }
+  if(f==='__close'){ snHideFaultPicker(); return; } if(!snFaultPickerPart){ snHideFaultPicker(); return; } if(f==='__fix'){ delete snFaultPickerPart.fault; delete snFaultPickerPart.faultAt; } else { snFaultPickerPart.fault=f; snFaultPickerPart.faultAt=Date.now(); } snHideFaultPicker(); draw(); });
   document.getElementById('snSoundBtn').onclick=function(){ snMuted=!snMuted; this.textContent=snMuted?'🔇 صوت':'🔊 صوت'; if(snMuted){ snPlayWater(false); snPlayPump(false); } };
-  setInterval(function(){ var s2=snSim(); var flowing=0; if(s2.waterFlow){ Object.keys(s2.waterFlow).forEach(function(id){ if(s2.waterFlow[id]) flowing++; }); } var pumpOn=parts.some(function(pp){ return pp.kind==='pump'&&s2.loadOn[pp.id]; }); if(flowing>0){ snLiters+=flowing*0.5; snFlowTick+=4; } snPlayWater(flowing>0&&!snMuted); snPlayPump(pumpOn&&!snMuted); if(flowing>0) draw(); },500);
+  setInterval(function(){ var s2=snSim(); var flowing=0; if(s2.waterFlow){ Object.keys(s2.waterFlow).forEach(function(id){ if(s2.waterFlow[id]) flowing++; }); } var pumpOn=parts.some(function(pp){ return pp.kind==='pump'&&s2.loadOn[pp.id]; }); var leakN2=parts.filter(function(pp){ return pp.fault==='leak'&&snPartWaterLive(pp,s2); }).length; if(leakN2>0) snLiters+=leakN2*0.5; if(flowing>0){ var tot2=0; Object.keys(s2.waterFlow).forEach(function(id){ if(!s2.waterFlow[id]) return; var pp2=parts.find(function(x){ return x.id===id; }); var f22=1; if(pp2){ wires.forEach(function(w){ if((w.kind==='cold'||w.kind==='hot'||w.kind==='water')&&(w.from.part===pp2||w.to.part===pp2)) f22=Math.max(f22, SN_SIZE_FACTOR[w.size]||1); }); } tot2+=0.5*f22; }); snLiters+=tot2; snFlowTick+=4; } snPlayWater(flowing>0&&!snMuted); if(snGame.active) snUpdateGameBar(); snPlayPump(pumpOn&&!snMuted); if(flowing>0) draw(); },500);
    document.getElementById('snPartBigger').onclick=function(){ if(!sel){ alert('اختار قطعة الأول — دوس عليها'); return; } sel.s=Math.min(3,(sel.s||1)+0.2); draw(); };
    document.getElementById('snPartSmaller').onclick=function(){ if(!sel){ alert('اختار قطعة الأول — دوس عليها'); return; } sel.s=Math.max(0.4,(sel.s||1)-0.2); draw(); };
    document.getElementById('snElecBtn').onclick=function(){ var o=document.getElementById('elecOverlay'); if(o){ o.style.zIndex='10002'; o.classList.add('on'); } };
@@ -1852,7 +2317,9 @@ document.getElementById('snDel').onclick=function(){ if(selWire){ wires=wires.fi
    cv.addEventListener('pointermove',function(e){ if(snPtrs[e.pointerId]){ snPtrs[e.pointerId]={x:e.clientX,y:e.clientY}; } if(pinch && Object.keys(snPtrs).length===2){ var ks=Object.keys(snPtrs); var nd=Math.hypot(snPtrs[ks[0]].x-snPtrs[ks[1]].x,snPtrs[ks[0]].y-snPtrs[ks[1]].y); var ncx=(snPtrs[ks[0]].x+snPtrs[ks[1]].x)/2, ncy=(snPtrs[ks[0]].y+snPtrs[ks[1]].y)/2; var r=cv.getBoundingClientRect(); var wx=(pinch.cx-r.left-pinch.panX)/pinch.zoom, wy=(pinch.cy-r.top-pinch.panY)/pinch.zoom; snZoom=Math.max(0.3,Math.min(3,pinch.zoom*nd/pinch.d)); snPanX=(ncx-r.left)-wx*snZoom; snPanY=(ncy-r.top)-wy*snZoom; draw(); } });
    window.addEventListener('pointerup',function(e){ delete snPtrs[e.pointerId]; if(Object.keys(snPtrs).length<2) pinch=null; });
    window.addEventListener('pointercancel',function(e){ delete snPtrs[e.pointerId]; pinch=null; });
-  cv.addEventListener('pointerdown',function(e){ if(pinch || Object.keys(snPtrs).length>=2) return; var p=pt(e); var tm=nearTerm(p.x,p.y); if(tm){ if(!wireFrom){ wireFrom=tm; sel=tm.part; selWire=null; draw(); return; } if(wireFrom.part===tm.part && wireFrom.term.dx===tm.term.dx && wireFrom.term.dy===tm.term.dy){ wireFrom=null; draw(); return; } if(wireFrom.part===tm.part){ wireFrom=tm; sel=tm.part; draw(); return; } wires.push({from:wireFrom,to:tm,kind:wireFrom.term.kind}); wireFrom=null; sel=tm.part; selWire=null; draw(); return; } if(selWire){ var mp=wireMid(selWire); if(Math.hypot(p.x-mp.x,p.y-mp.y)<22){ wires=wires.filter(function(w){return w!==selWire;}); selWire=null; draw(); return; } }
+  cv.addEventListener('pointerdown',function(e){ if(pinch || Object.keys(snPtrs).length>=2) return; var p=pt(e); var tm=nearTerm(p.x,p.y);
+  if(snGame.active){ if(tm){ snShowDiagnosePicker(tm.part); sel=tm.part; draw(); return; } var hit3=hitPart(p.x,p.y); if(hit3){ snShowDiagnosePicker(hit3); sel=hit3; draw(); return; } snHideFaultPicker(); draw(); return; }
+  if(snFaultMode){ if(tm){ snShowFaultPicker(tm.part); sel=tm.part; draw(); return; } var hw2=null; for(var wi3=wires.length-1;wi3>=0;wi3--){ var wa2=termPos(wires[wi3].from.part,wires[wi3].from.term), wb2=termPos(wires[wi3].to.part,wires[wi3].to.term); if(distToSeg(p.x,p.y,wa2.x,wa2.y,wb2.x,wb2.y)<10){ hw2=wires[wi3]; break; } } if(hw2){ if(hw2.fault==='short') delete hw2.fault; else hw2.fault='short'; draw(); return; } var hit2=hitPart(p.x,p.y); if(hit2){ snShowFaultPicker(hit2); sel=hit2; draw(); return; } snHideFaultPicker(); draw(); return; } if(tm){ if(!wireFrom){ wireFrom=tm; sel=tm.part; selWire=null; draw(); return; } if(wireFrom.part===tm.part && wireFrom.term.dx===tm.term.dx && wireFrom.term.dy===tm.term.dy){ wireFrom=null; draw(); return; } if(wireFrom.part===tm.part){ wireFrom=tm; sel=tm.part; draw(); return; } var _wk2=wireFrom.term.kind; wires.push({from:wireFrom,to:tm,kind:_wk2,size:(_wk2==='drain'?'4':(_wk2==='cold'||_wk2==='hot'||_wk2==='water'?'1/2':undefined))}); wireFrom=null; sel=tm.part; selWire=null; draw(); return; } if(selWire){ var mp=wireMid(selWire); if(Math.hypot(p.x-mp.x,p.y-mp.y)<22){ wires=wires.filter(function(w){return w!==selWire;}); selWire=null; draw(); return; } }
   var hw=null; for(var wi2=wires.length-1;wi2>=0;wi2--){ var wa=termPos(wires[wi2].from.part,wires[wi2].from.term), wb=termPos(wires[wi2].to.part,wires[wi2].to.term); if(distToSeg(p.x,p.y,wa.x,wa.y,wb.x,wb.y)<10){ hw=wires[wi2]; break; } }
   if(hw){ selWire=hw; sel=null; wireFrom=null; draw(); return; }
   var prevSel=sel; var hit=hitPart(p.x,p.y); sel=hit; selWire=null; if(!sel){ wireFrom=null; draw(); return; }
