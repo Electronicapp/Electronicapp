@@ -71,7 +71,7 @@
 
 </style><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>ElectroPanel V3.9.68</title>
+<title>ElectroPanel V3.9.77</title>
 <link rel="manifest" href="./manifest.webmanifest">
 <meta name="theme-color" content="#111827">
 <meta name="mobile-web-app-capable" content="yes">
@@ -240,7 +240,7 @@ h1{position:relative!important;z-index:1!important;background:var(--bg,#f1f5f9)!
 </style></head><body>
 
 <!-- راس الصفحة من فوق خالص - الإضافات الجديدة تتحط هنا جنب زرار كهربائي -->
-<header id="topHeader"><span id="verBadge">V3.9.68</span><button id="elecBtn" type="button" title="تواصل مع صاحب التطبيق">⚡ كهربائي</button><button id="appsBtn" type="button" title="تطبيقات قادمة">📱 تطبيقات</button></header>
+<header id="topHeader"><span id="verBadge">V3.9.77</span><button id="elecBtn" type="button" title="تواصل مع صاحب التطبيق">⚡ كهربائي</button><button id="appsBtn" type="button" title="تطبيقات قادمة">📱 تطبيقات</button></header>
 
 <div id="pwaBar" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;align-items:center">
  <button id="installBtn" style="display:none;background:#111827;color:#fff">📲 تثبيت التطبيق على جهازك</button>
@@ -1749,7 +1749,7 @@ document.addEventListener('click',e=>{if(e.target.closest('#exBody [data-p]')){d
 </script>
 <script>
 // ===== PWA: تثبيت + أوفلاين + تحديث تلقائي =====
-const APP_VERSION = 'v3.9.68';
+const APP_VERSION = 'v3.9.77';
 let deferredPrompt = null, newWorker = null;
 const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
 const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
@@ -1798,7 +1798,7 @@ document.getElementById('updateBtn').onclick = ()=>{
 };
 </script>
 <script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}function isInlineMediaSlotElement(node){return !!(node&&node.getAttribute&&node.getAttribute("data-clippy-inline-media-slot")!==null)}function findInlineMediaSlot(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(isInlineMediaSlotElement(node))return node}return null}function readInlineMediaUrl(node){if(!node)return null;return node.getAttribute&&((node.getAttribute("data-clippy-inline-media-url")||node.getAttribute("data-url")||node.getAttribute("data_url")))||node.href||null}function stripHash(url){return String(url).replace(/#.*$/,"")}function urlsMatch(a,b){if(!a||!b)return false;try{return stripHash(new URL(a,loc).href)===stripHash(new URL(b,loc).href)}catch(_){return stripHash(a)===stripHash(b)}}function isFirstPartyReelUrl(value){try{var url=new URL(value,loc);if(url.protocol!=="https:")return false;var host=url.hostname.toLowerCase();var supported=host==="instagram.com"||host.endsWith(".instagram.com")||host==="facebook.com"||host.endsWith(".facebook.com");return supported&&/\/reels?\//i.test(url.pathname)}catch(_){return false}}function isInlineMediaUrlClick(node,href){var slot=findInlineMediaSlot(node);if(!slot)return false;var slotUrl=readInlineMediaUrl(slot);if(slotUrl)return urlsMatch(href,slotUrl);return isFirstPartyReelUrl(href)}function findDataHref(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(node.getAttribute){var href=node.getAttribute("data-href")||node.getAttribute("data-url");if(href)return{href:href,node:node}}}return null}var nativeOpen=window.open;window.open=function(url){if(parent!==window&&typeof url==="string"&&/^https?:\/\//.test(url)){parent.postMessage({type:"ecto:usercontent-link-click",href:url},"*");return null}return nativeOpen?nativeOpen.apply(window,arguments):null};document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;if(parent===window)return;var a=target.closest?target.closest("a[href]"):null;if(a&&a.href&&/^https?:\/\//.test(a.href)&&a.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(a,a.href))return;var productId=extractProductId(target)||extractProductId(a);if(productId){e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*");return}e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:a.href},"*");return}var dataHref=findDataHref(target);if(dataHref&&/^https?:\/\//.test(dataHref.href)&&dataHref.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(dataHref.node,dataHref.href))return;e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:dataHref.href},"*")}},true)})();</script><script>(function(){var FOCUS_TYPE="ecto:artifact-focus-request";var CLOSE_TYPE="ecto:artifact-close-request";function focusArtifactDocument(){var body=document.body;if(!body)return;try{window.focus();}catch(e){}if(!body.hasAttribute("tabindex"))body.setAttribute("tabindex","-1");try{body.focus({preventScroll:true});}catch(e){try{body.focus();}catch(e2){}}}window.addEventListener("message",function(event){if(event.source!==window.parent)return;var data=event.data;if(!data||typeof data!=="object"||data.type!==FOCUS_TYPE)return;if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",focusArtifactDocument,{once:true});return;}focusArtifactDocument();});window.addEventListener("keydown",function(event){if(event.key!=="Escape")return;window.setTimeout(function(){if(event.defaultPrevented)return;window.parent.postMessage({type:CLOSE_TYPE},"*");},0);});})();</script><!-- ===== SNelectric مدمج جوّه ElectroPanel — نفس الملف ===== -->
-<div id="snView" style="display:none;position:fixed;inset:0;background:#0b1220;z-index:10001;flex-direction:column;overflow:hidden">
+<div id="snView" style="touch-action:none;display:none;position:fixed;inset:0;background:#0b1220;z-index:10001;flex-direction:column;overflow:hidden">
   <div style="display:flex;align-items:center;gap:8px;padding:8px 10px;background:#0f172a;color:#fff;flex-wrap:wrap">
     <button id="snBack" type="button" style="background:#facc15;color:#111827;border:none;border-radius:999px;padding:7px 14px;font-weight:900;cursor:pointer">‹ رجوع لـ ElectroPanel</button>
     <b>⚡ SNelectric</b><span style="color:#94a3b8;font-size:12px">رسم مدني + كهرباء + سباكة</span>
@@ -1806,6 +1806,9 @@ document.getElementById('updateBtn').onclick = ()=>{
   </div>
   <div id="snTopStrip" style="display:flex;gap:6px;padding:6px 8px;background:#1e293b;flex-wrap:nowrap;align-items:center;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none"><style>#snTopStrip>*{flex:none}#snTopStrip::-webkit-scrollbar{display:none}</style>
     <button id="snPartsBtn" type="button" style="background:#0ea5e9;color:#fff;border:none;border-radius:10px;padding:7px 14px;font-weight:900;cursor:pointer">🧩 القطع ▸</button>
+    <button id="snView3DBtn" type="button" style="background:#334155;color:#fff;border:none;border-radius:10px;padding:7px 12px;font-weight:900;cursor:pointer">🏠 عرض 3D</button>
+    <button id="snWalkBtn" type="button" style="background:#334155;color:#fff;border:none;border-radius:10px;padding:7px 12px;font-weight:900;cursor:pointer">🚶 ادخل جوه</button>
+    <button id="snCeilBtn" type="button" style="background:#334155;color:#fff;border:none;border-radius:10px;padding:7px 12px;font-weight:900;cursor:pointer">🏠 سقف: شغال</button>
     <button id="snSoundBtn" type="button" style="background:#334155;color:#fff;border:none;border-radius:10px;padding:7px 12px;font-weight:900;cursor:pointer">🔊 صوت</button>
     <button id="snFaultBtn" type="button" style="background:#7f1d1d;color:#fff;border:none;border-radius:10px;padding:7px 12px;font-weight:900;cursor:pointer">⚠️ أعطال</button>
     <button id="snGameBtn" type="button" style="background:#7c3aed;color:#fff;border:none;border-radius:10px;padding:7px 12px;font-weight:900;cursor:pointer">🎮 لعبة الأعطال</button>
@@ -1836,6 +1839,23 @@ document.getElementById('updateBtn').onclick = ()=>{
     <button class="snPartBtn" data-kind="balcony" type="button">بلكونة</button>
     <button class="snPartBtn" data-kind="stairs" type="button">سلم</button>
     <button class="snPartBtn" data-kind="slab" type="button">بلاطة</button>
+    <div style="color:#facc15;font-size:12px;font-weight:900;margin-top:6px">🏠 غرف جاهزة</div>
+    <button class="snPartBtn" data-kind="tpl_bedroom" type="button">🛏️ غرفة نوم جاهزة</button>
+    <button class="snPartBtn" data-kind="tpl_living" type="button">🛋️ صالة جاهزة</button>
+    <button class="snPartBtn" data-kind="tpl_kitchen" type="button">🍳 مطبخ جاهز</button>
+    <button class="snPartBtn" data-kind="tpl_bathroom" type="button">🚿 حمام جاهز</button>
+    <button class="snPartBtn" data-kind="tpl_walldoor" type="button">🧱 حائط بباب</button>
+    <button class="snPartBtn" data-kind="tpl_wallwindow" type="button">🧱 حائط بشباك</button>
+    <div style="color:#fda4af;font-size:12px;font-weight:900;margin-top:6px">🪑 أثاث</div>
+    <button class="snPartBtn" data-kind="bed" type="button">🛏️ سرير</button>
+    <button class="snPartBtn" data-kind="sofa" type="button">🛋️ كنبة</button>
+    <button class="snPartBtn" data-kind="wardrobe" type="button">🚪 دولاب</button>
+    <button class="snPartBtn" data-kind="table" type="button">🪑 ترابيزة</button>
+    <button class="snPartBtn" data-kind="chair" type="button">💺 كرسي</button>
+    <button class="snPartBtn" data-kind="kitchen" type="button">🍽️ وحدة مطبخ</button>
+    <button class="snPartBtn" data-kind="dining" type="button">🍽️ طاولة سفرة</button>
+    <button class="snPartBtn" data-kind="desk" type="button">🖥️ مكتب</button>
+    <button class="snPartBtn" data-kind="tvunit" type="button">📺 وحدة تلفزيون</button>
     <div style="color:#7dd3fc;font-size:12px;font-weight:900;margin-top:6px">⚡ كهرباء</div>
     <button class="snPartBtn" data-kind="socket" type="button">بريزة عادية</button>
     <button class="snPartBtn" data-kind="socketQ" type="button">بريزة قوى</button>
@@ -1860,7 +1880,7 @@ document.getElementById('updateBtn').onclick = ()=>{
     <button class="snPartBtn" data-kind="wmeter" type="button">عداد مياه + فاتورة</button>
     <button class="snPartBtn" data-kind="wsource" type="button">خزان / مصدر مياه</button>
     <button class="snPartBtn" data-kind="maindrain" type="button">صرف رئيسي</button>
-    <button class="snPartBtn" data-kind="floordrain" type="button">بيبة (بلاعة)</button>
+    <button class="snPartBtn" data-kind="floordrain" type="button">بيبة (بلاعة)</button>     <button class="snPartBtn" data-kind="ventcap" type="button">تنفيس (سطح)</button>
      <div style="color:#fde68a;font-size:12px;font-weight:900;margin-top:6px">🔌 أحمال برموزها الهندسية</div>
      <button class="snPartBtn" data-kind="heaterE" type="button">⚡ سخان كهرباء</button>
      <button class="snPartBtn" data-kind="motor1" type="button">🌀 موتور أحادي</button>
@@ -1871,6 +1891,8 @@ document.getElementById('updateBtn').onclick = ()=>{
   </div>
   <style>#snDrawer .snPartBtn{background:#1e293b;color:#fff;border:1px solid #334155;border-radius:10px;padding:8px 10px;text-align:start;cursor:pointer;font-size:13px}#snDrawer .snPartBtn:active{background:#0ea5e9}#snDrawer.open{transform:translateX(0)!important}</style>
   <div id="snPlumbOverlay" style="display:none;position:absolute;inset:0;background:rgba(0,0,0,.62);z-index:30;align-items:center;justify-content:center"><div style="position:relative;width:min(345px,88vw);background:linear-gradient(180deg,#082f49,#0c4a6e);border:2px solid #38bdf8;border-radius:22px;padding:24px 18px 16px;text-align:center;color:#fff"><button id="snPlumbClose" type="button" style="position:absolute;top:8px;left:8px;width:30px;height:30px;border-radius:50%;border:1px solid #38bdf8;background:#082f49;color:#38bdf8;font-size:15px;cursor:pointer">✕</button><div style="font-size:24px;font-weight:900;color:#38bdf8;margin-bottom:10px">🚿 سباك 🚿</div><div style="font-size:15px;color:#e5e7eb;margin-bottom:14px;line-height:1.7">صاحب التطبيق<br><b style="font-size:20px;color:#fff">سامح النادى</b></div><div style="font-size:14px;color:#bae6fd;margin-bottom:6px">📞 رقم هاتف</div><div id="snPlumbPhone" style="direction:ltr;padding:8px;border-radius:12px;background:rgba(0,0,0,.35);border:1px solid #075985;font-weight:900;font-size:20px"></div><div style="font-size:14px;color:#bae6fd;margin:12px 0 6px">💬 واتس آب</div><div id="snPlumbWa" style="direction:ltr;padding:8px;border-radius:12px;background:rgba(0,0,0,.35);border:1px solid #075985;font-weight:900;font-size:20px"></div><div style="font-size:11px;color:#94a3b8;margin-top:12px">سباكة وصرف — تركيب وصيانة</div></div></div><canvas id="snCanvas" style="flex:1;width:100%;background:#0b1220;touch-action:none;cursor:crosshair"></canvas>
+   <div id="snViewCtl" style="display:none;position:absolute;left:50%;bottom:96px;transform:translateX(-50%);z-index:45;gap:6px;align-items:center;background:rgba(2,6,23,.92);border:1px solid #0ea5e9;border-radius:16px;padding:6px;box-shadow:0 8px 24px rgba(0,0,0,.5)"><button id="snViewRotL" type="button" style="min-width:52px;min-height:46px;border:none;border-radius:12px;padding:6px 8px;font-weight:900;font-size:13px;background:#334155;color:#fff;cursor:pointer">◀️ لف</button><button id="snViewSpin" type="button" style="min-width:64px;min-height:46px;border:none;border-radius:12px;padding:6px 8px;font-weight:900;font-size:13px;background:#0ea5e9;color:#fff;cursor:pointer">🔄 لف 360°</button><button id="snViewRotR" type="button" style="min-width:52px;min-height:46px;border:none;border-radius:12px;padding:6px 8px;font-weight:900;font-size:13px;background:#334155;color:#fff;cursor:pointer">لف ▶️</button></div>
+   <div id="snWalkCtl" style="display:none;position:absolute;left:50%;bottom:96px;transform:translateX(-50%);z-index:45;gap:6px;align-items:center;background:rgba(2,6,23,.92);border:1px solid #7c3aed;border-radius:16px;padding:6px;box-shadow:0 8px 24px rgba(0,0,0,.5)"><button id="snWalkL" type="button" style="min-width:52px;min-height:46px;border:none;border-radius:12px;padding:6px 8px;font-weight:900;font-size:13px;background:#334155;color:#fff;cursor:pointer;touch-action:none">⬅️ شمال</button><button id="snWalkF" type="button" style="min-width:52px;min-height:46px;border:none;border-radius:12px;padding:6px 8px;font-weight:900;font-size:13px;background:#16a34a;color:#fff;cursor:pointer;touch-action:none">⬆️ قدام</button><button id="snWalkB" type="button" style="min-width:52px;min-height:46px;border:none;border-radius:12px;padding:6px 8px;font-weight:900;font-size:13px;background:#64748b;color:#fff;cursor:pointer;touch-action:none">⬇️ ورا</button><button id="snWalkR" type="button" style="min-width:52px;min-height:46px;border:none;border-radius:12px;padding:6px 8px;font-weight:900;font-size:13px;background:#334155;color:#fff;cursor:pointer;touch-action:none">➡️ يمين</button><button id="snWalkOut" type="button" style="min-width:52px;min-height:46px;border:none;border-radius:12px;padding:6px 8px;font-weight:900;font-size:13px;background:#ef4444;color:#fff;cursor:pointer">🚪 اخرج</button></div>
   <div id="snWireCard" style="display:none;position:absolute;z-index:30;left:50%;top:118px;width:230px;background:rgba(2,6,23,.96);border:1.5px solid #38bdf8;border-radius:14px;padding:8px 10px;color:#e2e8f0;font-size:12px;line-height:1.5;pointer-events:auto;transform:translateX(-50%)"></div>
   <div id="snFaultPicker" style="display:none;position:absolute;z-index:30;width:200px;background:rgba(2,6,23,.96);border:1.5px solid #ef4444;border-radius:14px;padding:8px 10px;color:#e2e8f0;font-size:12px;line-height:1.5;pointer-events:auto;transform:translateX(-50%)"></div>
   <div id="snPartCard" style="display:none;position:absolute;z-index:25;width:230px;max-width:62vw;background:rgba(2,6,23,.94);border:1.5px solid #38bdf8;border-radius:14px;padding:8px 10px;color:#e2e8f0;font-size:11px;line-height:1.55;pointer-events:none;transform:translateX(-50%)"></div><div id="snLegendStrip" style="position:absolute;left:0;right:0;bottom:0;z-index:39;white-space:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:5px 10px;color:#e2e8f0;font-size:11px;background:rgba(2,6,23,.92);border-top:1px solid #334155">مفتاح الألوان: <b style="color:#ef4444">فاز أحمر</b> • <b style="color:#60a5fa">محايد أزرق</b> • <b style="color:#facc15">راجع أصفر</b> • <b style="color:#4ade80">أرضي أخضر</b> • <b style="color:#fb923c">فازة 2 برتقالي</b> • <b style="color:#c084fc">فازة 3 بنفسجي</b> • <b style="color:#e5e7eb">رئيسي أسود</b> • <b style="color:#38bdf8">بارد</b> • <b style="color:#ef4444">ساخن</b> • <b style="color:#4ade80">صرف</b> • <b style="color:#c084fc">تغذية</b> — دوس نقطة التوصيل تنوّر بظل — دوس نقطة تانية والسلك هيتوصل لوحده بلون النقطة الأولى • للمحاكاة: دوس على المفتاح وهو محدد عشان تشغّله/تطفيه — أو دوس زر تشغيل في البار اللي تحت — واللمبة هتنوّر لو الدايرة كاملة • التحكم: اسحب القطعة للتحريك • اسحب مقبض التدوير اللي فوق الحلقة للتدوير • البار اللي تحت فيه تشغيل وتدوير 90° وتكبير وتصغير ونسخ وحذف • اسحب الباب/الشباك جنب حائط أو ضلع غرفة وهيلزق لوحده ويقطع الحائط • دوس على السلك يتحدد — دوس علامة الحذف اللي في نصه أو زر حذف السلك يمسحه</div><div id="snCtlBar" style="display:none;position:absolute;left:50%;bottom:36px;transform:translateX(-50%);z-index:40;gap:5px;align-items:center;background:rgba(2,6,23,.92);border:1px solid #334155;border-radius:14px;padding:5px;box-shadow:0 8px 24px rgba(0,0,0,.5);max-width:96vw;overflow-x:auto"><button id="snCtlPower" type="button" style="min-width:48px;min-height:36px;border:none;border-radius:12px;padding:5px 8px;font-weight:900;font-size:12px;color:#fff;cursor:pointer">تشغيل</button><button id="snCtlRot" type="button" style="min-width:44px;min-height:36px;border:none;border-radius:12px;padding:5px 8px;font-weight:900;font-size:12px;background:#0ea5e9;color:#fff;cursor:pointer">تدوير 90</button><button id="snCtlBig" type="button" style="min-width:44px;min-height:36px;border:none;border-radius:12px;padding:5px 8px;font-weight:900;font-size:13px;background:#7c3aed;color:#fff;cursor:pointer">تكبير</button><button id="snCtlSmall" type="button" style="min-width:44px;min-height:36px;border:none;border-radius:12px;padding:5px 8px;font-weight:900;font-size:13px;background:#7c3aed;color:#fff;cursor:pointer">تصغير</button><button id="snCtlCopy" type="button" style="min-width:44px;min-height:36px;border:none;border-radius:12px;padding:5px 8px;font-weight:900;font-size:12px;background:#f59e0b;color:#111827;cursor:pointer">نسخ</button><button id="snCtlDel" type="button" style="min-width:44px;min-height:36px;border:none;border-radius:12px;padding:5px 8px;font-weight:900;font-size:12px;background:#ef4444;color:#fff;cursor:pointer">حذف</button></div>
@@ -1880,9 +1902,9 @@ document.getElementById('updateBtn').onclick = ()=>{
 var cv=null,ctx=null,parts=[],wires=[],sel=null,selWire=null,drag=null,wireFrom=null,hoverTerm=null,initDone=false;
   function distToSeg(px,py,ax,ay,bx,by){ var dx=bx-ax, dy=by-ay; var L2=dx*dx+dy*dy; var tt=L2?Math.max(0,Math.min(1,((px-ax)*dx+(py-ay)*dy)/L2)):0; return Math.hypot(px-(ax+tt*dx),py-(ay+tt*dy)); }
   function wireMid(w){ var a=termPos(w.from.part,w.from.term), b=termPos(w.to.part,w.to.term); return {x:(a.x+b.x)/2, y:(a.y+b.y)/2}; } var snZoom=1,snPanX=0,snPanY=0,pinch=null;
-var COLORS={phase:'#ef4444',phase2:'#f97316',phase3:'#a855f7',neutral:'#3b82f6',return:'#f59e0b',earthW:'#22c55e',main:'#e5e7eb',cold:'#38bdf8',hot:'#ef4444',drain:'#22c55e',feed:'#a855f7',water:'#94a3b8'};
-var NAMES={phase:'فاز',phase2:'فازة 2',phase3:'فازة 3',neutral:'محايد',return:'راجع',earthW:'أرضي',main:'رئيسي',cold:'بارد',hot:'ساخن',drain:'صرف',feed:'تغذية',water:'مياه'};
-var LABELS={room:'غرفة',wall:'حائط',door:'باب',window:'شباك',column:'عمود',balcony:'بلكونة',stairs:'سلم',slab:'بلاطة',socket:'بريزة عادية',socketQ:'بريزة قوى',switch:'مفتاح',switch2:'ديفاتوري',lamp:'لمبة',bell:'جرس',mcb:'قاطع MCB',panel:'لوحة',earth:'تأريض',source:'مصدر L/N',basin:'حوض',wc:'مرحاض',pump:'مضخة',heater:'سخان',pipe:'ماسورة',valve:'محبس',mixer:'خلاط',bathtub:'بانيو',coldPoint:'نقطة باردة',hotPoint:'نقطة ساخنة',wmeter:'عداد مياه',wsource:'خزان مياه',maindrain:'صرف رئيسي',floordrain:'بيبة (بلاعة)',dpipe:'ماسورة صرف',elbow90:'كوع 90',elbow45:'كوع 45',coupling:'جلبة',nipple:'نبل',manija:'مانيجا سوستة',heaterE:'سخان كهرباء',motor1:'موتور أحادي',ac:'تكييف',washer:'غسالة',cooker:'بوتاجاز',oven:'فرن'};
+var COLORS={phase:'#ef4444',phase2:'#f97316',phase3:'#a855f7',neutral:'#3b82f6',return:'#f59e0b',earthW:'#22c55e',main:'#e5e7eb',cold:'#38bdf8',hot:'#ef4444',drain:'#22c55e',feed:'#a855f7',water:'#94a3b8',vent:'#ec4899'};
+var NAMES={phase:'فاز',phase2:'فازة 2',phase3:'فازة 3',neutral:'محايد',return:'راجع',earthW:'أرضي',main:'رئيسي',cold:'بارد',hot:'ساخن',drain:'صرف',feed:'تغذية',water:'مياه',vent:'تنفيس'};
+var LABELS={room:'غرفة',wall:'حائط',door:'باب',window:'شباك',column:'عمود',balcony:'بلكونة',stairs:'سلم',slab:'بلاطة',bed:'سرير',sofa:'كنبة',wardrobe:'دولاب',table:'ترابيزة',chair:'كرسي',kitchen:'وحدة مطبخ',dining:'طاولة سفرة',desk:'مكتب',tvunit:'وحدة تلفزيون',socket:'بريزة عادية',socketQ:'بريزة قوى',switch:'مفتاح',switch2:'ديفاتوري',lamp:'لمبة',bell:'جرس',mcb:'قاطع MCB',panel:'لوحة',earth:'تأريض',source:'مصدر L/N',basin:'حوض',wc:'مرحاض',pump:'مضخة',heater:'سخان',pipe:'ماسورة',valve:'محبس',mixer:'خلاط',bathtub:'بانيو',coldPoint:'نقطة باردة',hotPoint:'نقطة ساخنة',wmeter:'عداد مياه',wsource:'خزان مياه',maindrain:'صرف رئيسي',floordrain:'بيبة (بلاعة)',dpipe:'ماسورة صرف',ventcap:'تنفيس (سطح)',elbow90:'كوع 90',elbow45:'كوع 45',coupling:'جلبة',nipple:'نبل',manija:'مانيجا سوستة',heaterE:'سخان كهرباء',motor1:'موتور أحادي',ac:'تكييف',washer:'غسالة',cooker:'بوتاجاز',oven:'فرن'};
 function termsOf(k){
   if(k==='socket'||k==='socketQ') return [{dx:0,dy:-26,kind:'phase',label:'L فاز'},{dx:-20,dy:18,kind:'neutral',label:'N محايد'},{dx:20,dy:18,kind:'earthW',label:'E أرضي'}];
   if(k==='switch') return [{dx:-26,dy:0,kind:'phase',label:'دخول'},{dx:26,dy:0,kind:'return',label:'راجع'}];
@@ -1906,9 +1928,10 @@ function termsOf(k){
   if(k==='hotPoint') return [{dx:0,dy:0,kind:'hot',label:'ساخن'}];
   if(k==='wmeter') return [{dx:-24,dy:0,kind:'water',label:'دخول'},{dx:24,dy:0,kind:'water',label:'خروج'}];
   if(k==='wsource') return [{dx:0,dy:22,kind:'cold',label:'خروج بارد'}];
-  if(k==='maindrain') return [{dx:0,dy:0,kind:'drain',label:'صرف'}];
-  if(k==='floordrain') return [{dx:0,dy:-22,kind:'drain',label:'مخرج 1'},{dx:22,dy:0,kind:'drain',label:'مخرج 2'},{dx:0,dy:22,kind:'drain',label:'مخرج 3'},{dx:-22,dy:0,kind:'drain',label:'مخرج 4'}];
+  if(k==='maindrain') return [{dx:0,dy:0,kind:'drain',label:'صرف'},{dx:0,dy:-26,kind:'vent',label:'تنفيس'}];
+  if(k==='floordrain') return [{dx:0,dy:-22,kind:'drain',label:'مخرج 1'},{dx:22,dy:0,kind:'drain',label:'مخرج 2'},{dx:0,dy:22,kind:'drain',label:'مخرج 3'},{dx:-22,dy:0,kind:'drain',label:'مخرج 4'},{dx:0,dy:0,kind:'vent',label:'تنفيس'}];
   if(k==='dpipe') return [{dx:-60,dy:0,kind:'drain',label:'دخول'},{dx:60,dy:0,kind:'drain',label:'خروج'}];
+  if(k==='ventcap') return [{dx:0,dy:22,kind:'vent',label:'تنفيس'}];
   if(k==='elbow90') return [{dx:-20,dy:0,kind:'water',label:'دخول'},{dx:0,dy:-20,kind:'water',label:'خروج'}];
   if(k==='elbow45') return [{dx:-20,dy:0,kind:'water',label:'دخول'},{dx:14,dy:-14,kind:'water',label:'خروج'}];
   if(k==='coupling') return [{dx:-20,dy:0,kind:'water',label:'دخول'},{dx:20,dy:0,kind:'water',label:'خروج'}];
@@ -1926,6 +1949,27 @@ function snWallSeg(w){ var c=Math.cos(w.rot*Math.PI/180), s2=Math.sin(w.rot*Math
 function snRoomEdges(rm){ var c=Math.cos(rm.rot*Math.PI/180), s2=Math.sin(rm.rot*Math.PI/180); function P(lx,ly){ return {x:rm.x+lx*c-ly*s2, y:rm.y+lx*s2+ly*c}; } var s=rm.s||1; var edges=[]; var pts=[P(-70*s,-45*s),P(70*s,-45*s),P(70*s,45*s),P(-70*s,45*s)]; for(var e=0;e<4;e++){ edges.push({x1:pts[e].x,y1:pts[e].y,x2:pts[(e+1)%4].x,y2:pts[(e+1)%4].y}); } return edges; }
 function snFindSnap(x,y,part,maxD){ var best=null; parts.forEach(function(h){ if(h===part) return; if(h.kind==='wall'){ var sg=snWallSeg(h); var cl=snClosestSeg(x,y,sg.x1,sg.y1,sg.x2,sg.y2); if(cl.d<maxD && (!best||cl.d<best.d)) best={host:h,edge:-1,cx:cl.cx,cy:cl.cy,t:cl.t,angle:h.rot,d:cl.d}; } else if(h.kind==='room'){ var edges=snRoomEdges(h); for(var e=0;e<4;e++){ var sg2=edges[e]; var cl2=snClosestSeg(x,y,sg2.x1,sg2.y1,sg2.x2,sg2.y2); if(cl2.d<maxD && (!best||cl2.d<best.d)){ var ang=Math.atan2(sg2.y2-sg2.y1,sg2.x2-sg2.x1)*180/Math.PI; best={host:h,edge:e,cx:cl2.cx,cy:cl2.cy,t:cl2.t,angle:ang,d:cl2.d}; } } } }); return best; }
 function snSnapDoor(part,maxD){ if(part.kind!=='door'&&part.kind!=='window') return false; var b=snFindSnap(part.x,part.y,part,maxD||70); if(!b){ if(part.mount){ var still=parts.some(function(h){return h.id===part.mount.hostId;}); if(!still) part.mount=null; } return false; } part.x=b.cx; part.y=b.cy; part.rot=Math.round(b.angle); part.mount={hostId:b.host.id,edge:b.edge,t:b.t}; return true; }
+function snMountWorld(pp){
+  if(!pp.mount) return null;
+  var host=parts.find(function(h){return h.id===pp.mount.hostId;});
+  if(!host) return null;
+  if(host.kind==='room'){
+    var es=snRoomEdges(host); var e=es[pp.mount.edge]; if(!e) return null;
+    return {x:e.x1+(e.x2-e.x1)*pp.mount.t, y:e.y1+(e.y2-e.y1)*pp.mount.t, rot:Math.round(Math.atan2(e.y2-e.y1,e.x2-e.x1)*180/Math.PI)};
+  } else if(host.kind==='wall'){
+    var sg=snWallSeg(host);
+    return {x:sg.x1+(sg.x2-sg.x1)*pp.mount.t, y:sg.y1+(sg.y2-sg.y1)*pp.mount.t, rot:Math.round(Math.atan2(sg.y2-sg.y1,sg.x2-sg.x1)*180/Math.PI)};
+  }
+  return null;
+}
+function snResnapMounted(host){
+  parts.forEach(function(pp){
+    if((pp.kind==='door'||pp.kind==='window')&&pp.mount&&pp.mount.hostId===host.id){
+      var pos=snMountWorld(pp);
+      if(pos){ pp.x=pos.x; pp.y=pos.y; pp.rot=pos.rot; }
+    }
+  });
+}
 function snOpeningsFor(host){ snEnsureIds(); var out=[]; parts.forEach(function(pp){ if((pp.kind==='door'||pp.kind==='window')&&pp.mount&&pp.mount.hostId===host.id){ out.push({t:pp.mount.t,edge:pp.mount.edge,half:snOpeningHalf(pp.kind),kind:pp.kind}); } }); return out; }
 function snIsSwitchable(kind){ return kind==='switch'||kind==='switch2'||kind==='mcb'||kind==='valve'||kind==='mixer'||kind==='basin'||kind==='wc'||kind==='bathtub'||kind==='coldPoint'||kind==='hotPoint'||kind==='wsource'; }
 function snOn(pp){ return pp.on!==undefined ? pp.on : (pp.kind==='mcb'); }
@@ -1937,7 +1981,7 @@ function snNoiseBuffer(c2){ var len=c2.sampleRate,buf=c2.createBuffer(1,len,c2.s
 function snPlayWater(on){ var c2=snEnsureAudio(); if(!c2)return; if(on&&!snWaterNodes){ var src=c2.createBufferSource(); src.buffer=snNoiseBuffer(c2); src.loop=true; var f=c2.createBiquadFilter(); f.type='bandpass'; f.frequency.value=1100; f.Q.value=0.5; var g=c2.createGain(); g.gain.value=0.07; src.connect(f); f.connect(g); g.connect(c2.destination); src.start(); snWaterNodes={src:src}; } else if(!on&&snWaterNodes){ try{ snWaterNodes.src.stop(); }catch(e){} snWaterNodes=null; } }
 function snPlayPump(on){ var c2=snEnsureAudio(); if(!c2)return; if(on&&!snPumpNodes){ var o=c2.createOscillator(); o.type='sawtooth'; o.frequency.value=52; var f2=c2.createBiquadFilter(); f2.type='lowpass'; f2.frequency.value=220; var g2=c2.createGain(); g2.gain.value=0.04; o.connect(f2); f2.connect(g2); g2.connect(c2.destination); o.start(); snPumpNodes={src:o}; } else if(!on&&snPumpNodes){ try{ snPumpNodes.src.stop(); }catch(e){} snPumpNodes=null; } }
 function snWaterSim(loadOn){
- var WKINDS={cold:1,hot:1,drain:1,water:1};
+ var WKINDS={cold:1,hot:1,drain:1,water:1,vent:1};
  var key=function(part,idx){ return part.id+':'+idx; };
  var adj={}; function addEdge(a,b){ if(!adj[a])adj[a]=[]; if(!adj[b])adj[b]=[]; adj[a].push(b); adj[b].push(a); }
  wires.forEach(function(w){ var fi=snTermIdx(w.from.part,w.from.term),ti=snTermIdx(w.to.part,w.to.term); if(fi<0||ti<0)return; var tf=termsOf(w.from.part.kind)[fi],tt=termsOf(w.to.part.kind)[ti]; if(!WKINDS[tf.kind]||!WKINDS[tt.kind])return; addEdge(key(w.from.part,fi),key(w.to.part,ti)); });
@@ -1966,12 +2010,51 @@ function snWaterSim(loadOn){
  parts.forEach(function(pp){ ['cold','hot'].forEach(function(pa){ if(pp.fault!=='blocked') intPairs(pp,pa).forEach(function(pr){ fAdd(key(pp,pr[0]),key(pp,pr[1])); }); }); });
  var flowSeen={},fq=[]; ['basin','wc','bathtub','mixer','coldPoint','hotPoint'].forEach(function(kk){ parts.forEach(function(pp){ if(pp.kind===kk&&flow[pp.id]){ termsOf(pp.kind).forEach(function(tm,idx){ if(WKINDS[tm.kind]&&tm.kind!=='drain'){ var k2=key(pp,idx); if(!flowSeen[k2]){ flowSeen[k2]=1; fq.push(k2); } } }); } }); });
  while(fq.length){ var c3=fq.shift(); (fullAdj[c3]||[]).forEach(function(n){ if(!flowSeen[n]){ flowSeen[n]=1; fq.push(n); } }); }
- var wireWater=wires.map(function(w){ var fi=snTermIdx(w.from.part,w.from.term),ti=snTermIdx(w.to.part,w.to.term); if(fi<0||ti<0)return null; var tf=termsOf(w.from.part.kind)[fi],tt=termsOf(w.to.part.kind)[ti]; if(tf.kind==='drain'&&tt.kind==='drain'){ var k1=key(w.from.part,fi),k2=key(w.to.part,ti); if(drainSeen[k1]||drainSeen[k2])return 'drain'; return null; } if(!WKINDS[tf.kind]||!WKINDS[tt.kind])return null; var a1=key(w.from.part,fi),a2=key(w.to.part,ti); if(hot[a1]||hot[a2])return 'hot'; if(cold[a1]||cold[a2])return 'cold'; return null; });
+ var wireWater=wires.map(function(w){ var fi=snTermIdx(w.from.part,w.from.term),ti=snTermIdx(w.to.part,w.to.term); if(fi<0||ti<0)return null; var tf=termsOf(w.from.part.kind)[fi],tt=termsOf(w.to.part.kind)[ti]; if(tf.kind==='vent'||tt.kind==='vent') return 'vent';
+ if(tf.kind==='drain'&&tt.kind==='drain'){ var k1=key(w.from.part,fi),k2=key(w.to.part,ti); if(drainSeen[k1]||drainSeen[k2])return 'drain'; return null; } if(!WKINDS[tf.kind]||!WKINDS[tt.kind])return null; var a1=key(w.from.part,fi),a2=key(w.to.part,ti); if(hot[a1]||hot[a2])return 'hot'; if(cold[a1]||cold[a2])return 'cold'; return null; });
  var wireFlow=wires.map(function(w,i){ if(wireWater[i]==='drain')return true; if(!wireWater[i])return false; var fi=snTermIdx(w.from.part,w.from.term),ti=snTermIdx(w.to.part,w.to.term); if(fi<0||ti<0)return false; return !!(flowSeen[key(w.from.part,fi)]||flowSeen[key(w.to.part,ti)]); });
  var weakFlow=parts.some(function(pp){ return pp.fault==='leak'&&['pipe','valve','mixer','elbow90','elbow45','coupling','nipple','manija','wmeter'].indexOf(pp.kind)>=0; });
  function drainOKFor(pp){ var seen2={},q2=[]; termsOf(pp.kind).forEach(function(tm,idx){ if(tm.kind==='drain'){ var kk=key(pp,idx); seen2[kk]=1; q2.push(kk); } }); while(q2.length){ var cur2=q2.shift(); var isMain=false; parts.forEach(function(x){ if(x.kind==='maindrain'){ termsOf(x.kind).forEach(function(t2,i2){ if(key(x,i2)===cur2) isMain=true; }); } }); if(isMain) return true; (adj[cur2]||[]).forEach(function(n){ if(!seen2[n]){ seen2[n]=1; q2.push(n); } }); var sp3=cur2.split(':'); var pp3=parts.find(function(x){ return x.id===sp3[0]; }); if(pp3&&pp3.fault!=='blocked'){ var idx3=+sp3[1]; intPairs(pp3,'drain').forEach(function(pr){ var n3=null; if(pr[0]===idx3)n3=key(pp3,pr[1]); else if(pr[1]===idx3)n3=key(pp3,pr[0]); if(n3&&!seen2[n3]){ seen2[n3]=1; q2.push(n3); } }); } } return false; }
- var blockedDrain={}; parts.forEach(function(pp){ if(flow[pp.id]&&drainConn(pp)&&!drainOKFor(pp)) blockedDrain[pp.id]=1; });
- return {waterCold:cold,waterHot:hot,waterFlow:flow,wireWater:wireWater,wireFlow:wireFlow,drainSeen:drainSeen,weakFlow:weakFlow,blockedDrain:blockedDrain};
+ 
+// ===== ماسورة التنفيس: الصرف اللي ليه طريق تنفيس للسطح (ventcap) يبقى محمي =====
+var ventSeen={}, vq=[];
+parts.forEach(function(pp){
+  if(pp.kind==='ventcap'){
+    termsOf(pp.kind).forEach(function(tm,idx){
+      if(tm.kind==='vent'){ var vkk=key(pp,idx); if(!ventSeen[vkk]){ ventSeen[vkk]=1; vq.push(vkk); } }
+    });
+  }
+});
+while(vq.length){
+  var vcur=vq.shift();
+  (adj[vcur]||[]).forEach(function(n){ if(!ventSeen[n]){ ventSeen[n]=1; vq.push(n); } });
+}
+var ventedDrain={}, vdq=[];
+parts.forEach(function(pp){
+  var hasVent=false;
+  termsOf(pp.kind).forEach(function(tm,idx){ if(tm.kind==='vent'&&ventSeen[key(pp,idx)]) hasVent=true; });
+  if(hasVent){
+    termsOf(pp.kind).forEach(function(tm,idx){
+      if(tm.kind==='drain'){ var vkk2=key(pp,idx); if(!ventedDrain[vkk2]){ ventedDrain[vkk2]=1; vdq.push(vkk2); } }
+    });
+  }
+});
+while(vdq.length){
+  var vc=vdq.shift();
+  (adj[vc]||[]).forEach(function(n){ if(!ventedDrain[n]){ ventedDrain[n]=1; vdq.push(n); } });
+  var vsp=vc.split(':'); var vpp=parts.find(function(x){ return x.id===vsp[0]; });
+  if(vpp){ var vidx=+vsp[1]; if(vpp.fault!=='blocked') intPairs(vpp,'drain').forEach(function(pr){ var vn2=null; if(pr[0]===vidx)vn2=key(vpp,pr[1]); else if(pr[1]===vidx)vn2=key(vpp,pr[0]); if(vn2&&!ventedDrain[vn2]){ ventedDrain[vn2]=1; vdq.push(vn2); } }); }
+}
+var unventedDrain={};
+parts.forEach(function(pp){
+  if(flow[pp.id]&&drainConn(pp)){
+    var vented=false;
+    termsOf(pp.kind).forEach(function(tm,idx){ if(tm.kind==='drain'&&ventedDrain[key(pp,idx)]) vented=true; });
+    if(!vented) unventedDrain[pp.id]=1;
+  }
+});
+var blockedDrain={}; parts.forEach(function(pp){ if(flow[pp.id]&&drainConn(pp)&&!drainOKFor(pp)) blockedDrain[pp.id]=1; });
+ return {waterCold:cold,waterHot:hot,waterFlow:flow,wireWater:wireWater,wireFlow:wireFlow,drainSeen:drainSeen,weakFlow:weakFlow,blockedDrain:blockedDrain,ventedDrain:ventedDrain,unventedDrain:unventedDrain};
 }
 
 var SN_INFO={
@@ -1983,7 +2066,7 @@ var SN_INFO={
  pipe:{c:'ماسورة مياه: وصّل طرفيها بين أي نقطتين مياه، واسحب المقبض البرتقالي لتطويلها',w:'1/2 أو 3/4 بوصة'},
  dpipe:{c:'ماسورة صرف: وصّل طرفيها بين صرف الجهاز والصرف الرئيسي، واسحب المقبض البرتقالي لتطويلها',d:'حسب الجهاز (1.5 أو 4 بوصة)'},
  floordrain:{c:'بيبة (بلاعة): 4 مخارج صرف — وصّل أي مخرج للصرف الرئيسي، والمخرج اللي مش متوصل بيبقى مقفول لوحده',d:'2 بوصة (المخارج)'},
- maindrain:{c:'الصرف الرئيسي: جمّع عليه كل مواسير الصرف',d:'4 بوصة'},
+ maindrain:{c:'الصرف الرئيسي: جمّع عليه كل مواسير الصرف',d:'4 بوصة'},  ventcap:{c:'فتحة تنفيس السطح: وصّلها بماسورة تنفيس من البيبة أو الصرف الرئيسي — بتطلّع الهوا وريحة المجاري فوق السطح',d:'4 بوصة'},
  wmeter:{c:'ركّبه على الخط الرئيسي: دخول من الخزان وخروج للشبكة',w:'3/4 بوصة'},
  wsource:{c:'مصدر المياه (خزان): خرّج منه ماسورة بارد للشبكة',w:'3/4 بوصة'},
  heater:{c:'دخول بارد من المحبس، وخروج ساخن للخلاطات',w:'1/2 بوصة'},
@@ -1994,7 +2077,16 @@ var SN_INFO={
  elbow45:{c:'كوع 45°: بيغيّر اتجاه الماسورة 45 درجة',w:'حسب المقاس المختار'},
  coupling:{c:'جلبة: بتوصل ماسورتين ببعض على نفس الخط',w:'حسب المقاس المختار'},
  nipple:{c:'نبل: وصلة قصيرة بتوصل بين قطعتين',w:'حسب المقاس المختار'},
- manija:{c:'مانيجا سوستة (مرنة): بتوصل القاعدة أو الحوض للصرف وبتتمط',d:'حسب المقاس المختار'}
+ manija:{c:'مانيجا سوستة (مرنة): بتوصل القاعدة أو الحوض للصرف وبتتمط',d:'حسب المقاس المختار'},
+  bed:{c:'سرير: حطه جوه الغرفة — في العرض 3D هيبان سرير حقيقي'},
+  sofa:{c:'كنبة: حطها في الصالة — في العرض 3D هتبان كنبة حقيقية'},
+  wardrobe:{c:'دولاب: حطه على حيطة الغرفة'},
+  table:{c:'ترابيزة: حطها في نص الصالة'},
+  chair:{c:'كرسي: حطه حوالين الترابيزة أو المكتب'},
+  kitchen:{c:'وحدة مطبخ: حطها على حيطة المطبخ'},
+  dining:{c:'طاولة سفرة: حطها في الصالة أو المطبخ'},
+  desk:{c:'مكتب: حطه في أوضة الشغل'},
+  tvunit:{c:'وحدة تلفزيون: حطها قدام الكنبة'}
 };
 var SN_SIZES=['1/2″','3/4″','1″','1.5″','2″','3″','4″','5″','6″'];
 function snTermHasWire(part,tm){ return wires.some(function(w){ return (w.from.part===part&&w.from.term.dx===tm.dx&&w.from.term.dy===tm.dy)||(w.to.part===part&&w.to.term.dx===tm.dx&&w.to.term.dy===tm.dy); }); }
@@ -2003,9 +2095,9 @@ function snUpdatePartCard(){
  var card=document.getElementById('snPartCard'); if(!card) return;
  if(!sel||selWire){ card.style.display='none'; snCardKey=''; return; }
  var p=sel; var info=SN_INFO[p.kind]||null;
- var connCount=0; if(p.kind==='floordrain'){ termsOf(p.kind).forEach(function(tm){ if(snTermHasWire(p,tm)) connCount++; }); }
+ var connCount=0; if(p.kind==='floordrain'){ termsOf(p.kind).forEach(function(tm){ if(tm.kind==='drain'&&snTermHasWire(p,tm)) connCount++; }); }
  var key=p.id+'|'+(p.size||'')+'|'+wires.length+'|'+connCount;
- var sx=p.x*snZoom+snPanX, sy=p.y*snZoom+snPanY;
+ var _pr=snView3D?snIsoProject(p.x,p.y,0):null; var sx=_pr?_pr.x:p.x*snZoom+snPanX, sy=_pr?_pr.y:p.y*snZoom+snPanY;
  var W=cv.getBoundingClientRect().width;
  var lx=Math.max(120,Math.min(W-120,sx));
  card.style.left=lx+'px'; card.style.top=Math.max(84,sy-130)+'px';
@@ -2014,14 +2106,14 @@ function snUpdatePartCard(){
  var html='<div style="font-weight:900;color:#fff;font-size:12px;margin-bottom:3px">🪧 '+(LABELS[p.kind]||p.kind)+(p.size?' • '+p.size:'')+'</div>';
  if(info){ html+='<div style="color:#bae6fd">🔗 طريقة التوصيل: '+info.c+'</div>'; if(info.w) html+='<div>💧 ماسورة المياه: <b style="color:#fff">'+info.w+'</b></div>'; if(info.d) html+='<div>🚿 ماسورة الصرف: <b style="color:#fff">'+info.d+'</b></div>'; }
  else { html+='<div style="color:#bae6fd">وصّل ترمينالاتها بالأسلاك</div>'; }
- if(p.kind==='floordrain') html+='<div>مخارج متصلة: <b style="color:#4ade80">'+connCount+' من 4</b> — المخرج غير المتصل مقفول</div>';
+ if((p.kind==='door'||p.kind==='window')&&p.mount){ var host=parts.find(function(x){return x.id===p.mount.hostId;}); var eNames=['فوق','يمين','تحت','شمال']; var eTxt=p.mount.edge===-1?'على الحائط':('الضلع '+eNames[p.mount.edge]); html+='<div>📍 مركّب على: '+(host?(LABELS[host.kind]||host.kind):'؟')+' — '+eTxt+' — المسافة من بداية الضلع: <b style="color:#fff">'+Math.round((p.mount.t||0)*100)+'%</b></div>'; } if(p.kind==='floordrain') html+='<div>مخارج متصلة: <b style="color:#4ade80">'+connCount+' من 4</b> — المخرج غير المتصل مقفول</div>';
  if(p.size){ html+='<div style="margin-top:4px">المقاس: '+SN_SIZES.map(function(s){ return '<button data-snsize="'+s+'" type="button" style="pointer-events:auto;margin:2px 1px;border:'+(s===p.size?'2px solid #facc15':'1px solid #475569')+';background:'+(s===p.size?'#facc15':'#1e293b')+';color:'+(s===p.size?'#111827':'#fff')+';border-radius:8px;padding:3px 7px;font-size:11px;font-weight:900;cursor:pointer">'+s+'</button>'; }).join('')+'</div>'; }
  card.innerHTML=html; card.style.display='block';
 }
 
 
 var snSimOn=true;
-var SN_PIPE_SIZES={cold:['1/2','3/4','1','1.5','2'],hot:['1/2','3/4','1','1.5','2'],drain:['1.5','2','3','4','5','6'],water:['1/2','3/4','1','1.5','2']};
+var SN_PIPE_SIZES={cold:['1/2','3/4','1','1.5','2'],hot:['1/2','3/4','1','1.5','2'],drain:['1.5','2','3','4','5','6'],vent:['2','3','4'],water:['1/2','3/4','1','1.5','2']};
 var SN_SIZE_FACTOR={'1/2':1,'3/4':1.5,'1':2,'1.5':3,'2':4,'3':6,'4':8,'5':10,'6':12};
 function snWireKind(w,wi){ if(snSimCache&&snSimCache.wireWater&&snSimCache.wireWater[wi]) return snSimCache.wireWater[wi]; return w.kind; }
 function snUpdateWireCard(){
@@ -2029,9 +2121,9 @@ function snUpdateWireCard(){
  if(!selWire){ card.style.display='none'; return; }
  var wi=wires.indexOf(selWire); if(wi<0){ card.style.display='none'; return; }
  var wk=snWireKind(selWire,wi);
- if(['cold','hot','drain','water'].indexOf(wk)<0){ card.style.display='none'; return; }
+ if(['cold','hot','drain','water','vent'].indexOf(wk)<0){ card.style.display='none'; return; }
  var opts=SN_PIPE_SIZES[wk]||SN_PIPE_SIZES.cold;
- var html='<div style="font-weight:900;color:#fff;font-size:13px;margin-bottom:4px">🚰 الخط: '+(NAMES[wk]||wk)+' — المقاس: '+(selWire.size||'1/2')+' بوصة</div><div style="color:#94a3b8;font-size:11px">دوس المقاس عشان تغيّره — كل ما المقاس كبر، الخط اتخن والمياه زادت</div><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:6px">';
+ var html='<div style="font-weight:900;color:#fff;font-size:13px;margin-bottom:4px">'+(wk==='vent'?'💨':'🚰')+' الخط: '+(NAMES[wk]||wk)+' — المقاس: '+(selWire.size||'1/2')+' بوصة</div><div style="color:#94a3b8;font-size:11px">'+(wk==='vent'?'دوس المقاس عشان تغيّره — كل ما المقاس كبر، الخط اتخن (التنفيس هوا مش مياه)':'دوس المقاس عشان تغيّره — كل ما المقاس كبر، الخط اتخن والمياه زادت')+'</div><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:6px">';
  opts.forEach(function(s){ html+='<button data-wsize="'+s+'" type="button" style="background:'+(selWire.size===s?'#0ea5e9':'#1e293b')+';color:#fff;border:1px solid #475569;border-radius:9px;padding:6px 10px;font-weight:900;cursor:pointer">'+s+'″</button>'; });
  html+='</div><button data-wdel="1" type="button" style="display:block;width:100%;margin-top:8px;background:#ef4444;color:#fff;border:none;border-radius:9px;padding:6px;font-weight:900;cursor:pointer">🗑️ حذف الخط</button>';
  card.innerHTML=html; card.style.display='block';
@@ -2042,7 +2134,7 @@ function snFaultsFor(kind){
  if(kind==='pump'||kind==='heater') return ['short','overload','leak','blocked'];
  if(['source','mcb','switch','switch2','panel','lamp','bell','heaterE','motor1','ac','washer','cooker','oven','socket','socketQ'].indexOf(kind)>=0) return ['short','overload'];
  if(['pipe','valve','mixer','elbow90','elbow45','coupling','nipple','manija','wmeter','wsource','coldPoint','hotPoint'].indexOf(kind)>=0) return ['leak','blocked'];
- if(['dpipe','floordrain','maindrain'].indexOf(kind)>=0) return ['blocked','leak'];
+ if(['dpipe','floordrain','maindrain','ventcap'].indexOf(kind)>=0) return ['blocked','leak'];
  if(['basin','wc','bathtub'].indexOf(kind)>=0) return ['blocked','leak'];
  return [];
 }
@@ -2094,6 +2186,7 @@ function snDrawFaults(){
   }
  });
  if(snSimCache.blockedDrain) Object.keys(snSimCache.blockedDrain).forEach(function(id){ var pp=parts.find(function(x){ return x.id===id; }); if(!pp) return; var lvl=18+Math.sin(t/300)*4; ctx.save(); ctx.fillStyle='rgba(56,189,248,.55)'; ctx.beginPath(); ctx.ellipse(pp.x, pp.y-24, 30, lvl*0.5, 0, 0, 7); ctx.fill(); ctx.fillStyle='#fff'; ctx.font='bold 12px sans-serif'; ctx.fillText('🚫 مسدود! بيفيض', pp.x, pp.y-52); ctx.restore(); });
+  if(snSimCache.unventedDrain) Object.keys(snSimCache.unventedDrain).forEach(function(id){ var pp=parts.find(function(x){ return x.id===id; }); if(!pp) return; ctx.save(); ctx.fillStyle='rgba(236,72,153,.35)'; ctx.beginPath(); ctx.ellipse(pp.x, pp.y-24, 26, 9, 0, 0, 7); ctx.fill(); ctx.fillStyle='#fff'; ctx.font='bold 12px sans-serif'; ctx.fillText('💨 ريحة مجاري!', pp.x, pp.y-52); ctx.restore(); });
  if(snSimCache.faultTripped) parts.forEach(function(pp){ if(pp.kind==='mcb'){ ctx.save(); ctx.fillStyle='#facc15'; ctx.font='bold 12px sans-serif'; ctx.textAlign='center'; ctx.fillText('⚡ فصل!', pp.x, pp.y-46); ctx.restore(); } });
 }
 
@@ -2127,6 +2220,7 @@ function snGameSymptoms(){
  var sym=[];
  if(snSimCache&&snSimCache.faultTripped) sym.push('⚡ القاطع فصل!');
  if(snSimCache&&snSimCache.blockedDrain&&Object.keys(snSimCache.blockedDrain).length) sym.push('🚫 في حاجة بتفيض!');
+  if(snSimCache&&snSimCache.unventedDrain&&Object.keys(snSimCache.unventedDrain).length) sym.push('💨 ريحة مجاري! صرف من غير تنفيس');
  if(parts.some(function(pp){ return pp.gameFault&&pp.fault==='leak'&&snPartWaterLive(pp,snSimCache); })) sym.push('💧 الفاتورة بتزيد لوحدها!');
  if(parts.some(function(pp){ return pp.gameFault&&pp.fault==='overload'&&!(snSimCache&&snSimCache.faultTripped)&&snPartElecLive(pp,snSimCache); })) sym.push('🔥 في حاجة بتسخن!');
  if(!sym.length&&parts.some(function(pp){ return pp.gameFault; })) sym.push('🔍 مفيش أعراض ظاهرة — العطل مستخبي، افحص القطع');
@@ -2191,10 +2285,10 @@ function snSim(){ var parent={}; function find(a){ while(parent[a]!==a){ parent[
   parts.forEach(function(pp){ if(LOADS.indexOf(pp.kind)<0) return; var ts=termsOf(pp.kind); var fi=-1, ni=-1; ts.forEach(function(tm,idx){ if(fi<0 && (tm.kind==='phase'||tm.kind==='phase2'||tm.kind==='phase3'||tm.kind==='return')) fi=idx; if(ni<0 && tm.kind==='neutral') ni=idx; }); loadOn[pp.id]=(fi>=0&&ni>=0&&inSet(live,pp,fi)&&inSet(neut,pp,ni)); });
   if(!snSimOn) Object.keys(loadOn).forEach(function(k){ loadOn[k]=false; });
   var wireLive=wires.map(function(w){ var fi=snTermIdx(w.from.part,w.from.term), ti=snTermIdx(w.to.part,w.to.term); var liveSide=(fi>=0&&inSet(live,w.from.part,fi))||(ti>=0&&inSet(live,w.to.part,ti)); var neutSide=(fi>=0&&inSet(neut,w.from.part,fi))||(ti>=0&&inSet(neut,w.to.part,ti)); var loadOnSide=loadOn[w.from.part.id]||loadOn[w.to.part.id]; return liveSide || (neutSide && loadOnSide); });
-  var wsim=snWaterSim(loadOn); return {live:live,neut:neut,loadOn:loadOn,wireLive:wireLive,find:find,key:key,inSet:inSet,waterCold:wsim.waterCold,waterHot:wsim.waterHot,waterFlow:wsim.waterFlow,wireWater:wsim.wireWater,wireFlow:wsim.wireFlow,drainSeen:wsim.drainSeen,faultTripped:snTrip,weakFlow:wsim.weakFlow,blockedDrain:wsim.blockedDrain}; }
+  var wsim=snWaterSim(loadOn); return {live:live,neut:neut,loadOn:loadOn,wireLive:wireLive,find:find,key:key,inSet:inSet,waterCold:wsim.waterCold,waterHot:wsim.waterHot,waterFlow:wsim.waterFlow,wireWater:wsim.wireWater,wireFlow:wsim.wireFlow,drainSeen:wsim.drainSeen,faultTripped:snTrip,weakFlow:wsim.weakFlow,blockedDrain:wsim.blockedDrain,unventedDrain:wsim.unventedDrain,ventedDrain:wsim.ventedDrain}; }
 var snSimCache=null;
 function nearTerm(x,y){ var best=null,bd=24; allTerms().forEach(function(tp){ var d=Math.hypot(tp.x-x,tp.y-y); if(d<bd){bd=d;best=tp;} }); return best; }
-function draw(){   if(!ctx) return; var r=cv.getBoundingClientRect(); var W=r.width,H=r.height; ctx.setTransform(1,0,0,1,0,0); ctx.clearRect(0,0,W,H); var x0=-snPanX/snZoom, y0=-snPanY/snZoom, x1=(W-snPanX)/snZoom, y1=(H-snPanY)/snZoom; ctx.strokeStyle='rgba(255,255,255,0.06)'; ctx.lineWidth=1; for(var gx=Math.floor(x0/24)*24;gx<=x1;gx+=24){ctx.beginPath();ctx.moveTo(gx,y0);ctx.lineTo(gx,y1);ctx.stroke();} for(var gy=Math.floor(y0/24)*24;gy<=y1;gy+=24){ctx.beginPath();ctx.moveTo(x0,gy);ctx.lineTo(x1,gy);ctx.stroke();} ctx.save(); ctx.translate(snPanX,snPanY); ctx.scale(snZoom,snZoom); snSimCache=snSim(); wires.forEach(function(w,wi){ var a=termPos(w.from.part,w.from.term), b=termPos(w.to.part,w.to.term); var wl=snSimCache&&snSimCache.wireLive[wi]; ctx.save(); if(wl){ ctx.shadowColor=COLORS[w.kind]||'#fff'; ctx.shadowBlur=12; } var ww=snSimCache&&snSimCache.wireWater?snSimCache.wireWater[wi]:null; var wf=snSimCache&&snSimCache.wireFlow?snSimCache.wireFlow[wi]:false; var wcol=ww?({cold:'#38bdf8',hot:'#ef4444',drain:'#22c55e'}[ww]||'#94a3b8'):(COLORS[w.kind]||'#fff'); if(ww){ ctx.shadowColor=wcol; ctx.shadowBlur=12; } ctx.strokeStyle=wcol; var _szf=ww?(SN_SIZE_FACTOR[w.size]||1):1; ctx.lineWidth=ww?(2+_szf*0.9+(wf?1:0)):(wl?4:3); if(wf){ ctx.setLineDash([12,8]); ctx.lineDashOffset=-(snFlowTick||0); } ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke(); ctx.setLineDash([]); ctx.fillStyle=wcol; ctx.font='11px sans-serif'; ctx.textAlign='center'; ctx.fillText((ww?(NAMES[ww]+(w.size?' '+w.size+'″':'')):NAMES[w.kind])||'',(a.x+b.x)/2,(a.y+b.y)/2-6); if(w===selWire){ ctx.save(); ctx.setLineDash([8,6]); ctx.strokeStyle='#ffffff'; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke(); ctx.restore(); } ctx.restore(); });
+function draw(){   if(!ctx) return; var vc=document.getElementById('snViewCtl'); if(vc) vc.style.display='none'; if(snView3D){ snSimCache=snSim(); if(snWalkMode){ snDrawWalk(); } else { snDraw3D(); } return; } var r=cv.getBoundingClientRect(); var W=r.width,H=r.height; ctx.setTransform(1,0,0,1,0,0); ctx.clearRect(0,0,W,H); var x0=-snPanX/snZoom, y0=-snPanY/snZoom, x1=(W-snPanX)/snZoom, y1=(H-snPanY)/snZoom; ctx.strokeStyle='rgba(255,255,255,0.06)'; ctx.lineWidth=1; for(var gx=Math.floor(x0/24)*24;gx<=x1;gx+=24){ctx.beginPath();ctx.moveTo(gx,y0);ctx.lineTo(gx,y1);ctx.stroke();} for(var gy=Math.floor(y0/24)*24;gy<=y1;gy+=24){ctx.beginPath();ctx.moveTo(x0,gy);ctx.lineTo(x1,gy);ctx.stroke();} ctx.save(); ctx.translate(snPanX,snPanY); ctx.scale(snZoom,snZoom); snSimCache=snSim(); wires.forEach(function(w,wi){ var a=termPos(w.from.part,w.from.term), b=termPos(w.to.part,w.to.term); var wl=snSimCache&&snSimCache.wireLive[wi]; ctx.save(); if(wl){ ctx.shadowColor=COLORS[w.kind]||'#fff'; ctx.shadowBlur=12; } var ww=snSimCache&&snSimCache.wireWater?snSimCache.wireWater[wi]:null; var wf=snSimCache&&snSimCache.wireFlow?snSimCache.wireFlow[wi]:false; var wcol=ww?({cold:'#38bdf8',hot:'#ef4444',drain:'#22c55e',vent:'#ec4899'}[ww]||'#94a3b8'):(COLORS[w.kind]||'#fff'); if(ww){ ctx.shadowColor=wcol; ctx.shadowBlur=12; } ctx.strokeStyle=wcol; var _szf=ww?(SN_SIZE_FACTOR[w.size]||1):1; ctx.lineWidth=ww?(2+_szf*0.9+(wf?1:0)):(wl?4:3); if(wf){ ctx.setLineDash([12,8]); ctx.lineDashOffset=-(snFlowTick||0); } ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke(); ctx.setLineDash([]); ctx.fillStyle=wcol; ctx.font='11px sans-serif'; ctx.textAlign='center'; ctx.fillText((ww?(NAMES[ww]+(w.size?' '+w.size+'″':'')):NAMES[w.kind])||'',(a.x+b.x)/2,(a.y+b.y)/2-6); if(w===selWire){ ctx.save(); ctx.setLineDash([8,6]); ctx.strokeStyle='#ffffff'; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke(); ctx.restore(); } ctx.restore(); });
   snSimCache=snSim();
   parts.forEach(drawPart); snDrawFaults();
   if(selWire){ var a2=termPos(selWire.from.part,selWire.from.term), b2=termPos(selWire.to.part,selWire.to.term); var mx=(a2.x+b2.x)/2, my=(a2.y+b2.y)/2; ctx.save(); ctx.beginPath(); ctx.arc(mx,my,14,0,7); ctx.fillStyle='#ffffff'; ctx.fill(); ctx.strokeStyle='#ef4444'; ctx.lineWidth=2; ctx.stroke(); ctx.fillStyle='#ef4444'; ctx.font='bold 16px sans-serif'; ctx.fillText('X',mx,my+6); ctx.restore(); }
@@ -2216,6 +2310,15 @@ function drawPart(p){
   else if(k==='balcony'){ ctx.setLineDash([6,4]); ctx.strokeRect(-50,-22,100,44); ctx.setLineDash([]); }
   else if(k==='stairs'){ for(var i=0;i<5;i++){ ctx.strokeRect(-30,-22+i*9,60,9);} }
   else if(k==='slab'){ ctx.strokeRect(-50,-30,100,60); ctx.beginPath(); ctx.moveTo(-50,0); ctx.lineTo(50,0); ctx.stroke(); }
+  else if(k==='bed'){ ctx.strokeRect(-24,-38,48,76); ctx.strokeRect(-20,-34,40,14); ctx.beginPath(); ctx.moveTo(-24,6); ctx.lineTo(24,6); ctx.stroke(); }
+  else if(k==='sofa'){ ctx.strokeRect(-38,-16,76,32); ctx.strokeRect(-38,-21,76,6); ctx.beginPath(); ctx.moveTo(-30,-16); ctx.lineTo(-30,16); ctx.moveTo(30,-16); ctx.lineTo(30,16); ctx.stroke(); }
+  else if(k==='wardrobe'){ ctx.strokeRect(-26,-14,52,28); ctx.beginPath(); ctx.moveTo(0,-14); ctx.lineTo(0,14); ctx.moveTo(-3,0); ctx.lineTo(3,0); ctx.stroke(); }
+  else if(k==='table'){ ctx.strokeRect(-20,-20,40,40); ctx.beginPath(); ctx.arc(-15,-15,3,0,7); ctx.arc(15,-15,3,0,7); ctx.arc(-15,15,3,0,7); ctx.arc(15,15,3,0,7); ctx.stroke(); }
+  else if(k==='chair'){ ctx.strokeRect(-10,-10,20,20); ctx.strokeRect(-10,-15,20,5); }
+  else if(k==='kitchen'){ ctx.strokeRect(-32,-16,64,32); ctx.beginPath(); ctx.arc(-14,0,9,0,7); ctx.arc(16,0,8,0,7); ctx.stroke(); }
+  else if(k==='dining'){ ctx.strokeRect(-32,-18,64,36); ctx.strokeRect(-40,-8,8,16); ctx.strokeRect(40,-8,8,16); ctx.strokeRect(-8,-26,16,8); ctx.strokeRect(-8,18,16,8); }
+  else if(k==='desk'){ ctx.strokeRect(-26,-13,52,26); ctx.beginPath(); ctx.moveTo(-26,0); ctx.lineTo(26,0); ctx.stroke(); }
+  else if(k==='tvunit'){ ctx.strokeRect(-32,-11,64,22); ctx.beginPath(); ctx.moveTo(-28,-4); ctx.lineTo(28,-4); ctx.stroke(); }
   else if(k==='socket'||k==='socketQ'){ ctx.beginPath(); ctx.arc(0,0,22,0,Math.PI); ctx.stroke(); ctx.beginPath(); ctx.moveTo(-12,0); ctx.lineTo(-12,-8); ctx.moveTo(12,0); ctx.lineTo(12,-8); ctx.stroke(); }
   else if(k==='switch'){ ctx.beginPath(); ctx.arc(-18,0,6,0,7); ctx.stroke(); ctx.beginPath(); ctx.moveTo(-12,0); if(snOn(p)) ctx.lineTo(18,-14); else ctx.lineTo(18,8); ctx.stroke(); }
   else if(k==='switch2'){ ctx.beginPath(); ctx.arc(-18,0,6,0,7); ctx.arc(18,0,6,0,7); ctx.stroke(); ctx.beginPath(); ctx.moveTo(-12,0); if(snOn(p)) ctx.lineTo(12,-12); else ctx.lineTo(12,12); ctx.stroke(); }
@@ -2238,7 +2341,8 @@ function drawPart(p){
   else if(k==='wmeter'){ ctx.strokeRect(-24,-14,48,28); ctx.font='bold 11px sans-serif'; ctx.fillStyle='#e2e8f0'; ctx.fillText('m³',0,4); }
   else if(k==='wsource'){ ctx.strokeRect(-26,-18,52,36); ctx.beginPath(); ctx.moveTo(-26,-2); ctx.lineTo(26,-2); ctx.stroke(); ctx.fillStyle='#38bdf8'; ctx.fillRect(-24,0,48,16); }
   else if(k==='maindrain'){ ctx.beginPath(); ctx.arc(0,0,18,0,7); ctx.stroke(); ctx.beginPath(); ctx.moveTo(-12,-6); ctx.lineTo(12,-6); ctx.moveTo(-12,0); ctx.lineTo(12,0); ctx.moveTo(-12,6); ctx.lineTo(12,6); ctx.stroke(); }
-  else if(k==='floordrain'){ ctx.strokeRect(-18,-18,36,36); ctx.beginPath(); ctx.arc(0,0,10,0,7); ctx.stroke(); termsOf(k).forEach(function(tm){ ctx.beginPath(); ctx.moveTo(tm.dx*0.55,tm.dy*0.55); ctx.lineTo(tm.dx,tm.dy); ctx.stroke(); if(!snTermHasWire(p,tm)){ ctx.save(); ctx.strokeStyle='#64748b'; ctx.lineWidth=2.5; ctx.beginPath(); ctx.arc(tm.dx,tm.dy,9,0,7); ctx.stroke(); ctx.beginPath(); ctx.moveTo(tm.dx-6,tm.dy-6); ctx.lineTo(tm.dx+6,tm.dy+6); ctx.moveTo(tm.dx+6,tm.dy-6); ctx.lineTo(tm.dx-6,tm.dy+6); ctx.stroke(); ctx.restore(); } }); }
+  else if(k==='ventcap'){ ctx.save(); ctx.strokeStyle='#ec4899'; ctx.lineWidth=7; ctx.beginPath(); ctx.moveTo(0,22); ctx.lineTo(0,-6); ctx.stroke(); ctx.fillStyle='#ec4899'; ctx.beginPath(); ctx.arc(0,-14,12,Math.PI,0); ctx.closePath(); ctx.fill(); ctx.strokeStyle='#e2e8f0'; ctx.lineWidth=1.5; ctx.stroke(); ctx.restore(); }
+  else if(k==='floordrain'){ ctx.strokeRect(-18,-18,36,36); ctx.beginPath(); ctx.arc(0,0,10,0,7); ctx.stroke(); termsOf(k).forEach(function(tm){ ctx.beginPath(); ctx.moveTo(tm.dx*0.55,tm.dy*0.55); ctx.lineTo(tm.dx,tm.dy); ctx.stroke(); if(tm.kind!=='vent'&&!snTermHasWire(p,tm)){ ctx.save(); ctx.strokeStyle='#64748b'; ctx.lineWidth=2.5; ctx.beginPath(); ctx.arc(tm.dx,tm.dy,9,0,7); ctx.stroke(); ctx.beginPath(); ctx.moveTo(tm.dx-6,tm.dy-6); ctx.lineTo(tm.dx+6,tm.dy+6); ctx.moveTo(tm.dx+6,tm.dy-6); ctx.lineTo(tm.dx-6,tm.dy+6); ctx.stroke(); ctx.restore(); } }); }
   else if(k==='dpipe'){ var dp='#94a3b8'; if(snSimCache&&snSimCache.drainSeen&&snSimCache.drainSeen[snSimCache.key(p,0)])dp='#22c55e'; ctx.save(); ctx.strokeStyle=dp; ctx.lineWidth=7; ctx.beginPath(); ctx.moveTo(-60,0); ctx.lineTo(60,0); ctx.stroke(); ctx.strokeStyle='#e2e8f0'; ctx.lineWidth=1.5; ctx.beginPath(); ctx.moveTo(-60,-8); ctx.lineTo(-60,8); ctx.moveTo(60,-8); ctx.lineTo(60,8); ctx.stroke(); ctx.restore(); }
   else if(k==='elbow90'){ ctx.beginPath(); ctx.moveTo(-20,0); ctx.lineTo(0,0); ctx.lineTo(0,-20); ctx.stroke(); ctx.beginPath(); ctx.arc(0,0,6,0,7); ctx.stroke(); }
   else if(k==='elbow45'){ ctx.beginPath(); ctx.moveTo(-20,0); ctx.lineTo(0,0); ctx.lineTo(14,-14); ctx.stroke(); ctx.beginPath(); ctx.arc(0,0,6,0,7); ctx.stroke(); }
@@ -2263,7 +2367,341 @@ function drawPart(p){
 }
 function pt(e){ var r=cv.getBoundingClientRect(); var sx=(e.touches?e.touches[0].clientX:e.clientX)-r.left, sy=(e.touches?e.touches[0].clientY:e.clientY)-r.top; return {x:(sx-snPanX)/snZoom, y:(sy-snPanY)/snZoom, sx:sx, sy:sy}; }
 function hitPart(x,y){ for(var i=parts.length-1;i>=0;i--){ var p=parts[i]; if(Math.abs(x-p.x)<55 && Math.abs(y-p.y)<55) return p; } return null; }
-function snAddPart(kind){ var r=cv.getBoundingClientRect(); var np={id:snUid(),kind:kind,x:r.width/2+(Math.random()*40-20),y:r.height/2+(Math.random()*40-20),rot:0,s:1,on:(kind==='mcb'||kind==='valve'||kind==='mixer'||kind==='basin'||kind==='wc'||kind==='bathtub'||kind==='coldPoint'||kind==='hotPoint'||kind==='wsource')}; if(kind==='pipe'||kind==='elbow90'||kind==='elbow45'||kind==='coupling'||kind==='nipple') np.size='1/2″'; if(kind==='dpipe'||kind==='manija') np.size='4″'; parts.push(np); if(kind==='door'||kind==='window'){ snSnapDoor(np,400); } sel=np; draw(); }
+function snAddPart(kind){ if(kind.indexOf('tpl_')===0){ snAddTemplate(kind); return; } var r=cv.getBoundingClientRect(); var np={id:snUid(),kind:kind,x:r.width/2+(Math.random()*40-20),y:r.height/2+(Math.random()*40-20),rot:0,s:1,on:(kind==='mcb'||kind==='valve'||kind==='mixer'||kind==='basin'||kind==='wc'||kind==='bathtub'||kind==='coldPoint'||kind==='hotPoint'||kind==='wsource')}; if(kind==='pipe'||kind==='elbow90'||kind==='elbow45'||kind==='coupling'||kind==='nipple') np.size='1/2″'; if(kind==='dpipe'||kind==='manija'||kind==='ventcap') np.size='4″'; parts.push(np); if(kind==='door'||kind==='window'){ snSnapDoor(np,400); } sel=np; draw(); }
+
+// ================= نماذج جاهزة (غرف + حوائط) =================
+function snAddTemplate(t){
+  var r=cv.getBoundingClientRect();
+  var cx=r.width/2, cy=r.height/2;
+  function mk(kind,x,y,rot,s){ var np={id:snUid(),kind:kind,x:x,y:y,rot:rot||0,s:s||1,on:(kind==='mcb'||kind==='valve'||kind==='mixer'||kind==='basin'||kind==='wc'||kind==='bathtub'||kind==='coldPoint'||kind==='hotPoint'||kind==='wsource')}; parts.push(np); return np; }
+  function opening(room,kind,edge,tt){
+    var es=snRoomEdges(room); var e=es[edge];
+    var np=mk(kind, e.x1+(e.x2-e.x1)*tt, e.y1+(e.y2-e.y1)*tt, 0, 1);
+    snSnapDoor(np,400); return np;
+  }
+  var room=null;
+  if(t==='tpl_bedroom'){
+    room=mk('room',cx,cy,0,1.15);
+    opening(room,'door',2,0.5); opening(room,'window',0,0.5);
+    mk('bed',cx-30,cy-8,0,1); mk('wardrobe',cx+52,cy-30,0,1);
+    mk('lamp',cx,cy-10,0,1); mk('socket',cx+55,cy+30,0,1); mk('table',cx-30,cy+32,0,1);
+  } else if(t==='tpl_living'){
+    room=mk('room',cx,cy,0,1.5);
+    opening(room,'door',2,0.5); opening(room,'window',0,0.5);
+    mk('sofa',cx,cy-40,0,1); mk('table',cx,cy+5,0,1); mk('tvunit',cx,cy+52,0,1);
+    mk('lamp',cx,cy-5,0,1); mk('chair',cx-55,cy+5,0,1); mk('chair',cx+55,cy+5,0,1);
+  } else if(t==='tpl_kitchen'){
+    room=mk('room',cx,cy,0,1);
+    opening(room,'door',2,0.5); opening(room,'window',0,0.5);
+    mk('kitchen',cx,cy-25,0,1); mk('cooker',cx-40,cy+20,0,1); mk('basin',cx+40,cy+20,0,1);
+    mk('lamp',cx,cy,0,1);
+  } else if(t==='tpl_bathroom'){
+    room=mk('room',cx,cy,0,0.9);
+    opening(room,'door',2,0.5);
+    mk('bathtub',cx-25,cy-15,0,1); mk('basin',cx+35,cy-20,0,1); mk('wc',cx+35,cy+15,0,1); mk('floordrain',cx,cy+20,0,1);
+  } else if(t==='tpl_walldoor'){
+    mk('wall',cx,cy,0,1);
+    var d=mk('door',cx,cy,0,1); snSnapDoor(d,400);
+  } else if(t==='tpl_wallwindow'){
+    mk('wall',cx,cy,0,1);
+    var wn=mk('window',cx,cy,0,1); snSnapDoor(wn,400);
+  }
+  sel=room||parts[parts.length-1];
+  draw();
+}
+
+// ================= العرض 3D الإيزومتريك =================
+var snView3D=false, snIsoAng=0.6, snIsoTilt=0, sn3DDrag=null, sn3DSaved=null, sn3DCx=0, sn3DCy=0, snFaces=[], snWallSegsCache=[], sn3DBB={minX:0,maxX:0,minY:0,maxY:0};
+var SN_WALL_H=100;
+var FURN3D={bed:{w:48,d:76,h:22,c:'#8b5a2b',top:{w:40,d:44,h:8,c:'#f8fafc',dx:0,dy:-12}},
+  sofa:{w:76,d:32,h:28,c:'#b45309',top:{w:76,d:8,h:16,c:'#92400e',dx:0,dy:-12}},
+  wardrobe:{w:52,d:28,h:90,c:'#78350f'},
+  table:{w:40,d:40,h:32,c:'#a16207',top:{w:44,d:44,h:4,c:'#ca8a04',dx:0,dy:0}},
+  chair:{w:20,d:20,h:20,c:'#78716c',top:{w:20,d:4,h:22,c:'#57534e',dx:0,dy:-8}},
+  kitchen:{w:64,d:32,h:36,c:'#64748b',top:{w:64,d:32,h:4,c:'#e2e8f0',dx:0,dy:0}},
+  dining:{w:64,d:36,h:32,c:'#92400e',top:{w:68,d:40,h:4,c:'#b45309',dx:0,dy:0}},
+  desk:{w:52,d:26,h:32,c:'#475569',top:{w:56,d:28,h:3,c:'#64748b',dx:0,dy:0}},
+  tvunit:{w:64,d:22,h:24,c:'#334155',top:{w:56,d:18,h:16,c:'#0f172a',dx:0,dy:0}}};
+var PART3D={basin:{w:52,d:36,h:20,z0:25,c:'#e2e8f0'},wc:{w:40,d:36,h:30,c:'#e2e8f0'},bathtub:{w:70,d:36,h:28,c:'#f8fafc'},
+  heater:{w:52,d:32,h:40,c:'#94a3b8'},wsource:{w:40,d:40,h:35,c:'#38bdf8'},pump:{w:44,d:44,h:30,c:'#f59e0b'},
+  wmeter:{w:16,d:16,h:16,c:'#94a3b8'},valve:{w:16,d:16,h:16,c:'#ef4444'},mixer:{w:20,d:20,h:14,c:'#f59e0b'},
+  coldPoint:{w:14,d:14,h:14,c:'#38bdf8'},hotPoint:{w:14,d:14,h:14,c:'#ef4444'},
+  pipe:{w:120,d:8,h:8,c:'#94a3b8'},dpipe:{w:120,d:14,h:14,c:'#22c55e'},ventcap:{w:14,d:14,h:40,c:'#ec4899'},
+  maindrain:{w:30,d:30,h:10,c:'#22c55e'},floordrain:{w:36,d:36,h:8,c:'#22c55e'},
+  column:{w:36,d:36,h:100,c:'#cbd5e1'},stairs:{w:60,d:44,h:20,c:'#94a3b8'},slab:{w:100,d:60,h:6,c:'#cbd5e1'},
+  balcony:{w:100,d:44,h:6,c:'#a7f3d0'},panel:{w:48,d:12,h:56,c:'#facc15'},mcb:{w:40,d:14,h:28,c:'#ef4444'},
+  socket:{w:14,d:10,h:14,c:'#38bdf8'},socketQ:{w:14,d:10,h:14,c:'#38bdf8'},switch:{w:12,d:10,h:14,c:'#facc15'},
+  switch2:{w:14,d:10,h:14,c:'#facc15'},bell:{w:20,d:12,h:16,c:'#facc15'},earth:{w:16,d:16,h:10,c:'#22c55e'},
+  source:{w:18,d:18,h:14,c:'#ef4444'},heaterE:{w:52,d:32,h:40,c:'#f59e0b'},motor1:{w:40,d:40,h:30,c:'#38bdf8'},
+  ac:{w:56,d:20,h:30,c:'#e2e8f0'},washer:{w:36,d:36,h:40,c:'#f8fafc'},cooker:{w:40,d:36,h:36,c:'#334155'},oven:{w:40,d:36,h:36,c:'#475569'}};
+function snShade(hex,f){ var h=hex.replace('#',''); var r=parseInt(h.substr(0,2),16), g=parseInt(h.substr(2,2),16), b=parseInt(h.substr(4,2),16); r=Math.max(0,Math.min(255,Math.round(r*f))); g=Math.max(0,Math.min(255,Math.round(g*f))); b=Math.max(0,Math.min(255,Math.round(b*f))); return 'rgb('+r+','+g+','+b+')'; }
+function snIsoProject(x,y,z){ var r=cv.getBoundingClientRect(); var dx=x-sn3DCx, dy=y-sn3DCy; var c=Math.cos(snIsoAng), s=Math.sin(snIsoAng); var rx=dx*c-dy*s, ry=dx*s+dy*c; var gY=0.5 + snIsoTilt*0.5; var hS=1 - snIsoTilt*0.7; return {x:(rx-ry)*0.866*snZoom + r.width/2 + snPanX, y:(rx+ry)*gY*snZoom - z*hS*snZoom + r.height/2 + snPanY, d:rx+ry}; }
+function snIsoBox(cx,cy,w,d,h,rot,z0,base){
+  var c=Math.cos(rot*Math.PI/180), s=Math.sin(rot*Math.PI/180);
+  function P(lx,ly,z){ return {x:cx+lx*c-ly*s, y:cy+lx*s+ly*c, z:z0+z}; }
+  var A=P(-w/2,-d/2,0), B=P(w/2,-d/2,0), C=P(w/2,d/2,0), D=P(-w/2,d/2,0);
+  var A2=P(-w/2,-d/2,h), B2=P(w/2,-d/2,h), C2=P(w/2,d/2,h), D2=P(-w/2,d/2,h);
+  snFaces.push({pts:[A2,B2,C2,D2], color:base, shade:1.0});
+  var ca=Math.cos(snIsoAng), sa=Math.sin(snIsoAng);
+  function vis(nx,ny){ var rx=nx*ca-ny*sa, ry=nx*sa+ny*ca; return rx+ry; }
+  var v;
+  v=vis(1,0); if(v>0) snFaces.push({pts:[B,C,C2,B2], color:base, shade:0.55+0.45*(v/1.414)});
+  v=vis(-1,0); if(v>0) snFaces.push({pts:[D,A,A2,D2], color:base, shade:0.55+0.45*(v/1.414)});
+  v=vis(0,1); if(v>0) snFaces.push({pts:[C,D,D2,C2], color:base, shade:0.55+0.45*(v/1.414)});
+  v=vis(0,-1); if(v>0) snFaces.push({pts:[A,B,B2,A2], color:base, shade:0.55+0.45*(v/1.414)});
+}
+function snWallSegs3D(x1,y1,x2,y2,openings,localLen){
+  var L=Math.hypot(x2-x1,y2-y1); if(L<1) return;
+  var gaps=openings.slice().sort(function(a,b){return a.t-b.t;});
+  var cur=0;
+  function seg(t0,t1){
+    if(t1-t0<0.02) return;
+    var px1=x1+(x2-x1)*t0, py1=y1+(y2-y1)*t0, px2=x1+(x2-x1)*t1, py2=y1+(y2-y1)*t1;
+    snWallSegsCache.push({x1:px1,y1:py1,x2:px2,y2:py2});
+    var cx=(px1+px2)/2, cy=(py1+py2)/2, len=Math.hypot(px2-px1,py2-py1);
+    var ang=Math.atan2(py2-py1,px2-px1)*180/Math.PI;
+    snIsoBox(cx,cy,len,10,SN_WALL_H,ang,0,'#cbd5e1');
+  }
+  gaps.forEach(function(g){
+    var gt=(g.half||30)/localLen;
+    var s0=Math.max(0,g.t-gt), e0=Math.min(1,g.t+gt);
+    if(s0>cur) seg(cur,s0);
+    if(e0>cur) cur=e0;
+  });
+  if(cur<1) seg(cur,1);
+}
+function snBuild3DFaces(){
+  var minX=1e9,maxX=-1e9,minY=1e9,maxY=-1e9;
+  parts.forEach(function(p){ if(p.x<minX)minX=p.x; if(p.x>maxX)maxX=p.x; if(p.y<minY)minY=p.y; if(p.y>maxY)maxY=p.y; });
+  sn3DCx=(minX+maxX)/2; sn3DCy=(minY+maxY)/2;
+  sn3DBB={minX:minX,maxX:maxX,minY:minY,maxY:maxY};
+  snFaces=[]; snWallSegsCache=[];
+  parts.forEach(function(p){
+    if(p.kind==='room'){
+      var es=snRoomEdges(p);
+      var fl=[{x:es[0].x1,y:es[0].y1,z:0},{x:es[0].x2,y:es[0].y2,z:0},{x:es[2].x1,y:es[2].y1,z:0},{x:es[2].x2,y:es[2].y2,z:0}];
+      snFaces.push({pts:fl, color:'#dbe4ee', shade:1.0});
+      if(snCeiling){
+        var ce=[{x:es[0].x1,y:es[0].y1,z:SN_WALL_H},{x:es[0].x2,y:es[0].y2,z:SN_WALL_H},{x:es[2].x1,y:es[2].y1,z:SN_WALL_H},{x:es[2].x2,y:es[2].y2,z:SN_WALL_H}];
+        snFaces.push({pts:ce, color:'#e2e8f0', shade:0.9, alpha: snWalkMode?1:0.22});
+      }
+      var ops=snOpeningsFor(p);
+      for(var ei=0;ei<4;ei++){
+        var e=es[ei];
+        var localLen=(ei===0||ei===2)?140:90;
+        snWallSegs3D(e.x1,e.y1,e.x2,e.y2, ops.filter(function(g){return g.edge===ei;}), localLen);
+      }
+    } else if(p.kind==='wall'){
+      var sg=snWallSeg(p);
+      var ops2=snOpeningsFor(p).filter(function(g){return g.edge===-1;});
+      snWallSegs3D(sg.x1,sg.y1,sg.x2,sg.y2, ops2, 120);
+    } else if(p.kind==='door'){
+      if(!snWalkMode){ var dw=snMountWorld(p)||{x:p.x,y:p.y,rot:p.rot||0}; snIsoBox(dw.x,dw.y,60,12,85,dw.rot,0,'#a16207'); }
+    } else if(p.kind==='window'){
+      var ww=snMountWorld(p)||{x:p.x,y:p.y,rot:p.rot||0}; snIsoBox(ww.x,ww.y,80,16,50,ww.rot,35,'#7dd3fc');
+    } else if(FURN3D[p.kind]){
+      var f=FURN3D[p.kind];
+      snIsoBox(p.x,p.y,f.w,f.d,f.h,p.rot||0,0,f.c);
+      if(f.top){
+        var tc=Math.cos((p.rot||0)*Math.PI/180), ts=Math.sin((p.rot||0)*Math.PI/180);
+        var tx=p.x+f.top.dx*tc-f.top.dy*ts, ty=p.y+f.top.dx*ts+f.top.dy*tc;
+        snIsoBox(tx,ty,f.top.w,f.top.d,f.top.h,p.rot||0,f.h,f.top.c);
+      }
+    } else if(p.kind==='lamp'){
+      snIsoBox(p.x,p.y,16,16,14,p.rot||0,SN_WALL_H-20,'#facc15');
+      snIsoBox(p.x,p.y,2,2,6,p.rot||0,SN_WALL_H-6,'#94a3b8');
+    } else if(PART3D[p.kind]){
+      var q=PART3D[p.kind];
+      snIsoBox(p.x,p.y,q.w,q.d,q.h,p.rot||0,q.z0||0,q.c);
+    } else {
+      snIsoBox(p.x,p.y,14,14,14,p.rot||0,0,COLORS[p.kind]||'#e2e8f0');
+    }
+  });
+}
+
+function snDraw3D(){
+  var r=cv.getBoundingClientRect(); var W=r.width, H=r.height;
+  ctx.setTransform(1,0,0,1,0,0); ctx.clearRect(0,0,W,H);
+  ctx.fillStyle='#0f172a'; ctx.fillRect(0,0,W,H);
+  if(!parts.length){ ctx.fillStyle='#94a3b8'; ctx.font='bold 15px sans-serif'; ctx.textAlign='center'; ctx.fillText('مفيش قطع — دوسي 🧩 القطع وحطي غرفة جاهزة', W/2, H/2); snUpdatePartCard(); return; }
+  snBuild3DFaces();
+  snFaces.forEach(function(f){ var s=0; f.pts.forEach(function(pt){ var dx=pt.x-sn3DCx, dy=pt.y-sn3DCy; var ca=Math.cos(snIsoAng), sa=Math.sin(snIsoAng); var rx=dx*ca-dy*sa, ry=dx*sa+dy*ca; s+=rx+ry-pt.z*(0.5 + snIsoTilt*0.5); }); f.depth=s/f.pts.length; });
+  snFaces.sort(function(a,b){ return a.depth-b.depth; });
+  snFaces.forEach(function(f){
+    ctx.save();
+    if(f.alpha!==undefined) ctx.globalAlpha=f.alpha;
+    ctx.beginPath();
+    f.pts.forEach(function(pt,i){ var pr=snIsoProject(pt.x,pt.y,pt.z); if(i===0) ctx.moveTo(pr.x,pr.y); else ctx.lineTo(pr.x,pr.y); });
+    ctx.closePath();
+    ctx.fillStyle=snShade(f.color, f.shade);
+    ctx.fill();
+    ctx.strokeStyle='rgba(15,23,42,.35)'; ctx.lineWidth=1; ctx.stroke();
+    ctx.restore();
+  });
+  wires.forEach(function(w,wi){
+    var a=termPos(w.from.part,w.from.term), b=termPos(w.to.part,w.to.term);
+    var pa=snIsoProject(a.x,a.y,3), pb=snIsoProject(b.x,b.y,3);
+    var ww=snSimCache&&snSimCache.wireWater?snSimCache.wireWater[wi]:null;
+    var wcol=ww?({cold:'#38bdf8',hot:'#ef4444',drain:'#22c55e',vent:'#ec4899'}[ww]||'#94a3b8'):(COLORS[w.kind]||'#fff');
+    ctx.save(); ctx.strokeStyle=wcol; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(pa.x,pa.y); ctx.lineTo(pb.x,pb.y); ctx.stroke(); ctx.restore();
+  });
+  ctx.save(); ctx.strokeStyle='rgba(255,255,255,.06)'; ctx.lineWidth=1;
+  var gx, gy;
+  for(gx=Math.floor(sn3DBB.minX/60)*60; gx<=sn3DBB.maxX; gx+=60){ var p1=snIsoProject(gx,sn3DBB.minY,0), p2=snIsoProject(gx,sn3DBB.maxY,0); ctx.beginPath(); ctx.moveTo(p1.x,p1.y); ctx.lineTo(p2.x,p2.y); ctx.stroke(); }
+  for(gy=Math.floor(sn3DBB.minY/60)*60; gy<=sn3DBB.maxY; gy+=60){ var p3=snIsoProject(sn3DBB.minX,gy,0), p4=snIsoProject(sn3DBB.maxX,gy,0); ctx.beginPath(); ctx.moveTo(p3.x,p3.y); ctx.lineTo(p4.x,p4.y); ctx.stroke(); }
+  ctx.restore();
+  ctx.save(); ctx.textAlign='center'; ctx.font='bold 12px sans-serif';
+  parts.forEach(function(p){
+    if(FURN3D[p.kind]){
+      var f=FURN3D[p.kind];
+      var pr=snIsoProject(p.x,p.y,f.h+(f.top?f.top.h:0)+8);
+      ctx.fillStyle='rgba(15,23,42,.7)'; ctx.fillRect(pr.x-30,pr.y-16,60,18);
+      ctx.fillStyle='#fff'; ctx.fillText(LABELS[p.kind]||p.kind, pr.x, pr.y-3);
+    }
+  });
+  if(sel){
+    var sp=snIsoProject(sel.x,sel.y,0);
+    ctx.save(); ctx.strokeStyle='#facc15'; ctx.lineWidth=2.5; ctx.beginPath();
+    for(var ai=0;ai<=12;ai++){ var aa=ai/12*Math.PI*2; var pp=snIsoProject(sel.x+Math.cos(aa)*36, sel.y+Math.sin(aa)*36, 0); if(ai===0) ctx.moveTo(pp.x,pp.y); else ctx.lineTo(pp.x,pp.y); }
+    ctx.closePath(); ctx.stroke(); ctx.restore();
+    ctx.fillStyle='#facc15'; ctx.fillText(LABELS[sel.kind]||sel.kind, sp.x, sp.y+34);
+  }
+  ctx.restore();
+  ctx.fillStyle='#94a3b8'; ctx.font='11px sans-serif'; ctx.textAlign='center';
+  ctx.fillText('اسحبي بصباعك على المجسم: يمين/شمال يلف • فوق/تحت يميل • قرّصي للزووم', W/2, 20);
+  snUpdatePartCard(); snUpdateWireCard();
+}
+
+// ================= وضع المشي جوه الشقة (منظور الشخص الأول) =================
+var snWalkMode=false, snWalk={x:0,y:0,ang:0,pitch:0}, snWalkDrag=null, snWalkHold=null;
+var snCeiling=true;
+var SN_WALK_EYE=55;
+function snWalkProject(x,y,z){
+  var r=cv.getBoundingClientRect(); var W=r.width, H=r.height;
+  var dx=x-snWalk.x, dy=y-snWalk.y;
+  var ca=Math.cos(snWalk.ang), sa=Math.sin(snWalk.ang);
+  var fwd=dx*ca+dy*sa, right=-dx*sa+dy*ca;
+  var F=W*0.85;
+  return {x:W/2 + (fwd>0.001? right/fwd*F : 0), y:H/2 - (fwd>0.001? (z-SN_WALK_EYE)/fwd*F : 0) + snWalk.pitch*H*0.4, fwd:fwd, right:right};
+}
+function snEnterWalk(){
+  var rooms=parts.filter(function(p){return p.kind==='room';});
+  if(!rooms.length){ alert('حطي غرفة جاهزة الأول من قايمة القطع 🏠'); return; }
+  var room=rooms[0];
+  var door=parts.find(function(p){ return p.kind==='door' && p.mount && p.mount.hostId===room.id; }) || parts.find(function(p){ return p.kind==='door'; });
+  if(door){
+    var dx=room.x-door.x, dy=room.y-door.y, L=Math.hypot(dx,dy)||1;
+    snWalk.x=door.x - dx/L*50; snWalk.y=door.y - dy/L*50;
+    snWalk.ang=Math.atan2(dy,dx);
+  } else {
+    snWalk.x=room.x; snWalk.y=room.y; snWalk.ang=-Math.PI/2;
+  }
+  snWalk.pitch=0;
+  snWalkMode=true; snView3D=true;
+  var b3=document.getElementById('snView3DBtn'); if(b3){ b3.textContent='🗺️ عرض 2D'; b3.style.background='#7c3aed'; }
+  var bw=document.getElementById('snWalkBtn'); if(bw){ bw.textContent='🚪 اخرج'; bw.style.background='#ef4444'; }
+  document.getElementById('snDrawer').classList.remove('open');
+  var wc=document.getElementById('snWalkCtl'); if(wc) wc.style.display='flex';
+  draw();
+}
+function snExitWalk(){
+  snWalkMode=false;
+  snWalkHoldStop();
+  var wc=document.getElementById('snWalkCtl'); if(wc) wc.style.display='none';
+  var bw=document.getElementById('snWalkBtn'); if(bw){ bw.textContent='🚶 ادخل جوه'; bw.style.background='#334155'; }
+  draw();
+}
+function snWalkMove(fwd, strafe){
+  var ca=Math.cos(snWalk.ang), sa=Math.sin(snWalk.ang);
+  var nx=snWalk.x + ca*fwd - sa*strafe;
+  var ny=snWalk.y + sa*fwd + ca*strafe;
+  var blocked=false;
+  snWallSegsCache.forEach(function(s){
+    if(distToSeg(nx,ny,s.x1,s.y1,s.x2,s.y2)<16) blocked=true;
+  });
+  if(blocked) return;
+  var bb=sn3DBB;
+  nx=Math.max(bb.minX-300, Math.min(bb.maxX+300, nx));
+  ny=Math.max(bb.minY-300, Math.min(bb.maxY+300, ny));
+  snWalk.x=nx; snWalk.y=ny;
+  draw();
+}
+function snWalkHoldStart(fwd, strafe){
+  snWalkMove(fwd, strafe);
+  if(snWalkHold) clearInterval(snWalkHold);
+  snWalkHold=setInterval(function(){ snWalkMove(fwd, strafe); }, 50);
+}
+function snWalkHoldStop(){ if(snWalkHold){ clearInterval(snWalkHold); snWalkHold=null; } }
+function snDrawWalk(){
+  var r=cv.getBoundingClientRect(); var W=r.width, H=r.height;
+  ctx.setTransform(1,0,0,1,0,0); ctx.clearRect(0,0,W,H);
+  ctx.fillStyle='#0b1220'; ctx.fillRect(0,0,W,H);
+  if(!parts.length){ var _c=document.getElementById('snPartCard'); if(_c) _c.style.display='none'; return; }
+  snBuild3DFaces();
+  var drawn=[];
+  snFaces.forEach(function(f){
+    var pts=[], sumFwd=0, skip=false;
+    for(var i=0;i<f.pts.length;i++){
+      var pr=snWalkProject(f.pts[i].x, f.pts[i].y, f.pts[i].z);
+      if(pr.fwd<8){ skip=true; break; }
+      pts.push(pr); sumFwd+=pr.fwd;
+    }
+    if(!skip) drawn.push({pts:pts, color:f.color, shade:f.shade, alpha:f.alpha, depth:sumFwd/f.pts.length});
+  });
+  drawn.sort(function(a,b){ return b.depth-a.depth; });
+  drawn.forEach(function(f){
+    ctx.save();
+    if(f.alpha!==undefined) ctx.globalAlpha=f.alpha;
+    ctx.beginPath();
+    f.pts.forEach(function(pr,i){ if(i===0) ctx.moveTo(pr.x,pr.y); else ctx.lineTo(pr.x,pr.y); });
+    ctx.closePath();
+    ctx.fillStyle=snShade(f.color, f.shade);
+    ctx.fill();
+    ctx.strokeStyle='rgba(15,23,42,.35)'; ctx.lineWidth=1; ctx.stroke();
+    ctx.restore();
+  });
+  wires.forEach(function(w,wi){
+    var a=termPos(w.from.part,w.from.term), b=termPos(w.to.part,w.to.term);
+    var pa=snWalkProject(a.x,a.y,3), pb=snWalkProject(b.x,b.y,3);
+    if(pa.fwd<8||pb.fwd<8) return;
+    var ww=snSimCache&&snSimCache.wireWater?snSimCache.wireWater[wi]:null;
+    var wcol=ww?({cold:'#38bdf8',hot:'#ef4444',drain:'#22c55e',vent:'#ec4899'}[ww]||'#94a3b8'):(COLORS[w.kind]||'#fff');
+    ctx.save(); ctx.strokeStyle=wcol; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(pa.x,pa.y); ctx.lineTo(pb.x,pb.y); ctx.stroke(); ctx.restore();
+  });
+  ctx.save(); ctx.strokeStyle='rgba(255,255,255,.8)'; ctx.lineWidth=2;
+  ctx.beginPath(); ctx.moveTo(W/2-10,H/2); ctx.lineTo(W/2+10,H/2); ctx.moveTo(W/2,H/2-10); ctx.lineTo(W/2,H/2+10); ctx.stroke(); ctx.restore();
+  ctx.fillStyle='#94a3b8'; ctx.font='11px sans-serif'; ctx.textAlign='center';
+  ctx.fillText('اسحب للنظر حوالينك • دوس ⬆️ قدام عشان تمشي وتدخل من الباب', W/2, 20);
+  var card=document.getElementById('snPartCard'); if(card) card.style.display='none';
+  snUpdateWireCard();
+}
+
+function sn3DPointerDown(e){ sn3DDrag={sx:e.clientX, sy:e.clientY, ang0:snIsoAng, tilt0:snIsoTilt, t:Date.now()}; }
+var snSpinAnim=null;
+function snSpin360(){
+  if(snSpinAnim) cancelAnimationFrame(snSpinAnim);
+  var start=snIsoAng, t0=performance.now(), dur=1500;
+  function step(now){
+    var p=Math.min(1,(now-t0)/dur);
+    var ez=1-Math.pow(1-p,3);
+    snIsoAng=start + Math.PI*2*ez;
+    draw();
+    if(p<1) snSpinAnim=requestAnimationFrame(step); else snSpinAnim=null;
+  }
+  snSpinAnim=requestAnimationFrame(step);
+}
+function sn3DTap(cx,cy){
+  var r=cv.getBoundingClientRect();
+  var sx=cx-r.left, sy=cy-r.top;
+  var best=null, bd=42;
+  parts.forEach(function(p){
+    var pr=snIsoProject(p.x,p.y,0);
+    var d=Math.hypot(pr.x-sx, pr.y-sy);
+    if(d<bd){ bd=d; best=p; }
+  });
+  sel=best; selWire=null; wireFrom=null; draw();
+}
+
 function snSaveImage(){ if(!cv) return; var a=document.createElement('a'); a.href=cv.toDataURL('image/png'); a.download='snelectric-'+Date.now()+'.png'; a.click(); }
 function snSaveFile(){ var data={app:'SNelectric',savedAt:new Date().toISOString(),parts:parts,wires:wires.map(function(w){ return {from:{partId:w.from.part.id,dx:w.from.term.dx,dy:w.from.term.dy},to:{partId:w.to.part.id,dx:w.to.term.dx,dy:w.to.term.dy},kind:w.kind}; })}; var blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}); var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='snelectric-'+Date.now()+'.snelectric.json'; a.click(); setTimeout(function(){URL.revokeObjectURL(a.href);},2000); alert('تم حفظ SNelectric كملف JSON ✓'); }
 function snLoadFile(file){ var rd=new FileReader(); rd.onload=function(){ try{ var d=JSON.parse(rd.result); if(!d||!Array.isArray(d.parts)) throw new Error('bad'); parts=d.parts; parts.forEach(function(pp){ if(!pp.id) pp.id=snUid(); }); parts.forEach(function(pp){ if(pp.mount && !parts.some(function(h){return h.id===pp.mount.hostId;})) pp.mount=null; }); wires=[]; if(Array.isArray(d.wires)){ d.wires.forEach(function(sw2){ var fp=parts.find(function(pp){return pp.id===sw2.from.partId;}), tp=parts.find(function(pp){return pp.id===sw2.to.partId;}); if(!fp||!tp) return; var ft=termsOf(fp.kind).find(function(tm){return tm.dx===sw2.from.dx&&tm.dy===sw2.from.dy;}), tt=termsOf(tp.kind).find(function(tm){return tm.dx===sw2.to.dx&&tm.dy===sw2.to.dy;}); if(ft&&tt) wires.push({from:{part:fp,term:ft},to:{part:tp,term:tt},kind:sw2.kind}); }); } sel=null; selWire=null; wireFrom=null; draw(); alert('تم فتح ملف SNelectric ✓'); }catch(e){ alert('الملف ده مش ملف SNelectric صالح'); } }; rd.readAsText(file); }
@@ -2274,15 +2712,22 @@ function init(){
   window.addEventListener('resize',resize); setTimeout(resize,60);
   document.getElementById('snPartsBtn').onclick=function(e){ e.stopPropagation(); document.getElementById('snDrawer').classList.toggle('open'); };
   document.getElementById('snDrawerClose').onclick=function(e){ e.stopPropagation(); document.getElementById('snDrawer').classList.remove('open'); };
+  document.getElementById('snWalkBtn').onclick=function(){ if(snWalkMode){ snExitWalk(); } else { snEnterWalk(); } };
+  document.getElementById('snViewRotL').onclick=function(){ snIsoAng-=Math.PI/4; draw(); };
+  document.getElementById('snViewRotR').onclick=function(){ snIsoAng+=Math.PI/4; draw(); };
+  document.getElementById('snViewSpin').onclick=function(){ snSpin360(); };
+  document.getElementById('snCeilBtn').onclick=function(){ snCeiling=!snCeiling; this.textContent=snCeiling?'🏠 سقف: شغال':'🏠 سقف: مطفي'; this.style.background=snCeiling?'#334155':'#64748b'; draw(); };
+  (function(){ function snBindHold(id, fwd, strafe){ var b=document.getElementById(id); if(!b) return; b.addEventListener('pointerdown', function(e){ e.preventDefault(); e.stopPropagation(); snWalkHoldStart(fwd, strafe); }); ['pointerup','pointerleave','pointercancel'].forEach(function(ev){ b.addEventListener(ev, function(){ snWalkHoldStop(); }); }); } snBindHold('snWalkF', 7, 0); snBindHold('snWalkB', -7, 0); snBindHold('snWalkL', 0, -7); snBindHold('snWalkR', 0, 7); var wo=document.getElementById('snWalkOut'); if(wo) wo.onclick=function(){ snExitWalk(); }; })();
+  document.getElementById('snView3DBtn').onclick=function(){ if(snWalkMode) snExitWalk(); snView3D=!snView3D; if(snView3D){ sn3DSaved={panX:snPanX,panY:snPanY,zoom:snZoom}; snPanX=0; snPanY=0; snZoom=1; snIsoAng=0.6; } else if(sn3DSaved){ snPanX=sn3DSaved.panX; snPanY=sn3DSaved.panY; snZoom=sn3DSaved.zoom; } this.textContent=snView3D?'🗺️ عرض 2D':'🏠 عرض 3D'; this.style.background=snView3D?'#7c3aed':'#334155'; document.getElementById('snDrawer').classList.remove('open'); draw(); };
   var dr=document.getElementById('snDrawer');
   dr.addEventListener('pointerdown',function(e){ e.stopPropagation(); });
   dr.addEventListener('click',function(e){ e.stopPropagation(); });
   document.querySelectorAll('#snDrawer .snPartBtn').forEach(function(b){ b.onclick=function(e){ e.stopPropagation(); snAddPart(b.dataset.kind); }; });
   document.getElementById('snView').addEventListener('pointerdown',function(e){ var d=document.getElementById('snDrawer'); if(d.classList.contains('open') && !d.contains(e.target) && !e.target.closest('#snPartsBtn')){ d.classList.remove('open'); } }, true);
   document.getElementById('snCtlPower').onclick=function(){ if(!sel) return; sel.on=!snOn(sel); draw(); };
-  document.getElementById('snCtlRot').onclick=function(){ if(!sel) return; sel.rot=((sel.rot||0)+90)%360; draw(); };
-  document.getElementById('snCtlBig').onclick=function(){ if(!sel) return; sel.s=Math.min(3,(sel.s||1)+0.2); draw(); };
-  document.getElementById('snCtlSmall').onclick=function(){ if(!sel) return; sel.s=Math.max(0.4,(sel.s||1)-0.2); draw(); };
+  document.getElementById('snCtlRot').onclick=function(){ if(!sel) return; sel.rot=((sel.rot||0)+90)%360; if(sel.kind==='room'||sel.kind==='wall') snResnapMounted(sel); draw(); };
+  document.getElementById('snCtlBig').onclick=function(){ if(!sel) return; sel.s=Math.min(3,(sel.s||1)+0.2); if(sel.kind==='room'||sel.kind==='wall') snResnapMounted(sel); draw(); };
+  document.getElementById('snCtlSmall').onclick=function(){ if(!sel) return; sel.s=Math.max(0.4,(sel.s||1)-0.2); if(sel.kind==='room'||sel.kind==='wall') snResnapMounted(sel); draw(); };
   document.getElementById('snCtlCopy').onclick=function(){ if(!sel) return; var c={}; Object.keys(sel).forEach(function(k2){ c[k2]=sel[k2]; }); c.id=snUid(); c.x+=30; c.y+=30; c.mount=null; parts.push(c); sel=c; draw(); };
   document.getElementById('snCtlDel').onclick=function(){ if(selWire){ wires=wires.filter(function(w){return w!==selWire;}); selWire=null; draw(); return; } if(!sel) return; var s=sel; parts=parts.filter(function(x){return x!==s;}); wires=wires.filter(function(w){return w.from.part!==s && w.to.part!==s;}); sel=null; wireFrom=null; draw(); };
 document.getElementById('snDel').onclick=function(){ if(selWire){ wires=wires.filter(function(w){return w!==selWire;}); selWire=null; draw(); return; } if(!sel) return; wireFrom=null; var s=sel; parts=parts.filter(function(x){return x!==s;}); wires=wires.filter(function(w){return w.from.part!==s && w.to.part!==s;}); sel=null; draw(); };
@@ -2317,9 +2762,9 @@ document.getElementById('snDel').onclick=function(){ if(selWire){ wires=wires.fi
    cv.addEventListener('pointermove',function(e){ if(snPtrs[e.pointerId]){ snPtrs[e.pointerId]={x:e.clientX,y:e.clientY}; } if(pinch && Object.keys(snPtrs).length===2){ var ks=Object.keys(snPtrs); var nd=Math.hypot(snPtrs[ks[0]].x-snPtrs[ks[1]].x,snPtrs[ks[0]].y-snPtrs[ks[1]].y); var ncx=(snPtrs[ks[0]].x+snPtrs[ks[1]].x)/2, ncy=(snPtrs[ks[0]].y+snPtrs[ks[1]].y)/2; var r=cv.getBoundingClientRect(); var wx=(pinch.cx-r.left-pinch.panX)/pinch.zoom, wy=(pinch.cy-r.top-pinch.panY)/pinch.zoom; snZoom=Math.max(0.3,Math.min(3,pinch.zoom*nd/pinch.d)); snPanX=(ncx-r.left)-wx*snZoom; snPanY=(ncy-r.top)-wy*snZoom; draw(); } });
    window.addEventListener('pointerup',function(e){ delete snPtrs[e.pointerId]; if(Object.keys(snPtrs).length<2) pinch=null; });
    window.addEventListener('pointercancel',function(e){ delete snPtrs[e.pointerId]; pinch=null; });
-  cv.addEventListener('pointerdown',function(e){ if(pinch || Object.keys(snPtrs).length>=2) return; var p=pt(e); var tm=nearTerm(p.x,p.y);
+  cv.addEventListener('pointerdown',function(e){ if(snWalkMode){ snWalkDrag={sx:e.clientX, sy:e.clientY, ang0:snWalk.ang, pitch0:snWalk.pitch}; return; } if(snView3D){ sn3DPointerDown(e); return; } if(pinch || Object.keys(snPtrs).length>=2) return; var p=pt(e); var tm=nearTerm(p.x,p.y);
   if(snGame.active){ if(tm){ snShowDiagnosePicker(tm.part); sel=tm.part; draw(); return; } var hit3=hitPart(p.x,p.y); if(hit3){ snShowDiagnosePicker(hit3); sel=hit3; draw(); return; } snHideFaultPicker(); draw(); return; }
-  if(snFaultMode){ if(tm){ snShowFaultPicker(tm.part); sel=tm.part; draw(); return; } var hw2=null; for(var wi3=wires.length-1;wi3>=0;wi3--){ var wa2=termPos(wires[wi3].from.part,wires[wi3].from.term), wb2=termPos(wires[wi3].to.part,wires[wi3].to.term); if(distToSeg(p.x,p.y,wa2.x,wa2.y,wb2.x,wb2.y)<10){ hw2=wires[wi3]; break; } } if(hw2){ if(hw2.fault==='short') delete hw2.fault; else hw2.fault='short'; draw(); return; } var hit2=hitPart(p.x,p.y); if(hit2){ snShowFaultPicker(hit2); sel=hit2; draw(); return; } snHideFaultPicker(); draw(); return; } if(tm){ if(!wireFrom){ wireFrom=tm; sel=tm.part; selWire=null; draw(); return; } if(wireFrom.part===tm.part && wireFrom.term.dx===tm.term.dx && wireFrom.term.dy===tm.term.dy){ wireFrom=null; draw(); return; } if(wireFrom.part===tm.part){ wireFrom=tm; sel=tm.part; draw(); return; } var _wk2=wireFrom.term.kind; wires.push({from:wireFrom,to:tm,kind:_wk2,size:(_wk2==='drain'?'4':(_wk2==='cold'||_wk2==='hot'||_wk2==='water'?'1/2':undefined))}); wireFrom=null; sel=tm.part; selWire=null; draw(); return; } if(selWire){ var mp=wireMid(selWire); if(Math.hypot(p.x-mp.x,p.y-mp.y)<22){ wires=wires.filter(function(w){return w!==selWire;}); selWire=null; draw(); return; } }
+  if(snFaultMode){ if(tm){ snShowFaultPicker(tm.part); sel=tm.part; draw(); return; } var hw2=null; for(var wi3=wires.length-1;wi3>=0;wi3--){ var wa2=termPos(wires[wi3].from.part,wires[wi3].from.term), wb2=termPos(wires[wi3].to.part,wires[wi3].to.term); if(distToSeg(p.x,p.y,wa2.x,wa2.y,wb2.x,wb2.y)<10){ hw2=wires[wi3]; break; } } if(hw2){ if(hw2.fault==='short') delete hw2.fault; else hw2.fault='short'; draw(); return; } var hit2=hitPart(p.x,p.y); if(hit2){ snShowFaultPicker(hit2); sel=hit2; draw(); return; } snHideFaultPicker(); draw(); return; } if(tm){ if(!wireFrom){ wireFrom=tm; sel=tm.part; selWire=null; draw(); return; } if(wireFrom.part===tm.part && wireFrom.term.dx===tm.term.dx && wireFrom.term.dy===tm.term.dy){ wireFrom=null; draw(); return; } if(wireFrom.part===tm.part){ wireFrom=tm; sel=tm.part; draw(); return; } var _wk2=wireFrom.term.kind; wires.push({from:wireFrom,to:tm,kind:_wk2,size:(_wk2==='drain'?'4':(_wk2==='vent'?'2':(_wk2==='cold'||_wk2==='hot'||_wk2==='water'?'1/2':undefined)))}); wireFrom=null; sel=tm.part; selWire=null; draw(); return; } if(selWire){ var mp=wireMid(selWire); if(Math.hypot(p.x-mp.x,p.y-mp.y)<22){ wires=wires.filter(function(w){return w!==selWire;}); selWire=null; draw(); return; } }
   var hw=null; for(var wi2=wires.length-1;wi2>=0;wi2--){ var wa=termPos(wires[wi2].from.part,wires[wi2].from.term), wb=termPos(wires[wi2].to.part,wires[wi2].to.term); if(distToSeg(p.x,p.y,wa.x,wa.y,wb.x,wb.y)<10){ hw=wires[wi2]; break; } }
   if(hw){ selWire=hw; sel=null; wireFrom=null; draw(); return; }
   var prevSel=sel; var hit=hitPart(p.x,p.y); sel=hit; selWire=null; if(!sel){ wireFrom=null; draw(); return; }
@@ -2330,12 +2775,31 @@ document.getElementById('snDel').onclick=function(){ if(selWire){ wires=wires.fi
     
     drag={type:'move',part:sel,dx:p.x-sel.x,dy:p.y-sel.y,tap:{wasSel:prevSel===sel,sx:p.x,sy:p.y}}; draw();
   });
-  cv.addEventListener('pointermove',function(e){ if(pinch) return; var p=pt(e); hoverTerm = nearTerm(p.x,p.y); if(!drag){ draw(); return; }
+  cv.addEventListener('pointermove',function(e){ if(snWalkMode || snView3D) return; if(pinch) return; var p=pt(e); hoverTerm = nearTerm(p.x,p.y); if(!drag){ draw(); return; }
     if(drag.type==='resize'){ var d=Math.hypot(p.x-drag.part.x,p.y-drag.part.y); drag.part.s=Math.max(0.4,Math.min(3,drag.startS*d/drag.startDist)); } else if(drag.type==='move'){ var nx=p.x-drag.dx, ny=p.y-drag.dy; var mdx=nx-drag.part.x, mdy=ny-drag.part.y; drag.part.x=nx; drag.part.y=ny; if(drag.part.kind==='door'||drag.part.kind==='window'){ snSnapDoor(drag.part,70); } if(drag.part.kind==='wall'||drag.part.kind==='room'){ snEnsureIds(); parts.forEach(function(pp){ if(pp.mount&&pp.mount.hostId===drag.part.id){ pp.x+=mdx; pp.y+=mdy; } }); } }
     else if(drag.type==='rotate'){ drag.part.rot = Math.round(Math.atan2(p.y-drag.part.y,p.x-drag.part.x)*180/Math.PI+90); }
     draw();
   });
-  window.addEventListener('pointerup',function(e){ if(drag && (drag.part.kind==='door'||drag.part.kind==='window') && drag.part.mount){ var h=parts.find(function(hh){return hh.id===drag.part.mount.hostId;}); if(h){ var ok=false; if(h.kind==='wall'){ var sg=snWallSeg(h); var cl=snClosestSeg(drag.part.x,drag.part.y,sg.x1,sg.y1,sg.x2,sg.y2); ok=cl.d<90; } else if(h.kind==='room'){ var es=snRoomEdges(h); for(var ei=0;ei<4;ei++){ var cl2=snClosestSeg(drag.part.x,drag.part.y,es[ei].x1,es[ei].y1,es[ei].x2,es[ei].y2); if(cl2.d<90) ok=true; } } if(!ok) drag.part.mount=null; } } if(!drag) return; if(drag.type==='move' && drag.tap && drag.tap.wasSel && snIsSwitchable(drag.part.kind)){ var pp2=pt(e); if(Math.hypot(pp2.x-drag.tap.sx,pp2.y-drag.tap.sy)<10){ drag.part.on=!snOn(drag.part); } } drag=null; draw(); });
+  // سحب حر على مستوى الشاشة كلها: صباعك يتحرك في أي حتة والمجسم يتبعه
+  window.addEventListener('pointermove',function(e){
+    if(snWalkMode){
+      if(snWalkDrag && !pinch){
+        snWalk.ang=snWalkDrag.ang0 + (e.clientX-snWalkDrag.sx)*0.005;
+        snWalk.pitch=Math.max(-0.5,Math.min(0.5, snWalkDrag.pitch0 - (e.clientY-snWalkDrag.sy)*0.003));
+        draw();
+      }
+      return;
+    }
+    if(snView3D){
+      if(sn3DDrag && !pinch){
+        snIsoAng=sn3DDrag.ang0 + (e.clientX-sn3DDrag.sx)*0.015;
+        snIsoTilt=Math.max(-0.6,Math.min(0.6, sn3DDrag.tilt0 + (sn3DDrag.sy-e.clientY)*0.003));
+        draw();
+      }
+      return;
+    }
+  });
+  window.addEventListener('pointerup',function(e){ if(snWalkMode){ snWalkDrag=null; return; } if(snView3D && sn3DDrag){ var mv=Math.hypot(e.clientX-sn3DDrag.sx, e.clientY-sn3DDrag.sy); var _d=sn3DDrag; sn3DDrag=null; if(mv<10) sn3DTap(e.clientX,e.clientY); return; } if(drag && (drag.part.kind==='door'||drag.part.kind==='window') && drag.part.mount){ var h=parts.find(function(hh){return hh.id===drag.part.mount.hostId;}); if(h){ var ok=false; if(h.kind==='wall'){ var sg=snWallSeg(h); var cl=snClosestSeg(drag.part.x,drag.part.y,sg.x1,sg.y1,sg.x2,sg.y2); ok=cl.d<90; } else if(h.kind==='room'){ var es=snRoomEdges(h); for(var ei=0;ei<4;ei++){ var cl2=snClosestSeg(drag.part.x,drag.part.y,es[ei].x1,es[ei].y1,es[ei].x2,es[ei].y2); if(cl2.d<90) ok=true; } } if(!ok) drag.part.mount=null; } } if(!drag) return; if(drag.type==='move' && drag.tap && drag.tap.wasSel && snIsSwitchable(drag.part.kind)){ var pp2=pt(e); if(Math.hypot(pp2.x-drag.tap.sx,pp2.y-drag.tap.sy)<10){ drag.part.on=!snOn(drag.part); } } if(drag && (drag.part.kind==='room'||drag.part.kind==='wall')) snResnapMounted(drag.part); drag=null; draw(); });
   parts.push({id:snUid(),kind:'room',x:260,y:220,rot:0,s:1},{id:snUid(),kind:'socket',x:180,y:300,rot:0,s:1},{id:snUid(),kind:'switch',x:340,y:300,rot:0,s:1},{id:snUid(),kind:'lamp',x:260,y:140,rot:0,s:1});
   draw();
 }
