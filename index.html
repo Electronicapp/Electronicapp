@@ -71,7 +71,7 @@
 
 </style><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>ElectroPanel V3.9.77</title>
+<title>ElectroPanel V3.9.79</title>
 <link rel="manifest" href="./manifest.webmanifest">
 <meta name="theme-color" content="#111827">
 <meta name="mobile-web-app-capable" content="yes">
@@ -240,7 +240,7 @@ h1{position:relative!important;z-index:1!important;background:var(--bg,#f1f5f9)!
 </style></head><body>
 
 <!-- راس الصفحة من فوق خالص - الإضافات الجديدة تتحط هنا جنب زرار كهربائي -->
-<header id="topHeader"><span id="verBadge">V3.9.77</span><button id="elecBtn" type="button" title="تواصل مع صاحب التطبيق">⚡ كهربائي</button><button id="appsBtn" type="button" title="تطبيقات قادمة">📱 تطبيقات</button></header>
+<header id="topHeader"><span id="verBadge">V3.9.79</span><button id="elecBtn" type="button" title="تواصل مع صاحب التطبيق">⚡ كهربائي</button><button id="appsBtn" type="button" title="تطبيقات قادمة">📱 تطبيقات</button></header>
 
 <div id="pwaBar" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;align-items:center">
  <button id="installBtn" style="display:none;background:#111827;color:#fff">📲 تثبيت التطبيق على جهازك</button>
@@ -1749,7 +1749,7 @@ document.addEventListener('click',e=>{if(e.target.closest('#exBody [data-p]')){d
 </script>
 <script>
 // ===== PWA: تثبيت + أوفلاين + تحديث تلقائي =====
-const APP_VERSION = 'v3.9.77';
+const APP_VERSION = 'v3.9.79';
 let deferredPrompt = null, newWorker = null;
 const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
 const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
@@ -1895,7 +1895,7 @@ document.getElementById('updateBtn').onclick = ()=>{
    <div id="snWalkCtl" style="display:none;position:absolute;left:50%;bottom:96px;transform:translateX(-50%);z-index:45;gap:6px;align-items:center;background:rgba(2,6,23,.92);border:1px solid #7c3aed;border-radius:16px;padding:6px;box-shadow:0 8px 24px rgba(0,0,0,.5)"><button id="snWalkL" type="button" style="min-width:52px;min-height:46px;border:none;border-radius:12px;padding:6px 8px;font-weight:900;font-size:13px;background:#334155;color:#fff;cursor:pointer;touch-action:none">⬅️ شمال</button><button id="snWalkF" type="button" style="min-width:52px;min-height:46px;border:none;border-radius:12px;padding:6px 8px;font-weight:900;font-size:13px;background:#16a34a;color:#fff;cursor:pointer;touch-action:none">⬆️ قدام</button><button id="snWalkB" type="button" style="min-width:52px;min-height:46px;border:none;border-radius:12px;padding:6px 8px;font-weight:900;font-size:13px;background:#64748b;color:#fff;cursor:pointer;touch-action:none">⬇️ ورا</button><button id="snWalkR" type="button" style="min-width:52px;min-height:46px;border:none;border-radius:12px;padding:6px 8px;font-weight:900;font-size:13px;background:#334155;color:#fff;cursor:pointer;touch-action:none">➡️ يمين</button><button id="snWalkOut" type="button" style="min-width:52px;min-height:46px;border:none;border-radius:12px;padding:6px 8px;font-weight:900;font-size:13px;background:#ef4444;color:#fff;cursor:pointer">🚪 اخرج</button></div>
   <div id="snWireCard" style="display:none;position:absolute;z-index:30;left:50%;top:118px;width:230px;background:rgba(2,6,23,.96);border:1.5px solid #38bdf8;border-radius:14px;padding:8px 10px;color:#e2e8f0;font-size:12px;line-height:1.5;pointer-events:auto;transform:translateX(-50%)"></div>
   <div id="snFaultPicker" style="display:none;position:absolute;z-index:30;width:200px;background:rgba(2,6,23,.96);border:1.5px solid #ef4444;border-radius:14px;padding:8px 10px;color:#e2e8f0;font-size:12px;line-height:1.5;pointer-events:auto;transform:translateX(-50%)"></div>
-  <div id="snPartCard" style="display:none;position:absolute;z-index:25;width:230px;max-width:62vw;background:rgba(2,6,23,.94);border:1.5px solid #38bdf8;border-radius:14px;padding:8px 10px;color:#e2e8f0;font-size:11px;line-height:1.55;pointer-events:none;transform:translateX(-50%)"></div><div id="snLegendStrip" style="position:absolute;left:0;right:0;bottom:0;z-index:39;white-space:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:5px 10px;color:#e2e8f0;font-size:11px;background:rgba(2,6,23,.92);border-top:1px solid #334155">مفتاح الألوان: <b style="color:#ef4444">فاز أحمر</b> • <b style="color:#60a5fa">محايد أزرق</b> • <b style="color:#facc15">راجع أصفر</b> • <b style="color:#4ade80">أرضي أخضر</b> • <b style="color:#fb923c">فازة 2 برتقالي</b> • <b style="color:#c084fc">فازة 3 بنفسجي</b> • <b style="color:#e5e7eb">رئيسي أسود</b> • <b style="color:#38bdf8">بارد</b> • <b style="color:#ef4444">ساخن</b> • <b style="color:#4ade80">صرف</b> • <b style="color:#c084fc">تغذية</b> — دوس نقطة التوصيل تنوّر بظل — دوس نقطة تانية والسلك هيتوصل لوحده بلون النقطة الأولى • للمحاكاة: دوس على المفتاح وهو محدد عشان تشغّله/تطفيه — أو دوس زر تشغيل في البار اللي تحت — واللمبة هتنوّر لو الدايرة كاملة • التحكم: اسحب القطعة للتحريك • اسحب مقبض التدوير اللي فوق الحلقة للتدوير • البار اللي تحت فيه تشغيل وتدوير 90° وتكبير وتصغير ونسخ وحذف • اسحب الباب/الشباك جنب حائط أو ضلع غرفة وهيلزق لوحده ويقطع الحائط • دوس على السلك يتحدد — دوس علامة الحذف اللي في نصه أو زر حذف السلك يمسحه</div><div id="snCtlBar" style="display:none;position:absolute;left:50%;bottom:36px;transform:translateX(-50%);z-index:40;gap:5px;align-items:center;background:rgba(2,6,23,.92);border:1px solid #334155;border-radius:14px;padding:5px;box-shadow:0 8px 24px rgba(0,0,0,.5);max-width:96vw;overflow-x:auto"><button id="snCtlPower" type="button" style="min-width:48px;min-height:36px;border:none;border-radius:12px;padding:5px 8px;font-weight:900;font-size:12px;color:#fff;cursor:pointer">تشغيل</button><button id="snCtlRot" type="button" style="min-width:44px;min-height:36px;border:none;border-radius:12px;padding:5px 8px;font-weight:900;font-size:12px;background:#0ea5e9;color:#fff;cursor:pointer">تدوير 90</button><button id="snCtlBig" type="button" style="min-width:44px;min-height:36px;border:none;border-radius:12px;padding:5px 8px;font-weight:900;font-size:13px;background:#7c3aed;color:#fff;cursor:pointer">تكبير</button><button id="snCtlSmall" type="button" style="min-width:44px;min-height:36px;border:none;border-radius:12px;padding:5px 8px;font-weight:900;font-size:13px;background:#7c3aed;color:#fff;cursor:pointer">تصغير</button><button id="snCtlCopy" type="button" style="min-width:44px;min-height:36px;border:none;border-radius:12px;padding:5px 8px;font-weight:900;font-size:12px;background:#f59e0b;color:#111827;cursor:pointer">نسخ</button><button id="snCtlDel" type="button" style="min-width:44px;min-height:36px;border:none;border-radius:12px;padding:5px 8px;font-weight:900;font-size:12px;background:#ef4444;color:#fff;cursor:pointer">حذف</button></div>
+  <div id="snPartCard" style="display:none;position:absolute;z-index:25;width:230px;max-width:62vw;background:rgba(2,6,23,.94);border:1.5px solid #38bdf8;border-radius:14px;padding:8px 10px;color:#e2e8f0;font-size:11px;line-height:1.55;pointer-events:none;transform:translateX(-50%)"></div><div id="snLegendStrip" style="position:absolute;left:0;right:0;bottom:0;z-index:39;white-space:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:5px 10px;color:#e2e8f0;font-size:11px;background:rgba(2,6,23,.92);border-top:1px solid #334155">مفتاح الألوان: <b style="color:#ef4444">فاز أحمر</b> • <b style="color:#60a5fa">محايد أزرق</b> • <b style="color:#facc15">راجع أصفر</b> • <b style="color:#4ade80">أرضي أخضر</b> • <b style="color:#fb923c">فازة 2 برتقالي</b> • <b style="color:#c084fc">فازة 3 بنفسجي</b> • <b style="color:#e5e7eb">رئيسي أسود</b> • <b style="color:#38bdf8">بارد</b> • <b style="color:#ef4444">ساخن</b> • <b style="color:#4ade80">صرف</b> • <b style="color:#c084fc">تغذية</b> — دوس نقطة التوصيل تنوّر بظل — دوس نقطة تانية والسلك هيتوصل لوحده بلون النقطة الأولى • للمحاكاة: دوس على المفتاح وهو محدد عشان تشغّله/تطفيه — أو دوس زر تشغيل في البار اللي تحت — واللمبة هتنوّر لو الدايرة كاملة • التحكم: اسحب القطعة للتحريك • اسحب مقبض التدوير اللي فوق الحلقة للتدوير • البار اللي تحت فيه تشغيل وتدوير 90° وتكبير وتصغير ونسخ وحذف • اسحب الباب/الشباك جنب حائط أو ضلع غرفة وهيلزق لوحده ويقطع الحائط • دوس على السلك يتحدد — دوس علامة الحذف اللي في نصه أو زر حذف السلك يمسحه</div><div id="snCtlBar" style="display:none;position:absolute;left:50%;bottom:36px;transform:translateX(-50%);z-index:40;gap:5px;align-items:center;background:rgba(2,6,23,.92);border:1px solid #334155;border-radius:14px;padding:5px;box-shadow:0 8px 24px rgba(0,0,0,.5);max-width:96vw;overflow-x:auto"><button id="snCtlPower" type="button" style="min-width:48px;min-height:36px;border:none;border-radius:12px;padding:5px 8px;font-weight:900;font-size:12px;color:#fff;cursor:pointer">تشغيل</button><button id="snCtlOpen" type="button" style="min-width:48px;min-height:36px;border:none;border-radius:12px;padding:5px 8px;font-weight:900;font-size:12px;background:#0ea5e9;color:#fff;cursor:pointer">🔓 افتح</button><button id="snCtlHinge" type="button" style="min-width:64px;min-height:36px;border:none;border-radius:12px;padding:5px 8px;font-weight:900;font-size:12px;background:#f59e0b;color:#111827;cursor:pointer">المفصلة: شمال</button><button id="snCtlWinMode" type="button" style="min-width:64px;min-height:36px;border:none;border-radius:12px;padding:5px 8px;font-weight:900;font-size:12px;background:#8b5cf6;color:#fff;cursor:pointer">الفتح: جر</button><button id="snCtlRot" type="button" style="min-width:44px;min-height:36px;border:none;border-radius:12px;padding:5px 8px;font-weight:900;font-size:12px;background:#0ea5e9;color:#fff;cursor:pointer">تدوير 90</button><button id="snCtlBig" type="button" style="min-width:44px;min-height:36px;border:none;border-radius:12px;padding:5px 8px;font-weight:900;font-size:13px;background:#7c3aed;color:#fff;cursor:pointer">تكبير</button><button id="snCtlSmall" type="button" style="min-width:44px;min-height:36px;border:none;border-radius:12px;padding:5px 8px;font-weight:900;font-size:13px;background:#7c3aed;color:#fff;cursor:pointer">تصغير</button><button id="snCtlCopy" type="button" style="min-width:44px;min-height:36px;border:none;border-radius:12px;padding:5px 8px;font-weight:900;font-size:12px;background:#f59e0b;color:#111827;cursor:pointer">نسخ</button><button id="snCtlDel" type="button" style="min-width:44px;min-height:36px;border:none;border-radius:12px;padding:5px 8px;font-weight:900;font-size:12px;background:#ef4444;color:#fff;cursor:pointer">حذف</button></div>
 </div>
 <script>
 (function(){
@@ -2295,7 +2295,7 @@ function draw(){   if(!ctx) return; var vc=document.getElementById('snViewCtl');
   ctx.restore();
   if(wireFrom){ var wx=wireFrom.x*snZoom+snPanX, wy=wireFrom.y*snZoom+snPanY; var wc=COLORS[wireFrom.term.kind]||'#facc15'; ctx.save(); ctx.setTransform(1,0,0,1,0,0); ctx.beginPath(); ctx.arc(wx,wy,18,0,7); ctx.fillStyle=wc; ctx.globalAlpha=0.35; ctx.fill(); ctx.globalAlpha=1; ctx.lineWidth=3; ctx.strokeStyle='#fff'; ctx.stroke(); ctx.beginPath(); ctx.arc(wx,wy,10,0,7); ctx.fillStyle=wc; ctx.fill(); ctx.fillStyle='#fff'; ctx.font='bold 12px sans-serif'; ctx.textAlign='center'; ctx.fillText((wireFrom.term.label||'')+' جاهزة — دوس النقطة التانية', wx, wy-26); ctx.restore(); }
   if(hoverTerm){ ctx.fillStyle='#fff'; ctx.font='12px sans-serif'; ctx.textAlign='center'; ctx.fillText(hoverTerm.term.label, hoverTerm.x*snZoom+snPanX, hoverTerm.y*snZoom+snPanY-14); }
-  var bar=document.getElementById('snCtlBar'); if(bar){ bar.style.display=(sel||selWire)?'flex':'none'; var pw=document.getElementById('snCtlPower'); var rt=document.getElementById('snCtlRot'); var bg=document.getElementById('snCtlBig'); var sm=document.getElementById('snCtlSmall'); var cp=document.getElementById('snCtlCopy'); var dl=document.getElementById('snCtlDel'); if(selWire){ [pw,rt,bg,sm,cp].forEach(function(b){ if(b) b.style.display='none'; }); if(dl){ dl.style.display=''; dl.textContent='حذف السلك'; } } else { if(dl){ dl.style.display=''; dl.textContent='حذف'; } if(pw){ var showPw=sel&&snIsSwitchable(sel.kind); pw.style.display=showPw?'':'none'; if(showPw){ pw.textContent=(['valve','mixer','basin','wc','bathtub','coldPoint','hotPoint','wsource'].indexOf(sel.kind)>=0)?(snOn(sel)?'🔒 قفل':'🔓 فتح'):(snOn(sel)?'ايقاف':'تشغيل'); pw.style.background=snOn(sel)?'#16a34a':'#64748b'; } } } }
+  var bar=document.getElementById('snCtlBar'); if(bar){ bar.style.display=(sel||selWire)?'flex':'none'; var pw=document.getElementById('snCtlPower'); var rt=document.getElementById('snCtlRot'); var bg=document.getElementById('snCtlBig'); var sm=document.getElementById('snCtlSmall'); var cp=document.getElementById('snCtlCopy'); var dl=document.getElementById('snCtlDel'); var op=document.getElementById('snCtlOpen'); var hg=document.getElementById('snCtlHinge'); var wm=document.getElementById('snCtlWinMode'); if(selWire){ [pw,rt,bg,sm,cp,op,hg,wm].forEach(function(b){ if(b) b.style.display='none'; }); if(dl){ dl.style.display=''; dl.textContent='حذف السلك'; } } else { if(dl){ dl.style.display=''; dl.textContent='حذف'; } if(pw){ var showPw=sel&&snIsSwitchable(sel.kind); pw.style.display=showPw?'':'none'; if(showPw){ pw.textContent=(['valve','mixer','basin','wc','bathtub','coldPoint','hotPoint','wsource'].indexOf(sel.kind)>=0)?(snOn(sel)?'🔒 قفل':'🔓 فتح'):(snOn(sel)?'ايقاف':'تشغيل'); pw.style.background=snOn(sel)?'#16a34a':'#64748b'; } } if(op){ var showOp=sel&&(sel.kind==='door'||sel.kind==='window'); op.style.display=showOp?'':'none'; if(showOp){ var isOp=(sel.open||0)>0.5; op.textContent=isOp?'🔒 اقفل':'🔓 افتح'; op.style.background=isOp?'#16a34a':'#0ea5e9'; } } if(hg){ var showHg=sel&&((sel.kind==='door')||(sel.kind==='window'&&(sel.winMode||'slide')==='swing')); hg.style.display=showHg?'':'none'; if(showHg){ hg.textContent='المفصلة: '+((sel.hinge==='R')?'يمين':'شمال'); } } if(wm){ var showWm=sel&&sel.kind==='window'; wm.style.display=showWm?'':'none'; if(showWm){ wm.textContent='الفتح: '+(((sel.winMode||'slide')==='swing')?'للخارج':'جر'); } } } }
   var st=document.getElementById('snStat'); if(st) st.textContent = sel? (LABELS[sel.kind]+(snIsSwitchable(sel.kind)?(' | '+(snOn(sel)?'ON':'OFF')):'')+' | زاوية '+(sel.rot|0)+'° | حجم '+(sel.s||1).toFixed(1)+'x') : ('القطع: '+parts.length+' • الأسلاك: '+wires.length+' | 💧 '+snLiters.toFixed(1)+' لتر • فاتورة '+(snLiters*snBillRate).toFixed(2)+' ج'); var zl=document.getElementById('snZoomLabel'); if(zl) zl.textContent=Math.round(snZoom*100)+'%'; snUpdatePartCard(); snUpdateFaultBar(); snUpdateGameBar(); snUpdateWireCard();
 }
 function drawPart(p){
@@ -2304,8 +2304,8 @@ function drawPart(p){
   var k=p.kind;
   if(k==='room'){ var o2=snOpeningsFor(p); ctx.lineWidth=(sel===p)?2:1.4; function edgeSeg(edge,x1,y1,x2,y2){ var gs2=o2.filter(function(g){return g.edge===edge;}).sort(function(a,b){return a.t-b.t;}); var horizontal=(y1===y2); var from=horizontal?x1:y1, to=horizontal?x2:y2; var cur=from; gs2.forEach(function(g){ var gc=from+(to-from)*g.t; var s0=Math.max(Math.min(from,to),gc-g.half), e0=Math.min(Math.max(from,to),gc+g.half); if(from<to){ if(s0>cur){ ctx.beginPath(); if(horizontal){ctx.moveTo(cur,y1);ctx.lineTo(s0,y1);}else{ctx.moveTo(x1,cur);ctx.lineTo(x1,s0);} ctx.stroke(); } if(e0>cur) cur=e0; } else { if(s0<cur){ ctx.beginPath(); if(horizontal){ctx.moveTo(cur,y1);ctx.lineTo(s0,y1);}else{ctx.moveTo(x1,cur);ctx.lineTo(x1,s0);} ctx.stroke(); } if(e0<cur) cur=e0; } }); ctx.beginPath(); if(horizontal){ctx.moveTo(cur,y1);ctx.lineTo(to,y1);}else{ctx.moveTo(x1,cur);ctx.lineTo(x1,to);} ctx.stroke(); } edgeSeg(0,-70,-45,70,-45); edgeSeg(1,70,-45,70,45); edgeSeg(2,70,45,-70,45); edgeSeg(3,-70,45,-70,-45); }
   else if(k==='wall'){ var gaps=snOpeningsFor(p).filter(function(g){return g.edge===-1;}).sort(function(a,b){return a.t-b.t;}); var cur=-60; gaps.forEach(function(g){ var gc=(g.t*2-1)*60; var gs=Math.max(-60,gc-g.half), ge=Math.min(60,gc+g.half); if(gs>cur) ctx.fillRect(cur,-6,gs-cur,12); if(ge>cur) cur=ge; }); if(cur<60) ctx.fillRect(cur,-6,60-cur,12); }
-  else if(k==='door'){ ctx.strokeRect(-6,-30,12,60); ctx.beginPath(); ctx.arc(0,0,30,-Math.PI/2,0); ctx.stroke(); }
-  else if(k==='window'){ ctx.strokeRect(-40,-8,80,16); ctx.beginPath(); ctx.moveTo(-40,0); ctx.lineTo(40,0); ctx.stroke(); }
+  else if(k==='door'){ ctx.beginPath(); ctx.arc(0,0,30,-Math.PI/2,0); ctx.stroke(); var dOp2=p.open||0, dHs2=(p.hinge==='R')?1:-1, dA2=dOp2*Math.PI/2*dHs2; ctx.save(); ctx.translate(0,-30*dHs2); ctx.rotate(dA2); ctx.strokeRect(-6, dHs2>0?0:-60, 12, 60); ctx.restore(); }
+  else if(k==='window'){ var wOp2=p.open||0; ctx.strokeRect(-40,-8,80,16); if((p.winMode||'slide')==='slide'){ ctx.beginPath(); ctx.moveTo(-40,0); ctx.lineTo(0,0); ctx.stroke(); ctx.beginPath(); ctx.moveTo(0-40*wOp2,0); ctx.lineTo(40-40*wOp2,0); ctx.stroke(); } else { var wHs2=(p.hinge==='R')?1:-1, wA2=wOp2*Math.PI/2*wHs2, wHx2=40*wHs2, wDx2=-80*wHs2, wCa2=Math.cos(wA2), wSa2=Math.sin(wA2); ctx.beginPath(); ctx.moveTo(wHx2,0); ctx.lineTo(wHx2+wDx2*wCa2, wDx2*wSa2); ctx.stroke(); } }
   else if(k==='column'){ ctx.strokeRect(-18,-18,36,36); }
   else if(k==='balcony'){ ctx.setLineDash([6,4]); ctx.strokeRect(-50,-22,100,44); ctx.setLineDash([]); }
   else if(k==='stairs'){ for(var i=0;i<5;i++){ ctx.strokeRect(-30,-22+i*9,60,9);} }
@@ -2454,18 +2454,25 @@ function snWallSegs3D(x1,y1,x2,y2,openings,localLen){
   var L=Math.hypot(x2-x1,y2-y1); if(L<1) return;
   var gaps=openings.slice().sort(function(a,b){return a.t-b.t;});
   var cur=0;
-  function seg(t0,t1){
-    if(t1-t0<0.02) return;
+  function seg(t0,t1){ segZ(t0,t1,0,SN_WALL_H); }
+  function segZ(t0,t1,z0,h){
+    if(t1-t0<0.02 || h<=0) return;
     var px1=x1+(x2-x1)*t0, py1=y1+(y2-y1)*t0, px2=x1+(x2-x1)*t1, py2=y1+(y2-y1)*t1;
-    snWallSegsCache.push({x1:px1,y1:py1,x2:px2,y2:py2});
+    if(z0===0) snWallSegsCache.push({x1:px1,y1:py1,x2:px2,y2:py2});
     var cx=(px1+px2)/2, cy=(py1+py2)/2, len=Math.hypot(px2-px1,py2-py1);
     var ang=Math.atan2(py2-py1,px2-px1)*180/Math.PI;
-    snIsoBox(cx,cy,len,10,SN_WALL_H,ang,0,'#cbd5e1');
+    snIsoBox(cx,cy,len,10,h,ang,z0,'#cbd5e1');
   }
   gaps.forEach(function(g){
     var gt=(g.half||30)/localLen;
     var s0=Math.max(0,g.t-gt), e0=Math.min(1,g.t+gt);
     if(s0>cur) seg(cur,s0);
+    if(g.kind==='window'){
+      segZ(s0,e0,0,35);
+      segZ(s0,e0,85,SN_WALL_H-85);
+    } else {
+      segZ(s0,e0,85,SN_WALL_H-85);
+    }
     if(e0>cur) cur=e0;
   });
   if(cur<1) seg(cur,1);
@@ -2496,9 +2503,31 @@ function snBuild3DFaces(){
       var ops2=snOpeningsFor(p).filter(function(g){return g.edge===-1;});
       snWallSegs3D(sg.x1,sg.y1,sg.x2,sg.y2, ops2, 120);
     } else if(p.kind==='door'){
-      if(!snWalkMode){ var dw=snMountWorld(p)||{x:p.x,y:p.y,rot:p.rot||0}; snIsoBox(dw.x,dw.y,60,12,85,dw.rot,0,'#a16207'); }
+      if(!snWalkMode){
+        var dw=snMountWorld(p)||{x:p.x,y:p.y,rot:p.rot||0};
+        var dOp=p.open||0, dHs=(p.hinge==='R')?1:-1;
+        var dX=Math.cos(dw.rot*Math.PI/180), dY=Math.sin(dw.rot*Math.PI/180);
+        var dHx=dw.x+dX*30*dHs, dHy=dw.y+dY*30*dHs;
+        var dOx=dw.x-dHx, dOy=dw.y-dHy;
+        var dA=dOp*Math.PI/2*dHs;
+        var dCa=Math.cos(dA), dSa=Math.sin(dA);
+        snIsoBox(dHx+dOx*dCa-dOy*dSa, dHy+dOx*dSa+dOy*dCa, 60,12,85, dw.rot+dA*180/Math.PI, 0, '#a16207');
+      }
     } else if(p.kind==='window'){
-      var ww=snMountWorld(p)||{x:p.x,y:p.y,rot:p.rot||0}; snIsoBox(ww.x,ww.y,80,16,50,ww.rot,35,'#7dd3fc');
+      var ww=snMountWorld(p)||{x:p.x,y:p.y,rot:p.rot||0};
+      var wOp=p.open||0;
+      var wX=Math.cos(ww.rot*Math.PI/180), wY=Math.sin(ww.rot*Math.PI/180);
+      if((p.winMode||'slide')==='slide'){
+        snIsoBox(ww.x-wX*20, ww.y-wY*20, 40,16,50, ww.rot, 35, '#7dd3fc');
+        snIsoBox(ww.x+wX*20-wX*40*wOp, ww.y+wY*20-wY*40*wOp, 40,16,50, ww.rot, 35, '#93c5fd');
+      } else {
+        var wHs=(p.hinge==='R')?1:-1;
+        var wHx=ww.x+wX*40*wHs, wHy=ww.y+wY*40*wHs;
+        var wOx=ww.x-wHx, wOy=ww.y-wHy;
+        var wA=wOp*Math.PI/2*wHs;
+        var wCa=Math.cos(wA), wSa=Math.sin(wA);
+        snIsoBox(wHx+wOx*wCa-wOy*wSa, wHy+wOx*wSa+wOy*wCa, 80,16,50, ww.rot+wA*180/Math.PI, 35, '#7dd3fc');
+      }
     } else if(FURN3D[p.kind]){
       var f=FURN3D[p.kind];
       snIsoBox(p.x,p.y,f.w,f.d,f.h,p.rot||0,0,f.c);
@@ -2699,9 +2728,33 @@ function sn3DTap(cx,cy){
     var d=Math.hypot(pr.x-sx, pr.y-sy);
     if(d<bd){ bd=d; best=p; }
   });
-  sel=best; selWire=null; wireFrom=null; draw();
+  sel=best; selWire=null; wireFrom=null;
+  if(best&&(best.kind==='door'||best.kind==='window')&&!snWalkMode) snToggleOpen(best);
+  draw();
 }
 
+function snToggleOpen(p){
+  if(!p) return;
+  var cur=p.open||0;
+  p.openTarget=(cur>0.5)?0:1;
+  snAnimateOpen();
+}
+var snOpenAnim=null;
+function snAnimateOpen(){
+  if(snOpenAnim) cancelAnimationFrame(snOpenAnim);
+  function step(){
+    var any=false;
+    parts.forEach(function(pp){
+      if(pp.openTarget===undefined) return;
+      var cur=pp.open||0, diff=pp.openTarget-cur;
+      if(Math.abs(diff)>0.02){ pp.open=cur+diff*0.22; any=true; }
+      else pp.open=pp.openTarget;
+    });
+    draw();
+    if(any) snOpenAnim=requestAnimationFrame(step); else snOpenAnim=null;
+  }
+  snOpenAnim=requestAnimationFrame(step);
+}
 function snSaveImage(){ if(!cv) return; var a=document.createElement('a'); a.href=cv.toDataURL('image/png'); a.download='snelectric-'+Date.now()+'.png'; a.click(); }
 function snSaveFile(){ var data={app:'SNelectric',savedAt:new Date().toISOString(),parts:parts,wires:wires.map(function(w){ return {from:{partId:w.from.part.id,dx:w.from.term.dx,dy:w.from.term.dy},to:{partId:w.to.part.id,dx:w.to.term.dx,dy:w.to.term.dy},kind:w.kind}; })}; var blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}); var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='snelectric-'+Date.now()+'.snelectric.json'; a.click(); setTimeout(function(){URL.revokeObjectURL(a.href);},2000); alert('تم حفظ SNelectric كملف JSON ✓'); }
 function snLoadFile(file){ var rd=new FileReader(); rd.onload=function(){ try{ var d=JSON.parse(rd.result); if(!d||!Array.isArray(d.parts)) throw new Error('bad'); parts=d.parts; parts.forEach(function(pp){ if(!pp.id) pp.id=snUid(); }); parts.forEach(function(pp){ if(pp.mount && !parts.some(function(h){return h.id===pp.mount.hostId;})) pp.mount=null; }); wires=[]; if(Array.isArray(d.wires)){ d.wires.forEach(function(sw2){ var fp=parts.find(function(pp){return pp.id===sw2.from.partId;}), tp=parts.find(function(pp){return pp.id===sw2.to.partId;}); if(!fp||!tp) return; var ft=termsOf(fp.kind).find(function(tm){return tm.dx===sw2.from.dx&&tm.dy===sw2.from.dy;}), tt=termsOf(tp.kind).find(function(tm){return tm.dx===sw2.to.dx&&tm.dy===sw2.to.dy;}); if(ft&&tt) wires.push({from:{part:fp,term:ft},to:{part:tp,term:tt},kind:sw2.kind}); }); } sel=null; selWire=null; wireFrom=null; draw(); alert('تم فتح ملف SNelectric ✓'); }catch(e){ alert('الملف ده مش ملف SNelectric صالح'); } }; rd.readAsText(file); }
@@ -2725,6 +2778,9 @@ function init(){
   document.querySelectorAll('#snDrawer .snPartBtn').forEach(function(b){ b.onclick=function(e){ e.stopPropagation(); snAddPart(b.dataset.kind); }; });
   document.getElementById('snView').addEventListener('pointerdown',function(e){ var d=document.getElementById('snDrawer'); if(d.classList.contains('open') && !d.contains(e.target) && !e.target.closest('#snPartsBtn')){ d.classList.remove('open'); } }, true);
   document.getElementById('snCtlPower').onclick=function(){ if(!sel) return; sel.on=!snOn(sel); draw(); };
+  document.getElementById('snCtlOpen').onclick=function(){ if(!sel) return; snToggleOpen(sel); };
+  document.getElementById('snCtlHinge').onclick=function(){ if(!sel) return; sel.hinge=(sel.hinge==='R')?'L':'R'; draw(); };
+  document.getElementById('snCtlWinMode').onclick=function(){ if(!sel) return; sel.winMode=((sel.winMode||'slide')==='swing')?'slide':'swing'; draw(); };
   document.getElementById('snCtlRot').onclick=function(){ if(!sel) return; sel.rot=((sel.rot||0)+90)%360; if(sel.kind==='room'||sel.kind==='wall') snResnapMounted(sel); draw(); };
   document.getElementById('snCtlBig').onclick=function(){ if(!sel) return; sel.s=Math.min(3,(sel.s||1)+0.2); if(sel.kind==='room'||sel.kind==='wall') snResnapMounted(sel); draw(); };
   document.getElementById('snCtlSmall').onclick=function(){ if(!sel) return; sel.s=Math.max(0.4,(sel.s||1)-0.2); if(sel.kind==='room'||sel.kind==='wall') snResnapMounted(sel); draw(); };
