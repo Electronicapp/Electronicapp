@@ -71,7 +71,7 @@
 
 </style><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>ElectroPanel V3.9.83</title>
+<title>ElectroPanel V3.9.86</title>
 <link rel="manifest" href="./manifest.webmanifest">
 <meta name="theme-color" content="#111827">
 <meta name="mobile-web-app-capable" content="yes">
@@ -242,7 +242,7 @@ h1{position:relative!important;z-index:1!important;background:var(--bg,#f1f5f9)!
 
 
 <!-- راس الصفحة من فوق خالص - الإضافات الجديدة تتحط هنا جنب زرار كهربائي -->
-<header id="topHeader"><span id="verBadge">V3.9.83</span><button id="elecBtn" type="button" title="تواصل مع صاحب التطبيق">⚡ كهربائي</button><button id="appsBtn" type="button" title="تطبيقات قادمة">📱 تطبيقات</button></header>
+<header id="topHeader"><span id="verBadge">V3.9.86</span><button id="decAccountBtn" type="button" title="حسابي" onclick="decAccountOpen()">👤 حسابي</button><button id="elecBtn" type="button" title="تواصل مع صاحب التطبيق">⚡ كهربائي</button><button id="appsBtn" type="button" title="تطبيقات قادمة">📱 تطبيقات</button></header>
 
 <div id="pwaBar" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;align-items:center">
  <button id="installBtn" style="display:none;background:#111827;color:#fff">📲 تثبيت التطبيق على جهازك</button>
@@ -781,15 +781,14 @@ function decPointsHook(gameKey, sessionScore){
  var acc=decLoadAccount();
  if(!acc){
   if(sessionScore>=500&&!decRegisterDismissed) decShowRegisterPopup(sessionScore);
+  decSupaGuestPoints(gameKey, sessionScore);
   return;
  }
  var last=acc[gameKey]||0;
- if(sessionScore>last){ acc.points=(acc.points||0)+(sessionScore-last); acc[gameKey]=sessionScore; decSaveAccount(acc); decUpsertLeader({name:acc.name, phone:acc.phone, points:acc.points}); }
+ if(sessionScore>last){ var delta=sessionScore-last; acc.points=(acc.points||0)+delta; acc[gameKey]=sessionScore; decSaveAccount(acc); decUpsertLeader({name:acc.name, phone:acc.phone, points:acc.points}); decSupaQueuePoints(delta, gameKey); }
 }
 function decShowRegisterPopup(pts){
- var pop=document.getElementById('decRegisterPop'); if(!pop) return;
- pop.style.display='block';
- var el=document.getElementById('decRegPts'); if(el) el.textContent=pts;
+ decAccountOpen('register', pts);
 }
 function decHideRegisterPopup(){ var pop=document.getElementById('decRegisterPop'); if(pop) pop.style.display='none'; }
 function decDoRegister(){
@@ -1743,15 +1742,13 @@ h.addEventListener('pointerdown',e=>{sy=e.clientY;wasOpen=dw.classList.contains(
 h.addEventListener('pointerup',e=>{const dy=e.clientY-sy;if(dy<-30)dw.classList.add('open');else if(dy>30)dw.classList.remove('open');else dw.classList.toggle('open');h.innerHTML=dw.classList.contains('open')?'☰ &nbsp; أمثلة جاهزة - اسحب لتحت للقفل &nbsp; ▴':'☰ &nbsp; أمثلة جاهزة - اسحب لفوق للفتح &nbsp; ▾';});
 document.addEventListener('click',e=>{if(e.target.closest('#exBody [data-p]')){dw.classList.remove('open');}},true);})();
 (function init(){
- const m=mk('Mains',40,20),b=mk('MCB',70,150),l=mk('Lamp',70,290),n=mk('NBar',250,400);
- C=[m,b,l,n];
- link(m.id+':L',b.id+':in','l1');link(b.id+':out',l.id+':in','l1');link(l.id+':out',n.id+':n','n');link(n.id+':n',m.id+':N','n');
+ C=[];
  lib();panel();setSize('80x100');setToolsCollapsed(false);render();
 })();
 </script>
 <script>
 // ===== PWA: تثبيت + أوفلاين + تحديث تلقائي =====
-const APP_VERSION = 'v3.9.83';
+const APP_VERSION = 'v3.9.86';
 let deferredPrompt = null, newWorker = null;
 const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
 const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
@@ -2858,12 +2855,422 @@ document.getElementById('snDel').onclick=function(){ if(selWire){ wires=wires.fi
     }
   });
   window.addEventListener('pointerup',function(e){ if(snWalkMode){ snWalkDrag=null; return; } if(snView3D && sn3DDrag){ var mv=Math.hypot(e.clientX-sn3DDrag.sx, e.clientY-sn3DDrag.sy); var _d=sn3DDrag; sn3DDrag=null; if(mv<10) sn3DTap(e.clientX,e.clientY); return; } if(drag && (drag.part.kind==='door'||drag.part.kind==='window') && drag.part.mount){ var h=parts.find(function(hh){return hh.id===drag.part.mount.hostId;}); if(h){ var ok=false; if(h.kind==='wall'){ var sg=snWallSeg(h); var cl=snClosestSeg(drag.part.x,drag.part.y,sg.x1,sg.y1,sg.x2,sg.y2); ok=cl.d<90; } else if(h.kind==='room'){ var es=snRoomEdges(h); for(var ei=0;ei<4;ei++){ var cl2=snClosestSeg(drag.part.x,drag.part.y,es[ei].x1,es[ei].y1,es[ei].x2,es[ei].y2); if(cl2.d<90) ok=true; } } if(!ok) drag.part.mount=null; } } if(!drag) return; if(drag.type==='move' && drag.tap && drag.tap.wasSel && snIsSwitchable(drag.part.kind)){ var pp2=pt(e); if(Math.hypot(pp2.x-drag.tap.sx,pp2.y-drag.tap.sy)<10){ drag.part.on=!snOn(drag.part); } } if(drag && (drag.part.kind==='room'||drag.part.kind==='wall')) snResnapMounted(drag.part); drag=null; draw(); });
-  parts.push({id:snUid(),kind:'room',x:260,y:220,rot:0,s:1},{id:snUid(),kind:'socket',x:180,y:300,rot:0,s:1},{id:snUid(),kind:'switch',x:340,y:300,rot:0,s:1},{id:snUid(),kind:'lamp',x:260,y:140,rot:0,s:1});
   draw();
 }
 window.snInit = init;
 })();
 </script>
 
+
+
+<!-- ===== 👤 حسابي — Supabase Auth + ملف شخصي ===== -->
+<div id="decAccountModal" style="display:none;position:fixed;inset:0;z-index:700;background:rgba(2,6,23,.88);overflow:auto;padding:12px;direction:rtl;color:#e2e8f0;font-size:13px;line-height:1.6">
+<div style="max-width:400px;margin:16px auto;background:#0f172a;border:2px solid #facc15;border-radius:16px;padding:16px">
+<div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
+<b style="font-size:17px;color:#facc15">👤 حسابي</b>
+<button onclick="decAccountClose()" type="button" style="background:#334155;color:#fff;border:none;border-radius:9px;padding:7px 14px;font-weight:900;cursor:pointer">✕</button>
+</div>
+<div id="decAccMsg" style="display:none;margin-top:10px;background:#111827;border:1px solid #334155;border-radius:10px;padding:9px;color:#facc15;font-weight:700"></div>
+<div id="decAccTabs" style="display:flex;gap:6px;margin-top:12px">
+<button id="decAccTabLogin" onclick="decAccountShowTab('login')" type="button" style="flex:1;background:#22c55e;color:#fff;border:none;border-radius:9px;padding:9px;font-weight:900;cursor:pointer">دخول</button>
+<button id="decAccTabRegister" onclick="decAccountShowTab('register')" type="button" style="flex:1;background:#334155;color:#fff;border:none;border-radius:9px;padding:9px;font-weight:900;cursor:pointer">حساب جديد</button>
+<button id="decAccTabForgot" onclick="decAccountShowTab('forgot')" type="button" style="flex:1;background:#334155;color:#fff;border:none;border-radius:9px;padding:9px;font-weight:900;cursor:pointer">نسيت كلمة المرور</button>
+</div>
+<div id="decAccLogin" style="margin-top:12px">
+<label style="display:block;color:#fff;font-weight:800">الإيميل</label>
+<input id="decAccLoginEmail" type="email" placeholder="example@mail.com" style="width:100%;box-sizing:border-box;background:#0f172a;color:#fff;border:1px solid #334155;border-radius:9px;padding:9px;margin-top:4px">
+<label style="display:block;color:#fff;font-weight:800;margin-top:8px">كلمة المرور</label>
+<input id="decAccLoginPass" type="password" placeholder="••••••••" style="width:100%;box-sizing:border-box;background:#0f172a;color:#fff;border:1px solid #334155;border-radius:9px;padding:9px;margin-top:4px">
+<button onclick="decSupaDoLogin()" type="button" style="width:100%;margin-top:12px;background:#22c55e;color:#fff;border:none;border-radius:10px;padding:10px;font-weight:900;cursor:pointer">✅ دخول</button><button onclick="decSupaGoogleLogin()" type="button" style="width:100%;margin-top:10px;background:#fff;color:#111;border:none;border-radius:10px;padding:10px;font-weight:900;cursor:pointer">🔍 كمّل بحساب جوجل</button>
+<div style="color:#94a3b8;font-size:11px;margin-top:8px;text-align:center">بتدخل من تليفونك عادي بعد كده — مش محتاج تسجّل تاني</div>
+</div>
+<div id="decAccRegister" style="display:none;margin-top:12px">
+<div id="decAccGuestNote" style="background:#1e293b;border:1px solid #facc15;border-radius:10px;padding:9px;color:#facc15;font-weight:700"></div>
+<label style="display:block;color:#fff;font-weight:800;margin-top:10px">الاسم</label>
+<input id="decAccRegName" type="text" placeholder="اسمك" style="width:100%;box-sizing:border-box;background:#0f172a;color:#fff;border:1px solid #334155;border-radius:9px;padding:9px;margin-top:4px">
+<label style="display:block;color:#fff;font-weight:800;margin-top:8px">رقم الموبايل (واتساب)</label>
+<input id="decAccRegPhone" type="tel" placeholder="01xxxxxxxxx" style="width:100%;box-sizing:border-box;background:#0f172a;color:#fff;border:1px solid #334155;border-radius:9px;padding:9px;margin-top:4px">
+<label style="display:block;color:#fff;font-weight:800;margin-top:8px">الإيميل</label>
+<input id="decAccRegEmail" type="email" placeholder="example@mail.com" style="width:100%;box-sizing:border-box;background:#0f172a;color:#fff;border:1px solid #334155;border-radius:9px;padding:9px;margin-top:4px">
+<label style="display:block;color:#fff;font-weight:800;margin-top:8px">كلمة المرور</label>
+<input id="decAccRegPass" type="password" placeholder="6 حروف على الأقل" style="width:100%;box-sizing:border-box;background:#0f172a;color:#fff;border:1px solid #334155;border-radius:9px;padding:9px;margin-top:4px">
+<button onclick="decSupaDoRegister()" type="button" style="width:100%;margin-top:12px;background:#22c55e;color:#fff;border:none;border-radius:10px;padding:10px;font-weight:900;cursor:pointer">✅ إنشاء حساب وحفظ النقاط</button><button onclick="decSupaGoogleLogin()" type="button" style="width:100%;margin-top:10px;background:#fff;color:#111;border:none;border-radius:10px;padding:10px;font-weight:900;cursor:pointer">🔍 كمّل بحساب جوجل</button>
+<div style="color:#94a3b8;font-size:11px;margin-top:8px;text-align:center">أي إيميل ينفع — جيميل، ياهو، هوتميل، أي حاجة</div>
+</div>
+<div id="decAccForgot" style="display:none;margin-top:12px">
+<div style="color:#94a3b8">اكتب إيميلك وهنبعتلك لينك تعمل بيه كلمة مرور جديدة</div>
+<label style="display:block;color:#fff;font-weight:800;margin-top:10px">الإيميل</label>
+<input id="decAccForgotEmail" type="email" placeholder="example@mail.com" style="width:100%;box-sizing:border-box;background:#0f172a;color:#fff;border:1px solid #334155;border-radius:9px;padding:9px;margin-top:4px">
+<button onclick="decSupaDoForgot()" type="button" style="width:100%;margin-top:12px;background:#a855f7;color:#fff;border:none;border-radius:10px;padding:10px;font-weight:900;cursor:pointer">📩 ابعت لينك إعادة التعيين</button>
+</div>
+<div id="decAccReset" style="display:none;margin-top:12px">
+<div style="color:#facc15;font-weight:800">اكتب كلمة المرور الجديدة</div>
+<label style="display:block;color:#fff;font-weight:800;margin-top:10px">كلمة المرور الجديدة</label>
+<input id="decAccResetPass" type="password" placeholder="6 حروف على الأقل" style="width:100%;box-sizing:border-box;background:#0f172a;color:#fff;border:1px solid #334155;border-radius:9px;padding:9px;margin-top:4px">
+<button onclick="decSupaDoReset()" type="button" style="width:100%;margin-top:12px;background:#22c55e;color:#fff;border:none;border-radius:10px;padding:10px;font-weight:900;cursor:pointer">✅ حفظ كلمة المرور الجديدة</button>
+</div>
+<div id="decAccProfile" style="display:none;margin-top:12px">
+<div style="text-align:center">
+<div id="decAccAvatarBig" style="font-size:64px;line-height:1">🎮</div>
+<div id="decAccName" style="color:#fff;font-weight:900;font-size:18px;margin-top:6px"></div>
+<div id="decAccEmail" style="color:#94a3b8;font-size:12px"></div>
+<div id="decAccPhone" style="color:#94a3b8;font-size:12px"></div>
+<div id="decAccPhoneEdit" style="display:none;margin-top:8px">
+<input id="decAccPhoneInput" type="tel" placeholder="رقم الموبايل (واتساب) عشان الهدايا توصلك" style="width:100%;box-sizing:border-box;background:#0f172a;color:#fff;border:1px solid #334155;border-radius:9px;padding:9px">
+<button onclick="decSupaSavePhone()" type="button" style="width:100%;margin-top:6px;background:#0ea5e9;color:#fff;border:none;border-radius:10px;padding:9px;font-weight:900;cursor:pointer">💾 حفظ الرقم</button>
+</div>
+<div style="margin-top:10px;background:#1e293b;border:1px solid #facc15;border-radius:12px;padding:10px">
+<div style="color:#94a3b8;font-size:12px">نقاطك</div>
+<div id="decAccPoints" style="color:#facc15;font-weight:900;font-size:28px">0</div>
+<div id="decAccSyncNote" style="color:#94a3b8;font-size:11px"></div>
+</div>
+</div>
+<div style="margin-top:12px"><b style="color:#fff">🖼️ اختار صورتك</b>
+<div style="display:flex;gap:8px;margin-top:6px">
+<button onclick="decSupaSetAvatar('🦸')" type="button" style="flex:1;background:#1e293b;border:2px solid #334155;border-radius:12px;padding:10px;font-size:32px;cursor:pointer">🦸</button>
+<button onclick="decSupaSetAvatar('👑')" type="button" style="flex:1;background:#1e293b;border:2px solid #334155;border-radius:12px;padding:10px;font-size:32px;cursor:pointer">👑</button>
+<button onclick="decSupaSetAvatar('🎮')" type="button" style="flex:1;background:#1e293b;border:2px solid #334155;border-radius:12px;padding:10px;font-size:32px;cursor:pointer">🎮</button>
+</div>
+<label style="display:block;margin-top:10px;background:#0ea5e9;color:#fff;border-radius:10px;padding:10px;font-weight:900;text-align:center;cursor:pointer">📷 ارفع صورة من تليفونك<input id="decAccAvatarFile" type="file" accept="image/*" onchange="decSupaUploadAvatar(this)" style="display:none"></label>
+</div>
+<div style="margin-top:12px;background:#111827;border:1px solid #334155;border-radius:12px;padding:10px">
+<b style="color:#fff">💬 خدمة عملاء</b>
+<div style="color:#94a3b8;font-size:12px">عندك مشكلة أو سؤال؟ كلمنا واتساب</div>
+<a href="https://wa.me/201558837118?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D8%AD%D8%AA%D8%A7%D8%AC%20%D9%85%D8%B3%D8%A7%D8%B9%D8%AF%D8%A9%20%D9%81%D9%8A%20ElectroPanel" target="_blank" rel="noopener" style="display:block;margin-top:8px;background:#22c55e;color:#fff;border-radius:10px;padding:10px;font-weight:900;text-align:center;text-decoration:none">💬 راسلنا واتساب — 01558837118</a>
+</div>
+<button onclick="decSupaDoLogout()" type="button" style="width:100%;margin-top:12px;background:#ef4444;color:#fff;border:none;border-radius:10px;padding:10px;font-weight:900;cursor:pointer">🚪 تسجيل خروج</button>
+</div>
+</div>
+</div>
+
+
+<script>
+// ===== Supabase Auth + Sync — V3.9.86 =====
+var DEC_SUPA_URL='https://udvqecqmmvsjsvikgiey.supabase.co';
+var DEC_SUPA_KEY='sb_publishable_qtRkK0oCuVoIUbi4ExIu-g_TIbpCfB6';
+function decSupaErr(j){ return (j&&(j.msg||j.message||j.error_description||(j.error&&j.error.message)||j.error))||'حدث خطأ، حاول تاني'; }
+function decSupaHeaders(withAuth){ var h={'Content-Type':'application/json','apikey':DEC_SUPA_KEY}; if(withAuth){ var s=decSupaSession(); if(s&&s.access_token) h['Authorization']='Bearer '+s.access_token; } return h; }
+function decSupaSession(){ try{ var v=decStoreGet('decSupaSession'); return v?JSON.parse(v):null; }catch(e){ return null; } }
+function decSupaSaveSession(s){ decStoreSet('decSupaSession', JSON.stringify(s)); }
+function decSupaClearSession(){ try{ localStorage.removeItem('decSupaSession'); }catch(e){} try{ if(typeof decMemStore!=='undefined') delete decMemStore['decSupaSession']; }catch(e){} }
+function decSupaCall(path, method, body, withAuth){
+  return fetch(DEC_SUPA_URL+path, {method: method||'GET', headers: decSupaHeaders(withAuth), body: body?JSON.stringify(body):undefined})
+    .then(function(r){ return r.json().then(function(j){ if(!r.ok) throw new Error(decSupaErr(j)); return j; }); });
+}
+function decSupaRefresh(){
+  var s=decSupaSession(); if(!s||!s.refresh_token) return Promise.reject(new Error('no session'));
+  return decSupaCall('/auth/v1/token?grant_type=refresh_token','POST',{refresh_token:s.refresh_token}).then(function(res){
+    if(res.access_token) decSupaSaveSession({access_token:res.access_token, refresh_token:res.refresh_token, user:res.user});
+    return res;
+  });
+}
+function decSupaGetProfile(){
+  var s=decSupaSession(); if(!s||!s.user) return Promise.resolve(null);
+  return fetch(DEC_SUPA_URL+'/rest/v1/players?user_id=eq.'+s.user.id+'&select=*', {headers: decSupaHeaders(true)})
+    .then(function(r){ return r.json(); }).then(function(rows){ return (rows&&rows.length)?rows[0]:null; });
+}
+function decSupaCreateProfile(name, email, phone, points, avatar){
+  var s=decSupaSession(); var uid=s&&s.user?s.user.id:null;
+  return fetch(DEC_SUPA_URL+'/rest/v1/players', {method:'POST', headers: Object.assign(decSupaHeaders(true), {'Prefer':'return=representation'}), body: JSON.stringify({user_id:uid, name:name, email:email, phone:phone, points:points||0, avatar:avatar||'🎮', gifts:''})})
+    .then(function(r){ return r.json(); });
+}
+function decSupaUpdateProfile(patch){
+  var s=decSupaSession(); var uid=s&&s.user?s.user.id:null;
+  return fetch(DEC_SUPA_URL+'/rest/v1/players?user_id=eq.'+uid, {method:'PATCH', headers: decSupaHeaders(true), body: JSON.stringify(patch)})
+    .then(function(r){ return r.json(); });
+}
+function decSupaGuestPoints(gameKey, sessionScore){
+  var g={}; try{ var v=decStoreGet('decGuestBest'); g=v?JSON.parse(v):{}; }catch(e){ g={}; }
+  if(sessionScore>(g[gameKey]||0)){ g[gameKey]=sessionScore; decStoreSet('decGuestBest', JSON.stringify(g)); }
+}
+function decSupaGuestTotal(){
+  var g={}; try{ var v=decStoreGet('decGuestBest'); g=v?JSON.parse(v):{}; }catch(e){ g={}; }
+  var t=0; Object.keys(g).forEach(function(k){ t+=(g[k]||0); }); return t;
+}
+function decSupaQueuePoints(delta, source){
+  if(!delta||delta<=0) return;
+  var q=[]; try{ var v=decStoreGet('decSupaQueue'); q=v?JSON.parse(v):[]; }catch(e){ q=[]; }
+  q.push({delta:delta, source:source||'game', at:Date.now()});
+  decStoreSet('decSupaQueue', JSON.stringify(q));
+  decSupaSyncPoints();
+}
+function decSupaSyncPoints(){
+  var s=decSupaSession(); if(!s||!s.user) return Promise.resolve();
+  if(!navigator.onLine) return Promise.resolve();
+  var q=[]; try{ var v=decStoreGet('decSupaQueue'); q=v?JSON.parse(v):[]; }catch(e){ q=[]; }
+  if(!q.length) return Promise.resolve();
+  var total=0; q.forEach(function(it){ total+=(it.delta||0); });
+  return decSupaGetProfile().then(function(prof){
+    if(!prof) return;
+    var newPts=(prof.points||0)+total;
+    return decSupaUpdateProfile({points:newPts}).then(function(){
+      var logs=q.map(function(it){
+        return fetch(DEC_SUPA_URL+'/rest/v1/points_log', {method:'POST', headers: decSupaHeaders(true), body: JSON.stringify({user_id:s.user.id, points_added:it.delta, source:it.source})});
+      });
+      return Promise.all(logs).then(function(){
+        decStoreSet('decSupaQueue', JSON.stringify([]));
+        var acc=decLoadAccount(); if(acc){ acc.points=newPts; decSaveAccount(acc); }
+        decAccountRender();
+      });
+    });
+  }).catch(function(e){ console.log('sync retry later', e); });
+}
+function decSupaRefreshLeaders(){
+  if(!navigator.onLine) return Promise.resolve();
+  return fetch(DEC_SUPA_URL+'/rest/v1/players?select=name,phone,points,avatar&order=points.desc&limit=50', {headers: decSupaHeaders(false)})
+    .then(function(r){ return r.json(); }).then(function(rows){
+      if(Array.isArray(rows)){
+        var local=decLoadLeaders();
+        rows.forEach(function(r){
+          var key=(r.phone||'').replace(/\D/g,'');
+          var found=null;
+          for(var i=0;i<local.length;i++){
+            var lk=(local[i].phone||'').replace(/\D/g,'');
+            if(key&&lk===key){ found=local[i]; break; }
+            if(!key&&(local[i].name||'')===(r.name||'')){ found=local[i]; break; }
+          }
+          if(found){ found.name=r.name; found.points=Math.max(found.points||0, r.points||0); found.avatar=r.avatar||found.avatar; }
+          else { local.push({name:r.name, phone:r.phone||'', points:r.points||0, avatar:r.avatar||'🎮', addedAt:new Date().toISOString()}); }
+        });
+        decSaveLeaders(local);
+      }
+    }).catch(function(e){ console.log('leaders fetch failed', e); });
+}
+function decAccShowMsg(txt, ok){
+  var el=document.getElementById('decAccMsg'); if(!el) return;
+  el.style.display='block'; el.textContent=txt; el.style.color=ok?'#4ade80':'#facc15';
+}
+function decAccountShowTab(tab){
+  ['Login','Register','Forgot'].forEach(function(t){
+    var pane=document.getElementById('decAcc'+t); if(pane) pane.style.display=(t.toLowerCase()===tab)?'block':'none';
+    var btn=document.getElementById('decAccTab'+t); if(btn) btn.style.background=(t.toLowerCase()===tab)?'#22c55e':'#334155';
+  });
+  var rp=document.getElementById('decAccReset'); if(rp) rp.style.display='none';
+}
+function decAccountOpen(tab, pts){
+  var m=document.getElementById('decAccountModal'); if(!m) return;
+  m.style.display='block';
+  var msgEl=document.getElementById('decAccMsg'); if(msgEl) msgEl.style.display='none';
+  var s=decSupaSession();
+  var logged=!!(s&&s.user);
+  var tabs=document.getElementById('decAccTabs'); if(tabs) tabs.style.display=logged?'none':'flex';
+  ['Login','Register','Forgot'].forEach(function(t){ var p=document.getElementById('decAcc'+t); if(p) p.style.display='none'; });
+  var prof=document.getElementById('decAccProfile'); if(prof) prof.style.display=logged?'block':'none';
+  var rp=document.getElementById('decAccReset'); if(rp) rp.style.display='none';
+  if(logged){ decAccountRender(); }
+  else {
+    var gn=document.getElementById('decAccGuestNote');
+    var gt=decSupaGuestTotal();
+    if(gn) gn.textContent = gt>0 ? ('🎉 عندك '+gt+' نقطة من قبل التسجيل — هتتضاف لحسابك أول ما تسجّل ✅') : 'سجّل حسابك عشان نحفظ نقاطك وتستلم هداياك';
+    decAccountShowTab(tab||'login');
+  }
+}
+function decAccountClose(){ var m=document.getElementById('decAccountModal'); if(m) m.style.display='none'; }
+function decAccountRender(){
+  var s=decSupaSession(); var logged=!!(s&&s.user);
+  var prof=document.getElementById('decAccProfile'); if(prof) prof.style.display=logged?'block':'none';
+  var tabs=document.getElementById('decAccTabs'); if(tabs) tabs.style.display=logged?'none':'flex';
+  if(!logged) return;
+  var acc=decLoadAccount();
+  var em=document.getElementById('decAccEmail'); if(em) em.textContent=s.user.email||'';
+  var nm=document.getElementById('decAccName'); if(nm) nm.textContent=(acc&&acc.name)||(s.user.user_metadata&&s.user.user_metadata.name)||'لاعب';
+  var ph=document.getElementById('decAccPhone'); if(ph) ph.textContent=(acc&&acc.phone)||(s.user.user_metadata&&s.user.user_metadata.phone)||'';
+  var pe=document.getElementById('decAccPhoneEdit'); if(pe) pe.style.display=((acc&&acc.phone)||(s.user.user_metadata&&s.user.user_metadata.phone))?'none':'block';
+  var pt=document.getElementById('decAccPoints'); if(pt) pt.textContent=(acc&&acc.points)||0;
+  var av=document.getElementById('decAccAvatarBig'); if(av){
+    var a=(acc&&acc.avatar)||'🎮';
+    if(a.indexOf('http')===0){ av.innerHTML='<img src="'+a+'" style="width:72px;height:72px;border-radius:50%;object-fit:cover;border:2px solid #facc15">'; }
+    else { av.textContent=a; }
+  }
+  var sn=document.getElementById('decAccSyncNote'); if(sn){
+    var q=[]; try{ q=JSON.parse(decStoreGet('decSupaQueue')||'[]'); }catch(e){ q=[]; }
+    sn.textContent = q.length ? ('⏳ فيه '+q.length+' دفعة نقاط مستنية النت — هتتزامن لوحدها') : (navigator.onLine ? '✅ متزامن مع الداتا بيز' : '📶 أوفلاين — نقطك بتتحفظ على تليفونك وهتتزامن أول ما النت يرجع');
+  }
+  decSupaGetProfile().then(function(p){
+    if(!p) return;
+    var acc2=decLoadAccount();
+    if(acc2){ acc2.points=p.points||0; acc2.avatar=p.avatar||acc2.avatar||'🎮'; decSaveAccount(acc2); }
+    var pt2=document.getElementById('decAccPoints'); if(pt2) pt2.textContent=p.points||0;
+    var av2=document.getElementById('decAccAvatarBig'); if(av2){
+      var a2=p.avatar||'🎮';
+      if(a2.indexOf('http')===0){ av2.innerHTML='<img src="'+a2+'" style="width:72px;height:72px;border-radius:50%;object-fit:cover;border:2px solid #facc15">'; }
+      else { av2.textContent=a2; }
+    }
+  }).catch(function(){});
+}
+function decSupaDoRegister(){
+  var name=document.getElementById('decAccRegName').value.trim();
+  var phone=document.getElementById('decAccRegPhone').value.trim();
+  var email=document.getElementById('decAccRegEmail').value.trim();
+  var pass=document.getElementById('decAccRegPass').value;
+  if(!name){ decAccShowMsg('اكتب اسمك الأول'); return; }
+  if(phone.replace(/\D/g,'').length<10){ decAccShowMsg('اكتب رقم موبايل صحيح (واتساب)'); return; }
+  if(!email||email.indexOf('@')<0){ decAccShowMsg('اكتب إيميل صحيح'); return; }
+  if(!pass||pass.length<6){ decAccShowMsg('كلمة المرور لازم 6 حروف على الأقل'); return; }
+  decAccShowMsg('⏳ بنعمل حسابك...');
+  decSupaCall('/auth/v1/signup','POST',{email:email, password:pass, data:{name:name, phone:phone}}).then(function(res){
+    if(!res.access_token){
+      decAccShowMsg('📩 اتبعتت رسالة تأكيد لإيميلك — افتحها ودوس على اللينك، وبعدين اعمل دخول', true);
+      return;
+    }
+    decSupaSaveSession({access_token:res.access_token, refresh_token:res.refresh_token, user:res.user});
+    var gt=decSupaGuestTotal();
+    var guest={}; try{ guest=JSON.parse(decStoreGet('decGuestBest')||'{}'); }catch(e){}
+    var acc={name:name, phone:phone, email:email, points:gt, avatar:'🎮', claimed:[], createdAt:new Date().toISOString()};
+    Object.keys(guest).forEach(function(k){ acc[k]=guest[k]; });
+    decSaveAccount(acc);
+    return decSupaCreateProfile(name, email, phone, gt, '🎮').then(function(){
+      decAccShowMsg('🎉 اتعمل حسابك! ونقطك ('+gt+') اتضافت ✅', true);
+      decAccountRender();
+      decSupaSyncPoints();
+    });
+  }).catch(function(e){ decAccShowMsg('❌ '+e.message); });
+}
+function decSupaDoLogin(){
+  var email=document.getElementById('decAccLoginEmail').value.trim();
+  var pass=document.getElementById('decAccLoginPass').value;
+  if(!email||!pass){ decAccShowMsg('اكتب الإيميل وكلمة المرور'); return; }
+  decAccShowMsg('⏳ بندخّلك...');
+  decSupaCall('/auth/v1/token?grant_type=password','POST',{email:email, password:pass}).then(function(res){
+    if(!res.access_token) throw new Error('الإيميل أو كلمة المرور غلط');
+    decSupaSaveSession({access_token:res.access_token, refresh_token:res.refresh_token, user:res.user});
+    return decSupaGetProfile().then(function(p){
+      var acc=decLoadAccount()||{claimed:[]};
+      if(p){
+        acc.name=p.name||acc.name; acc.phone=p.phone||acc.phone; acc.email=p.email||email; acc.points=p.points||0; acc.avatar=p.avatar||acc.avatar||'🎮';
+      } else {
+        acc.email=email;
+      }
+      decSaveAccount(acc);
+      decAccShowMsg('✅ أهلاً بيك!', true);
+      decAccountRender();
+      decSupaSyncPoints();
+    });
+  }).catch(function(e){ decAccShowMsg('❌ الإيميل أو كلمة المرور غلط'); });
+}
+function decSupaDoForgot(){
+  var email=document.getElementById('decAccForgotEmail').value.trim();
+  if(!email||email.indexOf('@')<0){ decAccShowMsg('اكتب إيميل صحيح'); return; }
+  decAccShowMsg('⏳ بنبعت اللينك...');
+  decSupaCall('/auth/v1/recover','POST',{email:email}).then(function(){
+    decAccShowMsg('📩 اتبعت لينك إعادة التعيين لإيميلك — افتح إيميلك ودوس عليه', true);
+  }).catch(function(e){ decAccShowMsg('❌ '+e.message); });
+}
+function decSupaDoReset(){
+  var pass=document.getElementById('decAccResetPass').value;
+  if(!pass||pass.length<6){ decAccShowMsg('كلمة المرور لازم 6 حروف على الأقل'); return; }
+  decSupaCall('/auth/v1/user','PUT',{password:pass},true).then(function(){
+    decAccShowMsg('✅ اتغيرت كلمة المرور — اعمل دخول بيها', true);
+    decAccountShowTab('login');
+  }).catch(function(e){ decAccShowMsg('❌ '+e.message); });
+}
+function decSupaDoLogout(){
+  decSupaClearSession();
+  decAccountRender();
+  decAccountShowTab('login');
+  decAccShowMsg('تم تسجيل الخروج');
+}
+function decSupaSetAvatar(emoji){
+  var acc=decLoadAccount(); if(acc){ acc.avatar=emoji; decSaveAccount(acc); }
+  decSupaUpdateProfile({avatar:emoji}).catch(function(){});
+  decAccountRender();
+  decAccShowMsg('✅ اتغيرت صورتك', true);
+}
+function decSupaUploadAvatar(input){
+  var file=input.files&&input.files[0]; if(!file) return;
+  var s=decSupaSession(); if(!s||!s.user){ decAccShowMsg('اعمل دخول الأول'); return; }
+  decAccShowMsg('⏳ بنرفع صورتك...');
+  var uid=s.user.id;
+  var ext=(file.name.split('.').pop()||'jpg').toLowerCase();
+  var path=uid+'.'+ext;
+  var form=new FormData(); form.append('file', file);
+  fetch(DEC_SUPA_URL+'/storage/v1/object/avatars/'+path, {method:'POST', headers:{'apikey':DEC_SUPA_KEY, 'Authorization':'Bearer '+s.access_token}, body:form})
+    .then(function(r){ return r.json(); }).then(function(j){
+      if(j.error) throw new Error('فشل الرفع، حاول تاني');
+      var url=DEC_SUPA_URL+'/storage/v1/object/public/avatars/'+path;
+      var acc=decLoadAccount(); if(acc){ acc.avatar=url; decSaveAccount(acc); }
+      return decSupaUpdateProfile({avatar:url}).then(function(){ return url; });
+    }).then(function(){
+      decAccShowMsg('✅ اترفعت صورتك', true);
+      decAccountRender();
+    }).catch(function(e){ decAccShowMsg('❌ '+e.message); });
+}
+function decSupaGoogleLogin(){
+  var redirect=location.origin+location.pathname;
+  location.href=DEC_SUPA_URL+'/auth/v1/authorize?provider=google&redirect_to='+encodeURIComponent(redirect);
+}
+function decSupaEnsureProfileAfterOAuth(u){
+  return decSupaGetProfile().then(function(p){
+    if(p){
+      var acc=decLoadAccount()||{claimed:[]};
+      acc.name=p.name||acc.name; acc.phone=p.phone||acc.phone; acc.email=p.email||u.email||''; acc.points=p.points||0; acc.avatar=p.avatar||acc.avatar||'🎮';
+      decSaveAccount(acc);
+      return null;
+    }
+    var name=(u.user_metadata&&(u.user_metadata.full_name||u.user_metadata.name))||'لاعب';
+    var gt=decSupaGuestTotal();
+    var guest={}; try{ guest=JSON.parse(decStoreGet('decGuestBest')||'{}'); }catch(e){}
+    var acc2={name:name, phone:'', email:u.email||'', points:gt, avatar:(u.user_metadata&&u.user_metadata.avatar_url)||'🎮', claimed:[], createdAt:new Date().toISOString()};
+    Object.keys(guest).forEach(function(k){ acc2[k]=guest[k]; });
+    decSaveAccount(acc2);
+    return decSupaCreateProfile(name, u.email||'', '', gt, acc2.avatar);
+  });
+}
+function decSupaSavePhone(){
+  var phone=document.getElementById('decAccPhoneInput').value.trim();
+  if(phone.replace(/\D/g,'').length<10){ decAccShowMsg('اكتب رقم موبايل صحيح (واتساب)'); return; }
+  decSupaUpdateProfile({phone:phone}).then(function(){
+    var acc=decLoadAccount()||{claimed:[]}; acc.phone=phone; decSaveAccount(acc);
+    decAccShowMsg('✅ اتحفظ رقمك', true);
+    decAccountRender();
+  }).catch(function(e){ decAccShowMsg('❌ '+e.message); });
+}
+(function decSupaInit(){
+  try{
+    var h=location.hash||'';
+    if(h.indexOf('access_token=')>=0){
+      var m=h.match(/access_token=([^&]+)/); var rr=h.match(/refresh_token=([^&]+)/);
+      var isRecovery=h.indexOf('type=recovery')>=0;
+      if(m){
+        decSupaSaveSession({access_token:decodeURIComponent(m[1]), refresh_token:rr?decodeURIComponent(rr[1]):'', user:null});
+        decSupaCall('/auth/v1/user','GET',null,true).then(function(u){
+          var s=decSupaSession(); s.user=u; decSupaSaveSession(s);
+          if(isRecovery){
+            decAccountOpen(); var rp=document.getElementById('decAccReset'); if(rp) rp.style.display='block';
+            ['Login','Register','Forgot'].forEach(function(t){ var p=document.getElementById('decAcc'+t); if(p) p.style.display='none'; });
+          } else {
+            decSupaEnsureProfileAfterOAuth(u).then(function(){ decAccountOpen(); decSupaSyncPoints(); decSupaRefreshLeaders(); });
+          }
+        }).catch(function(){ if(isRecovery){ decAccountOpen(); var rp2=document.getElementById('decAccReset'); if(rp2) rp2.style.display='block'; } });
+        return;
+      }
+    }
+    if(h.indexOf('type=recovery')>=0){
+      var m=h.match(/access_token=([^&]+)/); var rr=h.match(/refresh_token=([^&]+)/);
+      if(m){
+        decSupaSaveSession({access_token:decodeURIComponent(m[1]), refresh_token:rr?decodeURIComponent(rr[1]):'', user:null});
+        decSupaCall('/auth/v1/user','GET',null,true).then(function(u){
+          var s=decSupaSession(); s.user=u; decSupaSaveSession(s);
+          decAccountOpen(); var rp=document.getElementById('decAccReset'); if(rp) rp.style.display='block';
+          ['Login','Register','Forgot'].forEach(function(t){ var p=document.getElementById('decAcc'+t); if(p) p.style.display='none'; });
+        }).catch(function(){ decAccountOpen(); var rp2=document.getElementById('decAccReset'); if(rp2) rp2.style.display='block'; });
+        return;
+      }
+    }
+  }catch(e){}
+  var s2=decSupaSession();
+  if(s2&&s2.access_token){
+    decSupaCall('/auth/v1/user','GET',null,true).then(function(u){
+      s2.user=u; decSupaSaveSession(s2);
+      decSupaSyncPoints(); decSupaRefreshLeaders(); decAccountRender();
+    }).catch(function(){
+      decSupaRefresh().then(function(){ decSupaSyncPoints(); decSupaRefreshLeaders(); decAccountRender(); }).catch(function(){ decSupaClearSession(); });
+    });
+  } else {
+    decSupaRefreshLeaders();
+  }
+  window.addEventListener('online', function(){ decSupaSyncPoints(); decSupaRefreshLeaders(); });
+})();
+</script>
 
 </body></html>
